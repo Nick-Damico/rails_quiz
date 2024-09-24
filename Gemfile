@@ -47,7 +47,7 @@ group :development, :test do
 
   gem "faker"
 
-  gem "factory_bot", "~> 6.5"
+  gem "factory_bot_rails"
 
   # Rails integration of RSpec [https://github.com/rspec/rspec-rails]
   gem "rspec-rails", "~> 7.0.0"
