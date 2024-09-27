@@ -1,34 +1,36 @@
 <%= render "shared/profile_bar" if user_signed_in? %>
 
-<section class="py-6 px-4 mx-auto max-w-screen-xl">
-  <% if user_signed_in? %>
-    <h2 class="text-3xl mb-4">Welcome back, <%= current_user.email %></h2>  
-  <% else %>
-    <h2 class="text-3xl mb-4">Welcome to QuizIt!</h2>  
-  <% end %>
+<div class='bg-gradient-to-b from-indigo-900'>
+  <section class="py-6 px-4 mx-auto max-w-screen-xl">
+    <% if user_signed_in? %>
+      <h2 class="text-3xl mb-4">Welcome back, <%= current_user.email %></h2>  
+    <% else %>
+      <h2 class="text-3xl mb-4">Welcome to QuizIt!</h2>  
+    <% end %>
 
-  <p class="prose text-white text-lg font-thin mb-16">
-    Start your daily learning journey by making a selection from one of your sites study options below...
-  </p>
+    <p class="prose text-white text-lg font-thin mb-16">
+      Start your daily learning journey by making a selection from one of your sites study options below...
+    </p>
 
-  <div class="flex gap-1 justify-center mx-auto">
-    <div class="flex flex-col items-center max-w-[225px] bg-gray-800 px-4 py-6 text-center font-thin">
-      <div class="rounded-full h-20 w-20 bg-gray-400 mb-4"></div>
-      <p>Choose a topic or a field of study that interests you</p>
+    <div class="flex gap-1 justify-center mx-auto">
+      <div class="flex flex-col items-center max-w-[245px] bg-gray-800 px-4 py-6 text-center font-thin">
+        <div class="rounded-full h-20 w-20 bg-gray-400 mb-4"></div>
+        <p>Choose a topic or a field of study that interests you</p>
+      </div>
+
+      <div class="flex flex-col items-center max-w-[245px] bg-gray-800 px-4 py-6 text-center font-thin">
+        <div class="rounded-full h-20 w-20 bg-gray-400 mb-4"></div>
+        <p>
+          Search through user currated study materials
+        </p>
+      </div>
+
+      <div class="flex flex-col items-center max-w-[245px] bg-gray-800 px-4 py-6 text-center font-thin">
+        <div class="rounded-full h-20 w-20 bg-gray-400 mb-4"></div>
+        <p>
+          Setup a study schedule to acheive your goals
+        </p>
+      </div>
     </div>
-
-    <div class="flex flex-col items-center max-w-[225px] bg-gray-800 px-4 py-6 text-center font-thin">
-      <div class="rounded-full h-20 w-20 bg-gray-400 mb-4"></div>
-      <p>
-        Search through user currated study materials
-      </p>
-    </div>
-
-    <div class="flex flex-col items-center max-w-[225px] bg-gray-800 px-4 py-6 text-center font-thin">
-      <div class="rounded-full h-20 w-20 bg-gray-400 mb-4"></div>
-      <p>
-        Setup a study schedule to acheive your goals
-      </p>
-    </div>
-  </div>
-</section>
+  </section>
+</div>
