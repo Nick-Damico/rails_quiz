@@ -29,4 +29,18 @@ RSpec.describe 'User Authentication Forms', type: :feature do
 
     expect(page).to have_content("Hello #{user.email}")
   end
+
+  scenario 'displays error for invalid login attempt' do
+    random_password = Faker::Internet.password(min_length: 6, max_length: 6, mix_case: true, special_characters: true)
+    user = create(:user, password: random_password, password_confirmation: random_password)
+
+    visit new_user_session_path
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: '1234BadPassword!'
+
+    click_button 'Log in'
+
+    expect(page).to have_content("Invalid Email or password.")
+  end
 end
