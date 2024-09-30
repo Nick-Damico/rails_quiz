@@ -1,0 +1,8 @@
+<% flash.each do |key, msg| %>
+    <div class="relative p-4 mb-4 text-sm rounded <%= flash_class(key) %>">
+      <%= msg %>
+      <button type="button" class="absolute top-0 right-0 p-2 text-xl" onclick="this.parentElement.remove();">
+        &times;
+      </button>
+    </div>
+<% end %>
