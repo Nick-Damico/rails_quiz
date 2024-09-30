@@ -1,7 +1,11 @@
 <% flash.each do |key, msg| %>
     <div class="absolute flex items-center p-2 w-full mb-4 text-sm rounded <%= flash_class(key) %>">
       <%= msg %>
-      <button type="button" class="ml-auto bg-red-500 flex items-center justify-center rounded-full top-0 w-8 h-8 p-2 right-0 text-xl" onclick="this.parentElement.remove();">
+      <button 
+        type="button"
+        class="flex ml-auto items-center justify-center rounded-full top-0 w-8 h-8 p-2 right-0 text-xl <%= flash_button_class(key) %>"
+        onclick="this.parentElement.remove();"
+        >
         <span class="font-bold text-white">&times;</span>
       </button>
     </div>
