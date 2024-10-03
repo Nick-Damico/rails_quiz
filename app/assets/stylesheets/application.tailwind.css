@@ -2,12 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
 @layer components {
   .btn-primary {
     @apply py-2 px-4 bg-blue-200;
   }
-}
 
-*/
+  #error_explanation {
+    @apply p-4 bg-red-100 text-red-800 border-red-300;
+  }
+
+  #error_explanation h2 {
+    @apply text-md font-bold;
+  }
+
+  #error_explanation ul {
+    @apply text-sm pl-4 text-red-800 font-semibold;
+  }
+}
