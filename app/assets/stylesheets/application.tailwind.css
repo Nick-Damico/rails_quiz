@@ -8,13 +8,13 @@
   }
 
   #error_explanation {
-    @apply p-4 bg-red-100 text-red-800 border-red-300;
+    @apply p-4 bg-red-100 text-red-400 rounded border-2 border-red-500;
   }
   #error_explanation h2 {
-    @apply text-lg font-bold;
+    @apply font-bold;
   }
 
   #error_explanation ul {
-    @apply list-disc text-sm pl-4 text-red-800 font-semibold;
+    @apply list-disc text-sm pl-4 text-red-400 font-semibold;
   }
 }
