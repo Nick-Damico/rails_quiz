@@ -3,8 +3,10 @@
     <div class="left-column flex items-center">
       <div class="rounded-full bg-white h-8 w-8"></div>    
       <div class="ml-4">
-        <p><%= "Nick-Damico" %></p>
-        <p><%= "padawan" %></p>
+        <a href="<%= dashboard_user_path(current_user) %>">
+          <p><%= "Nick-Damico" %></p>
+          <p><%= "padawan" %></p>
+        </a>
       </div>
     </div>
 

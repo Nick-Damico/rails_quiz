@@ -12,4 +12,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+
+  namespace :dashboard do
+    resources :users, only: %i[show update]
+  end
 end
