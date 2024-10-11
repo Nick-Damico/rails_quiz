@@ -2,10 +2,17 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="flash"
 export default class extends Controller {
-  connect() {}
+  connect() {
+    this.removeOnTimeout(2500)
+  }
 
   onClick(e) {
-    this.element.classList.add('animate-fadeOut')
-    setTimeout(() => { this.element.remove() }, 700);
+    this.removeOnTimeout()
+  }
+
+  removeOnTimeout(delay = 0) {
+    setTimeout(() => { this.element.classList.add('animate-fadeOut') }, delay);
+
+    this.element.addEventListener('transitionend', () => { this.element.remove() });
   }
 }
