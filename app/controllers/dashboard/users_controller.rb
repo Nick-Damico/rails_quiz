@@ -9,7 +9,7 @@ class Dashboard::UsersController < ApplicationController
       flash[:notice] = "Profile Updated"
     end
 
-    render :show
+    redirect_to dashboard_user_url(@user)
   end
 
   private

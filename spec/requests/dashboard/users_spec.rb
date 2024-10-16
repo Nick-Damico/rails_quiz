@@ -1,7 +1,23 @@
 require 'rails_helper'
 
 RSpec.describe "Dashboard::Users", type: :request do
-  describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
+  let!(:user) { create(:user) }
+
+  describe "GET /show" do
+    it "is returns an http success status" do
+      get dashboard_user_path(user)
+
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "PUT /update" do
+    it "updates the users username" do
+      new_username = "SamPuppies"
+
+      put dashboard_user_path(user), params: { user: { username: new_username } }
+
+      expect(user.reload.username). to eq new_username
+    end
   end
 end
