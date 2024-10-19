@@ -11,8 +11,7 @@ export default class extends Controller {
   }
 
   removeOnTimeout(delay = 0) {
+    this.element.addEventListener('animationend', () => this.element.remove());
     setTimeout(() => { this.element.classList.add('animate-fadeOut') }, delay);
-
-    this.element.addEventListener('transitionend', () => { this.element.remove() });
   }
 }
