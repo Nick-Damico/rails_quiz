@@ -9,6 +9,9 @@ class QuizzesController < ApplicationController
     @quiz = @author.quizzes.create(quiz_params)
     if @quiz.save
       redirect_to root_url
+    else
+      flash.now[:alert] = @quiz.errors.full_messages
+      render :new, status: :unprocessable_entity
     end
   end
 
