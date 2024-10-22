@@ -16,4 +16,8 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :users, only: %i[show update]
   end
+
+  resources :users, as: "authors", path: "author", only: %i[] do
+    resources :quizzes, only: %i[new create]
+  end
 end
