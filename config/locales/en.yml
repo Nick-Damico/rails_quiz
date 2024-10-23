@@ -29,3 +29,8 @@
 
 en:
   hello: "Hello world"
+  helpers:
+    submit:
+      quiz:
+        create: "Create Quiz"
+        update: "Update Quiz"
