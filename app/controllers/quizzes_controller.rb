@@ -1,5 +1,9 @@
 class QuizzesController < ApplicationController
-  before_action :set_author, only: %i[new create]
+  before_action :set_author, only: %i[index create new]
+
+  def index
+    @quizzes = @author.quizzes
+  end
 
   def new
     @quiz = @author.quizzes.new
@@ -8,7 +12,8 @@ class QuizzesController < ApplicationController
   def create
     @quiz = @author.quizzes.create(quiz_params)
     if @quiz.save
-      redirect_to root_url
+      flash[:notice] = t("flash.quizzes.create.success")
+      redirect_to author_quizzes_url(@author)
     else
       flash.now[:alert] = @quiz.errors.full_messages
       render :new, status: :unprocessable_entity

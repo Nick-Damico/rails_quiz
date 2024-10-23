@@ -28,6 +28,11 @@
 #       enabled: "ON"
 
 en:
+  flash:
+    quizzes:
+      create:
+        success: "Quiz was successfully created."
+        error: "There was an error creating the quiz."
   hello: "Hello world"
   helpers:
     submit:
