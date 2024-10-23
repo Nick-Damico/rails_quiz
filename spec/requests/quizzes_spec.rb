@@ -15,7 +15,7 @@ RSpec.describe "Quizzes", type: :request do
 
   describe "POST /create", type: :request do
     context 'valid params' do
-      let(:valid_params) { { quiz: { name: 'Best Quiz', description: 'My first Quiz!' } } }
+      let(:valid_params) { { quiz: { title: 'Best Quiz', description: 'My first Quiz!' } } }
 
       it "responds with HTTP status success(302)" do
         post author_quizzes_path(author), params: valid_params
@@ -33,8 +33,8 @@ RSpec.describe "Quizzes", type: :request do
 
   describe "POST /create", type: :request do
     context 'invalid params' do
-      # Missing required :name field
-      let(:invalid_params) { { quiz: { name: '', description: 'My first Quiz!' } } }
+      # Missing required :title field
+      let(:invalid_params) { { quiz: { title: '', description: 'My first Quiz!' } } }
 
       it "responds with HTTP status unprocessable entity(400)" do
         post author_quizzes_path(author), params: invalid_params

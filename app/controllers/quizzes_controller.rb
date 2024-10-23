@@ -18,7 +18,7 @@ class QuizzesController < ApplicationController
   private
 
   def quiz_params
-    params.require(:quiz).permit(:name, :description, :author_id)
+    params.require(:quiz).permit(:title, :description, :author_id)
   end
 
   def set_author
