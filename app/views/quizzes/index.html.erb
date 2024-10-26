@@ -1,11 +1,43 @@
-<h2 class="text-2xl">Quizzes</h2>
 
-<div>
-  <ul>
-    <% @quizzes.each do |quiz| %>
-      <li>
-        <h3><%= quiz.title %></h3>
-      </li>
-    <% end %>
-  </ul>
+<div class="py-6 px-4 mx-auto max-w-screen-xl">
+  
+  <h2 class="text-2xl font-semibold mb-4">Quizzes</h2>
+
+  <div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-3 py-3">
+              Title
+          </th>
+          <th scope="col" class="px-3 py-3">
+              Description
+          </th>
+          <th scope="col" class="px-3 py-3">
+              Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @quizzes.each do |quiz| %>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <th scope="row" class="py-2 px-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <%= quiz.title %>
+            </th>
+            <td class="py-2 px-3">
+              <%= quiz.description %> 
+            </td>
+            <td class="py-2 px-3">
+              <div class="flex w-fit border border-gray-400">
+                <%= link_to 'edit', edit_author_quiz_path(@author, quiz), class: 'bg-red-500 text-white px-2 py-2' %>
+                <%= link_to 'destroy', edit_author_quiz_path(@author, quiz), class: 'bg-emerald-600 text-white px-2 py-2' %>
+                <%= link_to 'view', author_quiz_path(@author, quiz), class: 'bg-blue-600 text-white px-2 py-2' %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
+

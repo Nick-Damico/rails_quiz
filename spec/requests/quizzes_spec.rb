@@ -17,7 +17,7 @@ RSpec.describe "Quizzes", type: :request do
     context 'valid params' do
       let(:valid_params) { { quiz: { title: 'Best Quiz', description: 'My first Quiz!' } } }
 
-      it "responds with HTTP status success(302)" do
+      it "responds with HTTP status redirect(302)" do
         post author_quizzes_path(author), params: valid_params
 
         expect(response).to have_http_status(:redirect)
@@ -42,10 +42,39 @@ RSpec.describe "Quizzes", type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
-      it "creates an authored quiz" do
+      it 'creates an authored quiz' do
         expect {
           post author_quizzes_path(author), params: invalid_params
         }.to change(Quiz, :count).by(0)
+      end
+    end
+  end
+
+  describe "GET /edit", type: :request do
+    let!(:quiz) { create(:quiz, author: author) }
+
+    it "responds with HTTP status ok(200)" do
+      get edit_author_quiz_path(author, quiz)
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe "PUT /update", type: :request do
+    let!(:quiz) { create(:quiz, author: author) }
+
+    context "Valid params" do
+      it "responds with HTTP status redirect(302)" do
+        put author_quiz_path(author, quiz), params: { quiz: quiz.attributes.merge(title: 'Best Quiz Ever') }
+
+        expect(response).to have_http_status(:redirect)
+        expect(flash[:notice]).to eq(I18n.t("flash.quizzes.update.success"))
+      end
+
+      it "redirects to :index author_quizzes_url" do
+        put author_quiz_path(author, quiz), params: { quiz: quiz.attributes.merge(title: 'Best Quiz Ever') }
+
+        expect(response).to redirect_to author_quizzes_url(author)
       end
     end
   end

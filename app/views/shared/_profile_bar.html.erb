@@ -3,8 +3,8 @@
     <div class="left-column flex items-center">
       <div class="rounded-full bg-white h-8 w-8"></div>    
       <div class="ml-4">
-        <%= link_to dashboard_user_path(current_user) do %>
-          <p class="border-b border-gray-600"><%= "Nick-Damico" %></p>
+        <%= link_to dashboard_user_path( current_user ) do %>
+          <p class="border-b border-gray-600"><%= current_user.username %></p>
           <p class="text-xs uppercase font-light text-gray-400"><%= "padawan" %></p>
         <% end %>
       </div>

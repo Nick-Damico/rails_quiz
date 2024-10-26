@@ -33,6 +33,9 @@ en:
       create:
         success: "Quiz was successfully created."
         error: "There was an error creating the quiz."
+      update:
+        success: "Quiz was successfully updated."
+        error: "There was an error updating the quiz."
   hello: "Hello world"
   helpers:
     submit:
