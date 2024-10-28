@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :users, only: %i[show update]
   end
 
-  resources :users, as: "authors", path: "author", only: %i[] do
+  resources :users, path: "authors", as: "authors", only: %i[] do
     resources :quizzes, only: %i[create edit index new show update]
   end
 end

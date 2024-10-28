@@ -1,5 +1,5 @@
 class QuizzesController < ApplicationController
-  before_action :set_author, only: %i[index create new]
+  before_action :set_author, only: %i[create edit index new]
   before_action :set_quiz, only: %i[edit update]
 
   def index

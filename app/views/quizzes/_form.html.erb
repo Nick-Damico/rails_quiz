@@ -1,6 +1,6 @@
 <div class="mt-16 mx-auto w-full max-w-sm">
   <div class="bg-gray-800 shadow-md rounded-md px-8 pt-6 pb-8 mb-4">
-    <%= form_with model: [@author, quiz], url: author_quizzes_path do |f| %>
+    <%= form_with model: [@author, @quiz], url: do |f| %>
 
       <div class="mt-2 mb-4 field">
         <%= f.label :title, class: "text-white text-xs font-semibold uppercase mb-2" %>
