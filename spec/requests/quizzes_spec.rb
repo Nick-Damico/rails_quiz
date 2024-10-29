@@ -29,9 +29,7 @@ RSpec.describe "Quizzes", type: :request do
         }.to change(Quiz, :count).by(1)
       end
     end
-  end
 
-  describe "POST /create", type: :request do
     context 'invalid params' do
       # Missing required :title field
       let(:invalid_params) { { quiz: { title: '', description: 'My first Quiz!' } } }
@@ -64,17 +62,35 @@ RSpec.describe "Quizzes", type: :request do
     let!(:quiz) { create(:quiz, author: author) }
 
     context "Valid params" do
+      let(:valid_params) { quiz.attributes.merge(title: 'Best Quiz Ever') }
+
       it "responds with HTTP status redirect(302)" do
-        put author_quiz_path(author, quiz), params: { quiz: quiz.attributes.merge(title: 'Best Quiz Ever') }
+        put author_quiz_path(author, quiz), params: { quiz: valid_params }
 
         expect(response).to have_http_status(:redirect)
         expect(flash[:notice]).to eq(I18n.t("flash.quizzes.update.success"))
       end
 
       it "redirects to :index author_quizzes_url" do
-        put author_quiz_path(author, quiz), params: { quiz: quiz.attributes.merge(title: 'Best Quiz Ever') }
+        put author_quiz_path(author, quiz), params: { quiz: valid_params }
 
         expect(response).to redirect_to author_quizzes_url(author)
+      end
+    end
+
+    context "Invalid params" do
+      let(:invalid_params) { quiz.attributes.merge(title: '') }
+
+      it "responds with HTTP status unprocessable_entity(422)" do
+        put author_quiz_path(author, quiz), params: { quiz: invalid_params }
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "renders with an error message" do
+        put author_quiz_path(author, quiz), params: { quiz: invalid_params }
+
+        expect(flash[:alert]).to eq(I18n.t("flash.quizzes.update.error"))
       end
     end
   end

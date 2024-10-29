@@ -1,6 +1,6 @@
 class QuizzesController < ApplicationController
-  before_action :set_author, only: %i[create edit index new]
   before_action :set_quiz, only: %i[edit update]
+  before_action :set_author, only: %i[create edit index new]
 
   def index
     @quizzes = @author.quizzes
@@ -29,7 +29,14 @@ class QuizzesController < ApplicationController
       flash[:notice] = t("flash.quizzes.update.success")
       redirect_to author_quizzes_url(@quiz.author)
     else
+      # TODO: Display attirbutes and error messages on forms
+      @author = @quiz.author
+      flash[:alert] = t("flash.quizzes.update.error")
+      render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
   end
 
   private
