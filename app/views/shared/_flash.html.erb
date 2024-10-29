@@ -1,13 +1,21 @@
 <% if flash.any? %>
   <% flash.each do |key, content| %>
     <div
-      class="absolute flex items-center p-2 w-full mb-4 text-sm rounded <%= flash_class(key) %>"
+      class="absolute flex flex-col py-2 px-4 w-full mb-4 text-sm rounded <%= flash_class(key) %>"
       data-controller="flash"
       >
         <% Array(content).each do |msg| %>
-            <%= render "shared/flash_msg", key: key, msg: msg %> 
+            <p><%= msg %></p>
         <% end %>
-      </div>
+
+        <button 
+          type="button"
+          class="absolute flex ml-auto mt-2 mr-4 items-center justify-center rounded-full top-0 w-8 h-8 p-2 right-0 text-xl <%= flash_button_class(key) %>"
+          data-action="click->flash#onClick"
+          >
+          <span class="font-bold text-white">&times;</span>
+        </button>
+    </div>
   <% end %>
 <% end %>
 
