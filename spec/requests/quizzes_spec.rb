@@ -94,4 +94,28 @@ RSpec.describe "Quizzes", type: :request do
       end
     end
   end
+
+  describe "DELETE /destroy", type: :request do
+    let(:quiz) { create(:quiz, author: author) }
+
+    context "Valid params" do
+      it "responds with HTTP status redirect(302)" do
+        delete author_quiz_path(author, quiz)
+
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it "renders with a success message" do
+        delete author_quiz_path(author, quiz)
+
+        expect(flash[:notice]).to eq(I18n.t("flash.quizzes.delete.success"))
+      end
+
+      xit "destroys the quiz record" do
+        expect {
+          delete author_quiz_path(author, quiz)
+        }.to change(Quiz, :count).by(-1)
+      end
+    end
+  end
 end

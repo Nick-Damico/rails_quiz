@@ -36,6 +36,10 @@ en:
       update:
         success: "Quiz was successfully updated."
         error: "There was an error updating the quiz."
+      delete:
+        success: "Quiz was successfully deleted."
+        error: "There was an error deleting the quiz."
+
   hello: "Hello world"
   helpers:
     submit:

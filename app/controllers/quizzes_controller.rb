@@ -1,6 +1,6 @@
 class QuizzesController < ApplicationController
-  before_action :set_quiz, only: %i[edit update]
-  before_action :set_author, only: %i[create edit index new]
+  before_action :set_quiz, only: %i[destroy edit update]
+  before_action :set_author, only: %i[create destroy edit index new]
 
   def index
     @quizzes = @author.quizzes
@@ -37,6 +37,11 @@ class QuizzesController < ApplicationController
   end
 
   def destroy
+    if @quiz.destroy
+      flash[:notice] = t("flash.quizzes.delete.success")
+      redirect_to author_quizzes_url(@author)
+    else
+    end
   end
 
   private

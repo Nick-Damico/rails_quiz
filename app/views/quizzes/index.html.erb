@@ -27,7 +27,7 @@
           <td class="py-2 px-3">
             <div class="flex w-fit border border-gray-400">
               <%= link_to 'edit', edit_author_quiz_path(@author, quiz), class: 'bg-red-500 text-white px-2 py-2' %>
-              <%= link_to 'destroy', edit_author_quiz_path(@author, quiz), class: 'bg-emerald-600 text-white px-2 py-2' %>
+              <%= link_to 'destroy', author_quiz_path(@author, quiz), data: { turbo_confirm: 'Are you sure?', turbo_method: :delete }, class: 'bg-emerald-600 text-white px-2 py-2' %>
               <%= link_to 'view', author_quiz_path(@author, quiz), class: 'bg-blue-600 text-white px-2 py-2' %>
             </div>
           </td>

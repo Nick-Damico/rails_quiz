@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   end
 
   resources :users, path: "authors", as: "authors", only: %i[] do
-    resources :quizzes, only: %i[create edit index new show update]
+    resources :quizzes, only: %i[create destroy edit index new show update]
   end
 end
