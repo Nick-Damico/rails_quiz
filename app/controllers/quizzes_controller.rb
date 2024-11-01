@@ -41,6 +41,8 @@ class QuizzesController < ApplicationController
       flash[:notice] = t("flash.quizzes.delete.success")
       redirect_to author_quizzes_url(@author)
     else
+      flash[:alert] = t("flash.quizzes.delete.error")
+      redirect_to author_quizzes_url(@author)
     end
   end
 
