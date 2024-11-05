@@ -1,9 +1,12 @@
 class QuizzesController < ApplicationController
-  before_action :set_quiz, only: %i[destroy edit update]
-  before_action :set_author, only: %i[create destroy edit index new]
+  before_action :set_quiz, only: %i[destroy edit show update]
+  before_action :set_author, only: %i[create destroy edit index new show]
 
   def index
     @quizzes = @author.quizzes
+  end
+
+  def show
   end
 
   def new

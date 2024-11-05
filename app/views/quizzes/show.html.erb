@@ -1,0 +1,15 @@
+<div class="border-b mb-6">
+  <%= link_to t('buttons.back'), author_quizzes_path(@author), class: "inline-flex bg-primary text-white px-2 py-2 mb-4" %>
+</div>
+
+<h2 class="text-3xl font-bold">
+  <%= @quiz.title %> <br>
+</h2>
+
+<p class="italic font-semibold ml-4 mb-4">
+  by: <%= @author.username %>
+</p>
+
+<p class="ml-4">
+  About: <%= @quiz.description %>
+</p>

@@ -13,6 +13,15 @@ RSpec.describe "Quizzes", type: :request do
     end
   end
 
+  describe "GET /show", type: :request do
+    it "responds with HTTP status ok(200)" do
+      quiz = create(:quiz, author:)
+      get author_quiz_path(author, quiz)
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe "POST /create", type: :request do
     context 'valid params' do
       let(:valid_params) { { quiz: { title: 'Best Quiz', description: 'My first Quiz!' } } }
