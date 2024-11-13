@@ -3,18 +3,18 @@ class QuizzesController < ApplicationController
   before_action :set_author, only: %i[create destroy edit index new show]
 
   def index
-    @quizzes = @author.quizzes
+    @quizzes = @author.authored_quizzes
   end
 
   def show
   end
 
   def new
-    @quiz = @author.quizzes.new
+    @quiz = @author.authored_quizzes.new
   end
 
   def create
-    @quiz = @author.quizzes.create(quiz_params)
+    @quiz = @author.authored_quizzes.create(quiz_params)
     if @quiz.save
       flash[:notice] = t("flash.quizzes.create.success")
       redirect_to author_quizzes_url(@author)
