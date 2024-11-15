@@ -16,8 +16,6 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :users, only: %i[show update]
   end
-
-  resources :users, path: "authors", as: "authors", only: %i[] do
-    resources :quizzes, only: %i[create destroy edit index new show update]
+  resources :quizzes, only: %i[create destroy edit index new show update] do
   end
 end

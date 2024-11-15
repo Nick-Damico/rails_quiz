@@ -5,7 +5,7 @@ RSpec.describe 'Authored Quizzes', type: :feature do
       author = create(:user)
       sign_in author
 
-      visit new_author_quiz_path(author)
+      visit new_quiz_path(author_id: author)
 
     # fill_in 'Email', with: email
     # fill_in 'Username', with: username
