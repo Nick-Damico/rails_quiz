@@ -1,9 +1,9 @@
 <div class="border-b border-gray-800 mb-6">
-  <%= back_button path: author_quiz_path(@author, @quiz) %>
+  <%= back_button path: quiz_path(@quiz, author_id: @author) %>
 </div>
 
 <%= banner_heading do %>
   <h2 class="text-2xl text-center font-semibold">Edit Quiz</h2>
 <% end %>
 
-<%= render 'form', quiz: @quiz, author: @author, url: author_quiz_path(@author, @quiz) %>
+<%= render 'form', quiz: @quiz, author: @author, url: quiz_path(@quiz, author_id: @author) %>

@@ -2,4 +2,4 @@
   <h2 class="text-2xl text-center font-semibold">Create Quiz</h2>
 <% end %>
 
-<%= render 'form', quiz: @quiz, author: @author, url: author_quizzes_path(@author) %>
+<%= render 'form', quiz: @quiz, author: @author, url: quizzes_path(author_id: @author) %>

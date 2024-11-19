@@ -14,10 +14,10 @@ class QuizzesController < ApplicationController
   end
 
   def create
-    @quiz = @author.authored_quizzes.create(quiz_params)
+    @quiz = @author.authored_quizzes.new(quiz_params)
     if @quiz.save
       flash[:notice] = t("flash.quizzes.create.success")
-      redirect_to author_quizzes_url(@author)
+      redirect_to quizzes_url(author_id: @author)
     else
       flash.now[:alert] = @quiz.errors.full_messages
       render :new, status: :unprocessable_entity
@@ -30,7 +30,7 @@ class QuizzesController < ApplicationController
   def update
     if @quiz.update(quiz_params)
       flash[:notice] = t("flash.quizzes.update.success")
-      redirect_to author_quizzes_url(@quiz.author)
+      redirect_to quizzes_url(author_id: @quiz.author)
     else
       # TODO: Display attirbutes and error messages on forms
       @author = @quiz.author
@@ -42,10 +42,10 @@ class QuizzesController < ApplicationController
   def destroy
     if @quiz.destroy
       flash[:notice] = t("flash.quizzes.delete.success")
-      redirect_to author_quizzes_url(@author)
+      redirect_to quizzes_url(author_id: @author)
     else
       flash[:alert] = t("flash.quizzes.delete.error")
-      redirect_to author_quizzes_url(@author)
+      redirect_to quizzes_url(author_id: @author)
     end
   end
 
