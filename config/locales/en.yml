@@ -47,7 +47,7 @@ en:
 
   hello: "Hello world"
   buttons:
-    back: "< Go Back"
+    back: "Go Back"
   helpers:
     submit:
       quiz:
