@@ -29,7 +29,7 @@ RSpec.describe "Questions", type: :request do
           post quiz_questions_path(quiz), params: valid_params
         }.to change(Question, :count).by(1)
 
-        expect(response).to redirect_to(root_url)
+        expect(response).to redirect_to(quiz_url(quiz, author_id: author))
       end
     end
 

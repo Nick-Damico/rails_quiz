@@ -12,7 +12,7 @@ RSpec.describe "CRUD Operations", type: :feature do
     question_attributes = attributes_for(:question, author:)
     visit quiz_path(quiz, author_id: author.id)
 
-    click_link "Add question"
+    click_link "Add Question"
 
     fill_in "Content", with: question_attributes[:content]
     click_button "Create Question"
