@@ -5,7 +5,7 @@ RSpec.describe "Quizzes", type: :request do
 
   before { sign_in author }
 
-  describe "GET /new", type: :request do
+  describe "GET /new" do
     it "responds with HTTP status ok(200)" do
       get new_quiz_path(author_id: author)
 
@@ -13,7 +13,7 @@ RSpec.describe "Quizzes", type: :request do
     end
   end
 
-  describe "GET /show", type: :request do
+  describe "GET /show" do
     it "responds with HTTP status ok(200)" do
       quiz = create(:quiz, author:)
       get quiz_path(quiz, author_id: author)
@@ -22,7 +22,7 @@ RSpec.describe "Quizzes", type: :request do
     end
   end
 
-  describe "POST /create", type: :request do
+  describe "POST /create" do
     context 'valid params' do
       let(:valid_params) { { quiz: { title: 'Best Quiz', description: 'My first Quiz!' } } }
 
@@ -57,7 +57,7 @@ RSpec.describe "Quizzes", type: :request do
     end
   end
 
-  describe "GET /edit", type: :request do
+  describe "GET /edit" do
     let!(:quiz) { create(:quiz, author: author) }
 
     it "responds with HTTP status ok(200)" do
@@ -67,7 +67,7 @@ RSpec.describe "Quizzes", type: :request do
     end
   end
 
-  describe "PUT /update", type: :request do
+  describe "PUT /update" do
     let!(:quiz) { create(:quiz, author: author) }
 
     context "Valid params" do
@@ -104,7 +104,7 @@ RSpec.describe "Quizzes", type: :request do
     end
   end
 
-  describe "DELETE /destroy", type: :request do
+  describe "DELETE /destroy" do
     let!(:quiz) { create(:quiz, author: author) }
 
     context "Valid params" do

@@ -14,7 +14,7 @@ class QuizzesController < ApplicationController
   end
 
   def create
-    @quiz = @author.authored_quizzes.create(quiz_params)
+    @quiz = @author.authored_quizzes.new(quiz_params)
     if @quiz.save
       flash[:notice] = t("flash.quizzes.create.success")
       redirect_to quizzes_url(author_id: @author)

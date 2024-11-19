@@ -40,6 +40,11 @@ en:
         success: "Quiz was successfully deleted."
         error: "There was an error deleting the quiz."
 
+    questions:
+      create:
+        success: "Question was successfully created."
+        error: "There was an error creating the question."
+
   hello: "Hello world"
   buttons:
     back: "< Go Back"
@@ -48,3 +53,6 @@ en:
       quiz:
         create: "Create Quiz"
         update: "Update Quiz"
+      question:
+        create: "Create Question"
+        update: "Update Question"
