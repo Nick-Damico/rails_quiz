@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "CRUD Operations", type: :feature do
+RSpec.describe "Author Adds New Question", type: :feature do
   let(:author) { create(:user) }
   let(:quiz) { create(:quiz) }
 
@@ -8,10 +8,16 @@ RSpec.describe "CRUD Operations", type: :feature do
     sign_in author
   end
 
+  scenario "Author Navigates to Question New Form" do
+    visit quiz_path(quiz, author_id: author.id)
+    click_link "Add Question"
+
+    expect(page).to have_content("Create Question")
+  end
+
   scenario "Author successfully creates a question" do
     question_attributes = attributes_for(:question, author:)
     visit quiz_path(quiz, author_id: author.id)
-
     click_link "Add Question"
 
     fill_in "Content", with: question_attributes[:content]
