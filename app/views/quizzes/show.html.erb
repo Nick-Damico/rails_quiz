@@ -67,11 +67,8 @@
       </form>
     </div>
 
-    <ul>
-      <% @quiz.questions.each do |question| %>
-        <li><%= question.content %></li>
-      <% end %>
+    <ul class="flex flex-col gap-1">
+      <%= render partial: "question", collection: @quiz.questions  %>
     </ul>
-
   </section>
 </div>
