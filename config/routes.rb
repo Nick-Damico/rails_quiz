@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :users, only: %i[show update]
   end
-  resources :quizzes, only: %i[create destroy edit index new show update] do
-    resources :questions, only: %i[new create]
+  resources :quizzes do
+    resources :questions, only: %i[new create show]
   end
 end

@@ -1,5 +1,9 @@
 class QuestionsController < ApplicationController
-  before_action :set_quiz
+  before_action :set_quiz, only: %i[create new]
+  before_action :set_question, only: %i[show]
+
+  def show
+  end
 
   def new
     @question = @quiz.questions.build
@@ -19,6 +23,10 @@ class QuestionsController < ApplicationController
 
   def set_quiz
     @quiz = Quiz.find(params[:quiz_id])
+  end
+
+  def set_question
+    @question = Question.find(params[:id])
   end
 
   def question_params

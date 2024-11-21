@@ -49,4 +49,14 @@ RSpec.describe "Questions", type: :request do
       end
     end
   end
+
+  describe "GET /show" do
+    let(:question) { create(:question, quiz:) }
+
+    it "responds with HTTP status success(201)" do
+      get quiz_question_path(quiz, question)
+
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
