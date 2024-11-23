@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_quiz, only: %i[create new]
+  before_action :set_quiz, only: %i[create new show]
   before_action :set_question, only: %i[show]
 
   def show

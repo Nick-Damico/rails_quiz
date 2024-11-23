@@ -1,0 +1,23 @@
+<div class="border-b border-gray-800 mb-6">
+  <%= render "shared/back_button", path: :back %>
+</div>
+
+<%= banner_heading do %>
+  <h3 class="text-xl text-center font-semibold">
+    <%= @quiz.title %>
+    <br>
+    Question Preview
+  </h3>
+<% end %>
+
+<section class="w-full max-w-xl pt-3 mx-auto mt-4 border border-gray-500 rounded">
+  <h2 class="text-center pb-3">
+    <%= @question.content %>
+  </h2>
+
+  <ul class="flex flex-col">
+    <li class="p-2 py-3 border-t border-gray-500 hover:bg-blue-400 cursor-pointer">A: First Answer</li>
+    <li class="p-2 py-3 border-t border-gray-500 hover:bg-blue-400 cursor-pointer">B: First Answer</li>
+    <li class="p-2 py-3 border-t border-gray-500 hover:bg-blue-400 cursor-pointer">C: First Answer</li>
+  </ul>
+</section>
