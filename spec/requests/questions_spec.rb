@@ -42,7 +42,7 @@ RSpec.describe "Questions", type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
-      it "creates a question record" do
+      it "does not create a question record" do
         expect {
           post quiz_questions_path(quiz), params: invalid_params
         }.to change(Question, :count).by(0)
@@ -57,6 +57,47 @@ RSpec.describe "Questions", type: :request do
       get quiz_question_path(quiz, question)
 
       expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET /edit" do
+    let!(:question) { create(:question, quiz:) }
+
+    it "responds with HTTP status ok(200)" do
+      get edit_quiz_question_path(quiz, question)
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe "PUT /update" do
+    let!(:question) { create(:question, quiz:) }
+
+    context "with valid params" do
+      let(:valid_params) { { question: { content: Faker::Lorem.sentence, quiz_id: quiz.id } } }
+
+      it "responds with HTTP status redirect(302)" do
+        put quiz_question_path(quiz, question), params: valid_params
+
+        expect(response).to have_http_status(:redirect)
+        expect(response).to redirect_to(quiz_question_url(quiz, question))
+      end
+
+      it "does not create a new question record" do
+        expect {
+          put quiz_question_path(quiz, question), params: valid_params
+        }.to change(Question, :count).by(0)
+      end
+    end
+
+    context "with invalid params" do
+      let(:invalid_params) { { question: { content: "", quiz_id: quiz.id } } }
+
+      it "responds with HTTP status unprocessable_entity(422)" do
+        put quiz_question_path(quiz, question), params: invalid_params
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
     end
   end
 end
