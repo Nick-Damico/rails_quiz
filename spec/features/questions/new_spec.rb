@@ -9,7 +9,7 @@ RSpec.describe "Author Adds New Question", type: :feature do
   end
 
   scenario "Author Navigates to Question New Form" do
-    visit quiz_path(quiz, author_id: author.id)
+    visit quiz_path(quiz, author_id: author)
     click_link "Add Question"
 
     expect(page).to have_content("Create Question")
@@ -17,7 +17,7 @@ RSpec.describe "Author Adds New Question", type: :feature do
 
   scenario "Author successfully creates a question" do
     question_attributes = attributes_for(:question, author:)
-    visit quiz_path(quiz, author_id: author.id)
+    visit quiz_path(quiz, author_id: author)
     click_link "Add Question"
 
     fill_in "Content", with: question_attributes[:content]
