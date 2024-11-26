@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_quiz, only: %i[create edit new show update]
-  before_action :set_question, only: %i[edit show update]
+  before_action :set_question, only: %i[edit show update destroy]
 
   def show
   end
@@ -29,6 +29,12 @@ class QuestionsController < ApplicationController
     else
       flash.now[:error] = t("flash.questions.update.error")
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @question.destroy
+      redirect_to quizzes_url(author_id: @author)
     end
   end
 

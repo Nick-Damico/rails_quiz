@@ -100,4 +100,14 @@ RSpec.describe "Questions", type: :request do
       end
     end
   end
+
+  describe "DELETE /destroy" do
+    let!(:question) { create(:question, quiz:) }
+
+    it "destroys question record" do
+      expect {
+        delete quiz_question_path(quiz, question)
+      }.to change(Question, :count).by(-1)
+    end
+  end
 end

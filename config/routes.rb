@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     resources :users, only: %i[show update]
   end
   resources :quizzes do
-    resources :questions, only: %i[create edit new show update]
+    resources :questions, only: %i[create edit destroy new show update]
   end
 end
