@@ -11,12 +11,14 @@
 <% end %>
 
 <%= turbo_frame_tag @question do %>
-  <section class="w-full max-w-xl pt-3 mx-auto mt-4 border border-gray-500 rounded">
-    <%= link_to edit_quiz_question_path(@quiz, @question), class: 'ml-auto pb-2' do %>
-      <%= render "icons/pencil" %>
-    <% end %>
+  <section class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
+    <div class="flex h-auto justify-end border-b border-gray-500">
+      <%= link_to edit_quiz_question_path(@quiz, @question), class: 'inline-block w-auto p-1 cursor-pointer' do %>
+        <%= render "icons/pencil" %>
+      <% end %>
+    </div>
 
-    <h2 class="text-center pb-3">
+    <h2 class="text-center py-3 bg-gray-600">
       <%= @question.content %>
     </h2>
 
