@@ -48,6 +48,9 @@ en:
   hello: "Hello world"
   buttons:
     back: "Go Back"
+    questions:
+      delete: "Are you sure you want to delete this Question?"
+
   helpers:
     submit:
       quiz:
