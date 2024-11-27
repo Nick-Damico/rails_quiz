@@ -41,10 +41,10 @@ class QuizzesController < ApplicationController
 
   def destroy
     if @quiz.destroy
-      flash[:notice] = t("flash.quizzes.delete.success")
+      flash[:notice] = t("flash.quizzes.destroy.success")
       redirect_to quizzes_url(author_id: @author)
     else
-      flash[:alert] = t("flash.quizzes.delete.error")
+      flash[:alert] = t("flash.quizzes.destroy.error")
       redirect_to quizzes_url(author_id: @author)
     end
   end

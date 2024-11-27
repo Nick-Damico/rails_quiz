@@ -117,7 +117,7 @@ RSpec.describe "Quizzes", type: :request do
       it "renders with a success message" do
         delete quiz_path(quiz, author_id: author)
 
-        expect(flash[:notice]).to eq(I18n.t("flash.quizzes.delete.success"))
+        expect(flash[:notice]).to eq(I18n.t("flash.quizzes.destroy.success"))
       end
 
       it "destroys the quiz record" do
@@ -142,7 +142,7 @@ RSpec.describe "Quizzes", type: :request do
       it "renders with an error message" do
         delete quiz_path(quiz, author_id: author)
 
-        expect(flash[:alert]).to eq(I18n.t("flash.quizzes.delete.error"))
+        expect(flash[:alert]).to eq(I18n.t("flash.quizzes.destroy.error"))
       end
 
       it "does not destroy the quiz record" do

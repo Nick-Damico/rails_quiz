@@ -31,14 +31,14 @@ en:
   flash:
     quizzes:
       create:
-        success: "Quiz was successfully created."
-        error: "There was an error creating the quiz."
+        success: 'Quiz was successfully created.'
+        error: 'There was an error creating the quiz.'
       update:
-        success: "Quiz was successfully updated."
-        error: "There was an error updating the quiz."
-      delete:
-        success: "Quiz was successfully deleted."
-        error: "There was an error deleting the quiz."
+        success: 'Quiz was successfully updated.'
+        error: 'There was an error updating the quiz.'
+      destroy:
+        success: 'Quiz was successfully deleted.'
+        error: 'There was an error deleting the quiz.'
 
     questions:
       create:
@@ -49,15 +49,16 @@ en:
         error: 'There was an error deleting this question.'
 
   buttons:
-    back: "Go Back"
+    back: 'Go Back'
+
     questions:
       delete: 'Are you sure you want to delete this Question?'
 
   helpers:
     submit:
       quiz:
-        create: "Create Quiz"
-        update: "Update Quiz"
+        create: 'Create Quiz'
+        update: 'Update Quiz'
       question:
-        create: "Create Question"
-        update: "Update Question"
+        create: 'Create Question'
+        update: 'Update Question'
