@@ -36,8 +36,12 @@ class QuestionsController < ApplicationController
 
   def destroy
     if @question.destroy
-      redirect_to quizzes_url(author_id: @author)
+      flash.now[:notice] = t("flash.questions.destroy.success")
+    else
+      flash.now[:error] = t("flash.questions.destroy.error")
     end
+
+    redirect_to quizzes_url(author_id: @author)
   end
 
   private
