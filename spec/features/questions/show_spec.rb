@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Author Adds New Question", type: :feature do
+RSpec.describe "Author Previews Quiz Question", type: :feature do
   let(:author) { create(:user) }
   let!(:quiz) { create(:quiz, :with_questions) }
 
