@@ -13,7 +13,9 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
     if @question.save
       flash[:notice] = t("flash.questions.create.success")
-      redirect_to quiz_url(@quiz, author_id: @quiz.author)
+      respond_to do |format|
+        format.html { redirect_to quiz_url(@quiz, author_id: @quiz.author) }
+      end
     else
       render :new, status: :unprocessable_entity
     end

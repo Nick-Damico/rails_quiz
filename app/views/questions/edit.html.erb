@@ -1,1 +1,3 @@
-<%= render "form", quiz: @quiz, question: @question %>
+<%= turbo_frame_tag @question do %>
+  <%= render "form", quiz: @quiz, question: @question %>
+<% end %>
