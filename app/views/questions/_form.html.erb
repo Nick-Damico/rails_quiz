@@ -3,13 +3,17 @@
     <%= form_with model: [quiz, question] do |f| %>
       <%= f.hidden_field :quiz_id, value: quiz.id %>
 
+      <h2 class="uppercase text-xl text-center font-xl border-b border-gray-500 pb-2">
+          <%= heading || '' %>
+      </h2>
+
       <div class="mt-2 mb-4 field">
-        <%= f.label :content, class: "text-white text-xs font-semibold uppercase mb-2" %>
-        <%= f.text_field :content, placeholder: "The best interview prep", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+          <%= f.label :content, class: "text-white text-xs font-semibold uppercase mb-2" %>
+          <%= f.text_field :content, placeholder: "The best interview prep", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
 
       <div class="flex items-center mb-4 actions">
-        <%= f.submit class: "text-center w-full bg-green-700 hover:bg-green-600 text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
+          <%= f.submit class: "text-center w-full bg-green-700 hover:bg-green-600 text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
       </div>
     <% end %>
   </div>

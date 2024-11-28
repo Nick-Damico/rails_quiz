@@ -10,22 +10,20 @@
   </h3>
 <% end %>
 
-<%= turbo_frame_tag @question do %>
-  <section class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
-    <div class="flex h-auto justify-end border-b border-gray-500">
-      <%= link_to edit_quiz_question_path(@quiz, @question), class: 'inline-block w-auto p-1 cursor-pointer' do %>
-        <%= render "icons/pencil" %>
-      <% end %>
-    </div>
+<section class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
+  <div class="flex h-auto justify-end border-b border-gray-500">
+    <%= link_to edit_quiz_question_path(@quiz, @question), title: 'Edit Question', class: 'inline-block w-auto p-1 cursor-pointer' do %>
+      <%= render "icons/pencil" %>
+    <% end %>
+  </div>
 
-    <h2 class="text-center py-3 bg-gray-600">
-      <%= @question.content %>
-    </h2>
+  <h2 class="text-center py-3 bg-gray-600">
+    <%= @question.content %>
+  </h2>
 
-    <ul class="flex flex-col">
-      <li class="p-2 py-3 border-t border-gray-500 hover:bg-blue-400 cursor-pointer">A: First Answer</li>
-      <li class="p-2 py-3 border-t border-gray-500 hover:bg-blue-400 cursor-pointer">B: First Answer</li>
-      <li class="p-2 py-3 border-t border-gray-500 hover:bg-blue-400 cursor-pointer">C: First Answer</li>
-    </ul>
-  </section>
-<% end %>
+  <ul class="flex flex-col">
+    <li class="p-2 py-3 border-t border-gray-500 hover:bg-blue-400 cursor-pointer">A: First Answer</li>
+    <li class="p-2 py-3 border-t border-gray-500 hover:bg-blue-400 cursor-pointer">B: First Answer</li>
+    <li class="p-2 py-3 border-t border-gray-500 hover:bg-blue-400 cursor-pointer">C: First Answer</li>
+  </ul>
+</section>

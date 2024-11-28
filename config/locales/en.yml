@@ -44,6 +44,9 @@ en:
       create:
         success: 'Question was successfully created.'
         error: 'There was an error creating the question.'
+      update:
+        success: 'Question was successfully updated.'
+        error: 'There was an error updating this question.'
       destroy:
         success: 'Question was successfully deleted.'
         error: 'There was an error deleting this question.'
