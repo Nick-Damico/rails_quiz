@@ -4,7 +4,7 @@
       <%= f.hidden_field :quiz_id, value: quiz.id %>
 
       <h2 class="uppercase text-xl text-center font-xl border-b border-gray-500 pb-2">
-          <%= heading || '' %>
+          <%= question.persisted? ? "Edit" : "Create" %> Question
       </h2>
 
       <div class="mt-2 mb-4 field">
