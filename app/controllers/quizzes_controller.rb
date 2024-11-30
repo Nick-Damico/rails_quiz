@@ -19,7 +19,7 @@ class QuizzesController < ApplicationController
       flash[:notice] = t("flash.quizzes.create.success")
       redirect_to quizzes_url(author_id: @author)
     else
-      flash.now[:alert] = @quiz.errors.full_messages
+      flash.now[:alert] = t("flash.quizzes.create.error")
       render :new, status: :unprocessable_entity
     end
   end

@@ -19,15 +19,15 @@ RSpec.describe "Author Adds New Quiz", type: :feature do
     expect(page).to have_content(quiz_attributes[:title])
   end
 
-  scenario "Author edits Quiz" do
-    quiz = create(:quiz, author: author)
-    new_quiz_title = "Updated Quiz"
+  scenario "Author fails to create Quiz with invalid input" do
+    quiz_attributes = attributes_for(:quiz, author: author)
+    visit new_quiz_path(author_id: author)
 
-    visit edit_quiz_path(quiz, author_id: author)
-    fill_in "Title", with: new_quiz_title
-    click_button "Update Quiz"
+    fill_in "Title", with: ""
+    fill_in "Description", with: quiz_attributes[:description]
+    click_button "Create Quiz"
 
-    expect(page).to have_content(I18n.t("flash.quizzes.update.success"))
-    expect(page).to have_content(new_quiz_title)
+    expect(page).to have_content(I18n.t("flash.quizzes.create.error"))
+    expect(page).to have_content("can't be blank")
   end
 end

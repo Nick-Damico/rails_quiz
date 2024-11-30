@@ -1,15 +1,19 @@
 <div class="mt-10 mx-auto w-full max-w-sm">
-  <div class="bg-gray-800 shadow-md rounded-md px-8 pt-6 pb-8 mb-4">
+  <div class="bg-gray-800 shadow-md rounded-md px-4 pt-6 pb-8 mb-4">
     <%= form_with model: @quiz, url: do |f| %>
 
-      <div class="mt-2 mb-4 field">
+      <div class="mb-4 field">
         <%= f.label :title, class: "text-white text-xs font-semibold uppercase mb-2" %>
-        <%= f.text_field :title, placeholder: "The best interview prep", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        <%= f.text_field :title, placeholder: "Example: Ruby Interview Prep", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" %>
+
+        <%= display_field_error(quiz, :title) %>
       </div>
 
-      <div class="mt-2 mb-4 field">
+      <div class="mb-4 field">
         <%= f.label :description, class: "text-white text-xs font-semibold uppercase mb-2" %>
         <%= f.text_area :description, rows: 8, placeholder: "Leave a good description for users.", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+
+        <%= display_field_error(quiz, :description) %>
       </div>
 
       <div class="flex items-center mb-4 actions">
