@@ -1,11 +1,11 @@
 module FormHelper
-  def fields_with_error_icon(model, field)
+  def field_with_error_icon(model, field)
     return if model.errors[field.to_sym].none?
 
     render "icons/exclamation_triangle"
   end
 
-  def display_field_with_error(model, field)
+  def display_field_error(model, field)
     field_sym = field.to_sym
     return unless model.errors[field_sym].present?
 
