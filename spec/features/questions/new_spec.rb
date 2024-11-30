@@ -8,7 +8,7 @@ RSpec.describe "Author Adds New Question", type: :feature do
     sign_in author
   end
 
-  scenario "Author Navigates to Question New Form" do
+  scenario "Author navigates to new Question form" do
     visit quiz_path(quiz, author_id: author)
     click_link "Add Question"
 
@@ -25,5 +25,15 @@ RSpec.describe "Author Adds New Question", type: :feature do
 
     expect(page).to have_content(I18n.t("flash.questions.create.success"))
     expect(page).to have_content(question_attributes[:content])
+  end
+
+  scenario "Author fails to create a question due to invalid input" do
+    visit quiz_path(quiz, author_id: author)
+    click_link "Add Question"
+
+    fill_in "Content", with: ""
+    click_button "Create Question"
+
+    expect(page).to have_content(I18n.t("flash.questions.create.error"))
   end
 end

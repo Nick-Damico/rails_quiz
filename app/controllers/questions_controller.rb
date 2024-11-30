@@ -17,6 +17,7 @@ class QuestionsController < ApplicationController
         format.html { redirect_to quiz_url(@quiz, author_id: @quiz.author) }
       end
     else
+      flash.now[:alert] = t("flash.questions.create.error")
       render :new, status: :unprocessable_entity
     end
   end

@@ -10,7 +10,7 @@ module FormHelper
     return unless model.errors[field_sym].present?
 
     content_tag(:p, class: "flex items-center text-sm text-red-400 mt-1") do
-      concat fields_with_error_icon(model, field_sym)
+      concat field_with_error_icon(model, field_sym)
       concat model.errors[field_sym].join(", ")
     end
   end
