@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_19_161749) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_03_142117) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "question_choices", force: :cascade do |t|
+    t.text "content"
+    t.boolean "correct", default: false, null: false
+    t.bigint "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_question_choices_on_question_id"
+  end
 
   create_table "questions", force: :cascade do |t|
     t.bigint "quiz_id", null: false
@@ -44,6 +53,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_19_161749) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "question_choices", "questions"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quizzes", "users", column: "author_id"
 end
