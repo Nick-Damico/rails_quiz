@@ -6,7 +6,7 @@ FactoryBot.define do
 
     trait :with_questions do
      after(:create) do |quiz, evaluator|
-       create_list(:question, 3, quiz: quiz)
+       create_list(:question, 1, quiz: quiz)
      end
    end
   end
