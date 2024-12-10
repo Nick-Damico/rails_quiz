@@ -55,6 +55,9 @@ en:
       create:
         success: 'Choice was successfully created.'
         error: 'There was an error creating this choice.'
+      update:
+        success: 'Choice was successfully updated.'
+        error: 'There was an error updating this choice.'
 
   buttons:
     back: 'Go Back'

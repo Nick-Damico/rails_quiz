@@ -1,6 +1,6 @@
 class Questions::ChoicesController < ApplicationController
-  before_action :set_choice, only: %i[]
-  before_action :set_question, only: %i[new create]
+  before_action :set_choice, only: %i[edit update]
+  before_action :set_question, only: %i[create edit new update]
   def new
     @choice = @question.choices.new
   end
@@ -16,6 +16,19 @@ class Questions::ChoicesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @choice.update(choice_params)
+      flash[:notice] = t("flash.choices.update.success")
+      redirect_to quiz_question_url(@question.quiz_id, @question)
+    else
+      flash.now[:alert] = t("flash.choices.update.error")
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def choice_params
@@ -23,7 +36,7 @@ class Questions::ChoicesController < ApplicationController
   end
 
   def set_choice
-    @choice = Choice.find(params[:id])
+    @choice = Question::Choice.find(params[:id])
   end
 
   def set_question
