@@ -50,6 +50,11 @@ en:
       destroy:
         success: 'Question was successfully deleted.'
         error: 'There was an error deleting this question.'
+    
+    choices:
+      create:
+        success: 'Choice was successfully created.'
+        error: 'There was an error creating this choice.'
 
   buttons:
     back: 'Go Back'

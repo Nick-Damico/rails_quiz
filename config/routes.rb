@@ -22,6 +22,6 @@ Rails.application.routes.draw do
   end
 
   resources :questions, only: [] do
-    resources :choices, only: %i[new], module: :questions
+    resources :choices, only: %i[create new], module: :questions
   end
 end

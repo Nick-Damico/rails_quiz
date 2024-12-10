@@ -1,0 +1,5 @@
+<%= banner_heading do %>
+  <h2 class="text-2xl text-center font-semibold"><%= @question.content %></h2>
+<% end %>
+
+<%= render "form", question: @question, choice: @choice %>
