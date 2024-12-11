@@ -1,6 +1,6 @@
 class Questions::ChoicesController < ApplicationController
-  before_action :set_choice, only: %i[edit update]
-  before_action :set_question, only: %i[create edit new update]
+  before_action :set_choice, only: %i[destroy edit update]
+  before_action :set_question, only: %i[create destroy edit new update]
   def new
     @choice = @question.choices.new
   end
@@ -26,6 +26,16 @@ class Questions::ChoicesController < ApplicationController
     else
       flash.now[:alert] = t("flash.choices.update.error")
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @choice.destroy
+      flash[:notice] = t("flash.choices.destroy.success")
+      redirect_to quiz_question_url(@question.quiz_id, @question), status: :no_content
+    else
+      flash[:alert] = t("flash.choices.destroy.error")
+      redirect_to quiz_question_url(@question.quiz_id, @question), status: :bad_request
     end
   end
 

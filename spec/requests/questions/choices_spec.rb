@@ -123,4 +123,52 @@ RSpec.describe "Question::Choices", type: :request do
       end
     end
   end
+
+  describe "DELETE /destroy" do
+    let!(:choice) { create(:choice, question:) }
+
+    context "valid request" do
+      it "responds with HTTP status :no_content(204)" do
+        delete question_choice_path(question, choice)
+
+        expect(response).to have_http_status(:no_content)
+      end
+
+      it "deletes the Choice record" do
+        expect {
+          delete question_choice_path(question, choice)
+        }.to change(Question::Choice, :count).by(-1)
+      end
+
+      it "displays a flash success message" do
+        delete question_choice_path(question, choice)
+
+        expect(flash[:notice]).to eq(I18n.t("flash.choices.destroy.success"))
+      end
+    end
+
+    context "invalid request" do
+      before(:each) do
+        allow_any_instance_of(Question::Choice).to receive(:destroy).and_return(false)
+      end
+
+      it "responds with HTTP status :bad_request(404)" do
+        delete question_choice_path(question, choice)
+
+        expect(response).to have_http_status(:bad_request)
+      end
+
+      it "does not delete the Choice record" do
+        expect {
+          delete question_choice_path(question, choice)
+        }.to change(Question::Choice, :count).by(0)
+      end
+
+      it "displays a flash error message" do
+        delete question_choice_path(question, choice)
+
+        expect(flash[:alert]).to eq(I18n.t("flash.choices.destroy.error"))
+      end
+    end
+  end
 end

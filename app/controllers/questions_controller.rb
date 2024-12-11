@@ -2,8 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_quiz, only: %i[create edit new show update]
   before_action :set_question, only: %i[edit show update destroy]
 
-  def show
-  end
+  def show; end
 
   def new
     @question = @quiz.questions.build
