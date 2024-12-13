@@ -1,6 +1,6 @@
 <div class="mt-10 mx-auto w-full max-w-sm">
   <div class="border border-blue-600 rounded-md px-4 pt-6 pb-4 mb-4">
-    <%= form_with model: choice, path: question_choices_path(question) do |f| %>
+    <%= form_with model: [question, choice] do |f| %>
       <%= f.hidden_field :question_id, value: question.id %>
 
       <h2 class="uppercase text-xl text-center font-xl border-b border-gray-500 pb-2">
