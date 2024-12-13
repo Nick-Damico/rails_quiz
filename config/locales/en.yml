@@ -58,6 +58,9 @@ en:
       update:
         success: 'Choice was successfully updated.'
         error: 'There was an error updating this choice.'
+      destroy:
+        success: 'Choice was successfully deleted.'
+        error: 'There was an error deleting the choice.'
 
   buttons:
     back: 'Go Back'
