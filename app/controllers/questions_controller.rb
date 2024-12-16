@@ -55,6 +55,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:quiz_id, :content)
+    params.require(:question).permit(:quiz_id, :content, choices_attributes: %i[content correct])
   end
 end

@@ -4,4 +4,6 @@ class Question < ApplicationRecord
 
   validates_presence_of(:quiz)
   validates_presence_of(:content)
+
+  accepts_nested_attributes_for :choices
 end

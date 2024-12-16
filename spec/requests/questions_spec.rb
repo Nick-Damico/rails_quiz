@@ -16,7 +16,18 @@ RSpec.describe "Questions", type: :request do
 
   describe "POST /create" do
     context "with valid params" do
-      let(:valid_params) { { question: { content: Faker::Lorem.sentence, quiz_id: quiz.id } } }
+      let(:valid_params) do
+        {
+          question: {
+            content: "What is Rails?",
+            quiz_id: quiz.id,
+            choices_attributes: [
+              { content: "A framework", correct: true },
+              { content: "A database", correct: false }
+            ]
+          }
+        }
+      end
 
       it "responds with HTTP status redirect(302)" do
         post quiz_questions_path(quiz), params: valid_params
@@ -30,6 +41,14 @@ RSpec.describe "Questions", type: :request do
         }.to change(Question, :count).by(1)
 
         expect(response).to redirect_to(quiz_url(quiz, author_id: author))
+      end
+
+      context 'accepts_nested_attributes_for Choices' do
+        it 'creates a Question with nested Choices' do
+          expect {
+            post quiz_questions_path(quiz), params: valid_params
+          }.to change(Question, :count).by(1).and change(Question::Choice, :count).by(2)
+        end
       end
     end
 
@@ -74,7 +93,18 @@ RSpec.describe "Questions", type: :request do
     let!(:question) { create(:question, quiz:) }
 
     context "with valid params" do
-      let(:valid_params) { { question: { content: Faker::Lorem.sentence, quiz_id: quiz.id } } }
+      let(:valid_params) do
+        {
+          question: {
+            content: "What is Rails?",
+            quiz_id: quiz.id,
+            choices_attributes: [
+              { content: "A framework", correct: true },
+              { content: "A database", correct: false }
+            ]
+          }
+        }
+      end
 
       it "responds with HTTP status redirect(302)" do
         put quiz_question_path(quiz, question), params: valid_params
@@ -87,6 +117,14 @@ RSpec.describe "Questions", type: :request do
         expect {
           put quiz_question_path(quiz, question), params: valid_params
         }.to change(Question, :count).by(0)
+      end
+
+      context 'accepts_nested_attributes_for Choices' do
+        it "updates a question with nested choices" do
+          expect {
+            put quiz_question_path(quiz, question), params: valid_params
+          }.to change(Question, :count).by(0).and change(Question::Choice, :count).by(2)
+        end
       end
     end
 
