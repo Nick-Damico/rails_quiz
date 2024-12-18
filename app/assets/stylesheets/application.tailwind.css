@@ -3,12 +3,21 @@
 @tailwind utilities;
 
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4;
+  .btn {
+    @apply py-2 px-4 cursor-pointer;
   }
 
+  .btn-sm {
+    @apply py-1 px-2 cursor-pointer;
+  }
+
+  .btn-primary,
   .bg-primary {
     @apply bg-blue-500;
+  }
+
+  .btn-success {
+    @apply bg-green-700 hover:bg-green-600;
   }
 
   .bg-success {
@@ -19,6 +28,7 @@
     @apply bg-yellow-500;
   }
 
+  .btn-alert,
   .bg-alert {
     @apply bg-red-500;
   }
