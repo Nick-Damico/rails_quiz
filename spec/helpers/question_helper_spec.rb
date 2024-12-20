@@ -6,6 +6,10 @@ RSpec.describe QuestionHelper, type: :helper do
       expect(num_to_letter(0)).to eq 'a'
     end
 
+    it 'handles String representations of numbers without error' do 
+      expect(num_to_letter('0')).to eq 'a'
+    end
+
     context 'alphabetical letter range' do
       it 'returns nil for negative numbers less than the range' do
         expect(num_to_letter(-1)).to be_nil
