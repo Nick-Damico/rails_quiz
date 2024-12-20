@@ -32,7 +32,11 @@ class Questions::ChoicesController < ApplicationController
   def destroy
     if @choice.destroy
       flash[:notice] = t("flash.choices.destroy.success")
-      redirect_to quiz_question_url(@question.quiz_id, @question), status: :no_content
+
+      respond_to do |format|
+        format.html { redirect_to quiz_question_url(@question.quiz_id, @question), status: :no_content }
+        format.turbo_stream { render turbo_stream: turbo_stream.remove(@choice) }
+      end
     else
       flash[:alert] = t("flash.choices.destroy.error")
       redirect_to quiz_question_url(@question.quiz_id, @question), status: :bad_request

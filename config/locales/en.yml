@@ -67,6 +67,8 @@ en:
 
     questions:
       delete: 'Are you sure you want to delete this Question?'
+    choice:
+      delete: 'Are you sure you want to delete this Option?'
 
   helpers:
     submit:

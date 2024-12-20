@@ -14,9 +14,20 @@
           <%= display_field_error(question, :content) %>
       </div>
 
+        <div class="mt-2 mb-4">
+          <div class="flex items-center justify-between border-b border-gray-500 py-2">
+            <h3 class="uppercase text-xl font-xl">Question Choices</h3>
+          <%= f.fields_for :choices, question.choices do |choice_form| %>
+            <div id="question_choices">
+              <%= render "questions/choices/form_field", choice_form: %>
+            </div>
+          <% end %>
+          </div>
+
       <div class="flex items-center mb-4 actions">
-          <%= f.submit class: "text-center w-full bg-green-700 hover:bg-green-600 text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
+            <%= f.submit class: "text-center w-full btn-success text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
       </div>
     <% end %>
+    </section>
   </div>
 </div>
