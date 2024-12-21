@@ -6,6 +6,8 @@
       <h2 class="uppercase text-xl text-center font-xl border-b border-gray-500 pb-2">
           <%= question.persisted? ? "Edit" : "Create" %> Question
       </h2>
+      <%= form_with model: [quiz, question], class: "px-2" do |f| %>
+        <%= f.hidden_field :quiz_id, value: quiz.id %>
 
       <div class="mt-2 mb-4 field">
           <%= f.label :content, class: "text-white text-xs font-semibold uppercase mb-2" %>
@@ -14,14 +16,19 @@
           <%= display_field_error(question, :content) %>
       </div>
 
-        <div class="mt-2 mb-4">
+        <div class="mt-2 mb-4" data-controller="question-form" data-question-form-url-value="<%= new_question_choice_path(question) %>">
           <div class="flex items-center justify-between border-b border-gray-500 py-2">
             <h3 class="uppercase text-xl font-xl">Question Choices</h3>
+            <button class="flex justify-center rounded btn-sm uppercase"
+                    data-action="click->question-form#addChoice:prevent">
+                    <span class="mr-1"><%= render "icons/plus" %></span>Add
+            </button>
+          </div>
+          <div id="question_choices_fields">
           <%= f.fields_for :choices, question.choices do |choice_form| %>
-            <div id="question_choices">
-              <%= render "questions/choices/form_field", choice_form: %>
-            </div>
+                <%= render "questions/choices/form_field", choice_form:, index: choice_form.index %>
           <% end %>
+          </div>
           </div>
 
       <div class="flex items-center mb-4 actions">

@@ -2,7 +2,10 @@ class Questions::ChoicesController < ApplicationController
   before_action :set_choice, only: %i[destroy edit update]
   before_action :set_question, only: %i[create destroy edit new update]
   def new
-    @choice = @question.choices.new
+    respond_to do |format|
+      format.turbo_stream
+      format.html { @choice = @question.choices.new }
+    end
   end
 
   def create
