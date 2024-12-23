@@ -17,13 +17,11 @@
     <% end %>
   </div>
 
-  <h2 class="text-center py-3 bg-gray-600">
+  <h2 class="text-lg text-center py-3 bg-gray-600">
     <%= @question.content %>
   </h2>
 
   <ul class="flex flex-col">
-    <li class="p-2 py-3 border-t border-gray-500 hover:bg-blue-400 cursor-pointer">A: First Answer</li>
-    <li class="p-2 py-3 border-t border-gray-500 hover:bg-blue-400 cursor-pointer">B: First Answer</li>
-    <li class="p-2 py-3 border-t border-gray-500 hover:bg-blue-400 cursor-pointer">C: First Answer</li>
+    <%= render partial: "questions/choices/choice", collection: @question.choices, as: :choice %>
   </ul>
 </section>
