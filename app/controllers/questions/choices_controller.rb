@@ -3,7 +3,10 @@ class Questions::ChoicesController < ApplicationController
   before_action :set_question, only: %i[create destroy edit new update]
   def new
     respond_to do |format|
-      format.turbo_stream
+      format.turbo_stream do
+        # TODO: sanitize string param
+        @new_index = params["choice_count"]
+      end
       format.html { @choice = @question.choices.new }
     end
   end

@@ -1,8 +1,8 @@
 <%= form_with model: [@question.quiz, @question], class: "px-2" do |f| %>
-  <%= f.fields_for :choices, @question.choices.build do |choice_form| %>
+  <%= f.fields_for :choices, @question.choices.build, child_index: @new_index do |choice_form| %>
 
     <%= turbo_stream.append :question_choices_fields do %>
-      <%= render "questions/choices/form_field", choice_form: choice_form, index: num_to_letter(choice_form.index + 1) %>
+      <%= render "questions/choices/form_field", choice_form: choice_form, index: @new_index %>
     <% end %>
 
   <% end %>

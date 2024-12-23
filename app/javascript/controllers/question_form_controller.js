@@ -2,27 +2,26 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="question-form"
 export default class extends Controller {
-  static targets = ["choiceForm"];
+  static targets = ["choice"];
   static values = {
     url: String,
   };
 
-  connect() {
-    console.log(this.choiceFormTargets);
-  }
+  connect() { }
 
   addChoice(e) {
-    fetch(this.urlValue, {
+    let choice_count = this.choiceTargets.length
+    let url_params = new URLSearchParams({ 'choice_count': choice_count })
+
+    fetch(`${this.urlValue}?${url_params}`, {
       method: "GET",
-      headers: {
-        Accept: "text/vnd.turbo-stream.html",
-      },
+      headers: { Accept: "text/vnd.turbo-stream.html" }
     })
     .then((response) => {
       if (response.ok) {
         return response.text();
       } else {
-        throw new Error("Network response was not ok");
+        throw new Error("Response failed");
       }
     })
     .then((html) => {

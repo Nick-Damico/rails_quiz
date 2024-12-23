@@ -1,6 +1,6 @@
-<%= turbo_frame_tag choice_form.object do %>
-  <div class="mt-2 mb-4 field" data-question-form-target="choiceForm">
-      <%= choice_form.label :content, "Option: #{num_to_letter(index)}", class: "text-white text-xs font-semibold uppercase mb-2" %>
+<%= turbo_frame_tag nested_dom_id(choice_form) do %>
+  <div class="mt-2 mb-4" data-question-form-target="choice">
+      <%= choice_form.label :content, "Option:", class: "text-white text-xs font-semibold uppercase mb-2" %>
 
     <div class="flex items-center">
       <%= choice_form.text_field :content, placeholder: "What is 4 + 4?", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
@@ -19,6 +19,6 @@
       <% end %>
     </div>
 
-      <%#= display_field_error(choice, :content) %>
+    <%= display_field_error(choice_form.object, :content) %>
   </div>
 <% end %>
