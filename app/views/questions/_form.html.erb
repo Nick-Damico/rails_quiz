@@ -1,20 +1,18 @@
-<div class="mt-10 mx-auto w-full max-w-sm">
-  <div class="border border-blue-600 rounded-md px-4 pt-6 pb-4 mb-4">
-    <%= form_with model: [quiz, question] do |f| %>
-      <%= f.hidden_field :quiz_id, value: quiz.id %>
-
-      <h2 class="uppercase text-xl text-center font-xl border-b border-gray-500 pb-2">
+<div class="mt-10 mx-auto w-full max-w-md">
+  <div class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
+    <section>
+      <h2 class="uppercase text-xl text-center font-xl border-b border-gray-500 py-2">
           <%= question.persisted? ? "Edit" : "Create" %> Question
       </h2>
       <%= form_with model: [quiz, question], class: "px-2" do |f| %>
         <%= f.hidden_field :quiz_id, value: quiz.id %>
 
-      <div class="mt-2 mb-4 field">
-          <%= f.label :content, class: "text-white text-xs font-semibold uppercase mb-2" %>
-          <%= f.text_field :content, placeholder: "The best interview prep", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        <div class="mt-2 mb-4 field">
+            <%= f.label :content, "Question Text", class: "text-white text-xs font-semibold uppercase mb-2" %>
+            <%= f.text_field :content, placeholder: "The best interview prep", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
 
-          <%= display_field_error(question, :content) %>
-      </div>
+            <%= display_field_error(question, :content) %>
+        </div>
 
         <div class="mt-2 mb-4" data-controller="question-form" data-question-form-url-value="<%= new_question_choice_path(question) %>">
           <div class="flex items-center justify-between border-b border-gray-500 py-2">
@@ -24,17 +22,18 @@
                     <span class="mr-1"><%= render "icons/plus" %></span>Add
             </button>
           </div>
-          <div id="question_choices_fields">
-          <%= f.fields_for :choices, question.choices do |choice_form| %>
-                <%= render "questions/choices/form_field", choice_form:, index: choice_form.index %>
-          <% end %>
-          </div>
-          </div>
 
-      <div class="flex items-center mb-4 actions">
+          <div id="question_choices_fields">
+            <%= f.fields_for :choices, question.choices do |choice_form| %>
+                <%= render "questions/choices/form_field", choice_form:, index: choice_form.index %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="flex items-center mb-4 actions">
             <%= f.submit class: "text-center w-full btn-success text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
-      </div>
-    <% end %>
+        </div>
+      <% end %>
     </section>
   </div>
 </div>
