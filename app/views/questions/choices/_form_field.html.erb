@@ -3,7 +3,7 @@
       <%= choice_form.label :content, "Option:", class: "text-white text-xs font-semibold uppercase mb-2" %>
 
     <div class="flex items-center">
-      <%= choice_form.text_field :content, placeholder: "What is 4 + 4?", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <%= choice_form.text_field :content, placeholder: "Example: New Option Text", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
 
       <% if choice_form.object.persisted? %>
         <%= link_to question_choice_path(choice_form.object.question, choice_form.object),
@@ -15,7 +15,11 @@
             <span><%= render "icons/x_circle" %></span>
         <% end %>
       <% else %>
-        <span class="btn-sm"><%= render "icons/x_circle" %></span>
+        <button class="btn-sm"
+                data-action="click->question-form#remove_choice:prevent"
+                data-confirm-msg="<%= t('buttons.choice.delete') %>">
+          <%= render "icons/x_circle" %>
+        </button>
       <% end %>
     </div>
 

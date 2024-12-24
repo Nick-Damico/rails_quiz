@@ -23,7 +23,7 @@ RSpec.describe "Author Edits Question", type: :feature do
     visit quiz_question_path(quiz, selected_question)
     click_link '', href: edit_quiz_question_path(quiz, selected_question)
 
-    fill_in "Content", with: new_question_text
+    fill_in "Question Text", with: new_question_text
     click_button "Update Question"
 
     expect(page).to have_content(I18n.t("flash.questions.update.success"))
@@ -36,9 +36,19 @@ RSpec.describe "Author Edits Question", type: :feature do
     visit quiz_question_path(quiz, selected_question)
     click_link '', href: edit_quiz_question_path(quiz, selected_question)
 
-    fill_in "Content", with: invalid_question_text
+    fill_in "Question Text", with: invalid_question_text
     click_button "Update Question"
 
     expect(page).to have_content(I18n.t("flash.questions.update.error"))
+  end
+
+  context "Question Choices" do
+    scenario "Add Choice button is available" do
+      selected_question = quiz.questions.first
+
+      visit edit_quiz_question_path(quiz, selected_question)
+
+      expect(page).to have_selector(:link_or_button, 'Add')
+    end
   end
 end
