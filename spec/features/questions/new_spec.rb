@@ -20,7 +20,7 @@ RSpec.describe "Author Adds New Question", type: :feature do
     visit quiz_path(quiz, author_id: author)
     click_link "Add Question"
 
-    fill_in "Content", with: question_attributes[:content]
+    fill_in "Question Text", with: question_attributes[:content]
     click_button "Create Question"
 
     expect(page).to have_content(I18n.t("flash.questions.create.success"))
@@ -31,7 +31,7 @@ RSpec.describe "Author Adds New Question", type: :feature do
     visit quiz_path(quiz, author_id: author)
     click_link "Add Question"
 
-    fill_in "Content", with: ""
+    fill_in "Question Text", with: ""
     click_button "Create Question"
 
     expect(page).to have_content(I18n.t("flash.questions.create.error"))
