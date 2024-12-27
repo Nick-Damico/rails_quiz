@@ -1,4 +1,4 @@
-<%= form_with model: [@question.quiz, @question], class: "px-2" do |f| %>
+<%= form_with model: @question, url: '', class: "px-2" do |f| %>
   <%= f.fields_for :choices, @question.choices.build, child_index: @new_index do |choice_form| %>
 
     <%= turbo_stream.append :question_choices_fields do %>

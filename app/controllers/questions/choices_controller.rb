@@ -4,10 +4,11 @@ class Questions::ChoicesController < ApplicationController
   def new
     respond_to do |format|
       format.turbo_stream do
-        # TODO: sanitize string param
         @new_index = params["choice_count"]
       end
-      format.html { @choice = @question.choices.new }
+      format.html do
+        @choice = @question.choices.new
+      end
     end
   end
 
@@ -59,7 +60,15 @@ class Questions::ChoicesController < ApplicationController
     @choice = Question::Choice.find(params[:id])
   end
 
+  # The "new" parameter for :question_id is used to handle dynamically building a new
+  # choice form element when the question is not yet persisted. This supports nested
+  # attributes functionality for the choices fields on the new question form.
   def set_question
-    @question = Question.find(params[:question_id])
+    @question =
+      if params[:question_id] == "new"
+        Question.new
+      else
+        Question.find(params[:question_id])
+      end
   end
 end

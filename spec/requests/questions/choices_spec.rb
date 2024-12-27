@@ -12,6 +12,14 @@ RSpec.describe "Question::Choices", type: :request do
 
       expect(response).to have_http_status(:ok)
     end
+
+    context "when :question_id is 'new'" do
+      it "handles unpersisted question correctly with format: turbo_steam" do
+        get new_question_choice_path(question_id: "new", format: :turbo_stream)
+
+        expect(response).to have_http_status(:ok)
+      end
+    end
   end
 
   describe "POST /create" do
