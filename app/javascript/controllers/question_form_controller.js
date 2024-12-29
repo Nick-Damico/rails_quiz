@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="question-form"
 export default class extends Controller {
-  static targets = ["choice"];
+  static targets = ["choice", "choiceCheckbox"];
   static values = { url: String };
 
   connect() {}
@@ -41,6 +41,14 @@ export default class extends Controller {
       choiceContainer.remove();
     } else {
       console.error("choice element could not be removed. Refresh page.");
+    }
+  }
+
+  clearCheckboxes(e) {
+    for (const checkbox of this.choiceCheckboxTargets) {
+      if (e.target !== checkbox) {
+        checkbox.checked = false
+      }
     }
   }
 }
