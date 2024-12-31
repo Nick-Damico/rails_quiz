@@ -13,7 +13,7 @@
 
       <% if choice_form.object.persisted? %>
         <%= link_to question_choice_path(choice_form.object.question, choice_form.object),
-          class: 'self-center justify-self-center px-2',
+          class: 'box-border flex justify-center items-center p-2 rounded border-2 border-red-500 bg-red-400 h-[40px]',
           data: {
             turbo_method: :delete,
             turbo_confirm: t("buttons.choice.delete")
@@ -21,7 +21,7 @@
             <span><%= render "icons/x_circle" %></span>
         <% end %>
       <% else %>
-        <button class="btn-sm"
+        <button class='box-border flex justify-center items-center p-2 rounded border-2 border-red-500 bg-red-400 h-[40px]'
                 data-action="click->question-form#remove_choice:prevent"
                 data-confirm-msg="<%= t('buttons.choice.delete') %>">
           <%= render "icons/x_circle" %>
