@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="question-form"
 export default class extends Controller {
-  static targets = ["choice", "choiceCheckbox"];
+  static targets = ["choice", "choiceCheckbox", "choiceCheckboxLabel"];
   static values = { url: String };
 
   connect() {}
@@ -48,6 +48,25 @@ export default class extends Controller {
     for (const checkbox of this.choiceCheckboxTargets) {
       if (e.target !== checkbox) {
         checkbox.checked = false
+      }
+    }
+
+    let hasChecked = this.choiceCheckboxTargets.some(checkbox => checkbox.checked)
+    if (!hasChecked) {
+      this.choiceCheckboxLabelTargets.forEach(checkbox => {
+        checkbox.setAttribute("aria-checked", "false")
+      });
+    }
+  }
+
+  setAriaChecked(e) {
+    const { target } = e
+
+    for (const label of this.choiceCheckboxLabelTargets) {
+      if (label.contains(target) || label === target) {
+        label.setAttribute("aria-checked", "true")
+      } else {
+        label.setAttribute("aria-checked", "false")
       }
     }
   }
