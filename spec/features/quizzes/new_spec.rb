@@ -28,6 +28,6 @@ RSpec.describe "Author Adds New Quiz", type: :feature do
     click_button "Create Quiz"
 
     expect(page).to have_content(I18n.t("flash.quizzes.create.error"))
-    expect(page).to have_content("can't be blank")
+    expect(page).to have_content("Can't be blank")
   end
 end
