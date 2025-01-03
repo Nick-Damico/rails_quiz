@@ -5,14 +5,18 @@
     <%= render "shared/back_button", path: quiz_path(quiz, author_id: current_user.id) %>
   <% end %>
 </div>
+
 <div class="mt-10 mx-auto w-full max-w-md">
   <div class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
     <section>
       <h2 class="uppercase text-xl text-center font-xl border-b border-gray-500 py-2">
           <%= question.persisted? ? "Edit" : "Create" %> Question
       </h2>
+
       <%= form_with model: [quiz, question], class: "px-2" do |f| %>
         <%= f.hidden_field :quiz_id, value: quiz.id %>
+
+        <%= display_field_error(question, :base) %>
 
         <div class="mt-2 mb-4 field">
             <%= f.label :content, "Question Text", class: "text-white text-xs font-semibold uppercase mb-2" %>
@@ -38,7 +42,6 @@
             <% end %>
           </div>
         </div>
-
 
         <div class="flex items-center mb-4 actions">
             <%= f.submit class: "text-center w-full btn-success text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
