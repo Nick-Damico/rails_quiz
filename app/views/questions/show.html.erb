@@ -1,5 +1,5 @@
 <div class="border-b border-gray-800 mb-6">
-  <%= render "shared/back_button", path: :back %>
+  <%= render "shared/back_button", path: quiz_path(@quiz, author_id: current_user.id) %>
 </div>
 
 <%= banner_heading do %>
