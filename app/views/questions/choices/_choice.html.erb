@@ -1,4 +1,4 @@
-<li class="flex items-center border-b last-of-type:mb-0 border-gray-500 hover:bg-blue-400 cursor-pointer">
-  <span class="w-12 py-2 mr-2 font-bold text-center border-r border-gray-500"><%= num_to_letter(choice_counter).upcase %>:</span>
+<li class="flex items-center mb-2 border-gray-500 cursor-pointer <%= choice.correct? ? "bg-emerald-600" : "" %>">
+  <span class="w-12 py-2 mr-1 font-bold text-center"><%= num_to_letter(choice_counter).upcase %>.</span>
   <%= choice.content %>
 </li>
