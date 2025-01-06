@@ -44,10 +44,10 @@ module Author
     def destroy
       if @quiz.destroy
         flash[:notice] = t("flash.quizzes.destroy.success")
-        redirect_to quizzes_url(author_id: @author)
+        redirect_to author_quizzes_url
       else
         flash[:alert] = t("flash.quizzes.destroy.error")
-        redirect_to quizzes_url(author_id: @author)
+        redirect_to author_quizzes_url
       end
     end
 

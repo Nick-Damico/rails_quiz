@@ -109,20 +109,20 @@ RSpec.describe Author::QuizzesController, type: :request do
 
     context "Valid params" do
       it "responds with HTTP status redirect(302)" do
-        delete quiz_path(quiz, author_id: author)
+        delete author_quiz_path(quiz)
 
         expect(response).to have_http_status(:redirect)
       end
 
       it "renders with a success message" do
-        delete quiz_path(quiz, author_id: author)
+        delete author_quiz_path(quiz)
 
         expect(flash[:notice]).to eq(I18n.t("flash.quizzes.destroy.success"))
       end
 
       it "destroys the quiz record" do
         expect {
-          delete quiz_path(quiz, author_id: author)
+          delete author_quiz_path(quiz)
         }.to change(Quiz, :count).by(-1)
       end
     end
@@ -134,20 +134,20 @@ RSpec.describe Author::QuizzesController, type: :request do
       end
 
       it "responds with HTTP status redirect(302)" do
-        delete quiz_path(quiz, author_id: author)
+        delete author_quiz_path(quiz)
 
         expect(response).to have_http_status(:redirect)
       end
 
       it "renders with an error message" do
-        delete quiz_path(quiz, author_id: author)
+        delete author_quiz_path(quiz)
 
         expect(flash[:alert]).to eq(I18n.t("flash.quizzes.destroy.error"))
       end
 
       it "does not destroy the quiz record" do
         expect {
-          delete quiz_path(quiz, author_id: author)
+          delete author_quiz_path(quiz)
         }.to change(Quiz, :count).by(0)
       end
     end
