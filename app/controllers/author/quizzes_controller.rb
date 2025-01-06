@@ -19,7 +19,7 @@ module Author
       @quiz = @author.authored_quizzes.new(quiz_params)
       if @quiz.save
         flash[:notice] = t("flash.quizzes.create.success")
-        redirect_to quizzes_url(author_id: @author)
+        redirect_to author_quizzes_url
       else
         flash.now[:alert] = t("flash.quizzes.create.error")
         render :new, status: :unprocessable_entity

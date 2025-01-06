@@ -27,14 +27,14 @@ RSpec.describe Author::QuizzesController, type: :request do
       let(:valid_params) { { quiz: { title: 'Best Quiz', description: 'My first Quiz!' } } }
 
       it "responds with HTTP status redirect(302)" do
-        post quizzes_path(author_id: author), params: valid_params
+        post author_quizzes_path, params: valid_params
 
         expect(response).to have_http_status(:redirect)
       end
 
       it "creates an authored quiz" do
         expect {
-          post quizzes_path(author_id: author), params: valid_params
+          post author_quizzes_path, params: valid_params
         }.to change(Quiz, :count).by(1)
       end
     end
@@ -44,12 +44,12 @@ RSpec.describe Author::QuizzesController, type: :request do
       let(:invalid_params) { { quiz: { title: '', description: 'My first Quiz!' } } }
 
       it "responds with HTTP status unprocessable entity(400)" do
-        post quizzes_path(author_id: author), params: invalid_params
+        post author_quizzes_path, params: invalid_params
 
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
-      it 'creates an authored quiz' do
+      it 'does not create an authored quiz' do
         expect {
           post quizzes_path(author_id: author), params: invalid_params
         }.to change(Quiz, :count).by(0)
