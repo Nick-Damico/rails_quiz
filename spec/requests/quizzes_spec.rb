@@ -61,7 +61,7 @@ RSpec.describe Author::QuizzesController, type: :request do
     let!(:quiz) { create(:quiz, author: author) }
 
     it "responds with HTTP status ok(200)" do
-      get edit_quiz_path(quiz, author_id: author)
+      get edit_author_quiz_path(quiz)
 
       expect(response).to have_http_status(:ok)
     end
