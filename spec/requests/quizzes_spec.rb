@@ -1,13 +1,13 @@
 require "rails_helper"
 
-RSpec.describe "Quizzes", type: :request do
+RSpec.describe Author::QuizzesController, type: :request do
   let!(:author) { create(:user) }
 
   before { sign_in author }
 
   describe "GET /new" do
     it "responds with HTTP status ok(200)" do
-      get new_quiz_path(author_id: author)
+      get new_author_quiz_path
 
       expect(response).to have_http_status(:ok)
     end
@@ -16,7 +16,7 @@ RSpec.describe "Quizzes", type: :request do
   describe "GET /show" do
     it "responds with HTTP status ok(200)" do
       quiz = create(:quiz, author:)
-      get quiz_path(quiz, author_id: author)
+      get author_quiz_path(quiz)
 
       expect(response).to have_http_status(:ok)
     end
