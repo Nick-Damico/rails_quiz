@@ -9,7 +9,7 @@ RSpec.describe "Author Previews Quiz Question", type: :feature do
   end
 
   scenario "Author Previews Question" do
-    visit quiz_path(quiz, author_id: author)
+    visit author_quiz_path(quiz)
 
     selected_question = quiz.questions.first
     click_link "view", href: quiz_question_path(quiz, selected_question)

@@ -9,7 +9,7 @@ RSpec.describe "Author Adds New Quiz", type: :feature do
 
   scenario "Author creates a new quiz successfully" do
     quiz_attributes = attributes_for(:quiz, author: author)
-    visit new_quiz_path(author_id: author)
+    visit new_author_quiz_path
 
     fill_in "Title", with: quiz_attributes[:title]
     fill_in "Description", with: quiz_attributes[:description]
@@ -21,7 +21,7 @@ RSpec.describe "Author Adds New Quiz", type: :feature do
 
   scenario "Author fails to create Quiz with invalid input" do
     quiz_attributes = attributes_for(:quiz, author: author)
-    visit new_quiz_path(author_id: author)
+    visit new_author_quiz_path
 
     fill_in "Title", with: ""
     fill_in "Description", with: quiz_attributes[:description]

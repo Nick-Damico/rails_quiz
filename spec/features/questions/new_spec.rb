@@ -9,7 +9,7 @@ RSpec.describe "Author Adds New Question", type: :feature do
   end
 
   scenario "Author navigates to new Question form" do
-    visit quiz_path(quiz, author_id: author)
+    visit author_quiz_path(quiz)
     click_link "Add Question"
 
     expect(page).to have_content("Create Question")
@@ -19,7 +19,7 @@ RSpec.describe "Author Adds New Question", type: :feature do
   #      Once the underlying issues are resolved, the specs should be re-enabled and thoroughly tested.
   xscenario "Author successfully creates a question" do
     question_attributes = attributes_for(:question, author:)
-    visit quiz_path(quiz, author_id: author)
+    visit quiz_path(quiz)
     click_link "Add Question"
 
     fill_in "Question Text", with: question_attributes[:content]
@@ -30,7 +30,7 @@ RSpec.describe "Author Adds New Question", type: :feature do
   end
 
   scenario "Author fails to create a question due to invalid input" do
-    visit quiz_path(quiz, author_id: author)
+    visit author_quiz_path(quiz)
     click_link "Add Question"
 
     fill_in "Question Text", with: ""

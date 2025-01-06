@@ -80,10 +80,10 @@ RSpec.describe Author::QuizzesController, type: :request do
         expect(flash[:notice]).to eq(I18n.t("flash.quizzes.update.success"))
       end
 
-      it "redirects to :index author_quizzes_url" do
+      it "redirects to :show author_quiz_url" do
         put author_quiz_path(quiz), params: { quiz: valid_params }
 
-        expect(response).to redirect_to author_quizzes_url
+        expect(response).to redirect_to author_quiz_url(quiz)
       end
     end
 

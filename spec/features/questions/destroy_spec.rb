@@ -10,7 +10,7 @@ RSpec.describe "Author Deletes Question", type: :feature do
 
   scenario "Author locates delete button for question" do
     selected_question = quiz.questions.first
-    visit quiz_path(quiz, author_id: author)
+    visit author_quiz_path(quiz)
 
     expect(page).to have_content(selected_question.content)
     expect(page).to have_link("delete", href: quiz_question_path(quiz, selected_question))
@@ -18,7 +18,7 @@ RSpec.describe "Author Deletes Question", type: :feature do
 
   scenario "Author removes question using delete button" do
     selected_question = quiz.questions.first
-    visit quiz_path(quiz, author_id: author)
+    visit author_quiz_path(quiz)
 
     click_link "delete", href: quiz_question_path(quiz, selected_question)
 

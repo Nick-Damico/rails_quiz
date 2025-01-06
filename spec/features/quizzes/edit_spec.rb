@@ -8,9 +8,9 @@ RSpec.describe "Author Edits Quiz", type: :feature do
   end
 
   scenario "Quiz is successfully updated with valid input" do
-    quiz = create(:quiz, author: author)
+    quiz = create(:quiz)
 
-    visit edit_quiz_path(quiz, author_id: author)
+    visit edit_author_quiz_path(quiz)
 
     new_title = Faker::Book.title
     fill_in "Title", with: new_title
@@ -23,7 +23,7 @@ RSpec.describe "Author Edits Quiz", type: :feature do
   scenario "Quiz fails to update with invalid input" do
     quiz = create(:quiz, author: author)
 
-    visit edit_quiz_path(quiz, author_id: author)
+    visit edit_author_quiz_path(quiz)
 
     fill_in "Title", with: ""
     click_button "Update Quiz"
