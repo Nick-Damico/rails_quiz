@@ -32,7 +32,7 @@ module Author
     def update
       if @quiz.update(quiz_params)
         flash[:notice] = t("flash.quizzes.update.success")
-        redirect_to quizzes_url(author_id: @quiz.author)
+        redirect_to author_quizzes_url
       else
         # TODO: Display attirbutes and error messages on forms
         @author = @quiz.author
