@@ -1,24 +1,32 @@
-<div class="mt-10 mx-auto w-full max-w-sm">
-  <div class="border border-blue-600 rounded-md px-4 pt-6 pb-4 mb-4">
-    <%= form_with model: @quiz, url: do |f| %>
+<%= render "shared/breadcrumbs" %>
 
-      <div class="mb-4 field">
-        <%= f.label :title, class: "text-white text-xs font-semibold uppercase mb-2" %>
-        <%= f.text_field :title, placeholder: "Example: Ruby Interview Prep", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" %>
+<div class="mt-10 mx-auto w-full max-w-md">
+  <div class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
+    <section>
+      <h2 class="uppercase text-xl text-center font-xl border-b border-gray-500 py-2">
+          <%= quiz.persisted? ? "Edit" : "Create" %> Quiz
+      </h2>
 
-        <%= display_field_error(quiz, :title) %>
-      </div>
+      <%= form_with model: @quiz, url:, class: "px-2" do |f| %>
 
-      <div class="mb-4 field">
-        <%= f.label :description, class: "text-white text-xs font-semibold uppercase mb-2" %>
-        <%= f.text_area :description, rows: 8, placeholder: "Leave a good description for users.", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        <div class="mb-4 field">
+          <%= f.label :title, class: "text-white text-xs font-semibold uppercase mb-2" %>
+          <%= f.text_field :title, placeholder: "Example: Ruby Interview Prep", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" %>
 
-        <%= display_field_error(quiz, :description) %>
-      </div>
+          <%= display_field_error(quiz, :title) %>
+        </div>
 
-      <div class="flex items-center mb-4 actions">
-        <%= f.submit class: "text-center w-full bg-green-700 hover:bg-green-600 text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
-      </div>
-    <% end %>
+        <div class="mb-4 field">
+          <%= f.label :description, class: "text-white text-xs font-semibold uppercase mb-2" %>
+          <%= f.text_area :description, rows: 8, placeholder: "Leave a good description for users.", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+
+          <%= display_field_error(quiz, :description) %>
+        </div>
+
+        <div class="flex items-center mb-4 actions">
+          <%= f.submit class: "text-center w-full bg-green-700 hover:bg-green-600 text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
+        </div>
+      <% end %>
+    </section>
   </div>
 </div>

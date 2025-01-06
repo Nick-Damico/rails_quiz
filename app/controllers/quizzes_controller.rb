@@ -1,6 +1,7 @@
 class QuizzesController < ApplicationController
   before_action :set_quiz, only: %i[destroy edit show update]
   before_action :set_author, only: %i[create destroy edit index new show]
+  before_action :set_breadcrumbs
 
   def index
     @quizzes = @author.authored_quizzes
@@ -61,5 +62,10 @@ class QuizzesController < ApplicationController
 
   def set_author
     @author = User.find(params[:author_id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb("Home", quizzes_path(author_id: @author.id)) if @author.present?
+    add_breadcrumb(@quiz.title, quiz_path(@quiz, author_id: @quiz.author_id)) if @quiz.present?
   end
 end

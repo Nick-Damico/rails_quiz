@@ -1,10 +1,4 @@
-<div class="border-b border-gray-800 mb-6">
-  <% if question.persisted? %>
-    <%= render "shared/back_button", path: quiz_question_path(quiz, question) %>
-  <% else %>
-    <%= render "shared/back_button", path: quiz_path(quiz, author_id: current_user.id) %>
-  <% end %>
-</div>
+<%= render "shared/breadcrumbs" %>
 
 <div class="mt-10 mx-auto w-full max-w-md">
   <div class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">

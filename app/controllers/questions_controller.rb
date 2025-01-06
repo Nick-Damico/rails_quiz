@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :set_quiz, only: %i[create edit new show update]
   before_action :set_question, only: %i[edit show update destroy]
+  before_action :set_breadcrumbs
 
   def show; end
 
@@ -56,5 +57,17 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:quiz_id, :content, choices_attributes: %i[id content correct])
+  end
+
+  def set_breadcrumbs
+    if @quiz&.author_id.present?
+      add_breadcrumb("Quizzes", quizzes_path(author_id: @quiz.author_id))
+      add_breadcrumb(@quiz.title, quiz_path(@quiz, author_id: @quiz.author_id))
+    end
+    add_breadcrumb(@question.content, quiz_question_path(@quiz, @question)) if form_render?
+  end
+
+  def form_render?
+    [ :edit ].include?(params[:action].to_sym)
   end
 end

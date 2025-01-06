@@ -1,0 +1,9 @@
+<div class="mb-6">
+  <ol class="flex text-sm border-b border-t border-gray-800 px-2">
+    <% breadcrumbs.each do |breadcrumb| %>
+      <li class="">
+        <%= breadcrumb_item(breadcrumb) %>
+      </li>
+    <% end %>
+  </ol>
+</div>
