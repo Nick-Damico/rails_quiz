@@ -40,7 +40,7 @@ RSpec.describe "Questions", type: :request do
           post quiz_questions_path(quiz), params: valid_params
         }.to change(Question, :count).by(1)
 
-        expect(response).to redirect_to(quiz_url(quiz, author_id: author))
+        expect(response).to redirect_to(author_quiz_url(quiz))
       end
 
       context 'accepts_nested_attributes_for Choices' do

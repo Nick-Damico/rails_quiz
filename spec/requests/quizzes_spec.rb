@@ -51,7 +51,7 @@ RSpec.describe Author::QuizzesController, type: :request do
 
       it 'does not create an authored quiz' do
         expect {
-          post quizzes_path(author_id: author), params: invalid_params
+          post author_quizzes_path, params: invalid_params
         }.to change(Quiz, :count).by(0)
       end
     end

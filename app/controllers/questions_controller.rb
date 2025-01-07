@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
     if @question.save
       flash[:notice] = t("flash.questions.create.success")
       respond_to do |format|
-        format.html { redirect_to quiz_url(@quiz, author_id: @quiz.author) }
+        format.html { redirect_to author_quiz_url(@quiz) }
       end
     else
       flash.now[:alert] = t("flash.questions.create.error")
@@ -42,7 +42,7 @@ class QuestionsController < ApplicationController
       flash.now[:error] = t("flash.questions.destroy.error")
     end
 
-    redirect_to quizzes_url(author_id: @author)
+    redirect_to author_quizzes_url
   end
 
   private
@@ -61,8 +61,8 @@ class QuestionsController < ApplicationController
 
   def set_breadcrumbs
     if @quiz&.author_id.present?
-      add_breadcrumb("Quizzes", quizzes_path(author_id: @quiz.author_id))
-      add_breadcrumb(@quiz.title, quiz_path(@quiz, author_id: @quiz.author_id))
+      add_breadcrumb("Quizzes", author_quizzes_path)
+      add_breadcrumb(@quiz.title, author_quiz_path(@quiz))
     end
     add_breadcrumb(@question.content, quiz_question_path(@quiz, @question)) if form_render?
   end
