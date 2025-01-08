@@ -10,7 +10,6 @@
       <%= form_with model: [quiz, question], class: "px-2" do |f| %>
         <%= f.hidden_field :quiz_id, value: quiz.id %>
 
-        <%= display_field_error(question, :base) %>
 
         <div class="mt-2 mb-4 field">
             <%= f.label :content, "Question Text", class: "text-white text-xs font-semibold uppercase mb-2" %>
@@ -29,6 +28,8 @@
               <span class="mr-1"><%= render "icons/plus" %></span>Add
             </button>
           </div>
+
+          <%= display_field_error(question, :choices) %>
 
           <div id="question_choices_fields">
             <%= f.fields_for :choices, question.choices do |choice_form| %>
