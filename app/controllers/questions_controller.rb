@@ -3,7 +3,9 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: %i[edit show update destroy]
   before_action :set_breadcrumbs
 
-  def show; end
+  def show
+    @question_ids = @quiz.questions.collect(&:id)
+  end
 
   def new
     @question = @quiz.questions.build
