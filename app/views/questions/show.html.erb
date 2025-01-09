@@ -18,9 +18,9 @@
 <% end %>
 
 <section class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
-  <div class="flex h-auto justify-end border-b border-gray-500">
-    <%= link_to edit_quiz_question_path(@quiz, @question), title: 'Edit Question', class: 'inline-block w-auto p-1 cursor-pointer' do %>
-      <%= render "icons/pencil" %>
+  <div class="flex p-2 justify-end border-b border-gray-500">
+    <%= link_to edit_quiz_question_path(@quiz, @question), title: 'Edit Question', class: "flex btn-sm rounded items-center ml-auto hover:btn-primary transition ease-in-out duration-500" do %>
+      <%= render "icons/pencil", klass: "size-5 mr-1" %> Edit
     <% end %>
   </div>
 
