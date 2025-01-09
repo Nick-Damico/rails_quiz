@@ -4,6 +4,15 @@
   <h3 class="text-xl text-center font-semibold">
     Preview Mode
   </h3>
+  <div class="flex p-2 mt-2 space-x-4 justify-center">
+    <%= link_to quiz_question_path(@quiz, prev_question_id(@question, @question_ids)), class: "flex btn-sm btn-primary items-center" do %>
+      <%= render "icons/chevron_left", klass: "size-5" %> Prev Question
+    <% end %>
+
+    <%= link_to quiz_question_path(@quiz, next_question_id(@question, @question_ids)), class: "flex btn-sm btn-primary items-center" do %>
+      Next Question <%= render "icons/chevron_right", klass: "size-5" %>
+    <% end %>
+  </div>
 <% end %>
 
 <section class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
@@ -22,4 +31,6 @@
       <%= render partial: "questions/choices/choice", collection: @question.choices, as: :choice %>
     </ul>
   </div>
+
 </section>
+
