@@ -1,0 +1,42 @@
+<%= render "shared/breadcrumbs" %>
+
+<div class="flex flex-col space-y-2 md:w-1/2 md:space-y-2">
+  <section class="flex flex-col self-start p-2 px-2 w-full bg-gray-800 rounded">
+    <div class="inline-flex items-center bg-blue-500 px-4 p-1">
+      <h1 class="text-4xl font-semi-bold">
+        <%= @quiz.title %> <br>
+      </h1>
+    </div>
+
+    <div class="font-semibold ml-4 my-2">
+      <p>AUTHOR:</p>
+      <p class="italic font-light ml-3"><%= @quiz.author.username %></p>
+    </div>
+
+    <div class="ml-4 mb-2 font-semibold">
+      <p class="">DESCRIPTION:</p>
+      <p class="italic font-light ml-3"><%= @quiz.description %></p>
+    </div>
+
+    <div class="flex justify-between space-x-4 border-t border-gray-500 mt-6">
+      <p class="flex-1 uppercase font-light text-xl text-center p-1">
+        <span class="text-2xl"><%= sprintf("%02d" % @quiz.time_to_complete) %></span><br>
+        Minutes
+      </p>
+
+      <p class="flex-1 uppercase font-light text-xl text-center border-l border-gray-500 p-1">
+        <span class="text-2xl"><%= sprintf("%02d" % @quiz.questions.count) %></span><br>
+        Questions
+      </p>
+    </div>
+  </section>
+  <div class="flex p-4 border border-gray-500 rounded space-x-4">
+    <%= link_to "#", class: "flex items-center justify-center btn bg-success rounded" do %>
+      <%= render "icons/plus", klass: "size-5 mr-1" %> Add to Study Plan
+    <% end %>
+
+    <%= link_to "#", class: "flex items-center justify-center btn bg-primary rounded" do %>
+      <%= render "icons/play_circle", klass: "size-5 mr-1" %> Start Quiz
+    <% end %>
+  </div>
+</div>

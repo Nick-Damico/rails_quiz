@@ -57,7 +57,12 @@
           <%# END Design sub-navigation %>
 
           <li>
-            <a href="<%= author_quizzes_path() %>" class="block py-4 px-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 text-white hover:text-green-500">Study</a>
+            <a
+              href="<%= quizzes_path() %>"
+              class="block py-4 px-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 text-white hover:text-green-500"
+            >
+              Study
+            </a>
           </li>
         <% end %>
 
@@ -69,7 +74,12 @@
                 class: "block py-4 px-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-green-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
 
           <% else %>
-            <a href="<%= new_user_session_path %>" class="block py-4 px-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 text-white hover:text-green-500">Sign In</a>
+            <a
+              href="<%= new_user_session_path %>"
+              class="block py-4 px-4 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 text-white hover:text-green-500"
+            >
+              Sign In
+            </a>
           <% end %>
         </li>
       </ul>

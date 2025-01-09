@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :quizzes
   end
 
-  resources :quizzes, only: [] do
+  resources :quizzes, only: %i[index show] do
     resources :questions, only: %i[create edit destroy new show update]
   end
 
