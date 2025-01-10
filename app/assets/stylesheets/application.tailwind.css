@@ -3,21 +3,13 @@
 @tailwind utilities;
 
 @layer components {
-  .btn {
-    @apply py-2 px-4 cursor-pointer;
+  /* STATUS COLORS */
+  .bg-alert {
+    @apply bg-red-500;
   }
 
-  .btn-sm {
-    @apply py-1 px-2 cursor-pointer;
-  }
-
-  .btn-primary,
   .bg-primary {
     @apply bg-blue-500;
-  }
-
-  .btn-success {
-    @apply bg-green-700 hover:bg-green-600;
   }
 
   .bg-success {
@@ -28,11 +20,30 @@
     @apply bg-yellow-500;
   }
 
-  .btn-alert,
-  .bg-alert {
-    @apply bg-red-500;
+  /* BUTTONS */
+  .btn {
+    @apply py-2 px-4 cursor-pointer;
   }
 
+  .btn-sm {
+    @apply py-1 px-2 cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-blue-500 hover:bg-blue-600 transition duration-300 ease-in-out;
+  }
+
+  .btn-alert {
+    @apply bg-red-500 hover:bg-red-600 transition duration-300 ease-in-out;
+  }
+
+  .btn-success {
+    @apply bg-green-700 hover:bg-green-600 transition duration-300 ease-in-out;
+  }
+
+  .btn-primary {
+    @apply bg-yellow-500 hover:bg-yellow-600 transition duration-300 ease-in-out;
+  }
 }
 
 /* FORM ERRORS */
