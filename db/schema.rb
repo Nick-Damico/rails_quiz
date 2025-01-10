@@ -10,13 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_03_142117) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_10_165514) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answer_sheet_questions", force: :cascade do |t|
+    t.bigint "answer_sheet_id", null: false
+    t.bigint "question_id", null: false
+    t.bigint "answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_answer_sheet_questions_on_answer_id"
+    t.index ["answer_sheet_id"], name: "index_answer_sheet_questions_on_answer_sheet_id"
+    t.index ["question_id"], name: "index_answer_sheet_questions_on_question_id"
+  end
+
   create_table "answer_sheets", force: :cascade do |t|
     t.bigint "quiz_id", null: false
     t.bigint "user_id", null: false
-    t.decimal "grade", precision: 2, scale: 5
+    t.decimal "grade", precision: 5, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_answer_sheets_on_quiz_id"
@@ -62,6 +74,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_03_142117) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answer_sheet_questions", "answer_sheets"
+  add_foreign_key "answer_sheet_questions", "question_choices", column: "answer_id"
+  add_foreign_key "answer_sheet_questions", "questions"
   add_foreign_key "answer_sheets", "quizzes"
   add_foreign_key "answer_sheets", "users"
   add_foreign_key "question_choices", "questions"
