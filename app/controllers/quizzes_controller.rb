@@ -7,6 +7,7 @@ class QuizzesController < ApplicationController
   end
 
   def show
+    @answer_sheet = AnswerSheet.find_by(user: current_user, quiz: @quiz)
   end
 
   private

@@ -62,6 +62,14 @@ en:
         success: 'Choice was successfully deleted.'
         error: 'There was an error deleting the choice.'
 
+    answer_sheets:
+      create:
+        success: 'Quiz successfully started.'
+        error: 'There was an error starting this quiz. Refresh page and try again.'
+      destroy:
+        success: 'Quiz progress removed. Click "Start Quiz" to retake.'
+        error: 'There was an error removing the previous quiz progress. Refresh page and try again.'
+
   buttons:
     back: 'Go Back'
 
