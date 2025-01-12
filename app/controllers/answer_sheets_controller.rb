@@ -8,8 +8,10 @@ class AnswerSheetsController < ApplicationController
   def create
     @answer_sheet = AnswerSheet.new(answer_sheet_params)
     if @answer_sheet.save
+      @answer_sheet.prepare
+
       flash[:notice] = t("flash.answer_sheets.create.success")
-      redirect_to @answer_sheet
+      redirect_to @answer_sheet.answer_sheet_questions.first
     else
       flash[:alert] = t("flash.answer_sheets.create.error")
       redirect_to quizzes_path, status: :unprocessable_entity

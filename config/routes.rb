@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   resources :answer_sheets, only: %i[create destroy show]
+  resources :answer_sheet_questions, only: %i[show]
 
   resources :quizzes, only: %i[index show] do
     resources :questions, only: %i[create edit destroy new show update]
