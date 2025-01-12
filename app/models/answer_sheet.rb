@@ -3,4 +3,10 @@ class AnswerSheet < ApplicationRecord
   belongs_to :user
 
   has_many :answer_sheet_questions
+
+  def prepare
+    quiz.question_ids.each do |question_id|
+      answer_sheet_questions << AnswerSheetQuestion.create(question_id:)
+    end
+  end
 end
