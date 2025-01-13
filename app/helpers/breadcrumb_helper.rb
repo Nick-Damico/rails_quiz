@@ -5,7 +5,7 @@ module BreadcrumbHelper
     content = safe_join([ breadcrumb.name.truncate(20), content_tag(:span, icon) ])
 
     if breadcrumb.path
-      link_to(content, breadcrumb.path, class: "px-1 py-2 flex items-center hover:underline group")
+      link_to(content, breadcrumb.path, class: "px-1 py-2 flex items-center underline group")
     else
       content_tag(:span, content, class: "px-1 py-2 flex items-center")
     end
