@@ -69,6 +69,8 @@ en:
       destroy:
         success: 'Quiz progress removed. Click "Start Quiz" to retake.'
         error: 'There was an error removing the previous quiz progress. Refresh page and try again.'
+      pause:
+        success: "Quiz successfully paused. Use 'resume' to continue with quiz."
 
   buttons:
     back: 'Go Back'

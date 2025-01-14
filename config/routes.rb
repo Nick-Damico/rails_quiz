@@ -22,7 +22,10 @@ Rails.application.routes.draw do
   end
 
   resources :answer_sheets, only: %i[create destroy show] do
-    get "resume", on: :member
+    member do
+      get "pause"
+      get "resume"
+    end
   end
 
   resources :answer_sheet_questions, only: %i[show]

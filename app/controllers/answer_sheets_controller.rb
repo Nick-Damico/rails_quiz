@@ -1,5 +1,5 @@
 class AnswerSheetsController < ApplicationController
-  before_action :set_answer_sheet, only: %i[resume show destroy]
+  before_action :set_answer_sheet, only: %i[pause resume show destroy]
 
   def resume
     if answer_sheet_question = @answer_sheet.first_incomplete_question
@@ -7,6 +7,15 @@ class AnswerSheetsController < ApplicationController
     else
       redirect_to @answer_sheet.quiz
     end
+  end
+
+  # INFO: This route doesn't do much of anything for now.
+  #        It provides the User with a route to intentionally
+  #        navigate away from the 'in-progess' Quiz. In the
+  #        future, this might pause a clock or save some state.
+  def pause
+    flash[:notice] = t("flash.answer_sheets.pause.success")
+    redirect_to @answer_sheet.quiz
   end
 
   def show

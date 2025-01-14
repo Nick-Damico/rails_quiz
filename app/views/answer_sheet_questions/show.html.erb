@@ -21,7 +21,7 @@
     </div>
 
     <div class="flex space-x-6 pt-3 justify-center border-t border-gray-500">
-      <%= link_to "Pause", '#', class: "block btn border border-gray-500" %>
+      <%= link_to "Pause", pause_answer_sheet_path(@answer_sheet_question.answer_sheet), class: "block btn border border-gray-500" %>
       <%= link_to "Skip", '#', class: "block btn border border-gray-500" %>
       <%= link_to "Next >", '#', class: "block btn btn-success" %>
     </div>

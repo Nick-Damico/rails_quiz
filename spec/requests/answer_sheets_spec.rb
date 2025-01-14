@@ -28,6 +28,17 @@ RSpec.describe AnswerSheetsController, type: :request do
     end
   end
 
+  describe "GET /pause" do
+    it "responds with HTTP status 302(redirect)" do
+      answer_sheet_question = create(:answer_sheet_question)
+      answer_sheet = answer_sheet_question.answer_sheet
+
+      get pause_answer_sheet_path(answer_sheet)
+
+      expect(response).to have_http_status(:redirect)
+    end
+  end
+
   describe "POST /create" do
     context "with valid params" do
       let!(:valid_params) { { answer_sheet: { user_id: user.id, quiz_id: quiz.id } } }
