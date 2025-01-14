@@ -39,7 +39,7 @@
     <% if @answer_sheet.present? %>
       <div class="flex items-center bg-primary text-white pl-4 overflow-hidden rounded justify-center">
         <span class="mr-4">Resume Quiz?</span>
-        <%= link_to "Yes", answer_sheet_path(@answer_sheet), class: "btn btn-success text-white" %>
+        <%= link_to "Yes", resume_answer_sheet_path(@answer_sheet), class: "btn btn-success text-white" %>
         <%= button_to "No", answer_sheet_path(@answer_sheet),
             method: :delete,
             class: "btn btn-alert text-white",

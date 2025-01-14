@@ -6,13 +6,25 @@ RSpec.describe AnswerSheetsController, type: :request do
 
   before { sign_in user }
 
+  # TODO: This route will function as the Quiz Review page.
   describe "GET /show" do
     it "responds with HTTP status 200(ok)" do
       answer_sheet = create(:answer_sheet)
 
       get answer_sheet_path(answer_sheet)
 
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe "GET /resume" do
+    it "responds with HTTP status 302(redirect)" do
+      answer_sheet_question = create(:answer_sheet_question)
+      answer_sheet = answer_sheet_question.answer_sheet
+
+      get resume_answer_sheet_path(answer_sheet)
+
+      expect(response).to have_http_status(:redirect)
     end
   end
 

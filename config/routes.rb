@@ -21,7 +21,10 @@ Rails.application.routes.draw do
     resources :quizzes
   end
 
-  resources :answer_sheets, only: %i[create destroy show]
+  resources :answer_sheets, only: %i[create destroy show] do
+    get "resume", on: :member
+  end
+
   resources :answer_sheet_questions, only: %i[show]
 
   resources :quizzes, only: %i[index show] do

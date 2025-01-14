@@ -9,4 +9,8 @@ class AnswerSheet < ApplicationRecord
       answer_sheet_questions << AnswerSheetQuestion.create(question_id:)
     end
   end
+
+  def first_incomplete_question
+    answer_sheet_questions.incomplete.first
+  end
 end

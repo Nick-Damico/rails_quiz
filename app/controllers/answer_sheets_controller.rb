@@ -1,5 +1,13 @@
 class AnswerSheetsController < ApplicationController
-  before_action :set_answer_sheet, only: %i[show destroy]
+  before_action :set_answer_sheet, only: %i[resume show destroy]
+
+  def resume
+    if answer_sheet_question = @answer_sheet.first_incomplete_question
+      redirect_to answer_sheet_question
+    else
+      redirect_to @answer_sheet.quiz
+    end
+  end
 
   def show
     @quiz = @answer_sheet.quiz
