@@ -8,9 +8,9 @@
       <%= form_for @answer_sheet_question do |f| %>
         <% radio_btn_index = 0 %>
         <%= f.collection_radio_buttons :answer_id, @choices, :id, :content do |builder| %>
-          <div class="flex mb-4 peer-checked:bg-success hover:bg-primary border border-gray-500 cursor-pointer transition ease-in-out duration-500">
+          <div class="flex mb-4 peer-checked:bg-success hover:bg-primary border border-gray-500 transition ease-in-out duration-500">
             <%= builder.radio_button class: 'hidden peer' %>
-            <%= builder.label class: "flex flex-1 p-2 peer-checked:bg-success" do %>
+            <%= builder.label class: "flex flex-1 p-2 peer-checked:bg-success cursor-pointer" do %>
               <span class="w-12 mr-1 font-bold text-center"><%= num_to_letter(radio_btn_index).upcase %>.</span>
               <p class="w-full"><%= builder.object.content %></p>
             <% end %>
