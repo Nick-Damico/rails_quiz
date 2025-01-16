@@ -2,7 +2,7 @@ class AnswerSheetsController < ApplicationController
   before_action :set_answer_sheet, only: %i[pause resume show destroy]
 
   def resume
-    if answer_sheet_question = @answer_sheet.first_incomplete_question
+    if answer_sheet_question = @answer_sheet.next_incomplete_question
       redirect_to answer_sheet_question
     else
       redirect_to @answer_sheet.quiz

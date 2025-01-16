@@ -2,11 +2,17 @@ require "rails_helper"
 
 RSpec.describe AnswerSheetQuestionsController, type: :request do
   let!(:user) { create(:user) }
-  before { sign_in user }
+  let!(:answer_sheet) { create(:answer_sheet) }
+
+  before do
+    sign_in user
+
+    answer_sheet.prepare
+  end
 
   describe "GET /show" do
     it "responds with HTTP status 200(ok)" do
-      answer_sheet_question = create(:answer_sheet_question)
+      answer_sheet_question = answer_sheet.answer_sheet_questions.first
 
       get answer_sheet_question_path(answer_sheet_question)
 
@@ -14,22 +20,32 @@ RSpec.describe AnswerSheetQuestionsController, type: :request do
     end
   end
 
-  # describe "POST /create" do
-  #   context "with valid params" do
-  #     let!(:valid_params) { { answer_sheet: { user_id: user.id, quiz_id: quiz.id } } }
+  describe "PUT /update" do
+    context "with valid params" do
+      let(:answer_sheet_question) { answer_sheet.answer_sheet_questions.first }
+      let!(:valid_params) { {
+          answer_sheet_question: {
+            question_id: answer_sheet_question.question_id,
+            answer_sheet_id: answer_sheet_question.answer_sheet_id,
+            answer_id: answer_sheet_question.question.choices.first.id
+          }
+        }
+      }
 
-  #     it "responds with HTTP status redirect(302)" do
-  #       post answer_sheets_path, params: valid_params
+      it "responds with HTTP status redirect(302)" do
+        put answer_sheet_question_path(answer_sheet_question), params: valid_params
 
-  #       expect(response).to have_http_status(:redirect)
-  #     end
+        expect(response).to have_http_status(:redirect)
+      end
 
-  #     it "creates an answer_sheet" do
-  #       expect {
-  #         post answer_sheets_path, params: valid_params
-  #       }.to change(AnswerSheet, :count).by(1)
-  #     end
-  #   end
+      it "responds with redirect to the next incomplete question" do
+        answer_sheet = answer_sheet_question.answer_sheet
+
+        put answer_sheet_question_path(answer_sheet_question), params: valid_params
+
+        expect(response).to redirect_to(answer_sheet.next_incomplete_question)
+      end
+
 
   #   context "with invalid params" do
   #     # Missing required :quiz_id
@@ -67,4 +83,5 @@ RSpec.describe AnswerSheetQuestionsController, type: :request do
   #     end
   #   end
   # end
+  end
 end

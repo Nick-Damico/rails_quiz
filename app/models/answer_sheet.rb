@@ -10,7 +10,7 @@ class AnswerSheet < ApplicationRecord
     end
   end
 
-  def first_incomplete_question
+  def next_incomplete_question
     answer_sheet_questions.incomplete.first
   end
 end
