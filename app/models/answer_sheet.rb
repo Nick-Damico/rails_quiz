@@ -2,7 +2,7 @@ class AnswerSheet < ApplicationRecord
   belongs_to :quiz
   belongs_to :user
 
-  has_many :answer_sheet_questions
+  has_many :answer_sheet_questions, dependent: :destroy
 
   def prepare
     quiz.question_ids.each do |question_id|

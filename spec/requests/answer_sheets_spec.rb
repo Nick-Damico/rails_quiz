@@ -90,6 +90,16 @@ RSpec.describe AnswerSheetsController, type: :request do
         expect(response).to have_http_status(:redirect)
         expect(response).to redirect_to(answer_sheet.quiz)
       end
+
+      it "deletes child answer_sheet_questions" do
+        answer_sheet.prepare # generate answer_sheet_questions
+        child_record_count = answer_sheet.answer_sheet_questions.count
+        expect(child_record_count).to satisfy { |n| n > 0 }
+
+        expect {
+          delete answer_sheet_path(answer_sheet)
+        }.to change(AnswerSheetQuestion, :count).by(-child_record_count)
+      end
     end
   end
 end
