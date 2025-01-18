@@ -2,8 +2,8 @@ class AnswerSheetQuestionsController < ApplicationController
   before_action :set_answer_sheet_question, only: %i[show update]
 
   def show
+    @answer_sheet = @answer_sheet_question.answer_sheet
     @question = @answer_sheet_question.question
-    @choices = @question.choices
   end
 
   def update

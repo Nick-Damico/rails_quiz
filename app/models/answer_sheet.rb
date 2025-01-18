@@ -2,12 +2,16 @@ class AnswerSheet < ApplicationRecord
   belongs_to :quiz
   belongs_to :user
 
-  has_many :answer_sheet_questions, dependent: :destroy
+  has_many :answer_sheet_questions, -> { order(id: :asc) }, dependent: :destroy
 
   def prepare
     quiz.question_ids.each do |question_id|
       answer_sheet_questions << AnswerSheetQuestion.create(question_id:)
     end
+  end
+
+  def position_of(answer_sheet_question)
+    answer_sheet_questions.pluck(:id).index(answer_sheet_question.id)
   end
 
   def next_incomplete_question

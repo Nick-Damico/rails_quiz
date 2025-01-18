@@ -1,3 +1,9 @@
+<div class="text-center">
+  <h3 class="text-xl">
+    Question <%= sprintf("%02d" % (@answer_sheet_question.position)) %>/<%= sprintf("%02d" % @answer_sheet.answer_sheet_questions.count) %>
+  </h3>
+</div>
+
 <section class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
   <div class="px-3 pb-3">
     <h2 class="text-xl text-center py-3 mb-3 border-b border-gray-500">
@@ -7,7 +13,7 @@
     <div class="flex flex-col">
       <%= form_for @answer_sheet_question, data: { controller: "answer-sheet-question-form", action: "input->answer-sheet-question-form#enableSubmit" } do |f| %>
         <% radio_btn_index = 0 %>
-        <%= f.collection_radio_buttons :answer_id, @choices, :id, :content do |builder| %>
+        <%= f.collection_radio_buttons :answer_id, @question.choices, :id, :content do |builder| %>
           <div class="flex mb-4 peer-checked:bg-success hover:bg-primary border border-gray-500 transition ease-in-out duration-500">
             <%= builder.radio_button class: 'hidden peer' %>
             <%= builder.label class: "flex flex-1 p-2 peer-checked:bg-success cursor-pointer" do %>

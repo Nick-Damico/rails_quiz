@@ -15,4 +15,17 @@ RSpec.describe AnswerSheetQuestion, type: :model do
       expect(answer_sheet.answer_sheet_questions.count).to eq(3)
     end
   end
+
+  describe "#position" do
+    it "returns the number position" do
+      quiz = create(:quiz, questions_count: 3)
+      answer_sheet = create(:answer_sheet, quiz:)
+      answer_sheet.prepare
+
+      expected_position = 2
+      current_question = answer_sheet.answer_sheet_questions.second
+
+      expect(current_question.position).to eq(expected_position)
+    end
+  end
 end
