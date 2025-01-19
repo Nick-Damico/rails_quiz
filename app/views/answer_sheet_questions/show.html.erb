@@ -1,6 +1,6 @@
 <div class="text-center mt-10">
   <h3 class="text-xl">
-    Question <%= format_as_two_digits(@answer_sheet_question.position) %>/<%= format_as_two_digits(@answer_sheet.answer_sheet_questions.count) %>
+    Question <%= format_as_two_digits(@answer_sheet_question.position) %>/<%= format_as_two_digits(@question_count) %>
   </h3>
 </div>
 
@@ -28,7 +28,7 @@
           <%= link_to pause_answer_sheet_path(@answer_sheet_question.answer_sheet), class: "flex flex-1 items-center justify-center btn border border-gray-500 hover:bg-warning transition ease-in-out" do %>
             <%= render "icons/circle_pause", klass: "size-5 mr-2" %> Pause
           <% end %>
-          <%= f.submit "Next",
+          <%= f.submit @answer_sheet_question.position < @question_count ? "Next" : "Finish",
               class: "flex flex-1 items-center btn btn-success border border-gray-500 disabled:bg-transparent disabled:cursor-not-allowed disabled:border-gray-700 disabled:text-gray-700 transition ease-in-out",
               data: { "answer-sheet-question-form-target": 'submitButton' },
               disabled: true %>

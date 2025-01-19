@@ -21,14 +21,11 @@ RSpec.describe AnswerSheetQuestionsController, type: :request do
   end
 
   describe "PUT /update" do
+    let(:answer_sheet_question) { answer_sheet.answer_sheet_questions.first }
+
     context "with valid params" do
-      let(:answer_sheet_question) { answer_sheet.answer_sheet_questions.first }
       let!(:valid_params) { {
-          answer_sheet_question: {
-            question_id: answer_sheet_question.question_id,
-            answer_sheet_id: answer_sheet_question.answer_sheet_id,
-            answer_id: answer_sheet_question.question.choices.first.id
-          }
+          answer_sheet_question: { answer_id: answer_sheet_question.question.choices.first.id }
         }
       }
 
@@ -46,43 +43,31 @@ RSpec.describe AnswerSheetQuestionsController, type: :request do
         expect(response).to redirect_to(answer_sheet.next_incomplete_question)
       end
 
+      it "renders flash notice with success message" do
+        put answer_sheet_question_path(answer_sheet_question), params: valid_params
 
-  #   context "with invalid params" do
-  #     # Missing required :quiz_id
-  #     let!(:invalid_params) { { answer_sheet: { user_id: user.id, quiz_id: nil } } }
+        expect(flash[:notice]).to eq(I18n.t("flash.answer_sheet_questions.update.success"))
+      end
+    end
 
-  #     it "responds with HTTP status unprocessable_entity(422)" do
-  #       post answer_sheets_path, params: invalid_params
+    context "with invalid params" do
+      # Missing required :answer_id
+      let!(:invalid_params) { {
+          answer_sheet_question: { answer_id: '' }
+        }
+      }
 
-  #       expect(response).to have_http_status(:unprocessable_entity)
-  #     end
+      it "responds with HTTP status unprocessable_entity(422)" do
+        put answer_sheet_question_path(answer_sheet_question), params: invalid_params
 
-  #     it "does not create an answer_sheet" do
-  #       expect {
-  #         post answer_sheets_path, params: invalid_params
-  #       }.to change(AnswerSheet, :count).by(0)
-  #     end
-  #   end
-  # end
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
 
-  # describe "DELETE /destroy" do
-  #   let!(:answer_sheet) { create(:answer_sheet, user: user, quiz: quiz) }
+      it "renders flash alert with error message" do
+        put answer_sheet_question_path(answer_sheet_question), params: invalid_params
 
-  #   context "success" do
-  #     it "destroys the answer_sheet record" do
-  #       expect {
-  #         delete answer_sheet_path(answer_sheet)
-  #       }.to change(AnswerSheet, :count).by(-1)
-  #     end
-
-  #     it "responds with HTTP status redirec(302)" do
-  #       delete answer_sheet_path(answer_sheet)
-
-  #       expect(response).to have_http_status(:redirect)
-  #       expect(response).to redirect_to(answer_sheet.quiz)
-  #     end
-  #   end
-  # end
+        expect(flash[:alert]).to eq(I18n.t("flash.answer_sheet_questions.update.error"))
+      end
     end
   end
 end

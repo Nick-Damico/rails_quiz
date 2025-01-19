@@ -5,6 +5,8 @@ class AnswerSheetQuestion < ApplicationRecord
 
   scope :incomplete, -> { where(answer: nil) }
 
+  validates :answer, presence: true, on: :update
+
   def position
     answer_sheet.position_of(self) + 1
   end

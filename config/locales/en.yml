@@ -31,60 +31,65 @@ en:
   flash:
     quizzes:
       create:
-        success: 'Quiz was successfully created.'
-        error: 'There was an error creating the quiz.'
+        success: "Quiz was successfully created."
+        error: "There was an error creating the quiz."
       update:
-        success: 'Quiz was successfully updated.'
-        error: 'There was an error updating the quiz.'
+        success: "Quiz was successfully updated."
+        error: "There was an error updating the quiz."
       destroy:
-        success: 'Quiz was successfully deleted.'
-        error: 'There was an error deleting the quiz.'
+        success: "Quiz was successfully deleted."
+        error: "There was an error deleting the quiz."
 
     questions:
       create:
-        success: 'Question was successfully created.'
-        error: 'There was an error creating the question.'
+        success: "Question was successfully created."
+        error: "There was an error creating the question."
       update:
-        success: 'Question was successfully updated.'
-        error: 'There was an error updating this question.'
+        success: "Question was successfully updated."
+        error: "There was an error updating this question."
       destroy:
-        success: 'Question was successfully deleted.'
-        error: 'There was an error deleting this question.'
-    
+        success: "Question was successfully deleted."
+        error: "There was an error deleting this question."
+
     choices:
       create:
-        success: 'Choice was successfully created.'
-        error: 'There was an error creating this choice.'
+        success: "Choice was successfully created."
+        error: "There was an error creating this choice."
       update:
-        success: 'Choice was successfully updated.'
-        error: 'There was an error updating this choice.'
+        success: "Choice was successfully updated."
+        error: "There was an error updating this choice."
       destroy:
-        success: 'Choice was successfully deleted.'
-        error: 'There was an error deleting the choice.'
+        success: "Choice was successfully deleted."
+        error: "There was an error deleting the choice."
 
     answer_sheets:
       create:
-        success: 'Quiz successfully started.'
-        error: 'There was an error starting this quiz. Refresh page and try again.'
+        success: "Quiz successfully started."
+        error: "There was an error starting this quiz. Refresh page and try again."
       destroy:
         success: 'Quiz progress removed. Click "Start Quiz" to retake.'
-        error: 'There was an error removing the previous quiz progress. Refresh page and try again.'
+        error: "There was an error removing the previous quiz progress. Refresh page and try again."
       pause:
         success: "Quiz successfully paused. Use 'resume' to continue with quiz."
 
+    answer_sheet_questions:
+      update:
+        success: "Your answer was recorded."
+        error: "Question requires an answer. Please select an answer below."
+
   buttons:
-    back: 'Go Back'
+    back: "Go Back"
 
     questions:
-      delete: 'Are you sure you want to delete this Question?'
+      delete: "Are you sure you want to delete this Question?"
     choice:
-      delete: 'Are you sure you want to delete this Option?'
+      delete: "Are you sure you want to delete this Option?"
 
   helpers:
     submit:
       quiz:
-        create: 'Create Quiz'
-        update: 'Update Quiz'
+        create: "Create Quiz"
+        update: "Update Quiz"
       question:
-        create: 'Create Question'
-        update: 'Update Question'
+        create: "Create Question"
+        update: "Update Question"
