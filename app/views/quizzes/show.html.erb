@@ -21,14 +21,14 @@
     <div class="flex justify-between space-x-4 border-t border-gray-500">
       <p class="flex-1 uppercase font-light text-xl text-center p-1">
         <span class="text-2xl">
-          <%= sprintf("%02d" % @quiz.time_to_complete) %>
+          <%= format_as_two_digits(@quiz.time_to_complete) %>
         </span><br>
         Minutes
       </p>
 
       <p class="flex-1 uppercase font-light text-xl text-center border-l border-gray-500 p-1">
         <span class="text-2xl">
-          <%= sprintf("%02d" % @quiz.questions.count) %>
+          <%= format_as_two_digits(@quiz.questions.count) %>
         </span><br>
         Questions
       </p>

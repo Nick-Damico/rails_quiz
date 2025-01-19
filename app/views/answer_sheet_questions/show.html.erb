@@ -1,6 +1,6 @@
 <div class="text-center">
   <h3 class="text-xl">
-    Question <%= sprintf("%02d" % (@answer_sheet_question.position)) %>/<%= sprintf("%02d" % @answer_sheet.answer_sheet_questions.count) %>
+    Question <%= format_as_two_digits(@answer_sheet_question.position) %>/<%= format_as_two_digits(@answer_sheet.answer_sheet_questions.count) %>
   </h3>
 </div>
 

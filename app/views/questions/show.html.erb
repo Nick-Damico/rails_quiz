@@ -9,7 +9,7 @@
       <%= render "icons/chevron_left", klass: "size-5" %> Prev Question
     <% end %>
 
-    <span class="text-xl"><%= sprintf("%02d", question_number(@question, @question_ids)) %></span> 
+    <span class="text-xl"><%= format_as_two_digits(question_number(@question, @question_ids)) %></span> 
 
     <%= link_to quiz_question_path(@quiz, next_question_id(@question, @question_ids)), class: "flex btn-sm btn-primary items-center" do %>
       Next Question <%= render "icons/chevron_right", klass: "size-5" %>
