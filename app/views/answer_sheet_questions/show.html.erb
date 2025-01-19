@@ -1,10 +1,10 @@
-<div class="text-center">
+<div class="text-center mt-10">
   <h3 class="text-xl">
     Question <%= format_as_two_digits(@answer_sheet_question.position) %>/<%= format_as_two_digits(@answer_sheet.answer_sheet_questions.count) %>
   </h3>
 </div>
 
-<section class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
+<section class="w-full max-w-xl mx-auto border border-gray-500 mt-5 rounded">
   <div class="px-3 pb-3">
     <h2 class="text-xl text-center py-3 mb-3 border-b border-gray-500">
       <%= @question.content %>
