@@ -4,6 +4,10 @@ class AnswerSheet < ApplicationRecord
 
   has_many :answer_sheet_questions, -> { order(id: :asc) }, dependent: :destroy
 
+  def completed?
+    answer_sheet_questions.all?(&:answered?)
+  end
+
   def prepare
     quiz.question_ids.each do |question_id|
       answer_sheet_questions << AnswerSheetQuestion.create(question_id:)

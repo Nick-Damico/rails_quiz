@@ -17,4 +17,12 @@ RSpec.describe AnswerSheet, type: :model do
       expect(answer_sheet.next_incomplete_question).to eq(answer_sheet.answer_sheet_questions.second)
     end
   end
+
+  describe "#completed?" do
+    it "returns true if all answer_sheet_questions are answered" do
+      answer_sheet = create(:answer_sheet, :with_completed_quiz)
+
+      expect(answer_sheet.completed?).to eq(true)
+    end
+  end
 end
