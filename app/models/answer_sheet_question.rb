@@ -7,6 +7,10 @@ class AnswerSheetQuestion < ApplicationRecord
 
   validates :answer, presence: true, on: :update
 
+  def answered?
+    answer.present?
+  end
+
   def position
     answer_sheet.position_of(self) + 1
   end
