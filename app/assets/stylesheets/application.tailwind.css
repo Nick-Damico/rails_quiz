@@ -38,7 +38,7 @@
   }
 
   .btn-success {
-    @apply bg-green-700 hover:bg-green-600 transition duration-300 ease-in-out;
+    @apply bg-success hover:bg-emerald-600 transition duration-300 ease-in-out;
   }
 
   .btn-warning {
