@@ -4,6 +4,14 @@ class AnswerSheet < ApplicationRecord
 
   has_many :answer_sheet_questions, -> { order(id: :asc) }, dependent: :destroy
 
+  def self.in_progress_answer_sheet_for(quiz:, user:)
+    AnswerSheet
+      .joins(:answer_sheet_questions)
+      .where(quiz:, user:,  answer_sheet_questions: { answer: nil })
+      .distinct
+      .first
+  end
+
   def completed?
     answer_sheet_questions.all?(&:answered?)
   end
