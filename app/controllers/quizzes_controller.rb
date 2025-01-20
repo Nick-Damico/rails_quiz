@@ -7,7 +7,7 @@ class QuizzesController < ApplicationController
   end
 
   def show
-    @answer_sheet = AnswerSheet.find_by(user: current_user, quiz: @quiz)
+    @in_progress_answer_sheet = AnswerSheet.in_progress_answer_sheet_for(quiz: @quiz, user: current_user)
   end
 
   private
