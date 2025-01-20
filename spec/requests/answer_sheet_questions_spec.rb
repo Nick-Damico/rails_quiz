@@ -48,6 +48,20 @@ RSpec.describe AnswerSheetQuestionsController, type: :request do
 
         expect(flash[:notice]).to eq(I18n.t("flash.answer_sheet_questions.update.success"))
       end
+
+      context "completed answer_sheet" do
+        it "redirects to the answer_sheet once completed" do
+          answer_sheet.answer_sheet_questions[0...-1].each do |answer_sheet_question|
+            answer = answer_sheet_question.question.choices.first
+            answer_sheet_question.update(answer:)
+          end
+          last_answer_sheet_question = answer_sheet.answer_sheet_questions.last
+
+          put answer_sheet_question_path(last_answer_sheet_question), params: valid_params
+
+          expect(response).to redirect_to(answer_sheet)
+        end
+      end
     end
 
     context "with invalid params" do

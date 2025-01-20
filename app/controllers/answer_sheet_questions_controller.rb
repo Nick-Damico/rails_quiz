@@ -8,12 +8,15 @@ class AnswerSheetQuestionsController < ApplicationController
   def update
     if @answer_sheet_question.update(answer_sheet_question_params)
       answer_sheet = @answer_sheet_question.answer_sheet
-      flash[:notice] = t("flash.answer_sheet_questions.update.success")
-      redirect_to answer_sheet.next_incomplete_question
+      if answer_sheet.completed?
+        redirect_to answer_sheet
+      else
+        flash[:notice] = t("flash.answer_sheet_questions.update.success")
+        redirect_to answer_sheet.next_incomplete_question
+      end
     else
-      flash[:alert] = t("flash.answer_sheet_questions.update.error")
       set_show_variables
-
+      flash[:alert] = t("flash.answer_sheet_questions.update.error")
       render :show, status: :unprocessable_entity
     end
   end
@@ -29,8 +32,7 @@ class AnswerSheetQuestionsController < ApplicationController
   end
 
   def set_show_variables
-    answer_sheet = @answer_sheet_question.answer_sheet
-    @question_count = answer_sheet.answer_sheet_questions.count
     @question = @answer_sheet_question.question
+    @question_count = @answer_sheet_question.answer_sheet.answer_sheet_questions.count
   end
 end
