@@ -1,19 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe 'Authored Quizzes', type: :feature do
-  xscenario 'Author Creates a Quiz' do
-      author = create(:user)
-      sign_in author
+  let!(:author) { create(:user) }
 
-      visit new_author_quiz_path(author_id: author)
+  before do
+    sign_in author
+  end
 
-    # fill_in 'Email', with: email
-    # fill_in 'Username', with: username
-    # fill_in 'Password', with: random_password
-    # fill_in 'Password Confirmation', with: random_password
+  scenario 'Author Creates a Quiz', js: true do
+    visit author_quizzes_path(author)
 
-    # click_button 'Sign Up'
+    click_link "Create Quiz"
 
-    # expect(page).to have_content("Hello #{username}")
+    quiz_attributes = attributes_for(:quiz)
+    fill_in 'Title', with: quiz_attributes[:title]
+    fill_in 'Description', with: quiz_attributes[:description]
+
+    click_button 'Create Quiz'
+
+    expect(page).to have_content(I18n.t("flash.quizzes.create.success"))
+    expect(page).to have_content(quiz_attributes[:title])
+    expect(page).to have_content(quiz_attributes[:description])
+  end
+
+  scenario 'Author fails to Create a Quiz', js: true do
+    visit author_quizzes_path(author)
+
+    click_link "Create Quiz"
+    fill_in 'Title', with: ''
+    click_button 'Create Quiz'
+
+    expect(page).to have_content(I18n.t("flash.quizzes.create.error"))
   end
 end
