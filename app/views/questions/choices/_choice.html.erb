@@ -1,4 +1,4 @@
-<li class="flex p-2 mb-2 border-gray-500 cursor-pointer <%= choice.correct? ? "bg-emerald-600" : "" %>">
+<li class="flex p-2 mb-2 border-gray-500 <%= choice.correct? ? "bg-emerald-600" : "" %>">
   <span class="w-12 mr-1 font-bold text-center"><%= num_to_letter(choice_counter).upcase %>.</span>
   <p class="w-full"><%= choice.content %></p>
 </li>
