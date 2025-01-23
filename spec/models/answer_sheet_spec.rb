@@ -37,4 +37,22 @@ RSpec.describe AnswerSheet, type: :model do
       expect(answer_sheet.completed?).to eq(true)
     end
   end
+
+  describe "#graded?" do
+    context "not graded" do
+      it "returns false" do
+        answer_sheet = create(:answer_sheet, :with_completed_quiz)
+
+        expect(answer_sheet.graded?).to eq(false)
+      end
+    end
+
+    context "graded" do
+      it "returns true" do
+        answer_sheet = create(:answer_sheet, :with_grade)
+
+        expect(answer_sheet.graded?).to eq(true)
+      end
+    end
+  end
 end

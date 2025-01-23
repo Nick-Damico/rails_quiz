@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :answer_sheet do
     quiz { create(:quiz) }
     user { create(:user) }
-    grade { 90.00 }
+    grade { nil }
   end
 
   trait :with_completed_quiz do
@@ -13,5 +13,10 @@ FactoryBot.define do
         answer_sheet_question.update(answer:)
       end
     end
+  end
+
+  trait :with_grade do
+    with_completed_quiz
+    grade { 90.0 } # TODO: Actually grade this quiz
   end
 end

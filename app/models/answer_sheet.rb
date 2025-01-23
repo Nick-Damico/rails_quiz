@@ -16,6 +16,10 @@ class AnswerSheet < ApplicationRecord
     answer_sheet_questions.all?(&:answered?)
   end
 
+  def graded?
+    grade.present?
+  end
+
   def prepare
     quiz.question_ids.each do |question_id|
       answer_sheet_questions << AnswerSheetQuestion.create(question_id:)
