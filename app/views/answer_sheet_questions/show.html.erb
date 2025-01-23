@@ -1,8 +1,8 @@
-<div class="text-center mt-10">
-  <h3 class="text-xl">
+<%= banner_heading do %>
+  <h3 class="text-xl text-center font-semibold">
     Question <%= format_as_two_digits(@answer_sheet_question.position) %>/<%= format_as_two_digits(@question_count) %>
   </h3>
-</div>
+<% end %>
 
 <section class="w-full max-w-xl mx-auto border border-gray-500 mt-5 rounded">
   <div class="px-3 pb-3">
