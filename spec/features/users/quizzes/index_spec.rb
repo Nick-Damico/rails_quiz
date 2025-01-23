@@ -26,7 +26,7 @@ RSpec.describe "user quizzes index page", type: :feature do
       click_link "view", href: quiz_path(quiz)
 
       expect(current_path).to eq(quiz_path(quiz))
-      expect(page).to have_link(quiz.title)
+      expect(page).to have_content(quiz.title)
     end
   end
 end
