@@ -19,14 +19,14 @@
     </div>
 
     <div class="flex justify-between space-x-4 border-t border-gray-500">
-      <p class="flex-1 uppercase font-light text-xl text-center p-1">
+      <p id="quiz-duration" class="flex-1 uppercase font-light text-xl text-center p-1">
         <span class="text-2xl">
           <%= format_as_two_digits(@quiz.time_to_complete) %>
         </span><br>
         Minutes
       </p>
 
-      <p class="flex-1 uppercase font-light text-xl text-center border-l border-gray-500 p-1">
+      <p id="quiz-question-count" class="flex-1 uppercase font-light text-xl text-center border-l border-gray-500 p-1">
         <span class="text-2xl">
           <%= format_as_two_digits(@quiz.questions.count) %>
         </span><br>
@@ -37,7 +37,7 @@
 
   <div class="flex flex-col md:flex-row p-4 border border-gray-500 rounded space-y-4 md:space-y-0 md:space-x-4">
     <% if @in_progress_answer_sheet.present? %>
-      <div class="flex items-center bg-primary text-white pl-4 overflow-hidden rounded justify-center">
+      <div id="resume-quiz" class="flex items-center bg-primary text-white pl-4 overflow-hidden rounded justify-center">
         <span class="mr-4">Resume Quiz?</span>
         <div class="flex">
           <%= link_to "Yes", resume_answer_sheet_path(@in_progress_answer_sheet), class: "btn btn-success text-white" %>
