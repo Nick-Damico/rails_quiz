@@ -19,7 +19,9 @@ class AnswerSheetsController < ApplicationController
   end
 
   def show
-    @quiz = @answer_sheet.quiz
+    if @answer_sheet.completed? && !@answer_sheet.graded?
+      AnswerSheet::Grader.new(@answer_sheet).grade
+    end
   end
 
   def create

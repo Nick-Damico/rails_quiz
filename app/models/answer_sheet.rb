@@ -3,6 +3,7 @@ class AnswerSheet < ApplicationRecord
   belongs_to :user
 
   has_many :answer_sheet_questions, -> { order(id: :asc) }, dependent: :destroy
+  has_many :answers, through: :answer_sheet_questions
 
   def self.in_progress_answer_sheet_for(quiz:, user:)
     AnswerSheet
