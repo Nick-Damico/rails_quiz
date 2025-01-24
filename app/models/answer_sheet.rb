@@ -14,6 +14,8 @@ class AnswerSheet < ApplicationRecord
   end
 
   def completed?
+    return false unless answer_sheet_questions.any?
+
     answer_sheet_questions.all?(&:answered?)
   end
 
