@@ -1,6 +1,6 @@
 class AnswerSheet::Grader
   def initialize(answer_sheet)
-    validate_answer_sheet(answer_sheet)
+    validate_input(answer_sheet)
 
     @answer_sheet = answer_sheet
   end
@@ -11,7 +11,7 @@ class AnswerSheet::Grader
 
   private
 
-  def validate_answer_sheet(answer_sheet)
+  def validate_input(answer_sheet)
     raise ArgumentError, "Answer sheet cannot be nil or empty" unless answer_sheet.present?
     raise ArgumentError, "Expected an AnswerSheet, received #{answer_sheet.class}" unless answer_sheet.is_a?(AnswerSheet)
     raise ArgumentError, "Answer sheet must be complete" unless answer_sheet.completed?
