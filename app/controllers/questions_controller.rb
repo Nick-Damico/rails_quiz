@@ -44,7 +44,7 @@ class QuestionsController < ApplicationController
       flash.now[:error] = t("flash.questions.destroy.error")
     end
 
-    redirect_to author_quizzes_url
+    redirect_to author_quiz_url(@question.quiz)
   end
 
   private
