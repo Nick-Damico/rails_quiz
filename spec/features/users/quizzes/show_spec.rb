@@ -41,6 +41,7 @@ RSpec.describe "User quiz show view", type: :feature do
         answer_sheet = AnswerSheet.in_progress_answer_sheet_for(quiz:, user:)
 
         expect(current_path).to eq(answer_sheet_question_path(answer_sheet.next_incomplete_question))
+        expect(page).to have_content(I18n.t('flash.answer_sheets.create.success'))
       end
     end
 
