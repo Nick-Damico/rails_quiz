@@ -47,15 +47,15 @@ RSpec.describe "AnswerSheetQuestion show page", type: :feature do
     expect(page).to have_content(I18n.t("flash.answer_sheets.pause.success"))
   end
 
-  # FIX: Capybara is not able to find the label element on page.
-  xscenario "user can answer question", js: true do
+  scenario "user can answer question", js: true do
     answer_sheet_question = answer_sheet.answer_sheet_questions.first
+    choice = answer_sheet_question.question.choices.first
 
     visit answer_sheet_question_path(answer_sheet_question)
     # mark first choice as answer
-    find("label[for='answer_sheet_question_answer_id_1']").click
-    
-    click_link "Next"
+    find("label[for='answer_sheet_question_answer_id_#{choice.id}']").click
+
+    click_button "Next"
 
     expect(page).to have_content(I18n.t("flash.answer_sheet_questions.update.success"))
   end
