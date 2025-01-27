@@ -19,7 +19,13 @@ class AnswerSheetsController < ApplicationController
   end
 
   def show
-    if @answer_sheet.completed? && !@answer_sheet.graded?
+    unless @answer_sheet.completed?
+      flash[:alert] = t("flash.answer_sheets.show.error")
+      return redirect_to @answer_sheet.quiz
+    end
+
+    if !@answer_sheet.graded?
+      # TOOD: Handle exception raised by grader
       AnswerSheet::Grader.new(@answer_sheet).grade
     end
   end
