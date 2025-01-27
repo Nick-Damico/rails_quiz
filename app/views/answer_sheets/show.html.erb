@@ -1,1 +1,45 @@
-<h1>Completed Quiz!!</h1>
+<%= render "shared/breadcrumbs" %>
+
+<div class='w-full max-w-5xl p-6 mt-6 mx-auto text-center border border-gray-500 rounded-lg'>
+  <h1 class='text-3xl mb-4'><%= @answer_sheet.quiz.title %><br>Summary</h1>
+  <div class='mb-4'>
+    <%= pie_chart [['Correct', @correct_answer_count], ['Missed', @incorrect_answer_count]],
+                  colors: ['rgb(16 185 129)', 'rgb(239 68 68)'] %>
+  </div>
+  <p class='text-2xl mb-4'>
+    Score: <%= @answer_sheet.grade %>%
+    <br>
+    <%#= result_msg(@user_quiz) %>
+  </p>
+
+  <div class='flex flex-col md:flex-row gap-2 text-left'>
+    <section class='w-full md:w-1/2 border border-gray-400 p-4'>
+      <h2 class='text-lg border-b mb-2'>
+        Correct Questions
+        <span class='float-right'>
+          <%#= correct_answer_count(@user_quiz.answer_sheet) %>/<%#= total_question_count(@user_quiz.answer_sheet) %>
+        </span>
+      </h2>
+      <ul class='px-2 max-h-52 overflow-y-scroll'>
+        <%#= render  partial: 'correct_item',
+                    collection: @user_quiz.answer_sheet.correct_questions,
+                    as: :answer_sheet_question, cache: true %>
+      </ul>
+    </section>
+
+    <section class='w-full md:w-1/2 border border-gray-400 p-4'>
+      <h2 class='text-lg border-b mb-2'>
+        Missed Questions
+        <span class='float-right'>
+          <%#= incorrect_answer_count(@user_quiz.answer_sheet) %>/<%#= total_question_count(@user_quiz.answer_sheet) %>
+        </span>
+      </h2>
+      <ul class='px-2 max-h-52 overflow-y-scroll'>
+        <%#= render  partial: 'incorrect_item',
+                    collection: @user_quiz.answer_sheet.incorrect_questions,
+                    as: :answer_sheet_question, cache: true %>
+      </ul>
+    </section>
+
+  </div>
+</div>
