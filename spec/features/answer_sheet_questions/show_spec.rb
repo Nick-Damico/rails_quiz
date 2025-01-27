@@ -12,9 +12,10 @@ RSpec.describe "AnswerSheetQuestion show page", type: :feature do
   end
 
   context "page contents and interactions" do
+    let(:answer_sheet_question) { answer_sheet.answer_sheet_questions.first }
+
     before do
-      @answer_sheet_question = answer_sheet.answer_sheet_questions.first
-      visit answer_sheet_question_path(@answer_sheet_question)
+      visit answer_sheet_question_path(answer_sheet_question)
     end
 
     scenario "user can see the current question number" do
@@ -22,11 +23,11 @@ RSpec.describe "AnswerSheetQuestion show page", type: :feature do
     end
 
     scenario "user can see the question" do
-      expect(page).to have_content(@answer_sheet_question.question.content)
+      expect(page).to have_content(answer_sheet_question.question.content)
     end
 
     scenario "user can see the answer choices for the question" do
-      @answer_sheet_question.question.choices.each do |choice|
+      answer_sheet_question.question.choices.each do |choice|
         expect(page).to have_content("#{choice.content}")
       end
     end
@@ -39,7 +40,7 @@ RSpec.describe "AnswerSheetQuestion show page", type: :feature do
     end
 
     scenario "user can answer question", js: true do
-      choice = @answer_sheet_question.question.choices.first
+      choice = answer_sheet_question.question.choices.first
       # mark first choice as answer
       find("label[for='answer_sheet_question_answer_id_#{choice.id}']").click
 
