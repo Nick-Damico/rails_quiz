@@ -19,6 +19,21 @@ class AnswerSheet < ApplicationRecord
     answer_sheet_questions.all?(&:answered?)
   end
 
+  def correct_answer_count
+    AnswerSheetQuestion
+      .joins(:answer)
+      .where(answer_sheet_id: id, answer: { correct: true })
+      .count
+  end
+
+  def incorrect_answer_count
+    AnswerSheetQuestion
+      .joins(:answer)
+      .where(answer_sheet_id: id)
+      .where.not(answer: { correct: true })
+      .count
+  end
+
   def graded?
     grade.present?
   end
