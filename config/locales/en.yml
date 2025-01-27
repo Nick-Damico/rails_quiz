@@ -71,6 +71,8 @@ en:
         error: "There was an error removing the previous quiz progress. Refresh page and try again."
       pause:
         success: "Quiz successfully paused. Use 'resume' to continue with quiz."
+      show:
+        error: "This page is not available. Quiz must be completed."
 
     answer_sheet_questions:
       update:
