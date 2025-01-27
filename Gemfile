@@ -23,6 +23,9 @@ gem "jbuilder"
 
 gem "devise"
 
+# Chartkick docs [https://chartkick.com]
+gem "chartkick"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
