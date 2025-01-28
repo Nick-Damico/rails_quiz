@@ -16,22 +16,7 @@ class AnswerSheet < ApplicationRecord
   def completed?
     return false unless answer_sheet_questions.any?
 
-    answer_sheet_questions.all?(&:answered?)
-  end
-
-  def correct_answer_count
-    AnswerSheetQuestion
-      .joins(:answer)
-      .where(answer_sheet_id: id, answer: { correct: true })
-      .count
-  end
-
-  def incorrect_answer_count
-    AnswerSheetQuestion
-      .joins(:answer)
-      .where(answer_sheet_id: id)
-      .where.not(answer: { correct: true })
-      .count
+    answer_sheet_questions.complete.all?
   end
 
   def graded?

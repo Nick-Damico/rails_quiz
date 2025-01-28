@@ -3,7 +3,8 @@ class AnswerSheetQuestion < ApplicationRecord
   belongs_to :question
   belongs_to :answer, class_name: "Question::Choice", optional: true
 
-  scope :incomplete, -> { where(answer: nil) }
+  scope :complete, -> { where.not(answer: nil) }
+  scope :incomplete, -> { where.not(id: complete) }
 
   validates :answer, presence: true, on: :update
 
