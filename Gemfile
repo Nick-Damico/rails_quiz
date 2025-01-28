@@ -44,9 +44,8 @@ group :development, :test do
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
-
   gem "faker"
-
+  gem "htmlbeautifier"
   gem "factory_bot_rails"
 
   # Rails integration of RSpec [https://github.com/rspec/rspec-rails]
