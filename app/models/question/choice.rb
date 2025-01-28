@@ -2,6 +2,9 @@ class Question::Choice < ApplicationRecord
   extend ActiveModel::Naming
   belongs_to :question
 
+  scope :correct, -> { where(correct: true) }
+  scope :incorrect, -> { where(correct: false) }
+
   validates_presence_of(:question)
   validates_presence_of(:content)
   validates :correct, inclusion: [ true, false ]
