@@ -1,45 +1,37 @@
 <%= render "shared/breadcrumbs" %>
-
-<div class='w-full max-w-5xl p-6 mt-6 mx-auto text-center border border-gray-500 rounded-lg'>
-  <h1 class='text-3xl mb-4'><%= @answer_sheet.quiz.title %><br>Summary</h1>
+<div class='w-full max-w-5xl p-6 mx-auto mt-6 text-center border border-gray-500 rounded-lg'>
+  <h1 class='mb-4 text-3xl mx'><%= @answer_sheet.quiz.title %><br>
+    Summary</h1>
   <div class='mb-4'>
-    <%= pie_chart [['Correct', @correct_answer_count], ['Missed', @incorrect_answer_count]],
+    <%= pie_chart [['Correct', @correct_count], ['Missed', @incorrect_count]],
                   colors: ['rgb(16 185 129)', 'rgb(239 68 68)'] %>
   </div>
-  <p class='text-2xl mb-4'>
+  <p class='mb-4 text-2xl'>
     Score: <%= @answer_sheet.grade %>%
     <br>
-    <%#= result_msg(@user_quiz) %>
   </p>
-
-  <div class='flex flex-col md:flex-row gap-2 text-left'>
-    <section class='w-full md:w-1/2 border border-gray-400 p-4'>
-      <h2 class='text-lg border-b mb-2'>
+  <div class='flex flex-col gap-2 text-left md:flex-row'>
+    <section class='w-full p-4 border border-gray-400 md:w-1/2'>
+      <h2 class='mb-2 text-lg border-b'>
         Correct Questions
         <span class='float-right'>
-          <%#= correct_answer_count(@user_quiz.answer_sheet) %>/<%#= total_question_count(@user_quiz.answer_sheet) %>
+          <%= format_as_two_digits(@correct_count) %>/<%= @question_count %>
         </span>
       </h2>
-      <ul class='px-2 max-h-52 overflow-y-scroll'>
-        <%#= render  partial: 'correct_item',
-                    collection: @user_quiz.answer_sheet.correct_questions,
-                    as: :answer_sheet_question, cache: true %>
+      <ul class='px-2'>
+        <%= render partial: "correct_answer_sheet_question", collection: @correct_answer_sheet_questions, as: :answer_sheet_question, cache: true %>
       </ul>
     </section>
-
-    <section class='w-full md:w-1/2 border border-gray-400 p-4'>
-      <h2 class='text-lg border-b mb-2'>
+    <section class='w-full p-4 border border-gray-400 md:w-1/2'>
+      <h2 class='mb-2 text-lg border-b'>
         Missed Questions
         <span class='float-right'>
-          <%#= incorrect_answer_count(@user_quiz.answer_sheet) %>/<%#= total_question_count(@user_quiz.answer_sheet) %>
+          <%= format_as_two_digits(@incorrect_count) %>/<%= @question_count %>
         </span>
       </h2>
-      <ul class='px-2 max-h-52 overflow-y-scroll'>
-        <%#= render  partial: 'incorrect_item',
-                    collection: @user_quiz.answer_sheet.incorrect_questions,
-                    as: :answer_sheet_question, cache: true %>
+      <ul class='px-2'>
+        <%= render  partial: 'incorrect_answer_sheet_question', collection: @incorrect_answer_sheet_questions, as: :answer_sheet_question %>
       </ul>
     </section>
-
   </div>
 </div>

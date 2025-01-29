@@ -30,8 +30,13 @@ class AnswerSheetsController < ApplicationController
       AnswerSheet::Grader.new(@answer_sheet).grade
     end
 
-    @correct_answer_count   = @answer_sheet.correct_answer_count
-    @incorrect_answer_count = @answer_sheet.incorrect_answer_count
+    @question_count                     = @answer_sheet.answer_sheet_questions.count
+
+    @correct_answer_sheet_questions     = AnswerSheetQuestion.includes(question: :choices).correct_for_answer_sheet(@answer_sheet)
+    @correct_count                      = @correct_answer_sheet_questions.count
+
+    @incorrect_answer_sheet_questions   = AnswerSheetQuestion.includes(question: :choices).incorrect_for_answer_sheet(@answer_sheet)
+    @incorrect_count                    = @incorrect_answer_sheet_questions.count
   end
 
   def create
