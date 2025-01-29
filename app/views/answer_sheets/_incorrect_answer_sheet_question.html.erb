@@ -7,7 +7,7 @@
       Your answer: <%= answer_sheet_question.answer.content %>
     </p>
     <p class='italic bg-success text-black px-1'>
-      Correct: <%= answer_sheet_question.question.choices.correct.first.content %>
+      Correct: <%= answer_sheet_question.question.choices.detect(&:correct).content %>
     </p>
   </div>
 </li>

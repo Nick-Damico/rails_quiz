@@ -32,10 +32,10 @@ class AnswerSheetsController < ApplicationController
 
     @question_count                     = @answer_sheet.answer_sheet_questions.count
 
-    @correct_answer_sheet_questions     = AnswerSheetQuestion.includes(question: :choices).correct_for_answer_sheet(@answer_sheet)
+    @correct_answer_sheet_questions     = AnswerSheetQuestion.correct_for_answer_sheet(@answer_sheet).includes(:question, :answer)
     @correct_count                      = @correct_answer_sheet_questions.count
 
-    @incorrect_answer_sheet_questions   = AnswerSheetQuestion.includes(question: :choices).incorrect_for_answer_sheet(@answer_sheet)
+    @incorrect_answer_sheet_questions   = AnswerSheetQuestion.incorrect_for_answer_sheet(@answer_sheet).includes(:answer, question: :choices)
     @incorrect_count                    = @incorrect_answer_sheet_questions.count
   end
 
