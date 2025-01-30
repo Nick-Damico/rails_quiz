@@ -37,13 +37,20 @@ RSpec.describe AnswerSheet, type: :model do
       expect(answer_sheet.completed?).to eq(true)
     end
 
-    context "without answer_sheet_questions" do
-      it "returns false" do
-        answer_sheet = create(:answer_sheet)
+    it "returns false if not all answer_sheet_questions are answered" do
+      answer_sheet = create(:answer_sheet)
+      answer_sheet.prepare
+      answer_sheet_question = answer_sheet.answer_sheet_questions.first
+      answer_sheet_question.update(answer: answer_sheet_question.question.choices.sample)
 
-        expect(answer_sheet.answer_sheet_questions.count).to eq(0)
-        expect(answer_sheet.completed?).to eq(false)
-      end
+      expect(answer_sheet.completed?).to eq(false)
+    end
+
+    it "returns false with empty answer_sheet_questions" do
+      answer_sheet = create(:answer_sheet)
+
+      expect(answer_sheet.answer_sheet_questions).to be_empty
+      expect(answer_sheet.completed?).to eq(false)
     end
   end
 
