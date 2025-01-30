@@ -47,46 +47,6 @@ RSpec.describe AnswerSheet, type: :model do
     end
   end
 
-  describe ".correct_answer_count" do
-    it "returns the number of questions answered correctly" do
-      answer_sheet = create(
-        :answer_sheet,
-        :with_perfect_score,
-        quiz: create(:quiz, questions_count: 4))
-
-      expect(answer_sheet.correct_answer_count).to eq(4)
-    end
-
-    it "returns zero if all answers are incorrect" do
-      answer_sheet = create(
-        :answer_sheet,
-        :with_zero_score,
-        quiz: create(:quiz, questions_count: 4))
-
-      expect(answer_sheet.correct_answer_count).to eq(0)
-    end
-  end
-
-  describe ".incorrect_answer_count" do
-    it "returns the number of all questions missed" do
-      answer_sheet = create(
-        :answer_sheet,
-        :with_zero_score,
-        quiz: create(:quiz, questions_count: 4))
-
-      expect(answer_sheet.incorrect_answer_count).to eq(4)
-    end
-
-    it "returns zero if all answers are correct" do
-      answer_sheet = create(
-        :answer_sheet,
-        :with_perfect_score,
-        quiz: create(:quiz, questions_count: 4))
-
-      expect(answer_sheet.incorrect_answer_count).to eq(0)
-    end
-  end
-
   describe "#graded?" do
     context "not graded" do
       it "returns false" do
