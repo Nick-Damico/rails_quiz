@@ -16,7 +16,7 @@ class AnswerSheet < ApplicationRecord
   def completed?
     return false unless answer_sheet_questions.any?
 
-    answer_sheet_questions.complete.all?
+    answer_sheet_questions.all?(&:answered?)
   end
 
   def graded?
