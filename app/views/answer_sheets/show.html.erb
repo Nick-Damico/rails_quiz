@@ -1,15 +1,18 @@
 <%= render "shared/breadcrumbs" %>
 <div class='w-full max-w-5xl p-6 mx-auto mt-6 text-center border border-gray-500 rounded-lg'>
-  <h1 class='mb-4 text-3xl mx'><%= @answer_sheet.quiz.title %><br>
-    Summary</h1>
-  <div class='mb-4'>
-    <%= pie_chart [['Correct', @correct_count], ['Missed', @incorrect_count]],
+  <h1 class='text-3xl pb-4 border-b border-gray-700'><%= @answer_sheet.quiz.title %><br>
+    Summary
+  </h1>
+  <div class="flex py-8">
+    <div class='flex flex-col w-1/2 self-stretch justify-center items-center'>
+      <p class="text-7xl font-thin"><%= @answer_sheet.grade %>%</p>
+      <p class="text-4xl">Your final score</p>
+    </div>
+    <div class='w-1/2'>
+      <%= pie_chart [['Correct', @correct_count], ['Missed', @incorrect_count]], height: "250px",
                   colors: ['rgb(16 185 129)', 'rgb(239 68 68)'] %>
+    </div>
   </div>
-  <p class='mb-4 text-2xl'>
-    Score: <%= @answer_sheet.grade %>%
-    <br>
-  </p>
   <div class='flex flex-col gap-2 text-left md:flex-row'>
     <section class='w-full p-4 border border-gray-400 md:w-1/2'>
       <h2 class='mb-2 text-lg border-b'>
