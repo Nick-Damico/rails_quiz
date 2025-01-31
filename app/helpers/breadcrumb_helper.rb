@@ -12,7 +12,7 @@ module BreadcrumbHelper
   private
 
   def build_content(breadcrumb)
-    if current_page?(breadcrumb.path)
+    if breadcrumb.path && current_page?(breadcrumb.path, check_parameters: true)
       breadcrumb.name.truncate(20)
     else
       safe_join([ breadcrumb.name.truncate(20), content_tag(:span, icon) ])
