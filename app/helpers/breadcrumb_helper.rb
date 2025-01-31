@@ -1,6 +1,6 @@
 module BreadcrumbHelper
-  def breadcrumb_item(breadcrumb)
-    content = build_content(breadcrumb)
+  def breadcrumb_item(breadcrumb, last_item: false)
+    content = build_content(breadcrumb, last_item)
 
     if breadcrumb.path
       link_to(content, breadcrumb.path, class: "px-1 py-2 flex items-center underline group")
@@ -11,8 +11,8 @@ module BreadcrumbHelper
 
   private
 
-  def build_content(breadcrumb)
-    if breadcrumb.path && current_page?(breadcrumb.path, check_parameters: true)
+  def build_content(breadcrumb, last_item)
+    if last_item
       breadcrumb.name.truncate(20)
     else
       safe_join([ breadcrumb.name.truncate(20), content_tag(:span, icon) ])
