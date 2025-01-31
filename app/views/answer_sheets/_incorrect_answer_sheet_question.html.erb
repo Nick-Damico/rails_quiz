@@ -1,13 +1,11 @@
-<li class='border-b border-gray-700 pt-2 pb-3 mb-2'>
-  <div>
+<li class='pt-2 pb-3 mb-2 border-b border-gray-700'>
+  <p class="mb-2 font-semibold text-md">
     <%= answer_sheet_question.question.content %>
   </p>
-  <div class=''>
-    <p class='italic bg-alert text-white px-1 mb-2'>
-      Your answer: <%= answer_sheet_question.answer.content %>
-    </p>
-    <p class='italic bg-success text-black px-1'>
-      Correct: <%= answer_sheet_question.question.choices.detect(&:correct).content %>
-    </p>
-  </div>
+  <p class='px-1 mb-2 italic text-black bg-alert'>
+    <span class="not-italic font-semibold">Your answer:</span> <%= answer_sheet_question.answer.content %>
+  </p>
+  <p class='px-1 italic text-black bg-emerald-500'>
+    <span class="not-italic font-semibold">Correct answer:</span> <%= answer_sheet_question.question.choices.detect(&:correct).content %>
+  </p>
 </li>

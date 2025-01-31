@@ -1,40 +1,40 @@
 <%= render "shared/breadcrumbs" %>
 <div class='w-full max-w-5xl p-6 mx-auto mt-6 text-center border border-gray-500 rounded-lg'>
-  <h1 class='text-3xl pb-4 border-b border-gray-700'><%= @answer_sheet.quiz.title %><br>
+  <h1 class='pb-4 text-4xl border-b border-gray-700'><%= @answer_sheet.quiz.title %><br>
     Summary
   </h1>
-  <div class="flex py-8">
-    <div class='flex flex-col w-1/2 self-stretch justify-center items-center'>
-      <p class="text-7xl font-thin"><%= @answer_sheet.grade %>%</p>
+  <div class="flex py-20 md:py-8">
+    <div class='flex flex-col items-center self-stretch justify-center w-full md:w-1/2'>
+      <p class="font-thin text-7xl"><%= @answer_sheet.grade %>%</p>
       <p class="text-4xl">Your final score</p>
     </div>
-    <div class='w-1/2'>
+    <div class='hidden w-1/2 md:block'>
       <%= pie_chart [['Correct', @correct_count], ['Missed', @incorrect_count]], height: "250px",
                   colors: ['rgb(16 185 129)', 'rgb(239 68 68)'] %>
     </div>
   </div>
   <div class='flex flex-col gap-2 text-left md:flex-row'>
-    <section class='w-full p-4 border border-gray-400 md:w-1/2'>
-      <h2 class='mb-2 text-lg border-b'>
+    <details class='w-full p-4 border border-gray-400 cursor-pointer md:w-1/2' open>
+      <summary class='mb-2 text-lg border-b'>
         Correct Questions
         <span class='float-right'>
           <%= format_as_two_digits(@correct_count) %>/<%= @question_count %>
         </span>
-      </h2>
+      </summary>
       <ul class='px-2'>
         <%= render partial: "correct_answer_sheet_question", collection: @correct_answer_sheet_questions, as: :answer_sheet_question, cache: true %>
       </ul>
-    </section>
-    <section class='w-full p-4 border border-gray-400 md:w-1/2'>
-      <h2 class='mb-2 text-lg border-b'>
+    </details>
+    <details class='w-full p-4 border border-gray-400 cursor-pointer md:w-1/2' open>
+      <summary class='mb-2 text-lg border-b'>
         Missed Questions
         <span class='float-right'>
           <%= format_as_two_digits(@incorrect_count) %>/<%= @question_count %>
         </span>
-      </h2>
+      </summary>
       <ul class='px-2'>
         <%= render  partial: 'incorrect_answer_sheet_question', collection: @incorrect_answer_sheet_questions, as: :answer_sheet_question %>
       </ul>
-    </section>
+    </details>
   </div>
 </div>
