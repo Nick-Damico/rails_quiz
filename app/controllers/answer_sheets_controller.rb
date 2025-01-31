@@ -26,7 +26,7 @@ class AnswerSheetsController < ApplicationController
     end
 
     if !@answer_sheet.graded?
-      # TOOD: Handle exception raised by grader
+      # TODO: Handle exception raised by grader
       AnswerSheet::Grader.new(@answer_sheet).grade
     end
 
