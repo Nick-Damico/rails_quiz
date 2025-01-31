@@ -36,5 +36,39 @@ RSpec.describe AnswerSheet, type: :model do
 
       expect(answer_sheet.completed?).to eq(true)
     end
+
+    it "returns false if not all answer_sheet_questions are answered" do
+      answer_sheet = create(:answer_sheet)
+      answer_sheet.prepare
+      answer_sheet_question = answer_sheet.answer_sheet_questions.first
+      answer_sheet_question.update(answer: answer_sheet_question.question.choices.sample)
+
+      expect(answer_sheet.completed?).to eq(false)
+    end
+
+    it "returns false with empty answer_sheet_questions" do
+      answer_sheet = create(:answer_sheet)
+
+      expect(answer_sheet.answer_sheet_questions).to be_empty
+      expect(answer_sheet.completed?).to eq(false)
+    end
+  end
+
+  describe "#graded?" do
+    context "not graded" do
+      it "returns false" do
+        answer_sheet = create(:answer_sheet, :with_completed_quiz)
+
+        expect(answer_sheet.graded?).to eq(false)
+      end
+    end
+
+    context "graded" do
+      it "returns true" do
+        answer_sheet = create(:answer_sheet, :with_grade)
+
+        expect(answer_sheet.graded?).to eq(true)
+      end
+    end
   end
 end

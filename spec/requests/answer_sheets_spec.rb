@@ -6,14 +6,43 @@ RSpec.describe AnswerSheetsController, type: :request do
 
   before { sign_in user }
 
-  # TODO: This route will function as the Quiz Review page.
   describe "GET /show" do
-    it "responds with HTTP status 200(ok)" do
-      answer_sheet = create(:answer_sheet)
+    context "with grade" do
+      it "responds with HTTP status 200(ok)" do
+        answer_sheet = create(:answer_sheet, :with_grade)
 
-      get answer_sheet_path(answer_sheet)
+        get answer_sheet_path(answer_sheet)
 
-      expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context "with incomplete answer_sheet" do
+      it "responds with redirect" do
+        answer_sheet = create(:answer_sheet)
+        get answer_sheet_path(answer_sheet)
+
+        expect(response).to redirect_to(quiz_path(answer_sheet.quiz))
+        expect(flash[:alert]).to eq(I18n.t("flash.answer_sheets.show.error"))
+      end
+    end
+
+    context "with completed and none-graded answer_sheet" do
+      let!(:completed_answer_sheet) { create(:answer_sheet, :with_completed_quiz) }
+
+      before do
+        expect_any_instance_of(AnswerSheet::Grader).to receive(:grade)
+
+        get answer_sheet_path(completed_answer_sheet)
+      end
+
+      it "calls AnswerSheet::Grader" do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "responds with HTTP status 200(ok)" do
+        expect(response).to have_http_status(:ok)
+      end
     end
   end
 

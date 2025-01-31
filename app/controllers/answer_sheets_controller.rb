@@ -1,5 +1,6 @@
 class AnswerSheetsController < ApplicationController
   before_action :set_answer_sheet, only: %i[pause resume show destroy]
+  before_action :set_breadcrumbs, only: %i[show]
 
   def resume
     if answer_sheet_question = @answer_sheet.next_incomplete_question
@@ -19,7 +20,23 @@ class AnswerSheetsController < ApplicationController
   end
 
   def show
-    @quiz = @answer_sheet.quiz
+    unless @answer_sheet.completed?
+      flash[:alert] = t("flash.answer_sheets.show.error")
+      return redirect_to @answer_sheet.quiz
+    end
+
+    if !@answer_sheet.graded?
+      # TODO: Handle exception raised by grader
+      AnswerSheet::Grader.new(@answer_sheet).grade
+    end
+
+    @question_count                     = @answer_sheet.answer_sheet_questions.count
+
+    @correct_answer_sheet_questions     = AnswerSheetQuestion.includes(:question, :answer).for_answer_sheet(@answer_sheet).correct
+    @correct_count                      = @correct_answer_sheet_questions.count
+
+    @incorrect_answer_sheet_questions   = AnswerSheetQuestion.includes(:answer, question: :choices).for_answer_sheet(@answer_sheet).incorrect
+    @incorrect_count                    = @incorrect_answer_sheet_questions.count
   end
 
   def create
@@ -46,6 +63,15 @@ class AnswerSheetsController < ApplicationController
   end
 
   private
+
+  def set_breadcrumbs
+    add_breadcrumb("Study")
+    add_breadcrumb("Quizzes", quizzes_path)
+    if @answer_sheet&.quiz
+      add_breadcrumb(@answer_sheet.quiz.title, quiz_path(@answer_sheet.quiz))
+    end
+    add_breadcrumb("Summary")
+  end
 
   def set_answer_sheet
     @answer_sheet = AnswerSheet.find(params[:id])

@@ -94,10 +94,15 @@ RSpec.configure do |config|
 =end
 
   config.before(:context, js: true) do
-    # To debug in the browser:
+    # TO DEBUG IN THE BROWSER:
     # 1. Comment out the assignment of `:selenium_chrome_headless`.
     # 2. Un-comment the assignment of `:selenium_chrome`.
+    # 3. add `js: true` to your scenario or context block after the example text.
+    #
+    #    Example: scenario "this is a test that uses javascript", js: true do; end
+    #
     # This will allow you to run JavaScript tests in a visible browser for debugging purposes.
+
     Capybara.javascript_driver = :selenium_chrome_headless
     # Capybara.javascript_driver = :selenium_chrome
   end

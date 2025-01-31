@@ -3,12 +3,18 @@ class AnswerSheetQuestion < ApplicationRecord
   belongs_to :question
   belongs_to :answer, class_name: "Question::Choice", optional: true
 
-  scope :incomplete, -> { where(answer: nil) }
+  scope :complete, -> { where.not(answer: nil) }
+  scope :incomplete, -> { where.not(id: complete) }
+
+  scope :correct, -> { joins(:answer).merge(Question::Choice.correct) }
+  scope :incorrect, -> { joins(:answer).merge(Question::Choice.incorrect) }
+
+  scope :for_answer_sheet, ->(answer_sheet) { where(answer_sheet:) }
 
   validates :answer, presence: true, on: :update
 
   def answered?
-    answer.present?
+    answer_id.present?
   end
 
   def position

@@ -147,5 +147,11 @@ RSpec.describe "Questions", type: :request do
         delete quiz_question_path(quiz, question)
       }.to change(Question, :count).by(-1)
     end
+
+    it "redirects to author_quiz_url" do
+        delete quiz_question_path(quiz, question)
+
+        expect(response).to redirect_to(author_quiz_path(quiz))
+    end
   end
 end

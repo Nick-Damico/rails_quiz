@@ -1,8 +1,8 @@
 <div class="mb-6">
   <ol class="flex text-sm border-b border-t border-gray-800 px-2">
-    <% breadcrumbs.each do |breadcrumb| %>
+    <% breadcrumbs.each.with_index(1) do |breadcrumb, index| %>
       <li class="">
-        <%= breadcrumb_item(breadcrumb) %>
+        <%= breadcrumb_item(breadcrumb, last_item: index == breadcrumbs.size) %>
       </li>
     <% end %>
   </ol>
