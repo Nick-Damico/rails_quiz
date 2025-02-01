@@ -1,30 +1,23 @@
 <%= render "shared/breadcrumbs" %>
-
-<div class="mt-10 mx-auto w-full max-w-md">
+<div class="w-full max-w-xl mx-auto mt-10">
   <div class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
     <section>
-      <h2 class="uppercase text-xl text-center font-xl border-b border-gray-500 py-2">
-          <%= quiz.persisted? ? "Edit" : "Create" %> Quiz
+      <h2 class="py-2 text-xl text-center uppercase border-b border-gray-500 font-xl">
+        <%= quiz.persisted? ? "Edit" : "Create" %> Quiz
       </h2>
-
       <%= form_with model: @quiz, url:, class: "px-2" do |f| %>
-
         <div class="mb-4 field">
           <%= f.label :title, class: "text-white text-xs font-semibold uppercase mb-2" %>
-          <%= f.text_field :title, placeholder: "Example: Ruby Interview Prep", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" %>
-
+          <%= f.text_field :title, placeholder: "Example: The Human Skeleton - Structure and Function", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" %>
           <%= display_field_error(quiz, :title) %>
         </div>
-
         <div class="mb-4 field">
           <%= f.label :description, class: "text-white text-xs font-semibold uppercase mb-2" %>
-          <%= f.text_area :description, rows: 8, placeholder: "Leave a good description for users.", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-
+          <%= f.text_area :description, rows: 8, placeholder: "Example: Assess your understanding of the bones that form the human body. This quiz covers bone anatomy, functions, and key structural features.", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
           <%= display_field_error(quiz, :description) %>
         </div>
-
         <div class="flex items-center mb-4 actions">
-          <%= f.submit class: "text-center w-full bg-green-700 hover:bg-green-600 text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
+          <%= f.submit class: "btn btn-success text-center w-full  text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
         </div>
       <% end %>
     </section>
