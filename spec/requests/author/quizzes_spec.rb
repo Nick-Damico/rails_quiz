@@ -26,16 +26,18 @@ RSpec.describe Author::QuizzesController, type: :request do
     context 'valid params' do
       let(:valid_params) { { quiz: { title: 'Best Quiz', description: 'My first Quiz!' } } }
 
-      it "responds with HTTP status redirect(302)" do
-        post author_quizzes_path, params: valid_params
-
-        expect(response).to have_http_status(:redirect)
-      end
-
-      it "creates an authored quiz" do
-        expect {
+      context "with valid params" do
+        it "responds with HTTP status redirect(302)" do
           post author_quizzes_path, params: valid_params
-        }.to change(Quiz, :count).by(1)
+
+          expect(response).to have_http_status(:redirect)
+        end
+
+        it "creates an authored quiz" do
+          expect {
+            post author_quizzes_path, params: valid_params
+          }.to change(Quiz, :count).by(1)
+        end
       end
     end
 

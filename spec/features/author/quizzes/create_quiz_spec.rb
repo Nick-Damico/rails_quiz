@@ -7,7 +7,7 @@ RSpec.describe 'Authored Quizzes', type: :feature do
     sign_in author
   end
 
-  scenario 'Author Creates a Quiz', js: true do
+  scenario 'Author Creates a Quiz' do
     visit author_quizzes_path(author)
 
     click_link "Create Quiz"
@@ -21,9 +21,11 @@ RSpec.describe 'Authored Quizzes', type: :feature do
     expect(page).to have_content(I18n.t("flash.quizzes.create.success"))
     expect(page).to have_content(quiz_attributes[:title])
     expect(page).to have_content(quiz_attributes[:description])
+    expect(page).to have_current_path(author_quiz_url(Quiz.last))
   end
 
-  scenario 'Author fails to Create a Quiz', js: true do
+
+  scenario 'Author fails to Create a Quiz' do
     visit author_quizzes_path(author)
 
     click_link "Create Quiz"
