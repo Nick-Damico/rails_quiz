@@ -1,32 +1,27 @@
 <%= render "shared/breadcrumbs" %>
-
 <div class="flex flex-col space-y-2 md:space-y-2 w-full lg:w-1/2 max-w-[600px]">
-  <section class="flex flex-col self-start pt-2 w-full bg-gray-800 rounded">
-    <div class="inline-flex items-center bg-blue-500 px-4 p-1 mb-4">
+  <section class="flex flex-col self-start w-full pt-2 bg-gray-800 rounded">
+    <div class="inline-flex items-center p-1 px-4 mb-4 bg-blue-500">
       <h1 class="text-4xl font-semi-bold">
         <%= @quiz.title %> <br>
       </h1>
     </div>
-
-    <div class="font-semibold ml-4 mb-2">
+    <div class="mb-2 ml-4 font-semibold">
       <p class="uppercase">Author:</p>
-      <p class="italic font-light ml-3"><%= @quiz.author.username %></p>
+      <p class="ml-3 italic font-light"><%= @quiz.author.username %></p>
     </div>
-
-    <div class="ml-4 mb-12 font-semibold">
+    <div class="mb-12 ml-4 font-semibold">
       <p class="uppercase">Description:</p>
-      <p class="italic font-light ml-3"><%= @quiz.description %></p>
+      <p class="ml-3 italic font-light"><%= @quiz.description %></p>
     </div>
-
     <div class="flex justify-between space-x-4 border-t border-gray-500">
-      <p id="quiz-duration" class="flex-1 uppercase font-light text-xl text-center p-1">
+      <p id="quiz-duration" class="flex-1 p-1 text-xl font-light text-center uppercase">
         <span class="text-2xl">
           <%= format_as_two_digits(@quiz.time_to_complete) %>
         </span><br>
         Minutes
       </p>
-
-      <p id="quiz-question-count" class="flex-1 uppercase font-light text-xl text-center border-l border-gray-500 p-1">
+      <p id="quiz-question-count" class="flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500">
         <span class="text-2xl">
           <%= format_as_two_digits(@quiz.questions.count) %>
         </span><br>
@@ -34,20 +29,18 @@
       </p>
     </div>
   </section>
-
-  <div class="flex flex-col md:flex-row p-4 border border-gray-500 rounded space-y-4 md:space-y-0 md:space-x-4">
+  <div class="flex flex-col p-4 space-y-4 border border-gray-500 rounded md:flex-row md:space-y-0 md:space-x-4">
     <% if @in_progress_answer_sheet.present? %>
-      <div id="resume-quiz" class="flex items-center bg-primary text-white pl-4 overflow-hidden rounded justify-center">
-        <span class="mr-4">Resume Quiz?</span>
-        <div class="flex">
+      <div id="resume-quiz" class="flex flex-col items-center justify-center px-2 py-3 overflow-hidden text-white rounded md:flex-row bg-primary md:px-0 md:py-0 md:pl-4">
+        <span class="mb-2 md:mr-4 md:mb-0">Resume Quiz?</span>
+        <div class="flex flex-col w-full gap-3 text-center md:gap-0 md:w-auto md:flex-row">
           <%= link_to "Yes", resume_answer_sheet_path(@in_progress_answer_sheet), class: "btn btn-success text-white" %>
           <%= button_to "No", answer_sheet_path(@in_progress_answer_sheet),
               method: :delete,
-              class: "btn btn-alert text-white",
+              class: "btn btn-alert text-white w-full",
               data: { turbo_method: :delete, turbo_confirm: "Are you sure? Clicking 'Ok' will reset your progress." } %>
         </div>
       </div>
-
     <% else %>
       <%= button_to answer_sheets_path,
                     params: { answer_sheet: { quiz_id: @quiz.id, user_id: current_user.id } },
@@ -55,7 +48,6 @@
         <%= render "icons/play_circle", klass: "size-5 mr-1" %> Start Quiz
       <% end %>
     <% end %>
-
     <%= link_to "#", class: "flex items-center justify-center btn btn-success rounded" do %>
       <%= render "icons/plus", klass: "size-5 mr-1" %> Add to Study Plan
     <% end %>
