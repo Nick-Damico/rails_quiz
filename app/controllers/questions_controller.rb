@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = @quiz.questions.build
+    @question_choices = Array.new(2) { @question.choices.build }
   end
 
   def create
