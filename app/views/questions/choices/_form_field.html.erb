@@ -1,10 +1,8 @@
 <%= turbo_frame_tag nested_dom_id(choice_form) do %>
   <div class="mt-2 mb-4" data-question-form-target="choice">
-      <%= choice_form.label :content, "Option:", class: "text-white text-xs font-semibold uppercase mb-2" %>
-
+    <%= choice_form.label :content, "Option:", class: "text-white text-xs font-semibold uppercase mb-2" %>
     <div class="grid grid-rows-[auto_auto] grid-cols-[1fr_40px_40px] gap-1">
       <%= choice_form.text_field :content, placeholder: "Example: New Option Text", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-
       <%= choice_form.check_box :correct, { data: { "question-form-target": "choiceCheckbox", action: "click->question-form#clearCheckboxes" }, class: "peer hidden" }, "true", "false" %>
       <%= choice_form.label :correct,
                             class: "cursor-pointer self-center justify-self-center w-full h-[40px] border-2 border-gray-700 rounded bg-black flex items-center justify-center peer-checked:bg-green-500 peer-checked:border-green-700 group",
@@ -14,7 +12,6 @@
                             tabindex: "1" do %>
         <%= render 'icons/circle_check', { classes: "stroke-gray-500 size-6 peer-checked:group-[]:stroke-white" } %>
       <% end %>
-
       <% if choice_form.object.persisted? %>
         <%= link_to question_choice_path(choice_form.object.question, choice_form.object),
           class: 'box-border flex justify-center items-center p-2 border-2 border-red-500 rounded bg-red-400 h-[40px]',
@@ -22,17 +19,16 @@
             turbo_method: :delete,
             turbo_confirm: t("buttons.choice.delete")
           } do %>
-            <span><%= render "icons/x_circle" %></span>
+          <span><%= render "icons/x_circle" %></span>
         <% end %>
       <% else %>
         <button class='box-border flex justify-center items-center p-2 h-[40px] border-2 border-red-500 rounded bg-red-400'
                 data-action="click->question-form#remove_choice:prevent"
-                data-confirm-msg="<%= t('buttons.choice.delete') %>">
+          data-confirm-msg="<%= t('buttons.choice.delete') %>">
           <%= render "icons/x_circle" %>
         </button>
       <% end %>
-
-      <p class="hidden peer-checked:flex correct-choice-icon items-center text-xs text-green-500 mt-1">
+      <p class="items-center hidden mt-1 text-xs text-green-500 peer-checked:flex correct-choice-icon">
         <%= render "icons/circle_check", classes: 'size-5' %>
         Correct Answer
       </p>
