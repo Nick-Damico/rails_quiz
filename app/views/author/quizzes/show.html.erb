@@ -15,9 +15,21 @@
     </div>
     <div class="mb-2 ml-4 font-semibold">
       <p class="">DESCRIPTION:</p>
-      <p class="ml-3 italic font-light"><%= @quiz.description %></p>
+      <% if @quiz.description.present? %>
+        <p class="ml-3 italic font-light"><%= @quiz.description %></p>
+      <% else %>
+        <div class="p-2 ml-3 italic text-gray-500">
+          <p class="font-semibold">No description available.</p>
+          <p class="mb-2 text-sm">
+            Consider adding a description to provide more information for users. You can include details about the quiz format, difficulty, or expected knowledge level.
+          </p>
+          <p class="text-sm not-italic text-gray-400">
+            You can add a description via the <span class="font-semibold text-white">Edit</span> button above.
+          </p>
+        </div>
+      <% end %>
     </div>
-    <div class="flex justify-between mt-6 space-x-4 border-t border-gray-500">
+    <div class="flex justify-between mt-auto space-x-4 border-t border-gray-500">
       <p class="flex-1 p-1 text-xl font-light text-center uppercase">
         <span class="text-2xl"><%= format_as_two_digits(@quiz.time_to_complete) %></span><br>
         Minutes
@@ -52,17 +64,16 @@
         </div>
       </form>
     </div>
-    <div class="max-h-[650px]">
+    <div class="max-h-[650px] h-full">
       <% if @quiz.questions.exists? %>
         <ul id="questionsList" class="flex flex-col gap-1 pr-6 overflow-y-scroll">
           <%= render partial: "question", collection: @quiz.questions %>
         </ul>
       <% else %>
-        <div id="no-questions-instructions"class="flex flex-col w-3/4 justify-self-center">
-          <h3 class="w-full mb-3 text-xl italic text-center text-gray-500">No Questions</h3>
-          <p class="py-4 text-center text-gray-400 border border-gray-700 text-balance">
-            To get started, <br>
-            add questions to your quiz using <br>
+        <div id="no-questions-instructions" class="flex flex-col w-full h-full pt-4 justify-self-center">
+          <h3 class="w-full mb-2 text-xl italic text-center text-gray-500">No questions available</h3>
+          <p class="items-center text-center text-gray-500 text-balance">
+            You can add questions to your quiz using <br>
             the <span class="italic font-semibold text-white">Add Question</span> button above.</p>
         </div>
       <% end %>

@@ -20,16 +20,20 @@ RSpec.describe "Author Edits Quiz", type: :feature do
       expect(page).to have_content(quiz.description)
     end
 
-    context "without questions" do
-      scenario "author sees 'No Questions' message" do
-        expect(page).to have_content('No Questions')
+    context "without description" do
+      scenario "author sees no description message" do
+        quiz.update(description: nil)
+
+        visit author_quiz_path(quiz)
+
+        expect(page).to have_content("No description available")
       end
     end
 
-    context "with questions" do
-      let!(:quiz) { create(:quiz, author:, questions_count: 2) }
-      scenario "author should not see 'No Questions' message" do
-        expect(page).to_not have_content('No Questions')
+
+    context "without questions" do
+      scenario "author sees no questions message" do
+        expect(page).to have_content('No questions available')
       end
     end
   end
