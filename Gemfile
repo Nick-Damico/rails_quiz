@@ -20,11 +20,9 @@ gem "tailwindcss-rails"
 gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
-
 gem "devise"
-
-# Chartkick docs [https://chartkick.com]
-gem "chartkick"
+gem "chartkick" # [https://chartkick.com]
+gem "pundit" # [https://github.com/varvet/pundit]
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -70,3 +68,4 @@ group :test do
   gem "selenium-webdriver"
   gem "shoulda-matchers"
 end
+
