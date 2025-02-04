@@ -35,7 +35,6 @@ module Author
         flash[:notice] = t("flash.quizzes.update.success")
         redirect_to author_quiz_url(@quiz)
       else
-        # TODO: Display attirbutes and error messages on forms
         @author = @quiz.author
         flash[:alert] = t("flash.quizzes.update.error")
         render :edit, status: :unprocessable_entity
