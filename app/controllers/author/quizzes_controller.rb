@@ -3,20 +3,21 @@ module Author
     before_action :set_quiz, only: %i[destroy edit show update]
     before_action :set_author, only: %i[create destroy edit index new show]
     before_action :set_breadcrumbs
+    before_action :authorize_access!, except: %i[create index new]
 
     def index
-      @quizzes = @author.authored_quizzes
+      @quizzes = policy_scope(Quiz, policy_scope_class: QuizPolicy::Scope)
     end
 
     def show
     end
 
     def new
-      @quiz = @author.authored_quizzes.new
+      @quiz = authorize([ :author, @author.authored_quizzes.new ])
     end
 
     def create
-      @quiz = @author.authored_quizzes.new(quiz_params)
+      @quiz = authorize([ :author, @author.authored_quizzes.new(quiz_params) ])
       if @quiz.save
         flash[:notice] = t("flash.quizzes.create.success")
         redirect_to author_quiz_url(@quiz)
@@ -52,6 +53,10 @@ module Author
     end
 
     private
+
+    def authorize_access!
+      authorize([ :author, @quiz ])
+    end
 
     def quiz_params
       params.require(:quiz).permit(:title, :description, :author_id)

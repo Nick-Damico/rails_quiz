@@ -8,7 +8,7 @@ RSpec.describe "Author Edits Quiz", type: :feature do
   end
 
   scenario "Quiz is successfully updated with valid input" do
-    quiz = create(:quiz)
+    quiz = create(:quiz, author:)
 
     visit edit_author_quiz_path(quiz)
 

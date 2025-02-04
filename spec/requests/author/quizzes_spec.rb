@@ -5,6 +5,14 @@ RSpec.describe Author::QuizzesController, type: :request do
 
   before { sign_in author }
 
+  describe "GET /index" do
+    it "responds with HTTP status ok(200)" do
+      get author_quizzes_path
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe "GET /new" do
     it "responds with HTTP status ok(200)" do
       get new_author_quiz_path

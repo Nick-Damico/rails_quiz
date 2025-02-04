@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'Authored Quizzes', type: :feature do
+RSpec.describe 'Authore Creates Quiz', type: :feature do
   let!(:author) { create(:user) }
 
   before do
     sign_in author
   end
 
-  scenario 'Author Creates a Quiz' do
+  scenario 'can create a quiz with required fields' do
     visit author_quizzes_path(author)
 
     click_link "Create Quiz"
@@ -25,7 +25,7 @@ RSpec.describe 'Authored Quizzes', type: :feature do
   end
 
 
-  scenario 'Author fails to Create a Quiz' do
+  scenario 'cannot create quiz without required fields' do
     visit author_quizzes_path(author)
 
     click_link "Create Quiz"
