@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   include Breadcrumbs
   include Pundit::Authorization
 
+  after_action :verify_pundit_authorization
+
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
   before_action :user_permitted_parameters, if: :devise_controller?
@@ -11,5 +13,13 @@ class ApplicationController < ActionController::Base
   def user_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [ :username ])
     devise_parameter_sanitizer.permit(:account_update, keys: [ :username ])
+  end
+
+  def verify_pundit_authorization
+    if action_name == "index"
+      verify_policy_scoped
+    else
+      verify_authorized
+    end
   end
 end
