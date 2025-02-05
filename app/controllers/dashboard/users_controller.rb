@@ -2,8 +2,7 @@ class Dashboard::UsersController < ApplicationController
   before_action :set_user, only: %i[show update]
   before_action :authorize_access!
 
-  def show
-  end
+  def show; end
 
   def update
     if @user.update(user_params)

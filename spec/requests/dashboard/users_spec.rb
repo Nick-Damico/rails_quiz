@@ -6,7 +6,7 @@ RSpec.describe "Dashboard::Users", type: :request do
   before { sign_in user }
 
   describe "GET /show" do
-    it "is returns an http success status" do
+    it "returns an http status(success)" do
       get dashboard_user_path(user)
 
       expect(response).to have_http_status(:success)
@@ -15,7 +15,7 @@ RSpec.describe "Dashboard::Users", type: :request do
 
   describe "PUT /update" do
     it "updates the users username" do
-      new_username = "SamPuppies"
+      new_username = "Sam Puppies"
 
       put dashboard_user_path(user), params: { user: { username: new_username } }
 
