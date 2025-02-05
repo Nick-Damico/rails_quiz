@@ -1,3 +1,6 @@
 class HomeController < ApplicationController
-  def index; end
+  # TODO: Make this a show route.
+  def index
+    skip_authorizations
+  end
 end
