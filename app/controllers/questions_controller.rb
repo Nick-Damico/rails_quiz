@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_quiz, only: %i[create edit new show update]
   before_action :set_question, only: %i[edit show update destroy]
   before_action :set_breadcrumbs
+  before_action :authorize_access!, except: %i[create new]
 
   def show
     @question_ids = @quiz.questions.collect(&:id)
@@ -9,11 +10,13 @@ class QuestionsController < ApplicationController
 
   def new
     @question = @quiz.questions.build
+    authorize @question
     @question_choices = Array.new(2) { @question.choices.build }
   end
 
   def create
     @question = Question.new(question_params)
+    authorize @question
     if @question.save
       flash[:notice] = t("flash.questions.create.success")
       respond_to do |format|
@@ -40,6 +43,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     if @question.destroy
+      # FIX: Flash not showing
       flash.now[:notice] = t("flash.questions.destroy.success")
     else
       flash.now[:error] = t("flash.questions.destroy.error")
@@ -49,6 +53,10 @@ class QuestionsController < ApplicationController
   end
 
   private
+
+  def authorize_access!
+    authorize @question
+  end
 
   def set_quiz
     @quiz = Quiz.find(params[:quiz_id])
