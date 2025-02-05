@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include Breadcrumbs
   include Pundit::Authorization
 
-  after_action :verify_pundit_authorization
+  after_action :verify_pundit_authorization, unless: :devise_controller?
 
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
