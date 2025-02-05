@@ -1,5 +1,6 @@
 class Dashboard::UsersController < ApplicationController
   before_action :set_user, only: %i[show update]
+  before_action :authorize_access!
 
   def show
   end
@@ -13,6 +14,10 @@ class Dashboard::UsersController < ApplicationController
   end
 
   private
+
+  def authorize_access!
+    authorize([ :dashboard, @user ])
+  end
 
   def set_user
     @user = User.find(params[:id])

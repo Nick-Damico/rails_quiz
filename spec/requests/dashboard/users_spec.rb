@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe "Dashboard::Users", type: :request do
   let!(:user) { create(:user) }
 
+  before { sign_in user }
+
   describe "GET /show" do
     it "is returns an http success status" do
       get dashboard_user_path(user)
