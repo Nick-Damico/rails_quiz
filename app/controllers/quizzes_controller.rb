@@ -3,10 +3,11 @@ class QuizzesController < ApplicationController
   before_action :set_breadcrumbs
 
   def index
-    @quizzes = Quiz.all
+    @quizzes = policy_scope(Quiz)
   end
 
   def show
+    authorize @quiz
     @in_progress_answer_sheet = AnswerSheet.in_progress_answer_sheet_for(quiz: @quiz, user: current_user)
   end
 
