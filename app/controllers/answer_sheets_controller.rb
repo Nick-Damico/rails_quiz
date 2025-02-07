@@ -1,6 +1,7 @@
 class AnswerSheetsController < ApplicationController
   before_action :set_answer_sheet, only: %i[pause resume show destroy]
   before_action :set_breadcrumbs, only: %i[show]
+  before_action :authorize_access!, except: %i[create]
 
   def resume
     if answer_sheet_question = @answer_sheet.next_incomplete_question
@@ -41,6 +42,7 @@ class AnswerSheetsController < ApplicationController
 
   def create
     @answer_sheet = AnswerSheet.new(answer_sheet_params)
+    authorize @answer_sheet
     if @answer_sheet.save
       @answer_sheet.prepare
 
@@ -63,6 +65,10 @@ class AnswerSheetsController < ApplicationController
   end
 
   private
+
+  def authorize_access!
+    authorize @answer_sheet
+  end
 
   def set_breadcrumbs
     add_breadcrumb("Study")

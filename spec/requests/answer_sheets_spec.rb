@@ -9,7 +9,7 @@ RSpec.describe AnswerSheetsController, type: :request do
   describe "GET /show" do
     context "with grade" do
       it "responds with HTTP status 200(ok)" do
-        answer_sheet = create(:answer_sheet, :with_grade)
+        answer_sheet = create(:answer_sheet, :with_grade, user:)
 
         get answer_sheet_path(answer_sheet)
 
@@ -19,7 +19,7 @@ RSpec.describe AnswerSheetsController, type: :request do
 
     context "with incomplete answer_sheet" do
       it "responds with redirect" do
-        answer_sheet = create(:answer_sheet)
+        answer_sheet = create(:answer_sheet, user:)
         get answer_sheet_path(answer_sheet)
 
         expect(response).to redirect_to(quiz_path(answer_sheet.quiz))
@@ -28,7 +28,7 @@ RSpec.describe AnswerSheetsController, type: :request do
     end
 
     context "with completed and none-graded answer_sheet" do
-      let!(:completed_answer_sheet) { create(:answer_sheet, :with_completed_quiz) }
+      let!(:completed_answer_sheet) { create(:answer_sheet, :with_completed_quiz, user:) }
 
       before do
         expect_any_instance_of(AnswerSheet::Grader).to receive(:grade)
@@ -48,8 +48,8 @@ RSpec.describe AnswerSheetsController, type: :request do
 
   describe "GET /resume" do
     it "responds with HTTP status 302(redirect)" do
-      answer_sheet_question = create(:answer_sheet_question)
-      answer_sheet = answer_sheet_question.answer_sheet
+      answer_sheet = create(:answer_sheet, user:)
+      answer_sheet.prepare
 
       get resume_answer_sheet_path(answer_sheet)
 
@@ -59,8 +59,8 @@ RSpec.describe AnswerSheetsController, type: :request do
 
   describe "GET /pause" do
     it "responds with HTTP status 302(redirect)" do
-      answer_sheet_question = create(:answer_sheet_question)
-      answer_sheet = answer_sheet_question.answer_sheet
+      answer_sheet = create(:answer_sheet, user:)
+      answer_sheet.prepare
 
       get pause_answer_sheet_path(answer_sheet)
 
