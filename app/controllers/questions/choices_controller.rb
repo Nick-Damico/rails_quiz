@@ -1,19 +1,24 @@
 class Questions::ChoicesController < ApplicationController
   before_action :set_choice, only: %i[destroy edit update]
   before_action :set_question, only: %i[create destroy edit new update]
+  before_action :authorize_access!, except: %i[new create]
+
   def new
     respond_to do |format|
       format.turbo_stream do
+        skip_authorization
         @new_index = params["choice_count"]
       end
       format.html do
         @choice = @question.choices.new
+        authorize @choice, policy_class: Questions::ChoicePolicy
       end
     end
   end
 
   def create
     @choice = Question::Choice.new(choice_params)
+    authorize @choice, policy_class: Questions::ChoicePolicy
     if @choice.save
       flash[:notice] = t("flash.choices.create.success")
       redirect_to quiz_question_url(@question.quiz_id, @question)
@@ -52,6 +57,10 @@ class Questions::ChoicesController < ApplicationController
 
   private
 
+  def authorize_access!
+    authorize @choice, policy_class: Questions::ChoicePolicy
+  end
+
   def choice_params
     params.require(:question_choice).permit(:content, :correct, :question_id)
   end
@@ -68,7 +77,8 @@ class Questions::ChoicesController < ApplicationController
       if params[:question_id] == "new"
         Question.new
       else
-        Question.find(params[:question_id])
+        # eager_load quiz to avoid additional queries during #authorize
+        Question.preload(:quiz).find(params[:question_id])
       end
   end
 end

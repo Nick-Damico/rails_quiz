@@ -1,8 +1,4 @@
-class QuestionPolicy < ApplicationPolicy
-  def show?
-    user_is_author?
-  end
-
+class Questions::ChoicePolicy < ApplicationPolicy
   def new?
     create?
   end
@@ -23,7 +19,9 @@ class QuestionPolicy < ApplicationPolicy
     user_is_author?
   end
 
+  private
+
   def user_is_author?
-    user.id == record.quiz.author_id
+    QuestionPolicy.new(user, record.question).user_is_author?
   end
 end

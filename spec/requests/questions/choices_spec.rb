@@ -2,7 +2,8 @@ require "rails_helper"
 
 RSpec.describe "Question::Choices", type: :request do
   let!(:author) { create(:user) }
-  let!(:question) { create(:question) }
+  let!(:quiz) { create(:quiz, author:) }
+  let!(:question) { create(:question, quiz:) }
 
   before { sign_in author }
 
