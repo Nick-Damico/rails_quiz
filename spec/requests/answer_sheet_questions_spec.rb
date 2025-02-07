@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe AnswerSheetQuestionsController, type: :request do
   let!(:user) { create(:user) }
-  let!(:answer_sheet) { create(:answer_sheet) }
+  let!(:answer_sheet) { create(:answer_sheet, user:) }
 
   before do
     sign_in user

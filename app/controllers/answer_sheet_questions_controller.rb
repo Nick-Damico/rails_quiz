@@ -1,5 +1,6 @@
 class AnswerSheetQuestionsController < ApplicationController
   before_action :set_answer_sheet_question, only: %i[show update]
+  before_action :authorize_access!
 
   def show
     set_show_variables
@@ -22,6 +23,10 @@ class AnswerSheetQuestionsController < ApplicationController
   end
 
   private
+
+  def authorize_access!
+    authorize @answer_sheet_question
+  end
 
   def answer_sheet_question_params
     params.require(:answer_sheet_question).permit(:answer_id)
