@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Author Edits Question", type: :feature do
   let(:author) { create(:user) }
-  let!(:quiz) { create(:quiz, :with_questions) }
+  let!(:quiz) { create(:quiz, :with_questions, author:) }
 
   before do
     sign_in author

@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "AnswerSheetQuestion show page", type: :feature do
   let(:user) { create(:user) }
   let(:quiz) { create(:quiz, questions_count: 4) }
-  let(:answer_sheet) { create(:answer_sheet, quiz:)  }
+  let(:answer_sheet) { create(:answer_sheet, quiz:, user:)  }
 
   before do
     sign_in user

@@ -6,6 +6,7 @@ module Author
     before_action :authorize_access!, except: %i[create index new]
 
     def index
+      # FIX: scope this to user => @author.quizzes
       @quizzes = policy_scope(Quiz, policy_scope_class: QuizPolicy::Scope)
     end
 
