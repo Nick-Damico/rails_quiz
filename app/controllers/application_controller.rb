@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   after_action :verify_pundit_authorization, unless: :devise_controller?
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   protected
 
@@ -28,7 +29,19 @@ class ApplicationController < ActionController::Base
 
     redirect_back_or_to(record_not_found_redirect_url)
   end
+
+  def user_not_authorized(exception)
+    policy_name = exception.policy.class.to_s.underscore
+
+    flash[:error] = t("#{policy_name}.#{exception.query}", scope: "pundit", default: :default)
+    redirect_back_or_to(unauthorized_redirect_url)
+  end
+
   def record_not_found_redirect_url
+    root_url
+  end
+
+  def unauthorized_redirect_url
     root_url
   end
 
