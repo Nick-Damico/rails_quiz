@@ -32,6 +32,8 @@ en:
     default: "You cannot perform this action."
     author/quiz_policy:
       show?: "You are not authorized to access this quiz."
+    quiz_policy:
+      show?: "You are not authorized to access this quiz."
 
   flash:
     errors:
