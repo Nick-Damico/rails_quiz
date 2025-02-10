@@ -58,6 +58,18 @@ class QuestionsController < ApplicationController
     authorize @question
   end
 
+  def record_not_found_redirect_url
+    if @quiz.present?
+      author_quiz_url(@quiz)
+    else
+      author_quizzes_url
+    end
+  end
+
+  def unauthorized_redirect_url
+    author_quizzes_url
+  end
+
   def set_quiz
     @quiz = Quiz.find(params[:quiz_id])
   end

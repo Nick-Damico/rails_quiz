@@ -58,6 +58,14 @@ module Author
       authorize([ :author, @quiz ])
     end
 
+    def record_not_found_redirect_url
+      author_quizzes_url
+    end
+
+    def unauthorized_redirect_url
+      author_quizzes_url
+    end
+
     def quiz_params
       params.require(:quiz).permit(:title, :description, :author_id)
     end
