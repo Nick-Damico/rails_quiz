@@ -20,6 +20,14 @@ user_1 = FactoryBot.create(
   password_confirmation: "1234Sammy"
 )
 
+user_2 = FactoryBot.create(
+  :user,
+  username: Faker::Artist.name,
+  email: Faker::Internet.email(domain: 'gmail.com'),
+  password: "usr2Faker",
+  password_confirmation: "usr2Faker"
+)
+
 puts "SEEDING QUIZZES & QUESTIONS"
 
 quiz_1 = Quiz.create!(
@@ -284,6 +292,55 @@ quiz_2.questions.create!([
       { content: "O(1)", correct: false },
       { content: "O(n)", correct: true },
       { content: "O(log n)", correct: false }
+    ]
+  }
+])
+
+quiz_comics = Quiz.create!(
+  title: "Comic Book Knowledge",
+  description: "Test your knowledge of comic book history, characters, and publishers! This quiz covers both classic and modern comic book lore.",
+  author: user_2
+)
+
+quiz_comics.questions.create!([
+  {
+    content: "Which comic book company introduced Spider-Man?",
+    choices_attributes: [
+      { content: "Marvel Comics", correct: true },
+      { content: "DC Comics", correct: false },
+      { content: "Image Comics", correct: false }
+    ]
+  },
+  {
+    content: "What is Superman’s home planet?",
+    choices_attributes: [
+      { content: "Krypton", correct: true },
+      { content: "Mars", correct: false },
+      { content: "Asgard", correct: false }
+    ]
+  },
+  {
+    content: "Who is the archenemy of Batman?",
+    choices_attributes: [
+      { content: "The Joker", correct: true },
+      { content: "Lex Luthor", correct: false },
+      { content: "Doctor Doom", correct: false }
+    ]
+  },
+  {
+    content: "What is the name of Thor’s enchanted hammer?",
+    choices_attributes: [
+      { content: "Mjolnir", correct: true },
+      { content: "Stormbreaker", correct: false },
+      { content: "Excalibur", correct: false }
+    ]
+  },
+  {
+    content: "Which superhero team includes characters like Cyclops, Wolverine, and Storm?",
+    choices_attributes: [
+      { content: "X-Men", correct: true },
+      { content: "The Avengers", correct: false },
+      { content: "The Justice League", correct: false }
     ]
   }
 ])
