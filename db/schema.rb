@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_10_165514) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_10_172609) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_10_165514) do
     t.datetime "updated_at", null: false
     t.index ["quiz_id"], name: "index_answer_sheets_on_quiz_id"
     t.index ["user_id"], name: "index_answer_sheets_on_user_id"
+  end
+
+  create_table "decks", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "description"
+    t.bigint "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_decks_on_author_id"
   end
 
   create_table "question_choices", force: :cascade do |t|
@@ -79,6 +88,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_10_165514) do
   add_foreign_key "answer_sheet_questions", "questions"
   add_foreign_key "answer_sheets", "quizzes"
   add_foreign_key "answer_sheets", "users"
+  add_foreign_key "decks", "users", column: "author_id"
   add_foreign_key "question_choices", "questions"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quizzes", "users", column: "author_id"
