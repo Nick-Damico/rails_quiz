@@ -32,6 +32,14 @@ class AnswerSheetQuestionsController < ApplicationController
     params.require(:answer_sheet_question).permit(:answer_id)
   end
 
+  def record_not_found_redirect_url
+    quizzes_url
+  end
+
+  def unauthorized_redirect_url
+    record_not_found_redirect_url
+  end
+
   def set_answer_sheet_question
     @answer_sheet_question = AnswerSheetQuestion.find(params[:id])
   end

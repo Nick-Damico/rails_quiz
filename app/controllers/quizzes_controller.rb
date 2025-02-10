@@ -17,6 +17,14 @@ class QuizzesController < ApplicationController
     @quiz = Quiz.find(params[:id])
   end
 
+  def record_not_found_redirect_url
+    quizzes_url
+  end
+
+  def unauthorized_redirect_url
+    record_not_found_redirect_url
+  end
+
   def set_breadcrumbs
     add_breadcrumb("Study")
     add_breadcrumb("Quizzes", quizzes_path)
