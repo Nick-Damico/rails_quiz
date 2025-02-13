@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   namespace :author do
+    resources :decks
     resources :quizzes
   end
 

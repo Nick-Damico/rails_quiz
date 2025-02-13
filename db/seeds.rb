@@ -344,3 +344,10 @@ quiz_comics.questions.create!([
     ]
   }
 ])
+
+puts "SEEDING DECKS & FLASHCARDS"
+
+deck_1 = user_1.decks.create!(
+  title: 'Design Patterns',
+  description: 'An introductory set of flashcards to help identify and understand common design patterns in software development.',
+)
