@@ -1,20 +1,18 @@
 <%= banner_heading do %>
-  <h3 class="text-xl text-center font-semibold">
+  <h3 class="text-xl font-semibold text-center">
     Question <%= format_as_two_digits(@answer_sheet_question.position) %>/<%= format_as_two_digits(@question_count) %>
   </h3>
 <% end %>
-
-<section class="w-full max-w-xl mx-auto border border-gray-500 mt-5 rounded">
+<section class="w-full max-w-xl mx-auto mt-5 border border-gray-500 rounded">
   <div class="px-3 pb-3">
-    <h2 class="text-xl text-center py-3 mb-3 border-b border-gray-500">
+    <h2 class="py-3 mb-3 text-xl text-center border-b border-gray-500">
       <%= @question.content %>
     </h2>
-
     <div class="flex flex-col">
       <%= form_for @answer_sheet_question, data: { controller: "answer-sheet-question-form", action: "input->answer-sheet-question-form#enableSubmit" } do |f| %>
         <% radio_btn_index = 0 %>
         <%= f.collection_radio_buttons :answer_id, @question.choices, :id, :content do |builder| %>
-          <div class="flex mb-4 peer-checked:bg-success hover:bg-primary border border-gray-500 transition ease-in-out duration-500">
+          <div class="flex mb-4 transition duration-500 ease-in-out border border-gray-500 peer-checked:bg-success hover:bg-primary">
             <%= builder.radio_button class: 'hidden peer' %>
             <%= builder.label class: "flex flex-1 p-2 peer-checked:bg-success cursor-pointer" do %>
               <span class="w-12 mr-1 font-bold text-center"><%= num_to_letter(radio_btn_index).upcase %>.</span>
@@ -23,8 +21,7 @@
           </div>
           <% radio_btn_index += 1 %>
         <% end %>
-
-        <div class="flex space-x-6 pt-3 mt-8 justify-center border-t border-gray-500">
+        <div class="flex justify-center pt-3 mt-8 space-x-6 border-t border-gray-500">
           <%= link_to pause_answer_sheet_path(@answer_sheet_question.answer_sheet), class: "flex flex-1 items-center justify-center btn border border-gray-500 hover:bg-warning transition ease-in-out" do %>
             <%= render "icons/circle_pause", klass: "size-5 mr-2" %> Pause
           <% end %>
