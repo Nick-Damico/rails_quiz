@@ -72,6 +72,17 @@ en:
         success: "Choice was successfully deleted."
         error: "There was an error deleting the choice."
 
+    decks:
+      create:
+        success: "Deck was successfully created."
+        error: "There was an error creating this deck."
+      update:
+        success: "Deck was successfully updated."
+        error: "There was an error updating this deck."
+      destroy:
+        success: "Deck was successfully deleted."
+        error: "There was an error deleting the deck."
+
     answer_sheets:
       create:
         success: "Quiz successfully started."
@@ -99,6 +110,9 @@ en:
 
   helpers:
     submit:
+      deck:
+        create: "Create Deck"
+        update: "Update Deck"
       quiz:
         create: "Create Quiz"
         update: "Update Quiz"

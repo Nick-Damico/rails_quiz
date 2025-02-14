@@ -9,4 +9,18 @@ class Author::DeckPolicy < ApplicationPolicy
       @scope.all
     end
   end
+
+  def show?
+    user.id == record.author_id
+  end
+
+  def new?
+    create?
+  end
+
+  def create?
+    user_is_owner?
+  end
+
+  private
 end

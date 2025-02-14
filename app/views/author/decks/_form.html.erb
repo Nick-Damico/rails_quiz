@@ -1,0 +1,26 @@
+<%= render "shared/breadcrumbs" %>
+<div class="w-full max-w-xl mx-auto mt-10">
+  <div class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
+    <section>
+      <h2 class="py-2 text-xl text-center uppercase border-b border-gray-500 font-xl">
+        <%= deck.persisted? ? "Edit" : "Create" %> Deck
+      </h2>
+      <%= form_with model: [:author, deck], class: "px-2" do |ff| %>
+        <%= ff.hidden_field :author_id, value: author.id %>
+        <div class="mb-4 field">
+          <%= ff.label :title, class: "text-white text-xs font-semibold uppercase mb-2" %>
+          <%= ff.text_field :title, placeholder: "Enter a short, descriptive title for your deck", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" %>
+          <%= display_field_error(deck, :title) %>
+        </div>
+        <div class="mb-4 field">
+          <%= ff.label :description, class: "text-white text-xs font-semibold uppercase mb-2" %>
+          <%= ff.text_area :description, rows: 8, placeholder: "Provide a brief description of what this deck covers", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+          <%= display_field_error(deck, :description) %>
+        </div>
+        <div class="flex items-center mb-4 actions">
+          <%= ff.submit class: "btn btn-success text-center w-full  text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
+        </div>
+      <% end %>
+    </section>
+  </div>
+</div>
