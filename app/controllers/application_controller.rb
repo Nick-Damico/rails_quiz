@@ -31,6 +31,11 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized(exception)
+    unless current_user
+      flash[:error] = "You must login"
+      return redirect_back_or_to(new_user_session_url)
+    end
+
     policy_name = exception.policy.class.to_s.underscore
 
     flash[:error] = t("#{policy_name}.#{exception.query}", scope: "pundit", default: :default)
