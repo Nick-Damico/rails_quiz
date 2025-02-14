@@ -1,25 +1,21 @@
 class AnswerSheetPolicy < ApplicationPolicy
   def resume?
-    belongs_to_user?
+    user_is_owner?
   end
 
   def pause?
-    belongs_to_user?
+    user_is_owner?
   end
 
   def show?
-    belongs_to_user?
+    user_is_owner?
   end
 
   def create?
-    belongs_to_user?
+    user_is_owner?
   end
 
   def destroy?
-    belongs_to_user?
-  end
-
-  def belongs_to_user?
-    user.id == record.user_id
+    user_is_owner?
   end
 end

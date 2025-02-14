@@ -51,8 +51,6 @@ class ApplicationPolicy
     false
   end
 
-  private
-
   def user_is_owner?
     user.id == (record.try(:user_id) || record.try(:author_id))
   end

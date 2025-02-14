@@ -8,6 +8,6 @@ class AnswerSheetQuestionPolicy < ApplicationPolicy
   end
 
   def belongs_to_user?
-    AnswerSheetPolicy.new(user, record.answer_sheet).belongs_to_user?
+    AnswerSheetPolicy.new(user, record.answer_sheet).user_is_owner?
   end
 end

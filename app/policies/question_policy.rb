@@ -24,6 +24,6 @@ class QuestionPolicy < ApplicationPolicy
   end
 
   def user_is_author?
-    user.id == record.quiz.author_id
+    QuizPolicy.new(user, record.quiz).user_is_owner?
   end
 end

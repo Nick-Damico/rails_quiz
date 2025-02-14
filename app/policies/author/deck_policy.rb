@@ -21,6 +21,4 @@ class Author::DeckPolicy < ApplicationPolicy
   def create?
     user_is_owner?
   end
-
-  private
 end

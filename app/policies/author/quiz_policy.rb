@@ -19,22 +19,18 @@ class Author::QuizPolicy < ApplicationPolicy
   end
 
   def update?
-    user_is_author?
+    user_is_owner?
   end
 
   def create?
-    user_is_author?
+    user_is_owner?
   end
 
   def show?
-    user_is_author?
+    user_is_owner?
   end
 
   def destroy?
-    user_is_author?
-  end
-
-  def user_is_author?
-    user.id == record.author_id
+    user_is_owner?
   end
 end
