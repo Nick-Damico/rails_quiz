@@ -1,6 +1,6 @@
 class Author::DecksController < ApplicationController
   before_action :set_author
-  before_action :set_deck, only: %i[show edit]
+  before_action :set_deck, only: %i[edit show update]
   # set breadcrumbs last
   before_action :set_breacrumbs, only: %i[index show]
   def index
@@ -28,6 +28,17 @@ class Author::DecksController < ApplicationController
 
   def edit
     authorize([ :author, @deck ])
+  end
+
+  def update
+    authorize([ :author, @deck ])
+    if @deck.update(deck_params.except(:author_id))
+      flash[:notice] = t("flash.decks.update.success")
+      redirect_to [ :author, @deck ]
+    else
+      flash.now[:alert] = t("flash.decks.update.error")
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private

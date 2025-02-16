@@ -76,39 +76,39 @@ RSpec.describe "Author::Decks", type: :request do
     end
   end
 
-  xdescribe "PUT /update" do
-    let!(:quiz) { create(:quiz, author: author) }
+  describe "PUT /update" do
+    let!(:deck) { create(:deck, author: author) }
 
     context "Valid params" do
-      let(:valid_params) { quiz.attributes.merge(title: 'Best Quiz Ever') }
+      let(:valid_params) { deck.attributes.merge(title: 'Design Patterns') }
 
       it "responds with HTTP status redirect(302)" do
-        put author_quiz_path(quiz), params: { quiz: valid_params }
+        put author_deck_path(deck), params: { deck: valid_params }
 
         expect(response).to have_http_status(:redirect)
-        expect(flash[:notice]).to eq(I18n.t("flash.quizzes.update.success"))
+        expect(flash[:notice]).to eq(I18n.t("flash.decks.update.success"))
       end
 
       it "redirects to :show author_quiz_url" do
-        put author_quiz_path(quiz), params: { quiz: valid_params }
+        put author_deck_path(deck), params: { deck: valid_params }
 
-        expect(response).to redirect_to author_quiz_url(quiz)
+        expect(response).to redirect_to author_deck_url(deck)
       end
     end
 
-    xcontext "Invalid params" do
-      let(:invalid_params) { quiz.attributes.merge(title: '') }
+    context "Invalid params" do
+      let(:invalid_params) { deck.attributes.merge(title: '') }
 
       it "responds with HTTP status unprocessable_entity(422)" do
-        put author_quiz_path(quiz), params: { quiz: invalid_params }
+        put author_deck_path(deck), params: { deck: invalid_params }
 
         expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it "renders with an error message" do
-        put author_quiz_path(quiz), params: { quiz: invalid_params }
+        put author_deck_path(deck), params: { deck: invalid_params }
 
-        expect(flash[:alert]).to eq(I18n.t("flash.quizzes.update.error"))
+        expect(flash[:alert]).to eq(I18n.t("flash.decks.update.error"))
       end
     end
   end
