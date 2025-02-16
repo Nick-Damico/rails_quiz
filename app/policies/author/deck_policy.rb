@@ -11,7 +11,7 @@ class Author::DeckPolicy < ApplicationPolicy
   end
 
   def show?
-    user.id == record.author_id
+    user_is_owner?
   end
 
   def new?
@@ -19,6 +19,14 @@ class Author::DeckPolicy < ApplicationPolicy
   end
 
   def create?
+    user_is_owner?
+  end
+
+  def edit?
+    update?
+  end
+
+  def update?
     user_is_owner?
   end
 end

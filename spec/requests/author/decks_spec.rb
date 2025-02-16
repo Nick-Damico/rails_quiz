@@ -66,11 +66,11 @@ RSpec.describe "Author::Decks", type: :request do
     end
   end
 
-  xdescribe "GET /edit" do
-    let!(:quiz) { create(:quiz, author: author) }
+  describe "GET /edit" do
+    let!(:deck) { create(:deck, author: author) }
 
     it "responds with HTTP status ok(200)" do
-      get edit_author_quiz_path(quiz)
+      get edit_author_deck_path(deck)
 
       expect(response).to have_http_status(:ok)
     end

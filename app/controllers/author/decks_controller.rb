@@ -1,6 +1,6 @@
 class Author::DecksController < ApplicationController
   before_action :set_author
-  before_action :set_deck, only: %i[show]
+  before_action :set_deck, only: %i[show edit]
   # set breadcrumbs last
   before_action :set_breacrumbs, only: %i[index show]
   def index
@@ -24,6 +24,10 @@ class Author::DecksController < ApplicationController
       flash.now[:alert] = t("flash.decks.create.error")
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    authorize([ :author, @deck ])
   end
 
   private
