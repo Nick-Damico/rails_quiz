@@ -6,9 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= yield :head %>
-
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -17,19 +15,16 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <body class='flex flex-col min-h-screen bg-gray-950 text-white'>
+  <body class='flex flex-col min-h-screen text-white bg-gray-950'>
     <header>
       <%= render 'shared/navbar' %>
     </header>
-
-    <main class="flex-grow relative">
+    <main class="relative flex-grow pt-8">
       <%= render "shared/flash" %>
-      <div class="wrapper py-6 px-4 mx-auto max-w-screen-xl">
+      <div class="max-w-screen-xl px-4 py-6 mx-auto wrapper">
         <%= yield %>
       </div>
     </main>
-
     <%= render 'shared/footer' %>
   </body>
 </html>
