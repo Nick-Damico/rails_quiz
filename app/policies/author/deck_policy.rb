@@ -29,4 +29,8 @@ class Author::DeckPolicy < ApplicationPolicy
   def update?
     user_is_owner?
   end
+
+  def destroy?
+    user_is_owner?
+  end
 end

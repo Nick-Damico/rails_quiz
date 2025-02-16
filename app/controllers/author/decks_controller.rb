@@ -1,6 +1,6 @@
 class Author::DecksController < ApplicationController
   before_action :set_author
-  before_action :set_deck, only: %i[edit show update]
+  before_action :set_deck, only: %i[destroy edit show update]
   # set breadcrumbs last
   before_action :set_breacrumbs, only: %i[index show]
   def index
@@ -18,10 +18,10 @@ class Author::DecksController < ApplicationController
   def create
     @deck = authorize([ :author, Deck.new(deck_params) ])
     if @deck.save
-      flash[:notice] = t("flash.decks.create.success")
+      flash[:notice] = t("flash.decks.destroy.success")
       redirect_to [ :author, @deck ]
     else
-      flash.now[:alert] = t("flash.decks.create.error")
+      flash.now[:alert] = t("flash.decks.destroy.error")
       render :new, status: :unprocessable_entity
     end
   end
@@ -38,6 +38,17 @@ class Author::DecksController < ApplicationController
     else
       flash.now[:alert] = t("flash.decks.update.error")
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    authorize([ :author, @deck ])
+    if @deck.destroy
+      flash[:notice] = t("flash.decks.destroy.success")
+      redirect_to author_decks_url
+    else
+      flash.now[:alert] = t("flash.decks.destroy.error")
+      redirect_to author_decks_url
     end
   end
 

@@ -113,51 +113,51 @@ RSpec.describe "Author::Decks", type: :request do
     end
   end
 
-  xdescribe "DELETE /destroy" do
-    let!(:quiz) { create(:quiz, author: author) }
+  describe "DELETE /destroy" do
+    let!(:deck) { create(:deck, author: author) }
 
     context "Valid params" do
       it "responds with HTTP status redirect(302)" do
-        delete author_quiz_path(quiz)
+        delete author_deck_path(deck)
 
         expect(response).to have_http_status(:redirect)
       end
 
       it "renders with a success message" do
-        delete author_quiz_path(quiz)
+        delete author_deck_path(deck)
 
-        expect(flash[:notice]).to eq(I18n.t("flash.quizzes.destroy.success"))
+        expect(flash[:notice]).to eq(I18n.t("flash.decks.destroy.success"))
       end
 
-      it "destroys the quiz record" do
+      it "destroys the deck record" do
         expect {
-          delete author_quiz_path(quiz)
-        }.to change(Quiz, :count).by(-1)
+          delete author_deck_path(deck)
+        }.to change(Deck, :count).by(-1)
       end
     end
 
     context "Invalid params" do
       before do
-        allow(quiz).to receive(:destroy).and_return(false)
-        allow(Quiz).to receive(:find).and_return(quiz)
+        allow(deck).to receive(:destroy).and_return(false)
+        allow(Deck).to receive(:find).and_return(deck)
       end
 
       it "responds with HTTP status redirect(302)" do
-        delete author_quiz_path(quiz)
+        delete author_deck_path(deck)
 
         expect(response).to have_http_status(:redirect)
       end
 
       it "renders with an error message" do
-        delete author_quiz_path(quiz)
+        delete author_deck_path(deck)
 
-        expect(flash[:alert]).to eq(I18n.t("flash.quizzes.destroy.error"))
+        expect(flash[:alert]).to eq(I18n.t("flash.decks.destroy.error"))
       end
 
-      it "does not destroy the quiz record" do
+      it "does not destroy the deck record" do
         expect {
-          delete author_quiz_path(quiz)
-        }.to change(Quiz, :count).by(0)
+          delete author_deck_path(deck)
+        }.to change(Deck, :count).by(0)
       end
     end
   end
