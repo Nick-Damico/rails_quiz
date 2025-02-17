@@ -1,8 +1,8 @@
 class Author::DecksController < ApplicationController
   before_action :set_author
   before_action :set_deck, only: %i[destroy edit show update]
-  # set breadcrumbs last
-  before_action :set_breacrumbs, only: %i[index show]
+  before_action :set_breacrumbs, only: %i[edit index new show]
+
   def index
     @decks = policy_scope([ :author, Deck ])
   end
@@ -71,6 +71,9 @@ class Author::DecksController < ApplicationController
     add_breadcrumb("Flashcard Decks", author_decks_path)
     if @deck
       add_breadcrumb(@deck.title, author_deck_path(@deck))
+    end
+    if form_render?
+      add_breadcrumb("#{params[:action].capitalize} Deck")
     end
   end
 end
