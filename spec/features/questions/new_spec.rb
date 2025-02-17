@@ -54,6 +54,7 @@ RSpec.describe "Author Adds New Question", type: :feature do
     click_button "Create Question"
 
     expect(page).to have_content(I18n.t("flash.questions.create.error"))
+    expect(page).to have_current_path(new_quiz_question_path(quiz))
   end
 
   # Fix: This test is flaky... its a timing issue where the new field isn't appended

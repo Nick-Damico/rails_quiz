@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "author decks index page", type: :feature do
+RSpec.describe "author/decks index page", type: :feature do
   let(:author) { create(:user) }
 
   context "with decks" do
@@ -18,12 +18,16 @@ RSpec.describe "author decks index page", type: :feature do
       end
     end
 
-    scenario "user can navigate deck show page via link" do
+    scenario "author can navigate deck show page via link" do
       deck = decks.first
 
       click_link "view", href: author_deck_path(deck)
 
       expect(current_path).to eq(author_deck_path(deck))
+    end
+
+    scenario "author can access 'Create Deck' button" do
+      expect(page).to have_link("Create Deck", href: new_author_deck_path)
     end
   end
 end
