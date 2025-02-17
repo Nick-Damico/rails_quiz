@@ -57,4 +57,8 @@ class ApplicationController < ActionController::Base
       verify_authorized
     end
   end
+
+  def form_render?
+    %i[ new edit ].include?(params[:action].to_sym)
+  end
 end
