@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "author/decks new page", type: :feature do
   let(:author) { create(:user) }
+
   before do
     sign_in author
     visit author_decks_path
