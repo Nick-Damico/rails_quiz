@@ -18,10 +18,10 @@ class Author::DecksController < ApplicationController
   def create
     @deck = authorize([ :author, Deck.new(deck_params) ])
     if @deck.save
-      flash[:notice] = t("flash.decks.destroy.success")
+      flash[:notice] = t("flash.decks.create.success")
       redirect_to [ :author, @deck ]
     else
-      flash.now[:alert] = t("flash.decks.destroy.error")
+      flash.now[:alert] = t("flash.decks.create.error")
       render :new, status: :unprocessable_entity
     end
   end
