@@ -1,4 +1,4 @@
-class Deck::CardPolicy < ApplicationPolicy
+class Decks::CardPolicy < ApplicationPolicy
   class Scope
     def initialize(user, scope)
       @user = user

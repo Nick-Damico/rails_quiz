@@ -22,6 +22,10 @@ Rails.application.routes.draw do
     resources :quizzes
   end
 
+  resources :decks, only: %i[] do
+    resources :cards, shallow: true, module: :decks
+  end
+
   resources :answer_sheets, only: %i[create destroy show] do
     member do
       get "pause"

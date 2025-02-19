@@ -1,4 +1,4 @@
-class Deck::Card < ApplicationRecord
+class Decks::Card < ApplicationRecord
   self.table_name = "cards"
 
   belongs_to :deck
