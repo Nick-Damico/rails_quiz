@@ -29,6 +29,10 @@
     @apply py-1 px-2 cursor-pointer;
   }
 
+  .btn-rounded {
+    @apply rounded-sm;
+  }
+
   .btn-primary {
     @apply bg-blue-500 hover:bg-blue-600 transition duration-300 ease-in-out;
   }
