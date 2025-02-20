@@ -351,3 +351,9 @@ deck_1 = user_1.authored_decks.create!(
   title: 'Design Patterns',
   description: 'An introductory set of flashcards to help identify and understand common design patterns in software development.',
 )
+deck_1.cards.create!([
+  {
+    front: "Name the 3 categories of design patterns",
+    back: "Behavioral, Creational, and Structural"
+  }
+])

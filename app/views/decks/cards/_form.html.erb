@@ -1,0 +1,47 @@
+<%= render "shared/breadcrumbs" %>
+<div class="w-full mx-auto mt-10">
+  <%= link_to "Cancel & Return", author_deck_path(deck), class: "btn btn-rounded btn-warning uppercase ml-auto" %>
+  <div class="w-full mx-auto mt-10 border border-gray-500 rounded">
+    <section>
+      <h2 class="py-2 text-xl text-center uppercase border-b border-gray-500 font-xl">
+        <%= card.persisted? ? "Edit" : "Create" %> Card
+      </h2>
+      <%= form_with model: [deck, card], class: 'p-4' do |f| %>
+        <div class="flex gap-4 mb-4">
+          <div class="w-1/2">
+            <%= f.label :front, "Card Front", class: "uppercase" %>
+            <%= f.text_area :front, cols: 40, rows: 15, placeholder: "Enter the question or term...", class: "bg-gray-800 text-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+          </div>
+          <div class="w-1/2">
+            <%= f.label :back, "Card Back", class: "uppercase" %>
+            <%= f.text_area :back, cols: 40, rows: 15, placeholder: "Enter the answer or definition...", class: "bg-gray-800 text-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+          </div>
+        </div>
+        <%= f.submit "Save & Return", class: "btn btn-rounded btn-success uppercase" %>
+        <%= f.submit "Save & Add Another", class: "btn btn-rounded btn-success uppercase" %>
+      <% end %>
+    </section>
+  </div>
+  <div class="w-full mx-auto mt-10 border border-gray-500 rounded">
+    <section>
+      <h2 class="py-2 text-xl text-center uppercase border-b border-gray-500 font-xl">
+        Flashcards
+      </h2>
+      <div class="flex gap-4 p-4">
+        <% deck.cards.each do |card| %>
+          <article class="flex flex-col p-6 w-full max-w-64 min-h-[400px] rounded-lg bg-blue-500 text-lg text-gray-900">
+            <div class="flex items-center justify-end w-full">
+              <span class="text-sm uppercase font-semibold mr-auto">Front</span>
+              <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md">
+                flip <%= render "icons/arrow_turn_right", klass: "size-6 pl-2" %>
+              </button>
+            </div>
+            <p class="flex grow items-center">
+              <%= card.front %>
+            </p>
+          </article>
+        <% end %>
+      </div>
+    </section>
+  </div>
+</div>

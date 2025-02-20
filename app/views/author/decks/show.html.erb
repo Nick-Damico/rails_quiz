@@ -41,7 +41,7 @@
     </div>
   </section>
   <section class="flex flex-col w-full px-2 py-4 bg-gray-800 rounded md:w-2/3">
-    <%= link_to "#", class: "flex btn rounded ml-auto hover:btn-success transition ease-in-out duration-500" do %>
+    <%= link_to new_deck_card_path(deck_id: @deck.id), class: "flex btn rounded ml-auto hover:btn-success transition ease-in-out duration-500" do %>
       <%= render "icons/plus" %>
       <span class="ml-2">Add Flashcard</span>
     <% end %>
