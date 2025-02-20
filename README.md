@@ -7,10 +7,12 @@ QuizIT is a Ruby on Rails application designed to help users create, organize, a
 ## Features
 
 ### Current Features
+
 - **Quiz and Flashcard Creation**: Users can create custom quizzes and flashcards for studying.
 - **User Management**: Secure user accounts to organize and manage your study materials.
 
 ### Upcoming Features
+
 - **Sharing**: Share your quizzes and flashcards with other users.
 - **Rating System**: Rate and discover highly-rated quizzes created by other users (authors).
 
@@ -19,22 +21,26 @@ QuizIT is a Ruby on Rails application designed to help users create, organize, a
 ## Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/your-username/quizit.git
    cd quizit
    ```
 
 2. Install dependencies:
+
    ```bash
    bundle install
    ```
 
 3. Set up the database:
+
    ```bash
    rails db:setup
    ```
 
 4. Start the Rails server:
+
    ```bash
    rails server
    ```
@@ -54,6 +60,7 @@ QuizIT is a Ruby on Rails application designed to help users create, organize, a
 ## Contributing
 
 Contributions are welcome! To contribute:
+
 1. Fork the repository.
 2. Create a feature branch:
    ```bash
@@ -68,6 +75,15 @@ Contributions are welcome! To contribute:
 
 ---
 
+## Troubleshooting
+
+`The asset "tailwind.css" is not present in the asset pipeline.`
+
+- Tailwindcss output file might have been deleted via `bin/rails assets:clobber`.
+- **To Fix:** `bin/rails tailwindcss:build`
+
+---
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
@@ -77,6 +93,6 @@ This project is licensed under the [MIT License](LICENSE).
 ## Contact
 
 For questions or feedback, please reach out to:
+
 - **Project Maintainer**: [Your Name](mailto:your-email@example.com)
 - **GitHub Repository**: [QuizIT](https://github.com/your-username/quizit)
-
