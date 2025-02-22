@@ -11,6 +11,10 @@ class Decks::CardPolicy < ApplicationPolicy
   end
 
   def new?
+    create?
+  end
+
+  def create?
     user_is_owner?
   end
 

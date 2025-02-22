@@ -61,6 +61,11 @@ en:
         success: "Question was successfully deleted."
         error: "There was an error deleting this question."
 
+    cards:
+      create:
+        success: "Flashcard was successfully created."
+        error: "There was an error creating this flashcard."
+
     choices:
       create:
         success: "Choice was successfully created."
