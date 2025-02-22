@@ -30,7 +30,7 @@
         Flashcards
       </h2>
       <div class="flex gap-4 p-4">
-        <% deck.cards.each do |card| %>
+        <% deck.cards.select(&:persisted?).each do |card| %>
           <article class="flex flex-col p-6 w-full max-w-64 min-h-[400px] rounded-lg bg-blue-500 text-lg text-gray-900">
             <div class="flex items-center justify-end w-full">
               <span class="text-sm uppercase font-semibold mr-auto">Front</span>
