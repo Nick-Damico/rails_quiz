@@ -14,17 +14,18 @@ class Decks::CardsController < ApplicationController
 
   def create
     @card = authorize(@deck.cards.new(card_params))
-
-    if @card.save
-      flash[:notice] = t("flash.cards.create.success")
-      if params[:follow_up_action].nil? || params[:follow_up_action] == "new"
-        redirect_to new_deck_card_url(deck_id: @deck.id)
-      elsif params[:follow_up_action] == "show"
-        redirect_to author_deck_url(@deck)
-      end
-    else
+    unless @card.save
       flash.now[:alert] = t("flash.cards.create.error")
-      render :new, status: :unprocessable_entity
+      return render :new, status: :unprocessable_entity
+    end
+
+    flash[:notice] = t("flash.cards.create.success")
+    follow_up_action = params[:follow_up_action]
+
+    if follow_up_action.nil? || follow_up_action == "new"
+      redirect_to new_deck_card_url(deck_id: @deck.id)
+    elsif follow_up_action == "show"
+      redirect_to author_deck_url(@deck)
     end
   end
 
