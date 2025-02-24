@@ -54,26 +54,26 @@ class Author::DecksController < ApplicationController
 
   private
 
-  def deck_params
-    params.require(:deck).permit(:title, :description, :author_id)
-  end
-
-  def set_author
-    @author = current_user
-  end
-
-  def set_deck
-    @deck = Deck.find(params[:id])
-  end
-
-  def set_breacrumbs
-    add_breadcrumb("Design")
-    add_breadcrumb("Flashcard Decks", author_decks_path)
-    if @deck
-      add_breadcrumb(@deck.title, author_deck_path(@deck))
+    def deck_params
+      params.require(:deck).permit(:title, :description, :author_id)
     end
-    if form_render?
-      add_breadcrumb("#{params[:action].capitalize} Deck")
+
+    def set_author
+      @author = current_user
     end
-  end
+
+    def set_deck
+      @deck = Deck.find(params[:id])
+    end
+
+    def set_breacrumbs
+      add_breadcrumb("Design")
+      add_breadcrumb("Flashcard Decks", author_decks_path)
+      if @deck
+        add_breadcrumb(@deck.title, author_deck_path(@deck))
+      end
+      if form_render?
+        add_breadcrumb("#{params[:action].capitalize} Deck")
+      end
+    end
 end
