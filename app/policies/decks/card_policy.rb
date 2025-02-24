@@ -10,6 +10,10 @@ class Decks::CardPolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    user_is_owner?
+  end
+
   def new?
     create?
   end
@@ -18,7 +22,11 @@ class Decks::CardPolicy < ApplicationPolicy
     user_is_owner?
   end
 
-  def show?
+  def edit?
+    update?
+  end
+
+  def update?
     user_is_owner?
   end
 

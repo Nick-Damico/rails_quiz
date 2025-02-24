@@ -65,6 +65,9 @@ en:
       create:
         success: "Flashcard was successfully created."
         error: "There was an error creating this flashcard."
+      update:
+        success: "Flashcard was successfully updated."
+        error: "There was an error updating this flashcard."
 
     choices:
       create:

@@ -1,6 +1,9 @@
 <article data-action="click->decks--card#flip" data-decks--card-target="card" class="flex w-full max-w-64 min-h-[400px] rounded-lg text-lg text-gray-900">
-  <section data-decks--card-target="front" class="flex flex-col grow p-6 w-full bg-blue-500">
+  <section data-decks--card-target="front" class="flex flex-col w-full p-6 bg-blue-500 grow">
     <header class="flex items-center justify-end w-full">
+      <%= link_to edit_card_path(card), class: "flex rounded p-1 mr-1 items-center bg-blue-400" do %>
+        <%= render "icons/pencil", klass: "size-5" %>
+      <% end %>
       <span class="mr-auto text-sm font-semibold uppercase">Front</span>
       <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md">
         flip <%= render "icons/arrow_turn_right", klass: "size-6 pl-2" %>
@@ -10,14 +13,17 @@
       <%= card.front %>
     </p>
   </section>
-  <section data-decks--card-target="back" class="hidden flex-col grow p-6 w-full bg-blue-600">
+  <section data-decks--card-target="back" class="flex-col hidden w-full p-6 bg-blue-600 grow">
     <header class="flex items-center justify-end w-full">
+      <%= link_to edit_card_path(card), class: "flex rounded p-1 mr-1 items-center bg-blue-400" do %>
+        <%= render "icons/pencil", klass: "size-5" %>
+      <% end %>
       <span class="mr-auto text-sm font-semibold uppercase">Back</span>
       <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md">
         flip <%= render "icons/arrow_turn_right", klass: "size-6 pl-2" %>
       </button>
     </header>
-    <p class="flex items-center grow text-sm">
+    <p class="flex items-center text-sm grow">
       <%= card.back %>
     </p>
   </section>

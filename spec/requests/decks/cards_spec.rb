@@ -67,4 +67,66 @@ RSpec.describe "Decks::Cards", type: :request do
       end
     end
   end
+
+  describe "GET /edit" do
+    let!(:card) { create(:card, deck:) }
+
+    it "responds with HTTP status ok(200)" do
+      get edit_card_path(card)
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe "PUT /update" do
+    let!(:card) { create(:card, deck:) }
+
+    context "with valid params" do
+      let(:valid_params) do
+        {
+          card: {
+            front: "What is Ruby on Rails?",
+            back: "A web application framework written in Ruby",
+            deck_id: deck.id
+          }
+        }
+      end
+
+      context "update & add another" do
+        it "updates the card record and redirects to the new form" do
+          valid_params.merge!(follow_up_action: 'new')
+
+          expect {
+            put card_path(card), params: valid_params
+          }.to change(Decks::Card, :count).by(0)
+
+          expect(response).to redirect_to new_deck_card_url(deck_id: deck.id)
+          expect(flash[:notice]).to eq("Flashcard was successfully updated.")
+        end
+      end
+
+      context "update & return" do
+        it "updates the card record and redirects to the deck show view" do
+          valid_params.merge!(follow_up_action: 'show')
+
+          expect {
+            put card_path(card), params: valid_params
+          }.to change(Decks::Card, :count).by(0)
+
+          expect(response).to redirect_to author_deck_url(deck.id)
+          expect(flash[:notice]).to eq("Flashcard was successfully updated.")
+        end
+      end
+    end
+
+    xcontext "with invalid params" do
+      let(:invalid_params) { { question: { content: "", quiz_id: quiz.id } } }
+
+      it "responds with HTTP status unprocessable_entity(422)" do
+        put quiz_question_path(quiz, question), params: invalid_params
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
 end
