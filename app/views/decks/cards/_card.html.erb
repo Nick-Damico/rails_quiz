@@ -1,0 +1,24 @@
+<article data-action="click->decks--card#flip" data-decks--card-target="card" class="flex p-6 w-full max-w-64 min-h-[400px] rounded-lg bg-blue-500 text-lg text-gray-900">
+  <div data-decks--card-target="front" class="flex flex-col grow">
+    <div class="flex items-center justify-end w-full">
+      <span class="mr-auto text-sm font-semibold uppercase">Front</span>
+      <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md">
+        flip <%= render "icons/arrow_turn_right", klass: "size-6 pl-2" %>
+      </button>
+    </div>
+    <p class="flex items-center grow">
+      <%= card.front %>
+    </p>
+  </div>
+  <div data-decks--card-target="back" class="flex hidden flex-col grow">
+    <div class="flex items-center justify-end w-full">
+      <span class="mr-auto text-sm font-semibold uppercase">Back</span>
+      <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md">
+        flip <%= render "icons/arrow_turn_right", klass: "size-6 pl-2" %>
+      </button>
+    </div>
+    <p class="flex items-center grow text-md">
+      <%= card.back %>
+    </p>
+  </div>
+</article>
