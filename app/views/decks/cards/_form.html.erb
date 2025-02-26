@@ -7,22 +7,24 @@
         <%= card.persisted? ? "Edit" : "Create" %> Card
       </h2>
       <%= form_with model: [deck, card], url:, class: 'p-4' do |f| %>
-        <div class="flex gap-4 mb-4">
-          <div class="w-1/2">
+        <div class="flex flex-col sm:flex-row gap-4 mb-4">
+          <div class="w-full sm:w-1/2">
             <%= f.label :front, class: "flex uppercase" do %>
               <span class="mr-2 text-md">Card Front</span> <%= display_field_error(card, :front, class: 'mt-0') %>
             <% end %>
             <%= f.text_area :front, cols: 40, rows: 15, autofocus: true, placeholder: "Enter the question or term...", class: "bg-gray-800 text-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
           </div>
-          <div class="w-1/2">
+          <div class="w-full sm:w-1/2">
             <%= f.label :back, class: "flex uppercase" do %>
               <span class="mr-2 text-md">Card Front</span> <%= display_field_error(card, :front, class: 'mt-0') %>
             <% end %>
             <%= f.text_area :back, cols: 40, rows: 15, placeholder: "Enter the answer or definition...", class: "bg-gray-800 text-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
           </div>
         </div>
-        <%= f.submit "Save & Return", class: "btn btn-rounded btn-success uppercase" %>
-        <%= f.submit "Save & Add Another", class: "btn btn-rounded btn-success uppercase" %>
+        <div class="flex flex-col sm:flex-row gap-4 sm:gap-2">
+          <%= f.submit "Save & Add Another", class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
+          <%= f.submit "Save & Return", class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
+        </div>
       <% end %>
     </section>
   </div>
@@ -31,7 +33,7 @@
       <h2 class="py-2 text-xl text-center uppercase border-b border-gray-500 font-xl">
         Flashcards
       </h2>
-      <div data-controller="decks--card" class="flex gap-4 p-4">
+      <div data-controller="decks--card" class="flex flex-wrap justify-center md:justify-start gap-4 p-4">
         <% persisted_cards = deck.cards.select(&:persisted?) %>
         <% if persisted_cards.any? %>
           <%= render deck.cards.select(&:persisted?), deck: %>
