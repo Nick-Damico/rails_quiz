@@ -9,13 +9,15 @@
       <%= form_with model: [deck, card], url:, class: 'p-4' do |f| %>
         <div class="flex gap-4 mb-4">
           <div class="w-1/2">
-            <%= display_field_error(card, :front) %>
-            <%= f.label :front, "Card Front", class: "uppercase" %>
+            <%= f.label :front, class: "flex uppercase" do %>
+              <span class="mr-2 text-md">Card Front</span> <%= display_field_error(card, :front, class: 'mt-0') %>
+            <% end %>
             <%= f.text_area :front, cols: 40, rows: 15, autofocus: true, placeholder: "Enter the question or term...", class: "bg-gray-800 text-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
           </div>
           <div class="w-1/2">
-            <%= display_field_error(card, :back) %>
-            <%= f.label :back, "Card Back", class: "uppercase" %>
+            <%= f.label :back, class: "flex uppercase" do %>
+              <span class="mr-2 text-md">Card Front</span> <%= display_field_error(card, :front, class: 'mt-0') %>
+            <% end %>
             <%= f.text_area :back, cols: 40, rows: 15, placeholder: "Enter the answer or definition...", class: "bg-gray-800 text-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
           </div>
         </div>
