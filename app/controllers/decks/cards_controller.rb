@@ -31,11 +31,12 @@ class Decks::CardsController < ApplicationController
   def update
     @card.assign_attributes(card_params)
     @card = authorize(@card)
+    @deck = @card.deck
 
     set_breadcrumbs
     unless @card.save
       flash.now[:alert] = t("flash.cards.update.error")
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity and return
     end
 
     flash[:notice] = t("flash.cards.update.success")

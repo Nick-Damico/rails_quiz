@@ -119,11 +119,11 @@ RSpec.describe "Decks::Cards", type: :request do
       end
     end
 
-    xcontext "with invalid params" do
-      let(:invalid_params) { { question: { content: "", quiz_id: quiz.id } } }
+    context "with invalid params" do
+      let(:invalid_params) { { card: { front: "", back: card.back, deck_id: card.deck_id } } }
 
       it "responds with HTTP status unprocessable_entity(422)" do
-        put quiz_question_path(quiz, question), params: invalid_params
+        put card_path(card), params: invalid_params
 
         expect(response).to have_http_status(:unprocessable_entity)
       end
