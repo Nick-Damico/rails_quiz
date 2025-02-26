@@ -30,7 +30,12 @@
         Flashcards
       </h2>
       <div data-controller="decks--card" class="flex gap-4 p-4">
-        <%= render deck.cards.select(&:persisted?), deck: %>
+        <% persisted_cards = deck.cards.select(&:persisted?) %>
+        <% if persisted_cards.any? %>
+          <%= render deck.cards.select(&:persisted?), deck: %>
+        <% else %>
+          <p class="w-full italic text-center text-gray-500">No cards available. Use form above to add cards to deck.</p>
+        <% end %>
       </div>
     </section>
   </div>
