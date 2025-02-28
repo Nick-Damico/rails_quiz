@@ -1,27 +1,31 @@
-<article data-decks--card-target="card" class="relative flex w-full max-w-64 min-h-[400px] rounded-lg text-lg text-gray-900">
-  <nav class="absolute left-7 top-14 p-1 w-auto rounded-sm bg-blue-400">
+<article data-decks--card-target="card" data-action="click->decks--card#dismissMenu" class="relative flex w-full max-w-64 min-h-[400px] rounded-lg text-lg text-gray-900">
+  <nav data-decks--card-target="menu" class="absolute hidden w-1/2 p-1 bg-blue-400 rounded-sm left-7 top-16">
     <ul class="flex flex-col">
-      <li class="flex hover:bg-blue-500 py-1 px-2">
-        <span class="w-6 text-left">
-          <%= render "icons/pencil", klass: "size-5" %>
-        </span>
-        <span class="grow ml-1 text-sm">edit</span>
+      <li class="flex px-2 py-1 hover:bg-blue-500">
+        <%= link_to edit_card_path(card), class: "flex grow transition duration-500" do %>
+          <span class="flex w-6 text-left">
+            <%= render "icons/pencil", klass: "size-5" %>
+          </span>
+          <span class="ml-1 text-sm grow">edit</span>
+        <% end %>
       </li>
-      <li class="flex hover:bg-blue-500 py-1 px-2">
-        <span class="w-6 text-left">
-          <%= render "icons/x_circle", klass: "text-left size-5" %>
-        </span>
-        <span class="grow ml-1 text-sm">remove</span>
+      <li class="flex px-2 py-1 hover:bg-blue-500">
+        <%= link_to edit_card_path(card), class: "flex grow" do %>
+          <span class="flex w-6 text-left">
+            <%= render "icons/x_circle", klass: "text-left size-5" %>
+          </span>
+          <span class="ml-1 text-sm grow">remove</span>
+        <% end %>
       </li>
     </ul>
   </nav>
   <section data-decks--card-target="front" class="flex flex-col w-full p-6 bg-blue-500 grow">
     <header class="flex items-center justify-end w-full">
-      <button class="flex rounded p-1 mr-1 items-center">
+      <button class="flex items-center p-1 mr-1 rounded" data-action="click->decks--card#displayMenu:stop">
         <%= render "icons/three_dots_horizontal", klass: "size-5" %>
       </button>
       <span class="mr-auto text-sm font-semibold uppercase">Front</span>
-      <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->decks--card#flip">
+      <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->decks--card#flip:stop">
         flip <%= render "icons/arrow_turn_right", klass: "size-6 pl-2" %>
       </button>
     </header>
@@ -31,11 +35,11 @@
   </section>
   <section data-decks--card-target="back" class="flex-col hidden w-full p-6 bg-blue-600 grow">
     <header class="flex items-center justify-end w-full">
-      <button class="flex rounded p-1 mr-1 items-center">
+      <button class="flex items-center p-1 mr-1 rounded" data-action="click->decks--card#displayMenu:stop">
         <%= render "icons/three_dots_horizontal", klass: "size-5" %>
       </button>
       <span class="mr-auto text-sm font-semibold uppercase">Back</span>
-      <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->decks--card#flip">
+      <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->decks--card#flip:stop">
         flip <%= render "icons/arrow_turn_right", klass: "size-6 pl-2" %>
       </button>
     </header>

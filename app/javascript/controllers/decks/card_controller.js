@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="decks--card"
 export default class extends Controller {
-  static targets = ["card", "front", "back"];
+  static targets = ["card", "front", "back", "menu"];
 
   connect() {}
 
@@ -26,5 +26,18 @@ export default class extends Controller {
       cardBack.classList.remove("flex");
       cardBack.classList.add("hidden");
     }
+  }
+
+  displayMenu() {
+    if (!this.hasMenuTarget) return;
+
+    this.menuTarget.classList.toggle("hidden")
+  }
+
+  dismissMenu() {
+    if (!this.hasMenuTarget) return;
+    if (this.menuTarget.classList.contains("hidden")) return; 
+
+    this.menuTarget.classList.add("hidden") 
   }
 }
