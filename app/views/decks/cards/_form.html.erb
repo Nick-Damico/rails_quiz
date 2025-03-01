@@ -36,7 +36,7 @@
       <div data-controller="decks--card" class="flex flex-wrap justify-center md:justify-start gap-4 p-4">
         <% persisted_cards = deck.cards.select(&:persisted?) %>
         <% if persisted_cards.any? %>
-          <%= render deck.cards.select(&:persisted?), deck: %>
+          <%= render deck.cards.select(&:persisted?), deck: , selected: card%>
         <% else %>
           <p class="w-full italic text-center text-gray-500">No cards available. Use form above to add cards to deck.</p>
         <% end %>
