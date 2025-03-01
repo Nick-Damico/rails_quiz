@@ -68,6 +68,9 @@ en:
       update:
         success: "Flashcard was successfully updated."
         error: "There was an error updating this flashcard."
+      destroy:
+        success: "Flashcard was successfully deleted."
+        error: "There was an error deleting the flashcard."
 
     choices:
       create:

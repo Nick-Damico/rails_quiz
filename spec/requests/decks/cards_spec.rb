@@ -129,4 +129,17 @@ RSpec.describe "Decks::Cards", type: :request do
       end
     end
   end
+
+  describe "DELETE /destroy" do
+    let!(:card) { create(:card, deck:) }
+
+    it "deletes the card record" do
+      expect {
+        delete card_path(card)
+      }.to change(Decks::Card, :count).by(-1)
+
+      expect(response).to redirect_to author_deck_url(deck)
+      expect(flash[:notice]).to eq("Flashcard was successfully deleted.")
+    end
+  end
 end

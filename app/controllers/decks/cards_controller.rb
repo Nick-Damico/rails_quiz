@@ -1,6 +1,6 @@
 class Decks::CardsController < ApplicationController
   before_action :set_deck, only: %i[new create]
-  before_action :set_card, only: %i[show edit update]
+  before_action :set_card, only: %i[show edit update destroy]
   before_action :set_breadcrumbs, only: %i[new create]
 
   def show
@@ -41,6 +41,18 @@ class Decks::CardsController < ApplicationController
 
     flash[:notice] = t("flash.cards.update.success")
     handle_follow_up_action(@card.deck, params[:follow_up_action])
+  end
+
+  def destroy
+    @card = authorize(@card)
+    @deck = @card.deck
+    unless @card.destroy
+      flash.now[:alert] = t("flash.cards.destory.erro")
+      render :edit, status: :unprocessable_entity and return
+    end
+
+    flash[:notice] = t("flash.cards.destroy.success")
+    redirect_to author_deck_url(@deck)
   end
 
   private
