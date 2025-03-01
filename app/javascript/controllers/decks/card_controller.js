@@ -4,15 +4,13 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["card", "front", "back", "menu"];
 
-  connect() {}
-
   flip(e) {
-    let card = this.cardTargets.find((card) => card.contains(e.target));
+    let card = this._getCardForTarget(e.target);
     if (!card) return;
 
     let cardFront = this.frontTargets.find((front) => card.contains(front));
     let cardBack = this.backTargets.find((back) => card.contains(back));
-    if (!cardFront || !cardBack) return;
+    if (!(cardFront || cardBack)) return;
 
     // returns true if the class was added, false if it was removed
     if (cardFront.classList.toggle("hidden")) {
@@ -28,16 +26,32 @@ export default class extends Controller {
     }
   }
 
-  displayMenu() {
-    if (!this.hasMenuTarget) return;
+  displayMenu(e) {
+    if (!this.hasCardTarget || !this.hasMenuTarget) return;
 
-    this.menuTarget.classList.toggle("hidden")
+    let card = this._getCardForTarget(e.target);
+    if (!card) return;
+
+    let menu = this._getCardMenu(card);
+    if (!menu) return;
+
+    menu.classList.toggle("hidden");
   }
 
-  dismissMenu() {
-    if (!this.hasMenuTarget) return;
-    if (this.menuTarget.classList.contains("hidden")) return; 
+  dismissMenu(e) {
+    let card = this._getCardForTarget(e.target);
+    let menu = this._getCardMenu(card);
+    if (!menu) return;
+    if (menu.classList.contains("hidden")) return;
 
-    this.menuTarget.classList.add("hidden") 
+    menu.classList.add("hidden");
+  }
+
+  _getCardMenu(card) {
+    return this.menuTargets.find((menu) => card.contains(menu));
+  }
+
+  _getCardForTarget(target) {
+    return this.cardTargets.find((card) => card.contains(target));
   }
 }
