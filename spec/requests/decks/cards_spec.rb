@@ -138,8 +138,15 @@ RSpec.describe "Decks::Cards", type: :request do
         delete card_path(card)
       }.to change(Decks::Card, :count).by(-1)
 
-      expect(response).to redirect_to author_deck_url(deck)
       expect(flash[:notice]).to eq("Flashcard was successfully deleted.")
+    end
+
+    context "when referer is absent" do
+      it "redirects to the default decks/:deck_id/cards/new" do
+        delete card_path(card)
+
+        expect(response).to redirect_to(new_deck_card_path(deck_id: deck.id))
+      end
     end
   end
 end

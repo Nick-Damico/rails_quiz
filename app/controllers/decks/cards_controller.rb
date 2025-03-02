@@ -52,7 +52,7 @@ class Decks::CardsController < ApplicationController
     end
 
     flash[:notice] = t("flash.cards.destroy.success")
-    redirect_to author_deck_url(@deck)
+    redirect_back_or_to new_deck_card_url(@deck)
   end
 
   private
