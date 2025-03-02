@@ -6,14 +6,14 @@
     <ul class="flex flex-col">
       <li class="flex px-2 py-1 hover:bg-blue-500">
         <%= link_to edit_card_path(card), class: "flex grow transition duration-500" do %>
-          <span class="flex w-6 text-left">
+          <span class="flex w-6 text-left" aria-label="Edit card">
             <%= render "icons/pencil", klass: "size-5" %>
           </span>
           <span class="ml-1 text-sm grow">edit</span>
         <% end %>
       </li>
       <li class="flex px-2 py-1 hover:bg-blue-500">
-        <%= link_to edit_card_path(card), class: "flex grow" do %>
+        <%= button_to card_path(card), class: "flex grow", method: :delete, aria: { label: 'Delete card' } do %>
           <span class="flex w-6 text-left">
             <%= render "icons/x_circle", klass: "text-left size-5" %>
           </span>

@@ -1,12 +1,19 @@
-<li class="flex items-center border border-white p-2">
+<li class="flex items-center gap-3 p-2 border border-white">
   <%= card.front %>
-  <div class="inline-flex text-xs border border-gray-400 ml-auto">
-    <%= link_to 'edit', edit_card_path(card), class: 'btn-sm btn-warning text-black px-2 py-2' %>
-    <%#= link_to 'delete', card_path(card),
+  <div class="inline-flex ml-auto text-xs border border-gray-400">
+    <%= link_to edit_card_path(card), class: 'btn-warning px-2 py-2 text-black', aria: { label: "Edit card" } do %>
+      <span aria-hidden="true">
+        <%= render "icons/pencil", klass: "size-4" %>
+      </span>
+    <% end %>
+    <%= link_to card_path(card),
       data: {
         turbo_confirm: t("buttons.cards.delete"),
         turbo_method: :delete
       },
-      class: 'bg-alert text-white px-2 py-2' %>
+      aria: { label: "Delete card" },
+      class: 'bg-alert text-white px-2 py-2' do %>
+      <%= render "icons/x_circle", klass: "size-4" %>
+    <% end %>
   </div>
 </li>
