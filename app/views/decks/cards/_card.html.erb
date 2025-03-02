@@ -1,8 +1,8 @@
-<article data-decks--card-target="card" data-action="click->decks--card#dismissMenu" class="relative flex w-full max-w-64 min-h-[400px] rounded-lg text-lg text-gray-900">
+<article data-decks--card-target="card" data-action="click->decks--card#dismissMenu" class="relative flex w-full max-w-72 min-h-[400px] rounded-lg text-lg text-gray-900">
   <% if selected == card %>
-    <div class="absolute z-10 text-sm top-1 left-6 bg-warning px-2 font-light">In edit mode</div>
+    <div class="absolute z-10 px-2 text-sm font-light top-1 left-6 bg-warning">In edit mode</div>
   <% end %>
-  <nav data-decks--card-target="menu" class="absolute hidden w-1/2 p-1 bg-blue-400 rounded-sm left-7 top-16">
+  <nav data-decks--card-target="menu" class="absolute hidden w-1/2 p-1 bg-blue-400 rounded-sm left-7 top-16" aria-label="Card menu">
     <ul class="flex flex-col">
       <li class="flex px-2 py-1 hover:bg-blue-500">
         <%= link_to edit_card_path(card), class: "flex grow transition duration-500" do %>
@@ -46,7 +46,7 @@
         flip <%= render "icons/arrow_turn_right", klass: "size-6 pl-2" %>
       </button>
     </header>
-    <p class="flex items-center text-sm grow">
+    <p class="flex items-center text-md grow">
       <%= card.back %>
     </p>
   </section>
