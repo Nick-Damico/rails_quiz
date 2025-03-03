@@ -1,0 +1,28 @@
+<%= render "shared/breadcrumbs" %>
+<section>
+  <div class="flex items-center mb-4">
+    <h2 class="text-2xl font-semibold">Community FlashCard Decks</h2>
+  </div>
+  <div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-3 py-3">
+            Title
+          </th>
+          <th scope="col" class="px-3 py-3">
+            Description
+          </th>
+          <th scope="col" class="px-3 py-3 text-right">
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @decks.each do |deck| %>
+          <%= render 'deck', deck: %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</section>

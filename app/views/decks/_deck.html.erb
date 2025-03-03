@@ -1,0 +1,13 @@
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+  <th scope="row" class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+    <%= deck.title %>
+  </th>
+  <td class="px-3 py-2">
+    <%= deck.description %>
+  </td>
+  <td class="px-3 py-2 text-right">
+    <div class="inline-flex border border-gray-400">
+      <%= link_to 'view', "#", class: 'bg-primary text-white px-2 py-2' %>
+    </div>
+  </td>
+</tr>

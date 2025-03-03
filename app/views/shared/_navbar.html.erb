@@ -30,28 +30,38 @@
               <%= render "icons/chevron_down", klass: "group-hover:hidden size-5" %>
               <%= render "icons/chevron_up", klass: "hidden group-hover:block size-5" %>
             </button>
-            <%# BEGIN Design sub-navigation %>
             <ul class="hidden mx-4 border border-gray-700 md:ml-4 group-hover:block md:absolute md:bg-gray-900 md:p-3 md:z-50 md:rounded md:top-12">
-              <li>
-                <%= link_to author_quizzes_path, class: "flex items-center py-4 px-4 text-gray-900 rounded hover:bg-gray-800 md:border-0 dark:text-white hover:text-green-500" do %>
-                  <%= render "icons/clipboard_doc", klass: "size-5 mr-1" %> Quizzes
-                <% end %>
-              </li>
               <li>
                 <%= link_to author_decks_path, class: "flex items-center py-4 px-4 text-gray-900 rounded hover:bg-gray-800 md:border-0 dark:text-white hover:text-green-500" do %>
                   <%= render "icons/flash", klass: "size-5 mr-1" %> Flashcards
                 <% end %>
               </li>
+              <li>
+                <%= link_to author_quizzes_path, class: "flex items-center py-4 px-4 text-gray-900 rounded hover:bg-gray-800 md:border-0 dark:text-white hover:text-green-500" do %>
+                  <%= render "icons/clipboard_doc", klass: "size-5 mr-1" %> Quizzes
+                <% end %>
+              </li>
             </ul>
           </li>
-          <%# END Design sub-navigation %>
-          <li>
-            <a
-              href="<%= quizzes_path() %>"
-              class="block px-4 py-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 hover:text-green-500"
-            >
-              Study
-            </a>
+          <li class="relative group">
+            <button class="flex items-center px-4 py-4">
+              <span class="mr-1">Study</span>
+              <%= render "icons/chevron_down", klass: "group-hover:hidden size-5" %>
+              <%= render "icons/chevron_up", klass: "hidden group-hover:block size-5" %>
+            </button>
+            <%# BEGIN Design sub-navigation %>
+            <ul class="hidden mx-4 border border-gray-700 md:ml-4 group-hover:block md:absolute md:bg-gray-900 md:p-3 md:z-50 md:rounded md:top-12">
+              <li>
+                <%= link_to decks_path, class: "flex items-center py-4 px-4 text-gray-900 rounded hover:bg-gray-800 md:border-0 dark:text-white hover:text-green-500" do %>
+                  <%= render "icons/flash", klass: "size-5 mr-1" %> Flashcards
+                <% end %>
+              </li>
+              <li>
+                <%= link_to quizzes_path, class: "flex items-center py-4 px-4 text-gray-900 rounded hover:bg-gray-800 md:border-0 dark:text-white hover:text-green-500" do %>
+                  <%= render "icons/clipboard_doc", klass: "size-5 mr-1" %> Quizzes
+                <% end %>
+              </li>
+            </ul>
           </li>
         <% end %>
         <li>
