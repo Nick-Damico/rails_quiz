@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :users, only: %i[show update]
   end
 
-  resources :decks, only: %i[index] do
+  resources :decks, only: %i[index show] do
     resources :cards, shallow: true, module: :decks
   end
 

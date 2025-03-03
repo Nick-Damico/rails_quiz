@@ -1,0 +1,42 @@
+<%= render "shared/breadcrumbs" %>
+<div class="flex flex-col space-y-2 md:space-y-2 w-full lg:w-1/2 max-w-[600px]">
+  <section class="flex flex-col self-start w-full pt-2 bg-gray-800 rounded">
+    <div class="inline-flex items-center p-1 px-4 mb-4 bg-blue-500">
+      <h1 class="text-4xl font-semi-bold">
+        <%= @deck.title %> <br>
+      </h1>
+    </div>
+    <div class="mb-2 ml-4 font-semibold">
+      <p class="uppercase">Author:</p>
+      <p class="ml-3 italic font-light"><%= @deck.author.username %></p>
+    </div>
+    <div class="mb-12 ml-4 font-semibold">
+      <p class="uppercase">Description:</p>
+      <p class="ml-3 italic font-light"><%= @deck.description %></p>
+    </div>
+    <div class="flex justify-between space-x-4 border-t border-gray-500">
+      <p id="quiz-duration" class="flex-1 p-1 text-xl font-light text-center uppercase">
+        <span class="text-2xl">
+          <%= format_as_two_digits(0) %>
+        </span><br>
+        Minutes
+      </p>
+      <p id="quiz-question-count" class="flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500">
+        <span class="text-2xl">
+          <%= format_as_two_digits(10) %>
+        </span><br>
+        Questions
+      </p>
+    </div>
+  </section>
+  <div class="flex flex-col p-4 space-y-4 border border-gray-500 rounded md:flex-row md:space-y-0 md:space-x-4">
+    <%= button_to "#",
+                    params: { deck: {} },
+                    class: "flex items-center justify-center btn btn-primary rounded" do %>
+      <%= render "icons/play_circle", klass: "size-5 mr-1" %> Review Deck
+    <% end %>
+    <%= link_to "#", class: "flex items-center justify-center btn btn-success rounded" do %>
+      <%= render "icons/plus", klass: "size-5 mr-1" %> Add to Study Plan
+    <% end %>
+  </div>
+</div>

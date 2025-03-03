@@ -9,4 +9,8 @@ class DeckPolicy < ApplicationPolicy
       @scope.all
     end
   end
+
+  def show?
+    user.present?
+  end
 end
