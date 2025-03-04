@@ -16,16 +16,17 @@
     </div>
     <div class="flex justify-between space-x-4 border-t border-gray-500">
       <p id="quiz-duration" class="flex-1 p-1 text-xl font-light text-center uppercase">
+        <% minutes = seconds_to_minutes(@deck.time_to_complete) %>
         <span class="text-2xl">
-          <%= format_as_two_digits(0) %>
+          <%= format_as_two_digits(minutes) %>
         </span><br>
-        Minutes
+        <%= 'minute'.pluralize(minutes) %>
       </p>
       <p id="quiz-question-count" class="flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500">
         <span class="text-2xl">
-          <%= format_as_two_digits(10) %>
+          <%= format_as_two_digits(@deck.cards.count) %>
         </span><br>
-        Questions
+        <%= 'question'.pluralize(@deck.cards.count) %>
       </p>
     </div>
   </section>

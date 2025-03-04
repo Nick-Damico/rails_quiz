@@ -9,7 +9,7 @@ FactoryBot.define do
     end
 
     after(:create) do |deck, evaluator|
-      create_list(:deck_card, evaluator.card_count, deck:)
+      create_list(:card, evaluator.card_count, deck:)
     end
   end
 
