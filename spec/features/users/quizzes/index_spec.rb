@@ -9,8 +9,7 @@ RSpec.describe "user quizzes index page", type: :feature do
     before do
       sign_in user
 
-      visit root_url
-      click_link "Study"
+      visit quizzes_path
     end
 
     scenario "user can navigate to quizzes page" do

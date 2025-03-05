@@ -20,13 +20,13 @@ RSpec.describe "User quiz show view", type: :feature do
 
     scenario "user can see estimated time to complete" do
       within("p#quiz-duration") do
-        expect(page).to have_content("01 Minutes")
+        expect(page).to have_content("01 minute")
       end
     end
 
     scenario "user can see question count" do
       within("p#quiz-question-count") do
-        expect(page).to have_content("02 Questions")
+        expect(page).to have_content("02 questions")
       end
     end
 
