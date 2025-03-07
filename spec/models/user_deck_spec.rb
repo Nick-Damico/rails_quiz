@@ -5,4 +5,5 @@ RSpec.describe UserDeck, type: :model do
 
   it { should belong_to(:user) }
   it { should belong_to(:deck) }
+  it { should have_many(:user_deck_cards) }
 end
