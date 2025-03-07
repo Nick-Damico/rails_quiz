@@ -111,6 +111,11 @@ en:
         success: "Your answer was recorded."
         error: "Question requires an answer. Please select an answer below."
 
+    user_decks:
+      create:
+        success: "Flashcard deck study session started."
+        error: "There was an error starting this study session. Refresh page and try again."
+
   buttons:
     back: "Go Back"
 
