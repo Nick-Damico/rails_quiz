@@ -33,7 +33,7 @@
       <h2 class="py-2 text-xl text-center uppercase border-b border-gray-500 font-xl">
         Flashcards
       </h2>
-      <div data-controller="decks--card" class="flex flex-wrap justify-center gap-4 p-4 md:justify-start">
+      <div data-controller="decks--edit-card" class="flex flex-wrap justify-center gap-4 p-4 md:justify-start">
         <% persisted_cards = deck.cards.select(&:persisted?) %>
         <% if persisted_cards.any? %>
           <%= render deck.cards.select(&:persisted?), deck: , selected: card%>
