@@ -1,5 +1,4 @@
 class Decks::Card < ApplicationRecord
-  # extend ActiveModel::Naming
   self.table_name = "cards"
 
   belongs_to :deck
