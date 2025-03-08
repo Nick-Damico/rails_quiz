@@ -8,6 +8,7 @@ class UserDecksController < ApplicationController
 
   def create
     @user_deck = authorize(UserDeck.new(user_deck_params))
+    @user_deck.build_user_cards
 
     if @user_deck.save
       flash[:notice] = t("flash.user_decks.create.success")
