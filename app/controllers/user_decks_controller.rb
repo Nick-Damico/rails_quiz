@@ -4,6 +4,10 @@ class UserDecksController < ApplicationController
 
   def show
     @user_deck = authorize(@user_deck)
+
+    set_breadcrumbs
+    @card = @user_deck.cards.first
+    @card_ids = @user_deck.cards.pluck(:id)
   end
 
   def create
@@ -20,6 +24,13 @@ class UserDecksController < ApplicationController
   end
 
   private
+
+    def set_breadcrumbs
+      add_breadcrumb("Study")
+      add_breadcrumb("Decks", decks_path)
+      add_breadcrumb(@user_deck.deck.title, deck_path(@user_deck.deck))
+      add_breadcrumb("Review")
+    end
 
     def user_deck_params
       params.require(:user_deck).permit(:user_id, :deck_id)

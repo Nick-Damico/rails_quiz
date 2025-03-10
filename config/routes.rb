@@ -43,6 +43,6 @@ Rails.application.routes.draw do
     resources :choices, only: %i[create destroy edit new update], module: :questions
   end
 
-  resources :user_decks, only: %i[show create] do
-  end
+  resources :user_decks, only: %i[show create]
+  resources :user_deck_cards, only: %i[show]
 end
