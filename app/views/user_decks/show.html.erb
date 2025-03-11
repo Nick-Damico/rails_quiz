@@ -3,5 +3,9 @@
 </div>
 <div data-controller="user-decks--review-card" class="flex flex-col items-center h-full">
   <h2 class="mb-6 text-2xl">Studying <%= @user_deck.deck.title %></h2>
-  <%= render "review_card", card: @card, card_ids: @card_ids %>
+  <%=
+    render "review_card",
+    card: @user_deck_card.card,
+    user_deck_card: @user_deck_card,
+    user_deck_card_ids: @user_deck_card_ids %>
 </div>

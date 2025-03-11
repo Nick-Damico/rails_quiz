@@ -1,17 +1,17 @@
 module UserDeckHelper
-  def first_card(card, ids)
-    ids.first == card.id
+  def first_card(user_deck_card, ids)
+    ids.first == user_deck_card.id
   end
 
-  def last_card(card, ids)
-    ids.last == card.id
+  def last_card(user_deck_card, ids)
+    ids.last == user_deck_card.id
   end
 
-  def prev_card_id(card, ids)
-    ids[id_index(card.id, ids) - 1]
+  def prev_card_id(user_deck_card, ids)
+    ids[id_index(user_deck_card.id, ids) - 1]
   end
 
-  def next_card_id(card, ids)
-    next_id(card.id, ids)
+  def next_card_id(user_deck_card, ids)
+    next_id(user_deck_card.id, ids)
   end
 end

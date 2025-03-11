@@ -6,8 +6,8 @@ class UserDecksController < ApplicationController
     @user_deck = authorize(@user_deck)
 
     set_breadcrumbs
-    @card = @user_deck.cards.first
-    @card_ids = @user_deck.cards.pluck(:id)
+    @user_deck_card = @user_deck.user_deck_cards.first
+    @user_deck_card_ids = @user_deck.user_deck_card_ids
   end
 
   def create
@@ -41,6 +41,6 @@ class UserDecksController < ApplicationController
     end
 
     def set_user_deck
-      @user_deck = UserDeck.find(params[:id])
+      @user_deck = UserDeck.includes(:user_deck_cards).find(params[:id])
     end
 end

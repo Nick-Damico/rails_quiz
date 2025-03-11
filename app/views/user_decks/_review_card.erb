@@ -1,15 +1,15 @@
 <div data-user-decks--review-card-target="card" class="relative flex w-full max-w-72 min-h-[400px]">
-  <% unless first_card(card, card_ids) %>
+  <% unless first_card(user_deck_card, user_deck_card_ids) %>
     <div class="overflow-hidden absolute -left-12 top-[50%] -translate-y-[50%] text-gray-500 bg-gray-900 hover:text-white hover:bg-gray-800 cursor-pointer py-6 px-2 hover:py-8 rounded-tl-lg rounded-bl-lg transition-all duration-200 ease-in">
-      <%= link_to user_deck_card_path(prev_card_id(card, card_ids)), class: "absolute inset-0" do %>
+      <%= link_to user_deck_card_path(prev_card_id(user_deck_card, user_deck_card_ids)), class: "absolute inset-0" do %>
         <span class="sr-only">Previous Card</span>
       <% end %>
       <%= render "icons/chevron_left" %>
     </div>
   <% end %>
-  <% unless last_card(card, card_ids) %>
+  <% unless last_card(user_deck_card, user_deck_card_ids) %>
     <div class="overflow-hidden absolute -right-12 top-[50%] -translate-y-[50%] text-gray-500 bg-gray-900 hover:text-white hover:bg-gray-800 cursor-pointer py-6 px-2 hover:py-8 rounded-tr-lg rounded-br-lg transition-all duration-200 ease-in">
-      <%= link_to user_deck_card_path(next_card_id(card, card_ids)), class: "absolute inset-0" do %>
+      <%= link_to user_deck_card_path(next_card_id(user_deck_card, user_deck_card_ids)), class: "absolute inset-0" do %>
         <span class="sr-only">Next Card</span>
       <% end %>
       <%= render "icons/chevron_right" %>
