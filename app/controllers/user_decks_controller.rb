@@ -6,7 +6,7 @@ class UserDecksController < ApplicationController
     @user_deck = authorize(@user_deck)
 
     set_breadcrumbs
-    @user_deck_card = @user_deck.user_deck_cards.first
+    @user_deck_card = @user_deck.find_card_with_fallback(params[:card_id])
     @user_deck_card_ids = @user_deck.user_deck_card_ids
   end
 

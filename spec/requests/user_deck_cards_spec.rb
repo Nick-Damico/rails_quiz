@@ -8,10 +8,12 @@ RSpec.describe "UserDeckCards", type: :request do
   before { sign_in user }
 
   describe "GET /show" do
-    it "returns http success" do
-      get user_deck_card_path(user_deck_card)
+    context "response format HTML" do
+      it "returns http redirect" do
+        get user_deck_card_path(user_deck_card)
 
-      expect(response).to have_http_status(:success)
+        expect(response).to redirect_to(user_deck_url(user_deck))
+      end
     end
   end
 end
