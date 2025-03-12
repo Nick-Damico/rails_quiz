@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UserDeck, type: :model do
-  let!(:user_deck) { create(:user_deck) }
+  let!(:user_deck) { create(:user_deck, :with_user_deck_cards) }
 
   it { should belong_to(:user) }
   it { should belong_to(:deck) }
@@ -10,8 +10,6 @@ RSpec.describe UserDeck, type: :model do
   describe "#build_user_cards" do
     context "with persisted user_deck" do
       it "builds user_deck_cards for all cards in the deck" do
-        user_deck.build_user_cards
-
         expect(user_deck.user_deck_cards.size).to eq(user_deck.cards.size)
       end
     end
