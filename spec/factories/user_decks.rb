@@ -2,5 +2,12 @@ FactoryBot.define do
   factory :user_deck do
     user { create(:user) }
     deck { create(:deck, card_count: 2) }
+
+    trait :with_user_deck_cards do
+      after(:create) do |user_deck|
+        user_deck.build_user_cards
+        user_deck.save!
+      end
+    end
   end
 end
