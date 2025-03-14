@@ -1,5 +1,5 @@
 <%= turbo_frame_tag :review_card do %>
-  <div data-user-decks--review-card-target="card" class="relative flex w-full max-w-72 min-h-[400px]">
+  <div data-user-decks--review-card-target="card" class="relative flex w-72 min-h-[400px]">
     <% unless first_card(user_deck_card, user_deck_card_ids) %>
       <div class="overflow-hidden absolute -left-12 top-[50%] -translate-y-[50%] text-gray-500 bg-gray-900 hover:text-white hover:bg-gray-800 cursor-pointer py-6 px-2 hover:py-8 rounded-tl-lg rounded-bl-lg transition-all duration-200 ease-in">
         <%= link_to user_deck_card_path(prev_card_id(user_deck_card, user_deck_card_ids)), class: "absolute inset-0" do %>
@@ -16,7 +16,7 @@
         <%= render "icons/chevron_right" %>
       </div>
     <% end %>
-    <article data-user-decks--review-card-target="front" class="flex flex-col p-6 text-lg text-gray-900 bg-blue-500 rounded-lg grow">
+    <article data-user-decks--review-card-target="front" class="flex flex-col w-full p-6 text-lg text-gray-900 bg-blue-500 rounded-lg">
       <header class="flex items-center justify-end w-full">
         <span class="mr-auto text-sm font-semibold uppercase">Front</span>
         <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->user-decks--review-card#flip:stop">
@@ -27,7 +27,7 @@
         <%= card.front %>
       </p>
     </article>
-    <article data-user-decks--review-card-target="back" class="flex-col hidden p-6 text-lg text-gray-900 bg-blue-600 rounded-lg grow">
+    <article data-user-decks--review-card-target="back" class="flex-col hidden w-full p-6 text-lg text-gray-900 bg-blue-600 rounded-lg">
       <header class="flex items-center justify-end w-full">
         <span class="mr-auto text-sm font-semibold uppercase">Back</span>
         <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->user-decks--review-card#flip:stop">
