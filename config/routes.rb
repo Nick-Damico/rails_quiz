@@ -44,5 +44,5 @@ Rails.application.routes.draw do
   end
 
   resources :user_decks, only: %i[show create]
-  resources :user_deck_cards, only: %i[show]
+  resources :user_deck_cards, only: %i[]
 end
