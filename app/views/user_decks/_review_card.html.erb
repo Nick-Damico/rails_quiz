@@ -8,7 +8,14 @@
         <%= render "icons/chevron_left" %>
       </div>
     <% end %>
-    <% unless last_card(user_deck_card, user_deck_card_ids) %>
+    <% if last_card(user_deck_card, user_deck_card_ids) %>
+      <div class="group overflow-hidden absolute -right-12 top-[50%] -translate-y-[50%]  bg-gray-900 hover:bg-emerald-600 cursor-pointer py-6 px-2 hover:py-8 rounded-tr-lg rounded-br-lg transition-all duration-200 ease-in">
+        <%= link_to user_deck_path(user_deck_card.user_deck_id), class: "absolute inset-0", title: 'Complete review', data: { turbo_method: :patch } do %>
+          <span class="sr-only">Complete Review</span>
+        <% end %>
+        <%= render "icons/checkmark", klass: "size-6 text-gray-500 group-hover:text-white transition-all duration-200 ease-in" %>
+      </div>
+    <% else %>
       <div class="overflow-hidden absolute -right-12 top-[50%] -translate-y-[50%] text-gray-500 bg-gray-900 hover:text-white hover:bg-gray-800 cursor-pointer py-6 px-2 hover:py-8 rounded-tr-lg rounded-br-lg transition-all duration-200 ease-in">
         <%= link_to user_deck_path(user_deck_card.user_deck_id, card_id: next_card_id(user_deck_card, user_deck_card_ids)), class: "absolute inset-0" do %>
           <span class="sr-only">Next Card</span>
