@@ -3,4 +3,6 @@ class UserDeckCard < ApplicationRecord
   belongs_to :card, class_name: "Decks::Card"
 
   delegate :deck, to: :user_deck
+
+  enum :card_rating, { not_rated: 0, correct: 1, incorrect: 2 }
 end
