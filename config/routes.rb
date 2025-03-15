@@ -43,7 +43,7 @@ Rails.application.routes.draw do
     resources :choices, only: %i[create destroy edit new update], module: :questions
   end
 
-  resources :user_decks, only: %i[show create] do
+  resources :user_decks, only: %i[show create update] do
     get :summaries, to: "user_decks/summaries#show"
   end
 
