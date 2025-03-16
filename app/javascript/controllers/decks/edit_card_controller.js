@@ -1,4 +1,4 @@
-import CardController from "../card_controller";
+import CardController from "controllers/card_controller";
 
 // Connects to data-controller="decks--card"
 export default class extends CardController {
