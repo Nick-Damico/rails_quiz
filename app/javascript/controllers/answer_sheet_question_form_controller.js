@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
+import { removeDisabledAttribute } from "helpers/html_helper";
 
 // Connects to data-controller="answer-sheet-question-form"
 export default class extends Controller {
@@ -6,7 +7,7 @@ export default class extends Controller {
 
   enableSubmit() {
     if (this.hasSubmitButtonTarget) {
-      this.submitButtonTarget.removeAttribute("disabled");
+      removeDisabledAttribute(this.submitButtonTarget);
     }
   }
 }
