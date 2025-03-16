@@ -4,6 +4,10 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["card", "front", "back"];
 
+  static values = {
+    cardFlipped: Boolean,
+  };
+
   flip(e) {
     let card = this._getCardForTarget(e.target);
     if (!card) return;
@@ -24,6 +28,14 @@ export default class extends Controller {
       cardBack.classList.remove("flex");
       cardBack.classList.add("hidden");
     }
+
+    if (this.cardFlippedValue) return;
+
+    this.cardFlippedValue = true;
+  }
+
+  cardTargetDisconnected() {
+    this.cardFlippedValue = false;
   }
 
   _getCardForTarget(target) {
