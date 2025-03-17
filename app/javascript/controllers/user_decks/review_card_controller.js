@@ -1,9 +1,14 @@
 import CardController from "controllers/card_controller";
 import { removeHiddenClass } from "helpers/html_helper";
+import { capitalize } from "helpers/string_helper";
 
 // Connects to data-controller="user-decks--card"
 export default class extends CardController {
-  static targets = ["prevBtnContainer", "nextBtnContainer"];
+  static targets = [
+    "completeBtnContainer",
+    "nextBtnContainer",
+    "prevBtnContainer",
+  ];
 
   /* LIFECYCLE CALLBACKS */
   cardTargetConnected(card) {
@@ -26,12 +31,14 @@ export default class extends CardController {
 
   /* PRIVATE */
   _showButtons() {
-    if (this.hasPrevBtnContainerTarget) {
-      removeHiddenClass(this.prevBtnContainerTarget);
-    }
-
-    if (this.hasNextBtnContainerTarget) {
-      removeHiddenClass(this.nextBtnContainerTarget);
-    }
+    [
+      "prevBtnContainerTarget",
+      "nextBtnContainerTarget",
+      "completeBtnContainerTarget",
+    ].forEach((btnContainer) => {
+      if (this[`has${capitalize(btnContainer)}`]) {
+        removeHiddenClass(this[`${btnContainer}`]);
+      }
+    });
   }
 }
