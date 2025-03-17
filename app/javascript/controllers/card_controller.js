@@ -9,6 +9,12 @@ export default class extends Controller {
     flipped: Boolean,
   };
 
+  /* LIFECYCLE CALLBACKS */
+  cardTargetDisconnected() {
+    this.flippedValue = false;
+  }
+
+  /* ACTIONS */
   flip(e) {
     let card = this._getCardForTarget(e.target);
     if (!card) return;
@@ -36,10 +42,7 @@ export default class extends Controller {
     this._addId(card.dataset.id);
   }
 
-  cardTargetDisconnected() {
-    this.flippedValue = false;
-  }
-
+  /* PRIVATE */
   _getCardForTarget(target) {
     return this.cardTargets.find((card) => card.contains(target));
   }
@@ -47,6 +50,6 @@ export default class extends Controller {
   _addId(id) {
     if (this.idsValue.includes(id)) return;
 
-    this.idsValue = [...this.idsValue, id]
+    this.idsValue = [...this.idsValue, id];
   }
 }

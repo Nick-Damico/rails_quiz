@@ -4,6 +4,7 @@ import CardController from "controllers/card_controller";
 export default class extends CardController {
   static targets = ["menu"];
 
+  /* LIFE CYCLE CALLBACKS */
   displayMenu(e) {
     if (!this.hasCardTarget || !this.hasMenuTarget) return;
 
@@ -16,6 +17,7 @@ export default class extends CardController {
     menu.classList.toggle("hidden");
   }
 
+  /* ACTIONS */
   dismissMenu(e) {
     let card = this._getCardForTarget(e.target);
     let menu = this._getCardMenu(card);
@@ -25,6 +27,7 @@ export default class extends CardController {
     menu.classList.add("hidden");
   }
 
+  /* PRIVATE */
   _getCardMenu(card) {
     return this.menuTargets.find((menu) => card.contains(menu));
   }
