@@ -1,4 +1,5 @@
 import CardController from "controllers/card_controller";
+import { addClass } from "helpers/html_helper";
 
 // Connects to data-controller="decks--card"
 export default class extends CardController {
@@ -24,7 +25,7 @@ export default class extends CardController {
     if (!menu) return;
     if (menu.classList.contains("hidden")) return;
 
-    menu.classList.add("hidden");
+    addClass(menu, "hidden");
   }
 
   /* PRIVATE */

@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
+import { addClass, removeClass } from "../helpers/html_helper";
 
 // Connects to data-controller="decks--card"
 export default class extends Controller {
@@ -25,15 +26,9 @@ export default class extends Controller {
 
     // returns true if the class was added, false if it was removed
     if (cardFront.classList.toggle("hidden")) {
-      cardFront.classList.remove("flex");
-
-      cardBack.classList.add("flex");
-      cardBack.classList.remove("hidden");
+      removeClass(cardBack, "hidden");
     } else {
-      cardFront.classList.add("flex");
-
-      cardBack.classList.remove("flex");
-      cardBack.classList.add("hidden");
+      addClass(cardBack, "hidden");
     }
 
     if (this.flippedValue) return;

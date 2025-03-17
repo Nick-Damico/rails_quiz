@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
+import { addClass } from "helpers/html_helper";
 
 // Connects to data-controller="flash"
 export default class extends Controller {
@@ -13,7 +14,7 @@ export default class extends Controller {
   removeOnTimeout(delay = 0) {
     this.element.addEventListener("animationend", () => this.element.remove());
     setTimeout(() => {
-      this.element.classList.add("animate-fadeOut");
+      addClass(this.element, "animate-fadeOut");
     }, delay);
   }
 }
