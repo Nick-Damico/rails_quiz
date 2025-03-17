@@ -5,6 +5,17 @@ import { removeHiddenClass } from "helpers/html_helper";
 export default class extends CardController {
   static targets = ["prevBtnContainer", "nextBtnContainer"];
 
+  cardTargetConnected(card) {
+    if (!this.idsValue.includes(card.dataset.id)) return;
+
+    if (this.hasPrevBtnContainerTarget) {
+      removeHiddenClass(this.prevBtnContainerTarget);
+    }
+    if (this.hasNextBtnContainerTarget) {
+      removeHiddenClass(this.nextBtnContainerTarget);
+    }
+  }
+
   flip(e) {
     /*
       The parent flip method is called when the user clicks on the card.

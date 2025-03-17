@@ -5,7 +5,8 @@ export default class extends Controller {
   static targets = ["card", "front", "back"];
 
   static values = {
-    cardFlipped: Boolean,
+    ids: Array,
+    flipped: Boolean,
   };
 
   flip(e) {
@@ -29,16 +30,23 @@ export default class extends Controller {
       cardBack.classList.add("hidden");
     }
 
-    if (this.cardFlippedValue) return;
+    if (this.flippedValue) return;
 
-    this.cardFlippedValue = true;
+    this.flippedValue = true;
+    this._addId(card.dataset.id);
   }
 
   cardTargetDisconnected() {
-    this.cardFlippedValue = false;
+    this.flippedValue = false;
   }
 
   _getCardForTarget(target) {
     return this.cardTargets.find((card) => card.contains(target));
+  }
+
+  _addId(id) {
+    if (this.idsValue.includes(id)) return;
+
+    this.idsValue = [...this.idsValue, id]
   }
 }

@@ -1,5 +1,5 @@
 <%= turbo_frame_tag :review_card do %>
-  <div data-user-decks--review-card-target="card" data-user-decks--review-card-value="false" class="relative flex w-72 min-h-[400px]">
+  <div data-user-decks--review-card-target="card" data-id="<%= card.id %>" class="relative flex w-72 min-h-[400px]">
     <% unless first_card(user_deck_card, user_deck_card_ids) %>
       <div data-user-decks--review-card-target="prevBtnContainer" class="hidden overflow-hidden absolute -left-12 top-[50%] -translate-y-[50%] text-gray-500 bg-gray-900 hover:text-white hover:bg-gray-800 cursor-pointer py-6 px-2 hover:py-8 rounded-tl-lg rounded-bl-lg transition-all duration-200 ease-in">
         <%= link_to user_deck_path(user_deck_card.user_deck_id, card_id: prev_card_id(user_deck_card, user_deck_card_ids)), class: "absolute inset-0" do %>
