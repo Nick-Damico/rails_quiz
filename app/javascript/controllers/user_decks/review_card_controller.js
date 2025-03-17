@@ -8,12 +8,7 @@ export default class extends CardController {
   cardTargetConnected(card) {
     if (!this.idsValue.includes(card.dataset.id)) return;
 
-    if (this.hasPrevBtnContainerTarget) {
-      removeHiddenClass(this.prevBtnContainerTarget);
-    }
-    if (this.hasNextBtnContainerTarget) {
-      removeHiddenClass(this.nextBtnContainerTarget);
-    }
+    this._showButtons();
   }
 
   flip(e) {
@@ -22,8 +17,12 @@ export default class extends CardController {
       It sets the cards flipped state to true, then toggles button(s) visibility.
      */
     super.flip(e);
-    if (!this.cardFlippedValue) return;
+    if (!this.flippedValue) return;
 
+    this._showButtons();
+  }
+
+  _showButtons() {
     if (this.hasPrevBtnContainerTarget) {
       removeHiddenClass(this.prevBtnContainerTarget);
     }
