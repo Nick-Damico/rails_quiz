@@ -6,9 +6,9 @@ RSpec.describe "user_decks/summaries", type: :request do
 
   before { sign_in user }
 
-  describe "GET /user_decks/:user_id/summaries" do
+  describe "GET /user_decks/:id/summary" do
     it "renders a successful response" do
-      get user_deck_summaries_path(user_deck)
+      get user_deck_summary_path(user_deck)
 
       expect(response).to have_http_status(:ok)
     end

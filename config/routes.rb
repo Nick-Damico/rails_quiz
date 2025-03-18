@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   end
 
   resources :user_decks, only: %i[show create update] do
-    get :summaries, to: "user_decks/summaries#show"
+    resource :summary, only: %i[show], module: :user_decks
   end
 
   resources :user_deck_cards, only: %i[]
