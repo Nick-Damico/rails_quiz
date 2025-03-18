@@ -6,7 +6,7 @@ RSpec.describe "user_decks/summaries", type: :request do
 
   before { sign_in user }
 
-  xdescribe "GET /user_decks/:user_id/summaries" do
+  describe "GET /user_decks/:user_id/summaries" do
     it "renders a successful response" do
       get user_deck_summaries_path(user_deck)
 
