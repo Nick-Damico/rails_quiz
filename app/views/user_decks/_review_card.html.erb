@@ -10,7 +10,7 @@
     <% end %>
     <% if last_card(user_deck_card, user_deck_card_ids) %>
       <div data-user-decks--review-card-target="completeBtnContainer" class="hidden group overflow-hidden absolute -right-12 top-[50%] -translate-y-[50%]  bg-gray-900 hover:bg-emerald-600 cursor-pointer py-6 px-2 hover:py-8 rounded-tr-lg rounded-br-lg transition-all duration-200 ease-in">
-        <%= link_to user_deck_path(user_deck_card.user_deck_id), class: "absolute inset-0", title: 'Complete review', data: { turbo_method: :patch } do %>
+        <%= link_to user_deck_path(user_deck_card.user_deck_id), class: "absolute inset-0", title: 'Complete review', data: { turbo_method: :patch, turbo_frame: "_top" } do %>
           <span class="sr-only">Complete Review</span>
         <% end %>
         <%= render "icons/checkmark", klass: "size-6 text-gray-500 group-hover:text-white transition-all duration-200 ease-in" %>
