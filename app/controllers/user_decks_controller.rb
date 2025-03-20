@@ -1,6 +1,6 @@
 class UserDecksController < ApplicationController
   before_action :set_user, only: %i[create]
-  before_action :set_user_deck, only: %i[show]
+  before_action :set_user_deck, only: %i[show update]
 
   def show
     @user_deck = authorize(@user_deck)
@@ -20,6 +20,14 @@ class UserDecksController < ApplicationController
     else
       flash[:alert] = t("flash.user_decks.create.error")
       redirect_back_or_to(decks_url)
+    end
+  end
+
+  def update
+    # TODO: Save Results at some point
+    authorize(@user_deck)
+    if @user_deck.save
+      redirect_to user_deck_summary_url(@user_deck)
     end
   end
 
