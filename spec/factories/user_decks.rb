@@ -9,5 +9,12 @@ FactoryBot.define do
         user_deck.save!
       end
     end
+
+    trait :with_completed do
+      after(:create) do |user_deck|
+        user_deck.mark_started
+        user_deck.update_column(:completed_at, Time.current.utc + 5.minutes)
+      end
+    end
   end
 end

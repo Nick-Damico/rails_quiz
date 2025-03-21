@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe UserDeck, type: :model do
+  include ActiveSupport::Testing::TimeHelpers
+
   let!(:user_deck) { create(:user_deck, :with_user_deck_cards) }
 
   it { should belong_to(:user) }
@@ -55,6 +57,39 @@ RSpec.describe UserDeck, type: :model do
           expect(user_deck.find_card_with_fallback(0, fallback_method: :last)).to eq(user_deck.user_deck_cards.last)
         end
       end
+    end
+  end
+
+  describe "#mark_started" do
+    it 'sets the started_at time for a review' do
+      time_now = Time.current.utc
+
+      freeze_time do
+        user_deck.mark_started
+      end
+
+      expect(user_deck.started_at.to_s).to eq time_now.to_s
+    end
+  end
+
+  describe "#mark_completed" do
+    it 'sets the completed_at time for a review' do
+      time_now = Time.current.utc
+
+      freeze_time do
+        user_deck.mark_completed
+      end
+
+      expect(user_deck.completed_at.to_s).to eq time_now.to_s
+    end
+  end
+
+  describe "#completed_in_seconds" do
+    it "return the amount of time elapsed in seconds" do
+      user_deck.started_at = Time.new(2025, 03, 28, 12, 00)
+      user_deck.completed_at = user_deck.started_at + 60.seconds
+
+      expect(user_deck.completed_in_seconds).to eq(60)
     end
   end
 end

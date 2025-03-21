@@ -15,6 +15,8 @@ class UserDecksController < ApplicationController
     @user_deck.build_user_cards
 
     if @user_deck.save
+      @user_deck.mark_started
+
       flash[:notice] = t("flash.user_decks.create.success")
       redirect_to @user_deck
     else
@@ -27,6 +29,7 @@ class UserDecksController < ApplicationController
     # TODO: Save Results at some point
     authorize(@user_deck)
     if @user_deck.save
+      @user_deck.mark_completed
       redirect_to user_deck_summary_url(@user_deck)
     end
   end

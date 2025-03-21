@@ -20,4 +20,22 @@ class UserDeck < ApplicationRecord
 
     user_deck_cards.find_by(id: card_id) || user_deck_cards.send(fallback_method)
   end
+
+  def mark_started
+    set_current_time_for(:started_at)
+  end
+
+  def mark_completed
+    set_current_time_for(:completed_at)
+  end
+
+  def completed_in_seconds
+    (completed_at - started_at).round
+  end
+
+  private
+
+    def set_current_time_for(column)
+      update_column(column, Time.current.utc)
+    end
 end
