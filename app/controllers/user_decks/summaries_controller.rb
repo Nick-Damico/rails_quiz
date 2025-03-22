@@ -2,7 +2,7 @@ class UserDecks::SummariesController < ApplicationController
   before_action :set_user_deck, only: [ :show ]
 
   def show
-    authorize(@user_deck)
+    authorize(@user_deck, policy_class: UserDecks::SummaryPolicy)
   end
 
   private
