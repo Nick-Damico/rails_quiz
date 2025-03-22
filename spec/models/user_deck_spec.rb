@@ -84,6 +84,21 @@ RSpec.describe UserDeck, type: :model do
     end
   end
 
+  describe "#completed" do
+    it 'returns true if completed_at is timestamped' do
+      user_deck.mark_started
+      user_deck.mark_completed
+
+      expect(user_deck.completed?).to eq true
+    end
+
+    it 'returns false if completed at is not timestamped' do
+      expect(user_deck.completed_at).to be_nil
+
+      expect(user_deck.completed?).to eq false
+    end
+  end
+
   describe "#completed_in_seconds" do
     it "return the amount of time elapsed in seconds" do
       user_deck.started_at = Time.new(2025, 03, 28, 12, 00)
