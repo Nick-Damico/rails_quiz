@@ -1,7 +1,7 @@
 
 module TimeHelper
   def seconds_to_minutes(seconds)
-    to_duration.parts[:minutes] || 1
+    to_duration(seconds).parts[:minutes] || 1
   end
 
   def to_duration(seconds)
