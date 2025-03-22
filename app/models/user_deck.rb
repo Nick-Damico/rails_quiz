@@ -18,6 +18,10 @@ class UserDeck < ApplicationRecord
     !!completed_at
   end
 
+  def completed_in_seconds
+    (completed_at - started_at).round
+  end
+
   def find_card_with_fallback(card_id, fallback_method: :first)
     allowed_fallbacks = %i[first last]
     fallback_method = :first unless allowed_fallbacks.include?(fallback_method)
@@ -31,10 +35,6 @@ class UserDeck < ApplicationRecord
 
   def mark_completed
     set_current_time_for(:completed_at)
-  end
-
-  def completed_in_seconds
-    (completed_at - started_at).round
   end
 
   private
