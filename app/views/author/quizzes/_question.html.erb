@@ -1,13 +1,21 @@
-<li class="flex items-center border border-white p-2">
+<li class="flex items-center p-2 border border-white">
   <%= question.content %>
-
-  <div class="inline-flex text-xs border border-gray-400 ml-auto">
-    <%= link_to 'view', quiz_question_path(@quiz, question), class: 'bg-primary text-white px-2 py-2' %>
-    <%= link_to 'delete', quiz_question_path(@quiz, question),
+  <div class="inline-flex ml-auto text-xs border border-gray-400">
+    <%= link_to quiz_question_path(@quiz, question),
+      title: "view",
+      aria: { label: "View Question" },
+      class: "bg-primary text-white px-2 py-2" do %>
+      <%= render "icons/magnifying_glass", klass: "size-5" %>
+    <% end %>
+    <%= link_to quiz_question_path(@quiz, question),
       data: {
         turbo_confirm: t("buttons.questions.delete"),
         turbo_method: :delete
       },
-      class: 'bg-alert text-white px-2 py-2' %>
+      title: "delete",
+      aria: { label: "Delete Question" },
+      class: 'bg-alert text-white px-2 py-2' do %>
+      <%= render "icons/x_circle", klass: "size-5" %>
+    <% end %>
   </div>
 </li>
