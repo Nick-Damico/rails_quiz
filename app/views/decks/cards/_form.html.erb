@@ -22,8 +22,14 @@
           </div>
         </div>
         <div class="flex flex-col gap-4 sm:flex-row sm:gap-2">
-          <%= f.submit "Save & Add Another", class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
-          <%= f.submit "Save & Return", class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
+          <%= button_tag "Save & Add Another", 
+            name: "follow_up_action", 
+            value: "new", 
+            class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
+          <%= button_tag"Save & Return", 
+            name: "follow_up_action", 
+            value: "show", 
+            class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
         </div>
       <% end %>
     </section>
