@@ -47,5 +47,5 @@ Rails.application.routes.draw do
     resource :summary, only: %i[show], module: :user_decks
   end
 
-  resources :user_deck_cards, only: %i[]
+  resources :user_deck_cards, only: %i[update]
 end
