@@ -46,19 +46,27 @@
       </p>
     </article>
   </div>
-  <div class="px-4 py-3 mt-2 text-center bg-gray-800 rounded">
-    <h3 class="pb-4 text-lg">How did you do?</h3>
-    <ul class="flex justify-around">
-      <li>
-        <%= link_to "#", class: "flex p-2 bg-success rounded-full" do %>
-          <%= render "icons/thumbs_up", klass: "size-8" %>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to "#", class: "flex p-2 bg-alert rounded-full" do %>
-          <%= render "icons/thumbs_down", klass: "size-8" %>
-        <% end %>
-      </li>
-    </ul>
+  <div data-user-decks--review-card-target="ratingPrompt" class="relative z-10 mt-2 text-center bg-gray-700 rounded-lg overflow-hidden -top-32">
+    <header class="flex justify-center bg-gray-800 p-2">
+      <h3 class="text-lg">How did you do?</h3>
+    </header>
+    <%= form_with model: user_deck_card do |f| %>
+      <ul class="flex place-self-center justify-between py-2 w-36">
+        <li>
+          <%= f.button :card_rating,
+            value: :incorrect, 
+            class: "flex p-2 bg-alert drop-shadow-md rounded-full hover:scale-110 transition-scale" do %>
+            <%= render "icons/thumbs_down", klass: "size-8" %>
+          <% end %>
+        </li>
+        <li>
+          <%= f.button :card_rating,
+            value: :correct, 
+            class: "flex p-2 bg-success drop-shadow-md rounded-full hover:scale-110 transition-scale" do %>
+            <%= render "icons/thumbs_up", klass: "size-8" %>
+          <% end %>
+        </li>
+      </ul>
+    <% end %>
   </div>
 <% end %>

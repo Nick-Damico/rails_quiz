@@ -7,12 +7,20 @@ RSpec.describe "UserDeckCards", type: :request do
 
   before { sign_in user }
 
-  xdescribe "PATCH /update" do
-    context "response format HTML" do
-      it "returns http redirect" do
-        get user_deck_card_path(user_deck_card)
+  describe "PATCH /update" do
+    let(:valid_params) { { user_deck_card: { card_rating: :correct } } }
 
-        expect(response).to redirect_to(user_deck_url(user_deck))
+    it "responds with http no_content(204)" do
+      patch user_deck_card_path(user_deck_card), params: valid_params
+
+      expect(response).to have_http_status(:no_content)
+    end
+
+    context "rating" do
+      it "updates the records card_rating" do
+        put user_deck_card_path(user_deck_card), params: valid_params
+
+        expect(user_deck_card.reload.card_rating).to eq("correct")
       end
     end
   end

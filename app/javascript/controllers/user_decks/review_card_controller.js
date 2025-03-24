@@ -1,6 +1,7 @@
 import CardController from "controllers/card_controller";
 import { removeHiddenClass } from "helpers/html_helper";
 import { capitalize } from "helpers/string_helper";
+import { addClass } from "../../helpers/html_helper";
 
 // Connects to data-controller="user-decks--card"
 export default class extends CardController {
@@ -8,7 +9,14 @@ export default class extends CardController {
     "completeBtnContainer",
     "nextBtnContainer",
     "prevBtnContainer",
+    "ratingPrompt",
   ];
+
+  connect() {
+    addEventListener("turbo:submit-end", () => {
+      this._hideRatingPrompt();
+    });
+  }
 
   /* LIFECYCLE CALLBACKS */
   cardTargetConnected(card) {
@@ -27,6 +35,7 @@ export default class extends CardController {
     if (!this.flippedValue) return;
 
     this._showButtons();
+    this._showRatingPrompt();
   }
 
   /* PRIVATE */
@@ -40,5 +49,17 @@ export default class extends CardController {
         removeHiddenClass(this[`${btnContainer}`]);
       }
     });
+  }
+
+  _showRatingPrompt() {
+    if (!this.hasRatingPromptTarget) return;
+
+    addClass(this.ratingPromptTarget, "animate-rating-slide-in");
+  }
+
+  _hideRatingPrompt() {
+    if (!this.hasRatingPromptTarget) return;
+
+    addClass(this.ratingPromptTarget, "animate-rating-slide-out");
   }
 }
