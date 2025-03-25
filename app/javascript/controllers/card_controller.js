@@ -34,7 +34,6 @@ export default class extends Controller {
     if (this.flippedValue) return;
 
     this.flippedValue = true;
-    this._addId(card.dataset.id);
   }
 
   /* PRIVATE */
