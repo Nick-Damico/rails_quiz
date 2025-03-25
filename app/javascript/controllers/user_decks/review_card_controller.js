@@ -18,7 +18,7 @@ export default class extends CardController {
 
   /* LIFECYCLE CALLBACKS */
   cardTargetConnected(card) {
-    if (this._isReviewed()) {
+    if (this._isReviewed(card)) {
       this._showButtons();
     }
   }
