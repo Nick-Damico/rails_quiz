@@ -12,7 +12,7 @@ export default class extends Controller {
 
   /* LIFECYCLE CALLBACKS */
   cardTargetDisconnected() {
-    this.flippedValue = false;
+    this._resetState()
   }
 
   /* ACTIONS */
@@ -45,5 +45,9 @@ export default class extends Controller {
     if (this.idsValue.includes(id)) return;
 
     this.idsValue = [...this.idsValue, id];
+  }
+
+  _resetState() {
+    this.flippedValue = false;
   }
 }
