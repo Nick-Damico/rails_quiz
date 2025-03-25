@@ -1,5 +1,5 @@
 <%= turbo_frame_tag :review_card do %>
-  <div data-user-decks--review-card-target="card" data-id="<%= card.id %>" class="relative flex w-72 min-h-[400px]">
+  <div data-user-decks--review-card-target="card" data-id="<%= card.id %>" class="relative flex w-72 min-h-[400px] z-40">
     <% unless first_card(user_deck_card, user_deck_card_ids) %>
       <div data-user-decks--review-card-target="prevBtnContainer" class="hidden overflow-hidden absolute -left-12 top-[50%] -translate-y-[50%] text-gray-500 bg-gray-900 hover:text-white hover:bg-gray-800 cursor-pointer py-6 px-2 hover:py-8 rounded-tl-lg rounded-bl-lg transition-all duration-200 ease-in">
         <%= link_to user_deck_path(user_deck_card.user_deck_id, card_id: prev_card_id(user_deck_card, user_deck_card_ids)), class: "absolute inset-0" do %>
@@ -46,12 +46,12 @@
       </p>
     </article>
   </div>
-  <div data-user-decks--review-card-target="ratingPrompt" class="relative z-10 mt-2 text-center bg-gray-700 rounded-lg overflow-hidden -top-32">
-    <header class="flex justify-center bg-gray-800 p-2">
+  <div data-user-decks--review-card-target="ratingPrompt" class="relative z-10 mt-2 overflow-hidden text-center bg-gray-700 rounded-lg -top-32">
+    <header class="flex justify-center p-2 bg-gray-800">
       <h3 class="text-lg">How did you do?</h3>
     </header>
     <%= form_with model: user_deck_card do |f| %>
-      <ul class="flex place-self-center justify-between py-2 w-36">
+      <ul class="flex justify-between py-2 place-self-center w-36">
         <li>
           <%= f.button :card_rating,
             value: :incorrect, 

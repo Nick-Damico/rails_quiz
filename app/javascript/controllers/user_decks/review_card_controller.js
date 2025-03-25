@@ -13,16 +13,14 @@ export default class extends CardController {
   ];
 
   connect() {
-    addEventListener("turbo:submit-end", () => {
-      this._hideRatingPrompt();
-    });
+    addEventListener("turbo:submit-end", () => this._afterRatingCard());
   }
 
   /* LIFECYCLE CALLBACKS */
   cardTargetConnected(card) {
-    if (!this.idsValue.includes(card.dataset.id)) return;
-
-    this._showButtons();
+    if (this._isReviewed()) {
+      this._showButtons();
+    }
   }
 
   /* ACTIONS */
@@ -32,13 +30,20 @@ export default class extends CardController {
       It sets the cards flipped state to true, then toggles button(s) visibility.
      */
     super.flip(e);
-    if (!this.flippedValue) return;
+    const card = this._getCardForTarget(e.target)
+    if (!card) return;
+    if (this._isReviewed(card)) return;
 
-    this._showButtons();
     this._showRatingPrompt();
+    this._addId(card.dataset.id); // Stores card ids that have been reviewed.
   }
 
   /* PRIVATE */
+  _afterRatingCard() {
+   this._hideRatingPrompt();
+   this._showButtons();
+  }
+
   _showButtons() {
     [
       "prevBtnContainerTarget",
@@ -61,5 +66,9 @@ export default class extends CardController {
     if (!this.hasRatingPromptTarget) return;
 
     addClass(this.ratingPromptTarget, "animate-rating-slide-out");
+  }
+
+  _isReviewed(card) {
+    return this.idsValue.includes(card.dataset.id)
   }
 }
