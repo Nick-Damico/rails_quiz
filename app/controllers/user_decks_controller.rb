@@ -7,7 +7,7 @@ class UserDecksController < ApplicationController
 
     set_breadcrumbs
     @user_deck_card = @user_deck.find_card_with_fallback(params[:card_id])
-    @user_deck_card_ids = @user_deck.user_deck_card_ids
+    @user_deck_card_ids = @user_deck.user_deck_card_ids.sort
   end
 
   def create
