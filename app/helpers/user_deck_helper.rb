@@ -1,4 +1,8 @@
 module UserDeckHelper
+  def card_number(user_deck_card, ids)
+    id_index(user_deck_card.id, ids) + 1
+  end
+
   def first_card(user_deck_card, ids)
     ids.first == user_deck_card.id
   end

@@ -2,7 +2,7 @@
   <%= render "shared/breadcrumbs" %>
 </div>
 <div data-controller="user-decks--review-card" class="flex flex-col items-center h-full">
-  <h2 class="mb-6 text-2xl">Studying <%= @user_deck.deck.title %></h2>
+  <h2 class="mb-4 text-2xl">Studying <%= @user_deck.deck.title %></h2>
   <%=
     render "review_card",
     card: @user_deck_card.card,
