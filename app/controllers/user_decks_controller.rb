@@ -11,8 +11,12 @@ class UserDecksController < ApplicationController
   end
 
   def create
-    @user_deck = authorize(UserDeck.new(user_deck_params))
-    @user_deck.build_user_cards
+    @user_deck = UserDeck.find_or_initialize_by(user_deck_params)
+    @user_deck = authorize(@user_deck)
+    # FIX: This should build cards for existing decks as new cards could have been added.
+    unless @user_deck.persisted? && @user_deck.user_deck_card_ids.present?
+      @user_deck.build_user_cards
+    end
 
     if @user_deck.save
       @user_deck.mark_started
@@ -26,7 +30,6 @@ class UserDecksController < ApplicationController
   end
 
   def update
-    # TODO: Save Results at some point
     authorize(@user_deck)
     if @user_deck.save
       @user_deck.mark_completed
