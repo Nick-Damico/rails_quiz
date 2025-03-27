@@ -36,6 +36,24 @@ RSpec.describe UserDeck, type: :model do
         expect(user_deck.user_deck_cards.size).to be_zero
       end
     end
+
+    context "with cards already built" do
+      it "does not build duplicate user_deck_cards" do
+        expect(user_deck.user_deck_cards.size).to be > 0
+
+        expect {
+          user_deck.build_user_cards
+        }.to change(user_deck.user_deck_cards, :count).by(0)
+      end
+
+      it "builds user_deck_cards for new cards" do
+        user_deck.deck.cards << create(:card)
+
+        user_deck.build_user_cards
+
+        expect { user_deck.save }.to change(user_deck.user_deck_cards, :count).by(1)
+      end
+    end
   end
 
   describe "#completed?" do

@@ -13,10 +13,7 @@ class UserDecksController < ApplicationController
   def create
     @user_deck = UserDeck.find_or_initialize_by(user_deck_params)
     @user_deck = authorize(@user_deck)
-    # FIX: This should build cards for existing decks as new cards could have been added.
-    unless @user_deck.persisted? && @user_deck.user_deck_card_ids.present?
-      @user_deck.build_user_cards
-    end
+    @user_deck.build_user_cards
 
     if @user_deck.save
       @user_deck.mark_started

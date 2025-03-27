@@ -11,7 +11,7 @@ class UserDeck < ApplicationRecord
   def build_user_cards
     return unless cards.present?
 
-    user_deck_cards.build(cards.map { |card| { card: } })
+    user_deck_cards.build(new_cards.map { |card| { card: } })
   end
 
   def completed?
@@ -41,5 +41,9 @@ class UserDeck < ApplicationRecord
 
     def set_current_time_for(column)
       update_column(column, Time.current.utc)
+    end
+
+    def new_cards
+      Decks::Card.new_cards(self)
     end
 end
