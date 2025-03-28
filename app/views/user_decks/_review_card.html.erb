@@ -1,13 +1,19 @@
 <%= turbo_frame_tag :review_card do %>
   <div class="relative mb-2 text-center">
-    <hr class="absolute inset-0 w-full border-gray-700 top-1/2 transform -translate-y-1/2 z-0">
-    <span class="relative z-10 bg-gray-950 px-2">
-      <span class="text-sm px-2 py-1 rounded bg-primary">
+    <hr class="absolute inset-0 z-0 w-full transform -translate-y-1/2 border-gray-700 top-1/2">
+    <span class="relative z-10 px-2 bg-gray-950">
+      <span class="px-2 py-1 text-sm rounded bg-primary">
         <%= format_as_two_digits(card_number(user_deck_card, user_deck_card_ids)) %>
       </span>
     </span>
   </div>
-  <div data-user-decks--review-card-target="card" data-id="<%= card.id %>" class="relative flex w-72 min-h-[400px] z-40">
+  <div data-user-decks--review-card-target="card" data-rating="<%= user_deck_card.card_rating %>" data-id="<%= card.id %>" class="relative flex w-72 min-h-[400px] z-40">
+    <div data-user-decks--review-card-target="correctIcon" class="absolute flex p-2 transition-opacity duration-300 ease-in border-4 rounded-full opacity-0 -left-4 -top-3 border-gray-950 bg-success drop-shadow-md <%= icon_active?(user_deck_card.card_rating, "correct") %>">
+      <%= render "icons/thumbs_up" %>
+    </div>
+    <div data-user-decks--review-card-target="incorrectIcon" class="absolute flex p-2 transition-opacity duration-300 border-4 rounded-full opacity-0 -left-4 -top-3 border-gray-950 bg-alert drop-shadow-md <%= icon_active?(user_deck_card.card_rating, "incorrect") %>">
+      <%= render "icons/thumbs_down" %>
+    </div>
     <% unless first_card(user_deck_card, user_deck_card_ids) %>
       <div data-user-decks--review-card-target="prevBtnContainer" class="hidden overflow-hidden absolute -left-12 top-[50%] -translate-y-[50%] text-gray-500 bg-gray-900 hover:text-white hover:bg-gray-800 cursor-pointer py-6 px-2 hover:py-8 rounded-tl-lg rounded-bl-lg transition-all duration-200 ease-in">
         <%= link_to user_deck_path(user_deck_card.user_deck_id, card_id: prev_card_id(user_deck_card, user_deck_card_ids)), class: "absolute inset-0" do %>

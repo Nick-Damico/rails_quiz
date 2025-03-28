@@ -14,7 +14,7 @@ class UserDecksController < ApplicationController
     @user_deck = UserDeck.find_or_initialize_by(user_deck_params)
     @user_deck = authorize(@user_deck)
     @user_deck.build_user_cards
-    @user_deck.user_deck_cards.each(&:reset_rating)
+    @user_deck.user_deck_cards.each(&:reset_rating!)
 
     if @user_deck.save
       @user_deck.mark_started

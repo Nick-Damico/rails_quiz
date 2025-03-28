@@ -18,4 +18,8 @@ module UserDeckHelper
   def next_card_id(user_deck_card, ids)
     next_id(user_deck_card.id, ids)
   end
+
+  def icon_active?(rating, icon)
+    rating == icon ? "opacity-100" : "opacity-0"
+  end
 end
