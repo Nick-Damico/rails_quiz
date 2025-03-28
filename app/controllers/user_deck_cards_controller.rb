@@ -4,7 +4,7 @@ class UserDeckCardsController < ApplicationController
   def update
     authorize(@user_deck_card)
 
-    if false && @user_deck_card.update(user_deck_card_params)
+    if @user_deck_card.update(user_deck_card_params)
       render json: { rating: @user_deck_card.card_rating }, status: :ok
     else
       render json: {}, status: :unprocessable_entity
