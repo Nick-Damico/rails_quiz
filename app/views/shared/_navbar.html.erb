@@ -64,6 +64,11 @@
             </ul>
           </li>
         <% end %>
+        <li class="flex items-center">
+          <%= link_to dashboard_user_path( current_user ), class: "px-3 py-3" do %>
+            <div class="rounded-full bg-emerald-400 h-8 w-8"></div>
+          <% end %>
+        </li>
         <li>
           <% if user_signed_in? %>
             <%= link_to "Sign out",

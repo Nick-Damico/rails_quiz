@@ -28,6 +28,11 @@
 #       enabled: "ON"
 
 en:
+  devise:
+    registrations:
+      update:
+        submit: "Update Password"
+
   pundit:
     default: "You cannot perform this action."
     author/quiz_policy:
