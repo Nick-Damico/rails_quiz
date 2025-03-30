@@ -64,13 +64,13 @@
             </ul>
           </li>
         <% end %>
-        <li class="flex items-center">
-          <%= link_to dashboard_user_path( current_user ), class: "px-3 py-3" do %>
-            <div class="rounded-full bg-emerald-400 h-8 w-8"></div>
-          <% end %>
-        </li>
         <li>
           <% if user_signed_in? %>
+            <li class="flex items-center">
+              <%= link_to dashboard_user_path( current_user ), class: "px-3 py-3" do %>
+                <div class="w-8 h-8 rounded-full bg-emerald-400"></div>
+              <% end %>
+            </li>
             <%= link_to "Sign out",
                 destroy_user_session_path,
                 data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
