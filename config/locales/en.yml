@@ -116,6 +116,12 @@ en:
         success: "Your answer was recorded."
         error: "Question requires an answer. Please select an answer below."
 
+    users:
+      passwords:
+        update:
+          success: "Account password successfully updated."
+          error: "There was an error updating this accounts password."
+
     user_decks:
       create:
         success: "Flashcard deck study session started."

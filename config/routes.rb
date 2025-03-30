@@ -31,6 +31,12 @@ Rails.application.routes.draw do
     resources :users, only: %i[show update]
   end
 
+  resources :users do
+    member do
+      patch "update_password", to: "users/passwords#update"
+    end
+  end
+
   resources :decks, only: %i[index show] do
     resources :cards, shallow: true, module: :decks
   end
