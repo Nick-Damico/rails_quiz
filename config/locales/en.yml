@@ -119,8 +119,8 @@ en:
     users:
       passwords:
         update:
-          success: "Account password successfully updated."
-          error: "There was an error updating this accounts password."
+          success: "Password successfully updated."
+          error: "There was an error updating the password."
 
     user_decks:
       create:

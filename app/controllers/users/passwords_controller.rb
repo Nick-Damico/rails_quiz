@@ -7,7 +7,7 @@ class Users::PasswordsController < ApplicationController
     if @user.update_with_password(user_params)
       # Sign in the user by passing validation in case their password changed
       bypass_sign_in(@user)
-      flash[:notice] = "Password updated successfully"
+      flash[:notice] = t("flash.users.passwords.update.success")
     else
       flash.now[:alert] = t("flash.users.passwords.update.error")
     end
