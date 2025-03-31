@@ -1,30 +1,13 @@
-<div class="flex p-4 border border-gray-500 rounded-xl gap-4">
+<div class="flex gap-4 p-4 border border-gray-500 rounded-xl">
   <div class="w-1/3 bg-gray-500"></div>
   <div class="w-2/3">
     <header class="mb-4">
       <h2 class="text-xl"><%= @user.username %></h2>
     </header>
-    <section>
-      <h2 class="text-lg">
-        Personal Information
-      </h2>
-      <%= form_with model: @user, url: dashboard_user_path do |f| %>
-        <div class="flex gap-2">
-          <div class="mt-2 mb-6 field w-1/2">
-            <%= f.label :username, class: "text-white text-xs font-semibold uppercase mb-2" %>
-            <%= f.text_field :username, autofocus: true, placeholder: "JohnDoe123", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-          </div>
-          <div class="mt-2 mb-6 field w-1/2">
-            <%= f.label :email, class: "text-white text-xs font-semibold uppercase mb-2" %>
-            <%= f.text_field :email, autofocus: true, placeholder: "quiz_it@example.com", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-          </div>
-        </div>
-        <div class="flex items-center mb-4 actions">
-          <%= f.submit class: "text-center btn-success text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
-        </div>
-      <% end %>
-    </section>
-    <hr class="border-gray-500 mb-4">
+    <div>
+      <%= render "general_information", user: @user %>
+    </div>
+    <hr class="mb-4 border-gray-500">
     <section>
       <h2 class="text-lg">
         Account Security
