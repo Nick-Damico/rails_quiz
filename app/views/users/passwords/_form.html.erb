@@ -1,15 +1,15 @@
 <%= form_with model: user, url: update_password_user_path(user), data: { turbo: false } do |f| %>
-  <div class="mt-2 mb-6 field w-1/2">
+  <div class="w-1/2 mb-4 field">
     <%= f.label :current_password, class: "text-white text-xs font-semibold uppercase mb-2" %>
     <%= f.password_field :current_password, autofocus: true, placeholder: "required", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     <%= display_field_error(user, :current_password) %>
   </div>
-  <div class="mt-2 mb-6 field w-1/2">
+  <div class="w-1/2 mb-4 field">
     <%= f.label :password, class: "text-white text-xs font-semibold uppercase mb-2" %>
     <%= f.password_field :password, autofocus: true, placeholder: "required", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     <%= display_field_error(user, :password) %>
   </div>
-  <div class="mt-2 mb-6 field w-1/2">
+  <div class="w-1/2 mb-4 field">
     <%= f.label :password_confirmation, class: "text-white text-xs font-semibold uppercase mb-2" %>
     <%= f.password_field :password_confirmation, autofocus: true, placeholder: "required", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     <%= display_field_error(user, :password_confirmation) %>
