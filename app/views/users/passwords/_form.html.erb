@@ -1,7 +1,7 @@
 <%= form_with model: user, url: update_password_user_path(user), data: { turbo: false } do |f| %>
   <div class="w-full mb-4 md:w-1/2 field">
     <%= f.label :current_password, class: "text-white text-xs font-semibold uppercase mb-2" %>
-    <%= f.password_field :current_password, autofocus: true, placeholder: "required", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= f.password_field :current_password, autofocus: true, placeholder: "required to update password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     <%= display_field_error(user, :current_password) %>
   </div>
   <div class="w-full mb-4 md:w-1/2 field">
