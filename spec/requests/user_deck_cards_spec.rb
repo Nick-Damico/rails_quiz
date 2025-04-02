@@ -10,10 +10,10 @@ RSpec.describe "UserDeckCards", type: :request do
   describe "PATCH /update" do
     let(:valid_params) { { user_deck_card: { card_rating: :correct } } }
 
-    it "responds with http no_content(204)" do
+    it "responds with http ok(201)" do
       patch user_deck_card_path(user_deck_card), params: valid_params
 
-      expect(response).to have_http_status(:no_content)
+      expect(response).to have_http_status(:ok)
     end
 
     context "rating" do
