@@ -11,9 +11,9 @@
     <% end %>
     <%= render "icons/chevron_left" %>
   </div>
-  <section class="w-full mx-auto mt-10 border border-gray-500 rounded">
+  <section class="w-full pb-2 mx-auto mt-10 border border-gray-500 rounded">
     <div class="flex items-center justify-end px-6 py-2 border-b border-gray-500">
-      <span class="text-lg font-light"><%= format_as_two_digits(question_number(@question, @question_ids)) %> / <%= format_as_two_digits(@question_ids.count) %></span>
+      <span class="text-lg font-light">Question: <%= format_as_two_digits(question_number(@question, @question_ids)) %>/<%= format_as_two_digits(@question_ids.count) %></span>
       <%= link_to edit_quiz_question_path(@quiz, @question), title: 'Edit Question', class: "flex btn-sm rounded items-center ml-auto hover:btn-primary transition ease-in-out duration-500" do %>
         <%= render "icons/pencil", klass: "size-5 mr-1" %> Edit
       <% end %>
