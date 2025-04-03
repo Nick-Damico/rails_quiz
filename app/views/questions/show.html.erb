@@ -1,38 +1,36 @@
 <%= render "shared/breadcrumbs" %>
-
 <%= banner_heading do %>
-  <h3 class="text-xl text-center font-semibold">
+  <h3 class="text-xl font-semibold text-center">
     Preview Mode
   </h3>
-  <div class="flex p-2 mt-2 space-x-4 justify-center">
-    <%= link_to quiz_question_path(@quiz, prev_question_id(@question, @question_ids)), class: "flex btn-sm btn-primary items-center" do %>
-      <%= render "icons/chevron_left", klass: "size-5" %> Prev Question
-    <% end %>
-
-    <span class="text-xl"><%= format_as_two_digits(question_number(@question, @question_ids)) %></span> 
-
-    <%= link_to quiz_question_path(@quiz, next_question_id(@question, @question_ids)), class: "flex btn-sm btn-primary items-center" do %>
-      Next Question <%= render "icons/chevron_right", klass: "size-5" %>
-    <% end %>
-  </div>
 <% end %>
-
-<section class="w-full max-w-xl mx-auto mt-10 border border-gray-500 rounded">
-  <div class="flex p-2 justify-end border-b border-gray-500">
-    <%= link_to edit_quiz_question_path(@quiz, @question), title: 'Edit Question', class: "flex btn-sm rounded items-center ml-auto hover:btn-primary transition ease-in-out duration-500" do %>
-      <%= render "icons/pencil", klass: "size-5 mr-1" %> Edit
+<div class="relative max-w-lg m-auto">
+  <div data-user-decks--review-card-target="prevBtnContainer" class="overflow-hidden absolute -left-12 top-[50%] -translate-y-[50%] text-gray-500 bg-gray-900 hover:text-white hover:bg-gray-800 cursor-pointer py-6 px-2 hover:py-8 rounded-tl-lg rounded-bl-lg transition-all duration-200 ease-in">
+    <%= link_to quiz_question_path(@quiz, prev_question_id(@question, @question_ids)), class: "absolute inset-0" do %>
+      <span class="sr-only">Previous Card</span>
     <% end %>
+    <%= render "icons/chevron_left" %>
   </div>
-
-  <div class="px-3">
-    <h2 class="text-lg text-center py-3 mb-3 border-b border-gray-500">
-      <%= @question.content %>
-    </h2>
-
-    <ul class="flex flex-col">
-      <%= render partial: "questions/choices/choice", collection: @question.choices, as: :choice %>
-    </ul>
+  <section class="w-full mx-auto mt-10 border border-gray-500 rounded">
+    <div class="flex items-center justify-end px-6 py-2 border-b border-gray-500">
+      <span class="text-lg font-light"><%= format_as_two_digits(question_number(@question, @question_ids)) %> / <%= format_as_two_digits(@question_ids.count) %></span>
+      <%= link_to edit_quiz_question_path(@quiz, @question), title: 'Edit Question', class: "flex btn-sm rounded items-center ml-auto hover:btn-primary transition ease-in-out duration-500" do %>
+        <%= render "icons/pencil", klass: "size-5 mr-1" %> Edit
+      <% end %>
+    </div>
+    <div class="px-3">
+      <h2 class="py-3 mb-3 text-lg text-center border-b border-gray-500">
+        <%= @question.content %>
+      </h2>
+      <ul class="flex flex-col">
+        <%= render partial: "questions/choices/choice", collection: @question.choices, as: :choice %>
+      </ul>
+    </div>
+  </section>
+  <div data-user-decks--review-card-target="nextBtnContainer" class="overflow-hidden absolute -right-12 top-[50%] -translate-y-[50%] text-gray-500 bg-gray-900 hover:text-white hover:bg-gray-800 cursor-pointer py-6 px-2 hover:py-8 rounded-tr-lg rounded-br-lg transition-all duration-200 ease-in">
+    <%= link_to quiz_question_path(@quiz, next_question_id(@question, @question_ids)), class: "absolute inset-0" do %>
+      <span class="sr-only">Next Card</span>
+    <% end %>
+    <%= render "icons/chevron_right" %>
   </div>
-
-</section>
-
+</div>
