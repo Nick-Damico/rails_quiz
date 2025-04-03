@@ -1,7 +1,6 @@
 import CardController from "controllers/card_controller";
-import { removeHiddenClass } from "helpers/html_helper";
+import { removeHiddenClass, addClass } from "helpers/html_helper";
 import { capitalize } from "helpers/string_helper";
-import { addClass } from "../../helpers/html_helper";
 
 // Connects to data-controller="user-decks--card"
 export default class extends CardController {
