@@ -11,15 +11,15 @@ module BreadcrumbHelper
 
   private
 
-  def build_content(breadcrumb, last_item)
-    if last_item
-      breadcrumb.name.truncate(20)
-    else
-      safe_join([ breadcrumb.name.truncate(20), content_tag(:span, icon) ])
+    def build_content(breadcrumb, last_item)
+      if last_item
+        breadcrumb.name.truncate(20)
+      else
+        safe_join([ breadcrumb.name.truncate(20), content_tag(:span, icon) ])
+      end
     end
-  end
 
-  def icon
-    @icon ||= render partial: "icons/chevron_right", locals: { klass: "size-4 ml-1" }
-  end
+    def icon
+      @icon ||= render_icon("chevron_right", klass: "size-4 ml-1")
+    end
 end
