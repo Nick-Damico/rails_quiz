@@ -5,7 +5,7 @@
       title: "view",
       aria: { label: "View Question" },
       class: "bg-primary text-white px-2 py-2" do %>
-      <%= render "icons/magnifying_glass", klass: "size-5" %>
+      <%= render_icon "magnifying_glass", klass: "size-5" %>
     <% end %>
     <%= link_to quiz_question_path(@quiz, question),
       data: {
@@ -15,7 +15,7 @@
       title: "delete",
       aria: { label: "Delete Question" },
       class: 'bg-alert text-white px-2 py-2' do %>
-      <%= render "icons/x_circle", klass: "size-5" %>
+      <%= render_icon "x_circle", klass: "size-5" %>
     <% end %>
   </div>
 </li>
