@@ -9,17 +9,17 @@
   </div>
   <div data-user-decks--review-card-target="card" data-rating="<%= user_deck_card.card_rating %>" data-id="<%= card.id %>" class="relative flex w-72 min-h-[400px] z-40">
     <div data-user-decks--review-card-target="correctIcon" class="absolute flex p-2 transition-opacity duration-300 ease-in border-4 rounded-full opacity-0 -left-4 -top-3 border-gray-950 bg-success drop-shadow-md <%= icon_active?(user_deck_card.card_rating, "correct") %>">
-      <%= render "icons/thumbs_up" %>
+      <%= render_icon "thumbs_up" %>
     </div>
     <div data-user-decks--review-card-target="incorrectIcon" class="absolute flex p-2 transition-opacity duration-300 border-4 rounded-full opacity-0 -left-4 -top-3 border-gray-950 bg-alert drop-shadow-md <%= icon_active?(user_deck_card.card_rating, "incorrect") %>">
-      <%= render "icons/thumbs_down" %>
+      <%= render_icon "thumbs_down" %>
     </div>
     <% unless first_card(user_deck_card, user_deck_card_ids) %>
       <div data-user-decks--review-card-target="prevBtnContainer" class="hidden overflow-hidden absolute -left-12 top-[50%] -translate-y-[50%] text-gray-500 bg-gray-900 hover:text-white hover:bg-gray-800 cursor-pointer py-6 px-2 hover:py-8 rounded-tl-lg rounded-bl-lg transition-all duration-200 ease-in">
         <%= link_to user_deck_path(user_deck_card.user_deck_id, card_id: prev_card_id(user_deck_card, user_deck_card_ids)), class: "absolute inset-0" do %>
           <span class="sr-only">Previous Card</span>
         <% end %>
-        <%= render "icons/chevron_left" %>
+        <%= render_icon "chevron_left" %>
       </div>
     <% end %>
     <% if last_card(user_deck_card, user_deck_card_ids) %>
@@ -27,21 +27,21 @@
         <%= link_to user_deck_path(user_deck_card.user_deck_id), class: "absolute inset-0", title: 'Complete review', data: { turbo_method: :patch, turbo_frame: "_top" } do %>
           <span class="sr-only">Complete Review</span>
         <% end %>
-        <%= render "icons/checkmark", klass: "size-6 text-gray-500 group-hover:text-white transition-all duration-200 ease-in" %>
+        <%= render_icon "checkmark", klass: "size-6 text-gray-500 group-hover:text-white transition-all duration-200 ease-in" %>
       </div>
     <% else %>
       <div data-user-decks--review-card-target="nextBtnContainer" class="hidden overflow-hidden absolute -right-12 top-[50%] -translate-y-[50%] text-gray-500 bg-gray-900 hover:text-white hover:bg-gray-800 cursor-pointer py-6 px-2 hover:py-8 rounded-tr-lg rounded-br-lg transition-all duration-200 ease-in">
         <%= link_to user_deck_path(user_deck_card.user_deck_id, card_id: next_card_id(user_deck_card, user_deck_card_ids)), class: "absolute inset-0" do %>
           <span class="sr-only">Next Card</span>
         <% end %>
-        <%= render "icons/chevron_right" %>
+        <%= render_icon "chevron_right" %>
       </div>
     <% end %>
     <article data-user-decks--review-card-target="front" class="flex flex-col w-full p-6 text-lg text-gray-900 bg-blue-500 rounded-lg">
       <header class="flex items-center justify-end w-full">
         <span class="mr-auto text-sm font-semibold uppercase">Front</span>
         <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->user-decks--review-card#flip:stop">
-          flip <%= render "icons/arrow_turn_right", klass: "size-6 pl-2" %>
+          flip <%= render_icon "arrow_turn_right", klass: "size-6 pl-2" %>
         </button>
       </header>
       <p class="flex items-center grow">
@@ -52,7 +52,7 @@
       <header class="flex items-center justify-end w-full">
         <span class="mr-auto text-sm font-semibold uppercase">Back</span>
         <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->user-decks--review-card#flip:stop">
-          flip <%= render "icons/arrow_turn_right", klass: "size-6 pl-2" %>
+          flip <%= render_icon "arrow_turn_right", klass: "size-6 pl-2" %>
         </button>
       </header>
       <p class="flex items-center text-md grow">
@@ -70,14 +70,14 @@
           <%= f.button :card_rating,
             value: :incorrect, 
             class: "flex p-2 bg-alert drop-shadow-md rounded-full hover:scale-110 transition-scale" do %>
-            <%= render "icons/thumbs_down", klass: "size-8" %>
+            <%= render_icon "thumbs_down", klass: "size-8" %>
           <% end %>
         </li>
         <li>
           <%= f.button :card_rating,
             value: :correct, 
             class: "flex p-2 bg-success drop-shadow-md rounded-full hover:scale-110 transition-scale" do %>
-            <%= render "icons/thumbs_up", klass: "size-8" %>
+            <%= render_icon "thumbs_up", klass: "size-8" %>
           <% end %>
         </li>
       </ul>
