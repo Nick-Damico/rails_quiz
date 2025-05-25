@@ -18,7 +18,7 @@
           <div class="flex items-center justify-between py-2 border-b border-gray-500">
             <h3 class="text-xl uppercase font-xl">Question Choices</h3>
             <button class="flex items-center ml-auto uppercase transition duration-500 ease-in-out rounded btn-sm hover:btn-success" data-action="click->question-form#addChoice:prevent">
-              <span class="mr-1"><%= render "icons/plus" %></span>Add
+              <span class="mr-1"><%= render_icon "plus" %></span>Add
             </button>
           </div>
           <%= display_field_error(question, :choices) %>

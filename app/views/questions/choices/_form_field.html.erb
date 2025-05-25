@@ -10,7 +10,7 @@
                             aria: { checked: "false", describedby: "choice-description" },
                             data: { 'question-form-target': 'choiceCheckboxLabel', action: "click->question-form#setAriaChecked" },
                             tabindex: "1" do %>
-        <%= render 'icons/circle_check', { classes: "stroke-gray-500 size-6 peer-checked:group-[]:stroke-white" } %>
+        <%= render_icon "circle_check", { klass: "stroke-gray-500 size-6 peer-checked:group-[]:stroke-white" } %>
       <% end %>
       <% if choice_form.object.persisted? %>
         <%= link_to question_choice_path(choice_form.object.question, choice_form.object),
@@ -19,17 +19,17 @@
             turbo_method: :delete,
             turbo_confirm: t("buttons.choice.delete")
           } do %>
-          <span><%= render "icons/x_circle" %></span>
+          <span><%= render_icon "x_circle" %></span>
         <% end %>
       <% else %>
         <button class='box-border flex justify-center items-center p-2 h-[40px] border-2 border-red-500 rounded bg-red-400'
                 data-action="click->question-form#remove_choice:prevent"
           data-confirm-msg="<%= t('buttons.choice.delete') %>">
-          <%= render "icons/x_circle" %>
+          <%= render_icon "x_circle" %>
         </button>
       <% end %>
       <p class="items-center hidden mt-1 text-xs text-green-500 peer-checked:flex correct-choice-icon">
-        <%= render "icons/circle_check", classes: 'size-5' %>
+        <%= render_icon "circle_check", classes: 'size-5' %>
         Correct Answer
       </p>
     </div>
