@@ -1,8 +1,17 @@
 module IconHelper
   def render_icon(partial_name, options = {})
-    icon_class = options[:klass] ? "#{options[:klass]}" : "size-6"
-
+    icon_class = options[:klass] || "size-6"
     @render_icon ||= {}
-    @render_icon[partial_name.to_sym] ||= render("icons/#{partial_name}", klass: icon_class)
+
+    cached = @render_icon[partial_name.to_sym]
+
+    if cached.nil? || cached[:klass] != icon_class
+      @render_icon[partial_name.to_sym] = {
+        klass: icon_class,
+        html: render("icons/#{partial_name}", klass: icon_class)
+      }
+    end
+
+    @render_icon[partial_name.to_sym][:html]
   end
 end
