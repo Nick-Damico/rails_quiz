@@ -11,7 +11,7 @@
         title: "view",
         aria: { label: "View Deck" },
         class: "bg-primary text-white px-2 py-2" do %>
-        <%= render "icons/magnifying_glass", klass: "size-5" %>
+        <%= render_icon "magnifying_glass", klass: "size-5" %>
       <% end %>
       <%= link_to author_deck_path(deck),
         data: {
@@ -21,7 +21,7 @@
         title: "delete",
         aria: { label: "Delete Deck" },
         class: "flex items-center bg-alert text-white px-2 py-2" do %>
-        <%= render "icons/x_circle", klass: "size-5" %>
+        <%= render_icon "x_circle", klass: "size-5" %>
       <% end %>
     </div>
   </td>
