@@ -1,17 +1,17 @@
 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-  <th scope="row" class="py-2 px-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+  <th scope="row" class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
     <%= quiz.title %>
   </th>
-  <td class="py-2 px-3">
+  <td class="px-3 py-2">
     <%= quiz.description %>
   </td>
-  <td class="py-2 px-3 text-right">
+  <td class="px-3 py-2 text-right">
     <div class="inline-flex border border-gray-400">
       <%= link_to quiz_path(quiz),
         title: "view",
         aria: { label: "View Quiz" },
         class: "bg-primary text-white px-2 py-2" do %>
-        <%= render "icons/magnifying_glass", klass: "size-5" %>
+        <%= render_icon "magnifying_glass", klass: "size-5" %>
       <% end %>
     </div>
   </td>

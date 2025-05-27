@@ -23,7 +23,7 @@
         <% end %>
         <div class="flex justify-center pt-3 mt-8 space-x-6 border-t border-gray-500">
           <%= link_to pause_answer_sheet_path(@answer_sheet_question.answer_sheet), class: "flex flex-1 items-center justify-center btn border border-gray-500 hover:bg-warning transition ease-in-out" do %>
-            <%= render "icons/circle_pause", klass: "size-5 mr-2" %> Pause
+            <%= render_icon "circle_pause", klass: "size-5 mr-2" %> Pause
           <% end %>
           <%= f.submit @answer_sheet_question.position < @question_count ? "Next" : "Finish",
               class: "flex flex-1 items-center btn btn-success border border-gray-500 disabled:bg-transparent disabled:cursor-not-allowed disabled:border-gray-700 disabled:text-gray-700 transition ease-in-out",

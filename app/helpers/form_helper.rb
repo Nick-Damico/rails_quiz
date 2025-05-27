@@ -21,6 +21,6 @@ module FormHelper
     end
 
     def field_with_error_icon
-      render "icons/exclamation_triangle"
+      render_icon "exclamation_triangle"
     end
 end

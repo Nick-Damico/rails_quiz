@@ -46,11 +46,11 @@
       <%= button_to answer_sheets_path,
                     params: { answer_sheet: { quiz_id: @quiz.id, user_id: current_user.id } },
                     class: "flex items-center justify-center btn btn-primary rounded" do %>
-        <%= render "icons/play_circle", klass: "size-5 mr-1" %> Start Quiz
+        <%= render_icon "play_circle", klass: "size-5 mr-1" %> Start Quiz
       <% end %>
     <% end %>
     <%= link_to "#", class: "flex items-center justify-center btn btn-success rounded" do %>
-      <%= render "icons/plus", klass: "size-5 mr-1" %> Add to Study Plan
+      <%= render_icon "plus", klass: "size-5 mr-1" %> Add to Study Plan
     <% end %>
   </div>
 </div>

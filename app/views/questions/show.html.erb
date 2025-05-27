@@ -9,13 +9,13 @@
     <%= link_to quiz_question_path(@quiz, prev_question_id(@question, @question_ids)), class: "absolute inset-0" do %>
       <span class="sr-only">Previous Card</span>
     <% end %>
-    <%= render "icons/chevron_left" %>
+    <%= render_icon "chevron_left" %>
   </div>
   <section class="w-full pb-2 mx-auto mt-10 border border-gray-500 rounded">
     <div class="flex items-center justify-end px-6 py-2 border-b border-gray-500">
       <span class="text-lg font-light">Question: <%= format_as_two_digits(question_number(@question, @question_ids)) %>/<%= format_as_two_digits(@question_ids.count) %></span>
       <%= link_to edit_quiz_question_path(@quiz, @question), title: 'Edit Question', class: "flex btn-sm rounded items-center ml-auto hover:btn-primary transition ease-in-out duration-500" do %>
-        <%= render "icons/pencil", klass: "size-5 mr-1" %> Edit
+        <%= render_icon "pencil", klass: "size-5 mr-1" %> Edit
       <% end %>
     </div>
     <div class="px-3">
@@ -31,6 +31,6 @@
     <%= link_to quiz_question_path(@quiz, next_question_id(@question, @question_ids)), class: "absolute inset-0" do %>
       <span class="sr-only">Next Card</span>
     <% end %>
-    <%= render "icons/chevron_right" %>
+    <%= render_icon "chevron_right" %>
   </div>
 </div>
