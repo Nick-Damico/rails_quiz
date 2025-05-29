@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :authored_decks, class_name: "Deck", foreign_key: :author_id
   has_many :authored_quizzes, class_name: "Quiz", foreign_key: :author_id
+  has_many :study_plans
 
   has_many :user_decks
   has_many :decks, through: :user_decks
