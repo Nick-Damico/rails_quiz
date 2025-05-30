@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_14_013925) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_30_150320) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +79,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_14_013925) do
     t.index ["author_id"], name: "index_quizzes_on_author_id"
   end
 
+  create_table "study_plan_decks", force: :cascade do |t|
+    t.bigint "study_plan_id", null: false
+    t.bigint "deck_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deck_id"], name: "index_study_plan_decks_on_deck_id"
+    t.index ["study_plan_id", "deck_id"], name: "index_study_plan_decks_on_study_plan_and_deck", unique: true
+    t.index ["study_plan_id"], name: "index_study_plan_decks_on_study_plan_id"
+  end
+
   create_table "study_plans", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
@@ -134,6 +144,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_14_013925) do
   add_foreign_key "question_choices", "questions"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quizzes", "users", column: "author_id"
+  add_foreign_key "study_plan_decks", "decks"
+  add_foreign_key "study_plan_decks", "study_plans"
   add_foreign_key "study_plans", "users"
   add_foreign_key "user_deck_cards", "cards"
   add_foreign_key "user_deck_cards", "user_decks"
