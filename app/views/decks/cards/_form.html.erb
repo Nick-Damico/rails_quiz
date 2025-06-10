@@ -22,10 +22,17 @@
           </div>
         </div>
         <div class="flex flex-col gap-4 sm:flex-row sm:gap-2">
-          <%= button_tag "Save & Add Another", 
-            name: "follow_up_action", 
-            value: "new", 
-            class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
+          <% unless new_card?(card) %>
+            <%= button_tag "Save & Add Another", 
+              name: "follow_up_action", 
+              value: "new", 
+              class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
+          <% else %>
+            <%= button_tag "Save", 
+              name: "follow_up_action", 
+              value: "new", 
+              class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
+          <% end %>
           <%= button_tag"Save & Return", 
             name: "follow_up_action", 
             value: "show", 
