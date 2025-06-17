@@ -1,5 +1,5 @@
 <div class="mb-6">
-  <ol class="flex text-sm border-b border-t border-gray-800 px-2">
+  <ol class="flex px-2 text-sm border-t border-b border-gray-800">
     <% breadcrumbs.each.with_index(1) do |breadcrumb, index| %>
       <li class="">
         <%= breadcrumb_item(breadcrumb, last_item: index == breadcrumbs.size) %>
