@@ -72,7 +72,7 @@
     <div class="max-h-[650px] h-full">
       <% if @quiz.questions.exists? %>
         <ul id="questionsList" class="flex flex-col gap-1 pr-6 overflow-y-scroll">
-          <%= render partial: "question", collection: @quiz.questions %>
+          <%= render partial: "question", collection: @quiz.questions, locals: { quiz: @quiz } %>
         </ul>
       <% else %>
         <div id="no-questions-instructions" class="flex flex-col w-full h-full pt-4 justify-self-center">

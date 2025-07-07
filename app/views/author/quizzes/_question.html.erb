@@ -7,7 +7,7 @@
       class: "bg-primary text-white px-2 py-2" do %>
       <%= render_icon "magnifying_glass", klass: "size-5" %>
     <% end %>
-    <%= link_to quiz_question_path(@quiz, question),
+      <%= link_to quiz_question_path(quiz, question),
       data: {
         turbo_confirm: t("buttons.questions.delete"),
         turbo_method: :delete
