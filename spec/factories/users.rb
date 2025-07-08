@@ -8,4 +8,8 @@ FactoryBot.define do
       user.password_confirmation = user.password
     end
   end
+
+  trait :with_bio do
+    bio { Faker::Lorem.paragraph }
+  end
 end
