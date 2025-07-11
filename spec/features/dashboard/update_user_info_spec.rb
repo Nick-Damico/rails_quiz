@@ -9,7 +9,7 @@ RSpec.describe 'Dashboard User Updates Information', type: :feature do
     visit dashboard_user_path(user)
 
     fill_in 'Username', with: new_username
-    within('#general_info_form') do
+    within('#users_general_info_form') do
       click_button 'Update User'
     end
   end
