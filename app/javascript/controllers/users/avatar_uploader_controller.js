@@ -8,8 +8,11 @@ export default class extends Controller {
     console.log("Avatar Uploader Controller connected");
   }
 
-  onBrowse(event) {}
-  onClick(event) {}
+  onBrowse(event) {
+    console.log("Browse button clicked");
+    this.fileInputTarget.click();
+  }
+
   onDragOver(event) {}
   onDrop(event) {}
 }

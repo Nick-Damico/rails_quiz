@@ -4,13 +4,11 @@
       <div class="p-4 border-2 border-gray-500 border-dashed rounded-md cursor-pointer"
         data-controller="users--avatar-uploader" 
         data-avatar-uploader-target="dropzone"
-        data-action="dragover->avatar-upload#dragOver drop->avatar-upload#drop click->avatar-upload#browse">
-        <input type="file" accept="image/*" class="hidden" data-avatar-uploader-target="fileInput" data-action="change->avatar-upload#previewImage">
+        data-action="dragover->avatar-upload#dragOver drop->avatar-uploader#drop click->users--avatar-uploader#onBrowse">
+        <input type="file" accept="image/*" class="hidden" data-users--avatar-uploader-target="fileInput" data-action="change->avatar-upload#previewImage">
         <div data-avatar-uploader-target="preview">
-          <div>
-            <%= render_icon "camera", klass: "size-12" %>
-            <p class="text-gray-500 sr-only">Click or drag an image here to upload</p>
-          </div>
+          <%= render_icon "camera", klass: "size-12" %>
+          <p class="text-gray-500 sr-only">Click or drag an image here to upload</p>
         </div>
       </div>
     </div>
