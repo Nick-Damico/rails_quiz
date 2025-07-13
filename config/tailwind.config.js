@@ -40,4 +40,12 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
   ],
+  safelist: [
+        {
+          pattern: [
+            /stroke-(emerald)-(500)/,
+            /border-(emerald)-(500)/,
+          ],
+        },
+      ],
 };
