@@ -3,11 +3,13 @@
     <div id="user_profile_upload" class="box-content flex items-center justify-center p-4 mb-2 bg-gray-800 rounded-full h-28 w-28">
       <div class="p-4 border-2 border-gray-500 border-dashed rounded-md cursor-pointer"
         data-controller="users--avatar-uploader" 
-        data-avatar-uploader-target="dropzone"
-        data-action="dragover->avatar-upload#dragOver drop->avatar-uploader#drop click->users--avatar-uploader#onBrowse">
+        data-users--avatar-uploader-target="dropzone"
+        data-action="dragover->users--avatar-uploader#onDragOver dragleave->users--avatar-uploader#onDragLeave drop->users--avatar-uploader#onDrop click->users--avatar-uploader#onBrowse">
         <input type="file" accept="image/*" class="hidden" data-users--avatar-uploader-target="fileInput" data-action="change->avatar-upload#previewImage">
-        <div data-avatar-uploader-target="preview">
-          <%= render_icon "camera", klass: "size-12" %>
+        <div data-users--avatar-uploader-target="preview">
+          <%= render_icon "camera",
+              klass: "size-12 stroke-gray-500",
+              data: { "users--avatar-uploader-target": "icon" } %>
           <p class="text-gray-500 sr-only">Click or drag an image here to upload</p>
         </div>
       </div>
