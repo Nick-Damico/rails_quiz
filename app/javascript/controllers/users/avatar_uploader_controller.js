@@ -27,16 +27,34 @@ export default class extends Controller {
   }
 
   onDragOver(event) {
+    event.preventDefault();
     this._toggleDropzoneStyles("enter");
   }
 
   onDragLeave(event) {
+    event.preventDefault();
     this._toggleDropzoneStyles("leave");
   }
 
   onDrop(event) {
     console.log("file dropped");
-    console.log(event)
+    event.preventDefault();
+
+    if (event.dataTransfer.items) {
+      [...event.dataTransfer.items].forEach((item) => {
+        if (item.kind === "file") {
+          const file = item.getAsFile();
+          const reader = new FileReader()
+
+          reader.addEventListener("load", () => {
+            this.previewTarget.src = reader.result;
+            this.previewTarget.classList.remove(...displayStyles.preview.active);
+          })
+
+          reader.readAsDataURL(file);
+        }
+      });
+    }
   }
 
   _toggleDropzoneStyles(action) {
