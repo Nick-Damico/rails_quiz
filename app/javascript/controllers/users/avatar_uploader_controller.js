@@ -11,7 +11,7 @@ const displayStyles = {
   },
   preview: {
     active: ["hidden"],
-  }
+  },
 };
 
 // Connects to data-controller="users--avatar-uploader"
@@ -59,17 +59,31 @@ export default class extends Controller {
 
   _toggleDropzoneStyles(action) {
     if (action === "enter") {
-      this.dropzoneTarget.classList.add(...displayStyles.dropZone.active);
-      this.dropzoneTarget.classList.remove(...displayStyles.dropZone.inactive);
-
-      this.iconTarget.classList.add(...displayStyles.icon.active);
-      this.iconTarget.classList.remove(...displayStyles.icon.inactive);
+      this._activateDropzone();
+      this._activateIcon();
     } else if (action === "leave") {
+      this._inactivateDropzone();
+      this._inactivateIcon();
+    }
+  }
+
+  _activateDropzone() {
+    this.dropzoneTarget.classList.add(...displayStyles.dropZone.active);
+    this.dropzoneTarget.classList.remove(...displayStyles.dropZone.inactive);
+  }
+
+  _inactivateDropzone() {
       this.dropzoneTarget.classList.remove(...displayStyles.dropZone.active);
       this.dropzoneTarget.classList.add(...displayStyles.dropZone.inactive);
+  }
 
+  _activateIcon() {
+    this.iconTarget.classList.add(...displayStyles.icon.active);
+    this.iconTarget.classList.remove(...displayStyles.icon.inactive);
+  }
+
+  _inactivateIcon() {
       this.iconTarget.classList.remove(...displayStyles.icon.active);
       this.iconTarget.classList.add(...displayStyles.icon.inactive);
-    }
   }
 }
