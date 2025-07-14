@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 
-const iconStyles = {
+const displayStyles = {
   dropZone: {
     active: ["border-emerald-500"],
     inactive: ["border-gray-300"],
@@ -9,6 +9,9 @@ const iconStyles = {
     active: ["stroke-emerald-500"],
     inactive: ["stroke-gray-500"],
   },
+  preview: {
+    active: ["hidden"],
+  }
 };
 
 // Connects to data-controller="users--avatar-uploader"
@@ -38,17 +41,17 @@ export default class extends Controller {
 
   _toggleDropzoneStyles(action) {
     if (action === "enter") {
-      this.dropzoneTarget.classList.add(...iconStyles.dropZone.active);
-      this.dropzoneTarget.classList.remove(...iconStyles.dropZone.inactive);
+      this.dropzoneTarget.classList.add(...displayStyles.dropZone.active);
+      this.dropzoneTarget.classList.remove(...displayStyles.dropZone.inactive);
 
-      this.iconTarget.classList.add(...iconStyles.icon.active);
-      this.iconTarget.classList.remove(...iconStyles.icon.inactive);
+      this.iconTarget.classList.add(...displayStyles.icon.active);
+      this.iconTarget.classList.remove(...displayStyles.icon.inactive);
     } else if (action === "leave") {
-      this.dropzoneTarget.classList.remove(...iconStyles.dropZone.active);
-      this.dropzoneTarget.classList.add(...iconStyles.dropZone.inactive);
+      this.dropzoneTarget.classList.remove(...displayStyles.dropZone.active);
+      this.dropzoneTarget.classList.add(...displayStyles.dropZone.inactive);
 
-      this.iconTarget.classList.remove(...iconStyles.icon.active);
-      this.iconTarget.classList.add(...iconStyles.icon.inactive);
+      this.iconTarget.classList.remove(...displayStyles.icon.active);
+      this.iconTarget.classList.add(...displayStyles.icon.inactive);
     }
   }
 }
