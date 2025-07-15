@@ -20,6 +20,11 @@ export default class extends Controller {
 
   connect() {
     console.log("Avatar Uploader Controller connected");
+    this.reader = new FileReader();
+
+    this._getReader().addEventListener("load", (event) =>
+      this._loadFile(event, this._getReader())
+    );
   }
 
   onBrowse(event) {
@@ -43,18 +48,19 @@ export default class extends Controller {
     if (event.dataTransfer.items) {
       [...event.dataTransfer.items].forEach((item) => {
         if (item.kind === "file") {
-          const file = item.getAsFile();
-          const reader = new FileReader()
-
-          reader.addEventListener("load", () => {
-            this.previewTarget.src = reader.result;
-            this.previewTarget.classList.remove(...displayStyles.preview.active);
-          })
-
-          reader.readAsDataURL(file);
+          this._getReader().readAsDataURL(item.getAsFile());
         }
       });
     }
+  }
+
+  _getReader() {
+    return this.reader;
+  }
+
+  _loadFile(event, reader) {
+    this.previewTarget.src = reader.result;
+    this.previewTarget.classList.remove(...displayStyles.preview.active);
   }
 
   _toggleDropzoneStyles(action) {
@@ -73,8 +79,8 @@ export default class extends Controller {
   }
 
   _inactivateDropzone() {
-      this.dropzoneTarget.classList.remove(...displayStyles.dropZone.active);
-      this.dropzoneTarget.classList.add(...displayStyles.dropZone.inactive);
+    this.dropzoneTarget.classList.remove(...displayStyles.dropZone.active);
+    this.dropzoneTarget.classList.add(...displayStyles.dropZone.inactive);
   }
 
   _activateIcon() {
@@ -83,7 +89,7 @@ export default class extends Controller {
   }
 
   _inactivateIcon() {
-      this.iconTarget.classList.remove(...displayStyles.icon.active);
-      this.iconTarget.classList.add(...displayStyles.icon.inactive);
+    this.iconTarget.classList.remove(...displayStyles.icon.active);
+    this.iconTarget.classList.add(...displayStyles.icon.inactive);
   }
 }
