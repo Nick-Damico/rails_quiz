@@ -41,11 +41,13 @@ module.exports = {
     require("@tailwindcss/container-queries"),
   ],
   safelist: [
-        {
-          pattern: [
-            /stroke-(emerald)-(500)/,
-            /border-(emerald)-(500)/,
-          ],
-        },
-      ],
+    "group-[.is-active]:bg-emerald-500",
+    /border-(emerald)-(500)/
+    ]
+    // {
+    //   // pattern: [
+    //   //   /stroke-(emerald)-(500)/,
+    //   //   /border-(emerald)-(500)/,
+    //   // ],
+    // },
 };
