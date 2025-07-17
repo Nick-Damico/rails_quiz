@@ -46,6 +46,10 @@ export default class extends Controller {
     this._toggleDropzoneStyles("leave");
   }
 
+  _getErrors() {
+    return this.errors;
+  }
+
   _getReader() {
     return this.reader;
   }
@@ -65,12 +69,12 @@ export default class extends Controller {
 
   _validateDrop(event) {
     event.dataTransfer.files.length > 1 &&
-      (this.errors.count =
+      (this._getErrors().count =
         "You can only upload one file at a time for your avatar.");
 
     Array(...event.dataTransfer.files).forEach((file) => {
       if(!(/image\/*/.test(file.type))) {
-        this.errors.type = "You can only upload an image file."
+        this._getErrors().type = "You can only upload an image file."
       }
     })
 
@@ -82,11 +86,11 @@ export default class extends Controller {
   }
 
   _hasErrors() {
-    return Object.keys(this.errors).length > 0;
+    return Object.keys(this._getErrors()).length > 0;
   }
 
   _showErrors(errors) {
-    for (let error of Object.values(this.errors)) {
+    for (let error of Object.values(this._getErrors())) {
       alert(error);
     }
   }
