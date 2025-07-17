@@ -65,8 +65,14 @@ export default class extends Controller {
 
   _validateDrop(event) {
     event.dataTransfer.files.length > 1 &&
-      (this.errors.files =
+      (this.errors.count =
         "You can only upload one file at a time for your avatar.");
+
+    Array(...event.dataTransfer.files).forEach((file) => {
+      if(!(/image\/*/.test(file.type))) {
+        this.errors.type = "You can only upload an image file."
+      }
+    })
 
     return !this._hasErrors();
   }
