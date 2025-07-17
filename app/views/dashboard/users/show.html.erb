@@ -4,19 +4,19 @@
     data-controller="users--avatar-uploader">
     <div
       id="user_profile_upload"
-      class="group-[.is-active]:border-emerald-500 transition ease-in-out duration-500 box-content relative flex items-center justify-center p-4 mb-2 overflow-hidden bg-gray-800 border-2 border-gray-500 rounded-full h-28 w-28"
+      class="group-[.is-active]:border-emerald-500 group/dropzone hover:border-emerald-500 transition ease-in-out duration-500 box-content relative flex items-center justify-center p-4 mb-2 overflow-hidden bg-gray-800 border-2 border-gray-500 rounded-full h-28 w-28"
       data-users--avatar-uploader-target="dropzone"
       data-action="
       dragover->users--avatar-uploader#onDragOver
       dragleave->users--avatar-uploader#onDragLeave
       drop->users--avatar-uploader#onDrop
       click->users--avatar-uploader#onBrowse">
-      <img src="" alt="" class="group-[.is-active]:opacity-25 absolute inset-0 z-40 hidden object-cover w-full h-full transition ease-in-out duration-500" data-users--avatar-uploader-target="preview">
-      <div class="group-[.is-active]:border-emerald-500 relative z-30 p-4 border-2 border-gray-500 border-dashed rounded-md cursor-pointer transition ease-in-out duration-500"
+      <img src="" alt="" class="group-[.is-active]:opacity-25 group-hover/dropzone:opacity-25 absolute inset-0 z-40 hidden object-cover w-full h-full transition ease-in-out duration-500" data-users--avatar-uploader-target="preview">
+      <div class="group-[.is-active]:border-emerald-500 group-hover/dropzone:border-emerald-500 relative z-30 p-4 border-2 border-gray-500 border-dashed rounded-md cursor-pointer transition ease-in-out duration-500"
            data-users--avatar-uploader-target="dropzoneContent">
         <input type="file" accept="image/*" class="hidden" data-users--avatar-uploader-target="fileInput" data-action="change->avatar-upload#previewImage">
         <%= render_icon "camera",
-              klass: "size-12 stroke-gray-500 group-[.is-active]:stroke-emerald-500 transition ease-in-out duration-500",
+              klass: "size-12 stroke-gray-500 group-[.is-active]:stroke-emerald-500 group-hover/dropzone:stroke-emerald-500 transition ease-in-out duration-500",
               data: { "users--avatar-uploader-target": "icon" } %>
         <p class="text-gray-500 sr-only">Click or drag an image here to upload</p>
       </div>
