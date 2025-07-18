@@ -14,7 +14,9 @@
       <img src="" alt="" class="group-[.is-active]:opacity-25 group-hover/dropzone:opacity-25 absolute inset-0 z-40 hidden object-cover w-full h-full transition ease-in-out duration-500" data-users--avatar-uploader-target="preview">
       <div class="group-[.is-active]:border-emerald-500 group-hover/dropzone:border-emerald-500 relative z-30 p-4 border-2 border-gray-500 border-dashed rounded-md cursor-pointer transition ease-in-out duration-500"
            data-users--avatar-uploader-target="dropzoneContent">
-        <input type="file" accept="image/*" class="hidden" data-users--avatar-uploader-target="fileInput" data-action="change->avatar-upload#previewImage">
+        <%= form_with model: @user do |ff| %>
+          <%= ff.file_field :avatar, accept: "image/*", class: "hidden", data: { "users--avatar-uploader-target": "fileInput", action: "change->avatar-upload#previewImage" }%>
+        <% end %>
         <%= render_icon "camera",
               klass: "size-12 stroke-gray-500 group-[.is-active]:stroke-emerald-500 group-hover/dropzone:stroke-emerald-500 transition ease-in-out duration-500",
               data: { "users--avatar-uploader-target": "icon" } %>
