@@ -31,14 +31,10 @@ export default class extends Controller {
   onDrop(event) {
     event.preventDefault();
 
-    if (this._validateDrop(event)) {
-      if (event.dataTransfer.items) {
-        [...event.dataTransfer.items].forEach((item) => {
-          if (item.kind === "file") {
-            this._getReader().readAsDataURL(item.getAsFile());
-          }
-        });
-      }
+    if (event.dataTransfer.items && this._validateDrop(event)) {
+      [...event.dataTransfer.items].forEach((item) => {
+        this._getReader().readAsDataURL(item.getAsFile());
+      });
     } else {
       this._showErrors();
       this._clearErrors();
@@ -73,10 +69,11 @@ export default class extends Controller {
         "You can only upload one file at a time for your avatar.");
 
     Array(...event.dataTransfer.files).forEach((file) => {
-      if(!(/image\/*/.test(file.type))) {
-        this._getErrors().type = "You can only upload an image file."
+      if (!/image\/*/.test(file.type)) {
+        this._getErrors().type = "You can only upload an image file.";
       }
-    })
+    });
+    // if (item.kind === "file") {
 
     return !this._hasErrors();
   }
