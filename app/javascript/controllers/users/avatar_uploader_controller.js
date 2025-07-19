@@ -18,6 +18,14 @@ export default class extends Controller {
     this.fileInputTarget.click();
   }
 
+  onChange(event) {
+    // We still need to check if the file is an image
+    const [file] = event.target.files;
+    if (!file) return;
+
+    this._readFile(file);
+  }
+
   onDragOver(event) {
     event.preventDefault();
     this._toggleDropzoneStyles("enter");
@@ -30,16 +38,23 @@ export default class extends Controller {
 
   onDrop(event) {
     event.preventDefault();
+    this._processFileDrop(event);
+    this._toggleDropzoneStyles("leave");
+  }
 
+  _processFileDrop(event) {
     if (event.dataTransfer.items && this._validateDrop(event)) {
       [...event.dataTransfer.items].forEach((item) => {
-        this._getReader().readAsDataURL(item.getAsFile());
+        this._readFile(item.getAsFile());
       });
     } else {
       this._showErrors();
       this._clearErrors();
     }
-    this._toggleDropzoneStyles("leave");
+  }
+
+  _readFile(file) {
+    this._getReader().readAsDataURL(file);
   }
 
   _getErrors() {
