@@ -53,10 +53,6 @@ export default class extends Controller {
     }
   }
 
-  _readFile(file) {
-    this._getReader().readAsDataURL(file);
-  }
-
   _getErrors() {
     return this.errors;
   }
@@ -68,6 +64,10 @@ export default class extends Controller {
   _loadFile(event, reader) {
     this.previewTarget.src = reader.result;
     this.previewTarget.classList.remove("hidden");
+  }
+
+  _readFile(file) {
+    this._getReader().readAsDataURL(file);
   }
 
   _toggleDropzoneStyles(action) {
