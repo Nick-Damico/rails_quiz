@@ -11,10 +11,11 @@
       dragleave->users--avatar-uploader#onDragLeave
       drop->users--avatar-uploader#onDrop
       click->users--avatar-uploader#onBrowse">
-      <img src="" alt="" class="group-[.is-active]:opacity-25 group-hover/dropzone:opacity-25 absolute inset-0 z-40 hidden object-cover w-full h-full transition ease-in-out duration-500" data-users--avatar-uploader-target="preview">
+      <%= image_tag @user.avatar, class: "#{"hidden" unless @user.avatar} group-[.is-active]:opacity-25 group-hover/dropzone:opacity-25 absolute inset-0 z-40 object-cover w-full h-full transition ease-in-out duration-500", data:  { "users--avatar-uploader-target": "preview" } %>
+      <%# <img src="" alt="" class="group-[.is-active]:opacity-25 group-hover/dropzone:opacity-25 absolute inset-0 z-40 hidden object-cover w-full h-full transition ease-in-out duration-500" data-users--avatar-uploader-target="preview"> %>
       <div class="group-[.is-active]:border-emerald-500 group-hover/dropzone:border-emerald-500 relative z-30 p-4 border-2 border-gray-500 border-dashed rounded-md cursor-pointer transition ease-in-out duration-500"
            data-users--avatar-uploader-target="dropzoneContent">
-        <%= form_with model: @user do |ff| %>
+        <%= form_with model: @user, url: dashboard_user_path(@user), data: { "users--avatar-uploader-target": "avatarForm" } do |ff| %>
           <%= ff.file_field :avatar,
             accept: "image/*",
             class: "hidden",

@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 // Connects to data-controller="users--avatar-uploader"
 export default class extends Controller {
-  static targets = ["dropzone", "fileInput", "icon", "preview"];
+  static targets = ["dropzone", "fileInput", "icon", "preview", "avatarForm"];
 
   connect() {
     console.log("Avatar Uploader Controller connected");
@@ -10,7 +10,7 @@ export default class extends Controller {
     this.errors = new Object();
 
     this._getReader().addEventListener("load", (event) =>
-      this._loadFile(event, this._getReader())
+      this._setFileInput(event, this._getReader())
     );
   }
 
@@ -43,9 +43,13 @@ export default class extends Controller {
   }
 
   _processFileDrop(event) {
+    const dataTransfer = new DataTransfer();
     if (event.dataTransfer.items && this._validateDrop(event)) {
       [...event.dataTransfer.items].forEach((item) => {
-        this._readFile(item.getAsFile());
+        let file = item.getAsFile();
+        this._readFile(file);
+        dataTransfer.items.add(file);
+        this.fileInputTarget.files = dataTransfer.files;
       });
     } else {
       this._showErrors();
@@ -61,9 +65,10 @@ export default class extends Controller {
     return this.reader;
   }
 
-  _loadFile(event, reader) {
+  _setFileInput(event, reader) {
     this.previewTarget.src = reader.result;
     this.previewTarget.classList.remove("hidden");
+    this.avatarFormTarget.submit();
   }
 
   _readFile(file) {
@@ -88,7 +93,6 @@ export default class extends Controller {
         this._getErrors().type = "You can only upload an image file.";
       }
     });
-    // if (item.kind === "file") {
 
     return !this._hasErrors();
   }
