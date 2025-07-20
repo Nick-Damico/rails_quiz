@@ -1,17 +1,15 @@
 <div class="bg-gray-800">
-  <div class="flex bg-gray-800 px-4 py-3 mx-auto max-w-screen-xl">
-    <div class="left-column flex items-center">
-      <div class="rounded-full bg-white h-8 w-8"></div>    
+  <div class="flex max-w-screen-xl px-4 py-3 mx-auto bg-gray-800">
+    <div class="flex items-center left-column">
+      <%= avatar current_user %>
       <div class="ml-4">
         <%= link_to dashboard_user_path( current_user ) do %>
           <p class="border-b border-gray-600"><%= current_user.username %></p>
-          <p class="text-xs uppercase font-light text-gray-400"><%= "padawan" %></p>
+          <p class="text-xs font-light text-gray-400 uppercase"><%= "padawan" %></p>
         <% end %>
       </div>
     </div>
-
-
-    <div class="flex right-column ml-auto">
+    <div class="flex ml-auto right-column">
       <span class="vertical-separator bg-gray-900 h-100 w-[1px] mr-8"></span>
       <%= link_to "Continue your streak >", root_path, class: "flex items-center bg-green-700 border-b-4 border-green-600 rounded px-8 py-2" %>
     </div>
