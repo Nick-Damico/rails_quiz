@@ -21,5 +21,19 @@ RSpec.describe "Dashboard::Users", type: :request do
 
       expect(user.reload.username). to eq new_username
     end
+
+    context "avatar upload" do
+      it "attaches an avatar image file" do
+        put dashboard_user_path(user),
+          params: {
+            user: {
+              avatar: fixture_file_upload(Rails.root.join("spec", "fixtures", "files", "avatar.jpg"), "image/jpeg")
+            }
+          }
+
+        expect(user.reload.avatar).to be_attached
+        expect(user.avatar.filename).to eq "avatar.jpg"
+      end
+    end
   end
 end

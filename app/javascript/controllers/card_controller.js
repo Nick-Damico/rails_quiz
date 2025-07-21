@@ -31,9 +31,7 @@ export default class extends Controller {
       addClass(cardBack, "hidden");
     }
 
-    if (this.flippedValue) return;
-
-    this.flippedValue = true;
+    this._markAsFlipped.call(this, card);
   }
 
   /* PRIVATE */
@@ -49,5 +47,9 @@ export default class extends Controller {
 
   _resetState() {
     this.flippedValue = false;
+  }
+
+  _markAsFlipped(card) {
+    this.flippedValue = true;
   }
 }

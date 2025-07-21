@@ -40,4 +40,14 @@ module.exports = {
     require("@tailwindcss/typography"),
     require("@tailwindcss/container-queries"),
   ],
+  safelist: [
+    "group-[.is-active]:bg-emerald-500",
+    /border-(emerald)-(500)/
+    ]
+    // {
+    //   // pattern: [
+    //   //   /stroke-(emerald)-(500)/,
+    //   //   /border-(emerald)-(500)/,
+    //   // ],
+    // },
 };

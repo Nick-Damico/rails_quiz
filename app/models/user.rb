@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :user_decks
   has_many :decks, through: :user_decks
 
+  has_one_attached :avatar
+
   validates_presence_of(:username)
   validates_uniqueness_of(:username)
 
