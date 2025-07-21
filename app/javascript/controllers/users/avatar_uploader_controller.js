@@ -68,7 +68,7 @@ export default class extends Controller {
   _setFileInput(event, reader) {
     this.previewTarget.src = reader.result;
     this.previewTarget.classList.remove("hidden");
-    this.avatarFormTarget.submit();
+    this.avatarFormTarget.requestSubmit();
   }
 
   _readFile(file) {
