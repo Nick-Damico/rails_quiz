@@ -14,12 +14,14 @@ RSpec.describe "Dashboard::Users", type: :request do
   end
 
   describe "PUT /update" do
-    it "updates the users username" do
-      new_username = "Sam Puppies"
+    it "updates the users information" do
+      new_username = "Sam Pups"
+      bio = "A pups learning a few things."
 
-      put dashboard_user_path(user), params: { user: { username: new_username } }
+      put dashboard_user_path(user), params: { user: { username: new_username, bio: } }
 
       expect(user.reload.username). to eq new_username
+      expect(user.reload.bio). to eq bio
     end
 
     context "avatar upload" do
