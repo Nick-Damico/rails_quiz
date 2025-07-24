@@ -11,7 +11,11 @@
       dragleave->users--avatar-uploader#onDragLeave
       drop->users--avatar-uploader#onDrop
       click->users--avatar-uploader#onBrowse">
-      <%= image_tag @user.avatar, class: "#{"hidden" unless @user.avatar} group-[.is-active]:opacity-25 group-hover/dropzone:opacity-25 absolute inset-0 z-40 object-cover w-full h-full transition ease-in-out duration-500", data:  { "users--avatar-uploader-target": "preview" } %>
+      <% if @user.avatar.attached? %>
+        <%= image_tag @user.avatar,
+          class: "#{"hidden" unless @user.avatar} group-[.is-active]:opacity-25 group-hover/dropzone:opacity-25 absolute inset-0 z-40 object-cover w-full h-full transition ease-in-out duration-500",
+          data:  { "users--avatar-uploader-target": "preview" } %>
+      <% end %>
       <div class="group-[.is-active]:border-emerald-500 group-hover/dropzone:border-emerald-500 relative z-30 p-4 border-2 border-gray-500 border-dashed rounded-md cursor-pointer transition ease-in-out duration-500"
            data-users--avatar-uploader-target="dropzoneContent">
         <%= form_with model: @user, url: dashboard_user_path(@user), data: { "users--avatar-uploader-target": "avatarForm" } do |ff| %>
@@ -34,7 +38,7 @@
         <%= @user.email %>
       </p>
     </div>
-    <%= form_with model: @user, url: dashboard_user_path, class: 'flex flex-col w-full' do |f| %>
+    <%= form_with model: @user, url: dashboard_user_path(@user), class: 'flex flex-col w-full' do |f| %>
       <div class="flex flex-col mt-10 border-t border-gray-500">
         <div class="my-4 field">
           <%= f.label :bio, class: "text-white text-xs font-semibold uppercase mb-2" %>
