@@ -30,7 +30,7 @@
               <%= render_icon "chevron_down", klass: "group-hover:hidden size-5" %>
               <%= render_icon "chevron_up", klass: "hidden group-hover:block size-5" %>
             </button>
-            <ul class="hidden mx-4 border border-gray-700 md:ml-4 group-hover:block md:absolute md:bg-gray-900 md:p-3 md:z-50 md:rounded md:top-12">
+            <ul class="hidden mx-4 border border-gray-700 md:ml-4 group-hover:block md:absolute md:bg-gray-900 md:py-2 md:px-3 md:z-50 md:rounded md:top-12">
               <li>
                 <%= link_to author_decks_path, class: "flex items-center py-2 px-2 text-gray-900 rounded hover:bg-gray-800 md:border-0 dark:text-white hover:text-green-500" do %>
                   <%= render_icon "flash", klass: "size-5 mr-1" %> Flashcards
@@ -50,7 +50,7 @@
               <%= render_icon "chevron_up", klass: "hidden group-hover:block size-5" %>
             </button>
             <%# BEGIN Design sub-navigation %>
-            <ul class="hidden mx-4 space-y-1 border border-gray-700 md:ml-4 group-hover:block md:absolute md:bg-gray-900 md:p-3 md:z-50 md:rounded md:top-12 min-w-44">
+            <ul class="hidden mx-4 space-y-1 border border-gray-700 md:ml-4 group-hover:block md:absolute md:bg-gray-900 md:py-2 md:px-3 md:z-50 md:rounded md:top-12 min-w-44">
               <li>
                 <%= link_to decks_path, class: "flex items-center py-2 px-2 text-gray-900 rounded hover:bg-gray-800 md:border-0 dark:text-white hover:text-green-500" do %>
                   <%= render_icon "flash", klass: "size-5 mr-1" %> Flashcards
