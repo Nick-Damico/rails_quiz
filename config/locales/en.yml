@@ -32,6 +32,8 @@ en:
     registrations:
       update:
         submit: "Update Password"
+    failure: 
+      unauthenticated: "You need to log in or sign up before continuing."
 
   pundit:
     default: "You cannot perform this action."
@@ -39,6 +41,8 @@ en:
       show?: "You are not authorized to access this quiz."
     quiz_policy:
       show?: "You are not authorized to access this quiz."
+    author/deck_policy:
+      index?: "You are not authorized. You must login."
 
   flash:
     errors:

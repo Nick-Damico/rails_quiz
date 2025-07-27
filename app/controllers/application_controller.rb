@@ -4,7 +4,10 @@ class ApplicationController < ActionController::Base
 
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
+
   before_action :user_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user!
+
   after_action :verify_pundit_authorization, unless: :devise_controller?
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
