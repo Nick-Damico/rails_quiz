@@ -8,12 +8,11 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-
-
 puts "SEEDING AUTHORS"
 
 user_1 = FactoryBot.create(
   :user,
+  bio: "Junior Ruby on Rails developer that is eager to learn and grow in the field of software development.",
   username: "Sam Puppers",
   email: "sam_pups@quizit.com",
   password: "1234Sammy",
@@ -24,9 +23,18 @@ user_2 = FactoryBot.create(
   :user,
   username: Faker::Artist.name,
   email: Faker::Internet.email(domain: 'gmail.com'),
+  bio: "Comic book enthusiast and aspiring physician that loves learning.",
   password: "usr2Faker",
   password_confirmation: "usr2Faker"
 )
+
+user_1.avatar.attach(io: File.open(Rails.root.join("spec", "fixtures", "files", "avatar_1.jpg")),
+                     filename: "avatar_1.jpg",
+                     content_type: "image/jpeg")
+
+user_2.avatar.attach(io: File.open(Rails.root.join("spec", "fixtures", "files", "avatar_2.jpg")),
+                     filename: "avatar_2.jpg",
+                     content_type: "image/jpeg")
 
 puts "SEEDING QUIZZES & QUESTIONS"
 
