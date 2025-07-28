@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
-  # TODO: Make this a show route.
-  def index
-    skip_authorizations
+  before_action :authenticate_user!, except: %i[show]
+  before_action :skip_authorizations, only: %i[show]
+
+  def show
   end
 end
