@@ -42,7 +42,7 @@ en:
     quiz_policy:
       show?: "You are not authorized to access this quiz."
     author/deck_policy:
-      index?: "You are not authorized. You must login."
+      index?: "You are not authorized. You must log in."
 
   flash:
     errors:

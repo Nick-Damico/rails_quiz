@@ -1,41 +1,35 @@
-<div class="mt-16 self-center mx-auto w-full max-w-xs">
-  <div class="bg-gray-800 shadow-md rounded-md px-8 pt-6 pb-8 mb-4">
+<div class="self-center w-full max-w-xs mx-auto mt-16">
+  <div class="px-8 pt-6 pb-8 mb-4 bg-gray-800 rounded-md shadow-md">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <h2 class="text-center text-2xl font-bold mb-8">
-        Login
+      <h2 class="mb-8 text-2xl font-bold text-center">
+        Log In
       </h2>
-
       <div class="mb-4 field">
         <%= f.label :email, class: "block text-white text-sm font-bold mb-2" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
-
       <div class="mb-4 field">
         <%= f.label :password, class: "block text-white text-sm font-bold mb-2" %>
         <%= f.password_field :password, autofocus: true, autocomplete: "current-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-
         <div class="text-left">
           <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
             <%= link_to "Forgot password?", new_password_path(resource_name), class: 'text-xs' %><br />
           <% end %>
         </div>
       </div>
-
       <% if devise_mapping.rememberable? %>
-        <div class="flex items-center field mb-4">
+        <div class="flex items-center mb-4 field">
           <%= f.check_box :remember_me, class: 'mr-2 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer' %>
           <%= f.label :remember_me, class: 'text-sm font-bold text-white cursor-pointer' %>
         </div>
       <% end %>
-
       <div class="flex items-center mb-4 actions">
         <%= f.submit "Log in", class: "text-center w-full bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
       </div>
-
     <% end %>
-    <p class="text-center text-sm text-white">Or <a class="font-bold" href=<%= new_user_registration_path %>>Sign Up</a></p>
+    <p class="text-sm text-center text-white">Or <a class="font-bold" href=<%= new_user_registration_path %>>Sign Up</a></p>
   </div>
-  <p class="text-center text-gray-500 text-xs">
+  <p class="text-xs text-center text-gray-500">
     &copy;<%= Time.now.year %> QuizIt. All rights reserved.
   </p>
-</div>
+      </div>

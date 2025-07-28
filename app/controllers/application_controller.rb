@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized(exception)
     unless current_user
-      flash[:error] = "You must login"
+      flash[:error] = "You must log in"
       return redirect_back_or_to(new_user_session_url)
     end
 

@@ -33,7 +33,7 @@ RSpec.describe 'User Authentication Forms', type: :feature do
     expect(page).to have_content("Hello #{user.username}")
   end
 
-  scenario 'displays error for invalid login attempt' do
+  scenario 'displays error for invalid log in attempt' do
     random_password = Faker::Internet.password(min_length: 6, max_length: 6, mix_case: true, special_characters: true)
     username = Faker::Name.name
     user = create(:user, username: username, password: random_password, password_confirmation: random_password)
