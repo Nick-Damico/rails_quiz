@@ -1,3 +1,6 @@
+# This file represents a User reviewing a deck of cards.
+# When a user starts a review, a UserDeck is created.
+
 class UserDecksController < ApplicationController
   before_action :set_user, only: %i[create]
   before_action :set_user_deck, only: %i[show update]
