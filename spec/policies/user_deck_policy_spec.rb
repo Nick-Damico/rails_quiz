@@ -1,27 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe UserDeckPolicy, type: :policy do
-  let(:user) { User.new }
-
   subject { described_class }
 
-  permissions ".scope" do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  let(:user) { create(:user) }
+  let(:unauthorized_user) { create(:user) }
+  let(:record) { create(:user_deck, user: user) }
+
+  permissions ".scope" do; end
 
   permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "allows user to access their own deck" do
+      expect(subject).to permit(user, record)
+    end
+
+    it "denies access to another user's deck" do
+      expect(subject).to_not permit(unauthorized_user, record)
+    end
   end
 
   permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "permits a user to start reviewing a deck by creating a UserDeck" do
+      expect(subject).to permit(user, record)
+    end
+
+    it "prevents users from creating UserDecks for other users" do
+      expect(subject).to_not permit(unauthorized_user, record)
+    end
   end
 
   permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+    it "allows the user to mark the UserDeck as completed" do
+      expect(subject).to permit(user, record)
+    end
 
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it "prevents users from marking the UserDeck as completed for another user" do
+      expect(subject).to_not permit(unauthorized_user, record)
+    end
   end
 end
