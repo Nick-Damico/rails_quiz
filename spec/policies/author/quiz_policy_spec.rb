@@ -6,7 +6,15 @@ RSpec.describe Author::QuizPolicy, type: :policy do
   let(:user) { create(:user) }
   let(:unauthorized_user) { create(:user) }
 
-  permissions ".scope" do; end
+  permissions "Scope#resolve" do
+    let!(:owned_quiz) { create(:quiz, author: user) }
+    let!(:unowned_quiz) { create(:quiz) }
+    it "returns all quizzes for the author" do
+      expect(
+        described_class::Scope.new(user, Quiz).resolve
+      ).to contain_exactly(owned_quiz)
+    end
+  end
 
   permissions :new? do
     let(:record) { build(:quiz, author: user) }
