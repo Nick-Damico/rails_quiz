@@ -66,32 +66,32 @@ class AnswerSheetsController < ApplicationController
 
   private
 
-  def authorize_access!
-    authorize @answer_sheet
-  end
-
-  def record_not_found_redirect_url
-    quizzes_url
-  end
-
-  def unauthorized_redirect_url
-    record_not_found_redirect_url
-  end
-
-  def set_breadcrumbs
-    add_breadcrumb("Study")
-    add_breadcrumb("Quizzes", quizzes_path)
-    if @answer_sheet&.quiz
-      add_breadcrumb(@answer_sheet.quiz.title, quiz_path(@answer_sheet.quiz))
+    def authorize_access!
+      authorize @answer_sheet
     end
-    add_breadcrumb("Summary")
-  end
 
-  def set_answer_sheet
-    @answer_sheet = AnswerSheet.find(params[:id])
-  end
+    def record_not_found_redirect_url
+      quizzes_url
+    end
 
-  def answer_sheet_params
-    params.require(:answer_sheet).permit(:quiz_id, :user_id)
-  end
+    def unauthorized_redirect_url
+      record_not_found_redirect_url
+    end
+
+    def set_breadcrumbs
+      add_breadcrumb("Study")
+      add_breadcrumb("Quizzes", quizzes_path)
+      if @answer_sheet&.quiz
+        add_breadcrumb(@answer_sheet.quiz.title, quiz_path(@answer_sheet.quiz))
+      end
+      add_breadcrumb("Summary")
+    end
+
+    def set_answer_sheet
+      @answer_sheet = AnswerSheet.find(params[:id])
+    end
+
+    def answer_sheet_params
+      params.require(:answer_sheet).permit(:quiz_id, :user_id)
+    end
 end
