@@ -6,7 +6,7 @@ class Author::DeckPolicy < ApplicationPolicy
     end
 
     def resolve
-      @scope.all
+      @scope.where(author: @user)
     end
   end
 
