@@ -7,52 +7,29 @@ RSpec.describe AnswerSheetPolicy, type: :policy do
   let(:unauthorized_user) { create(:user) }
   let!(:answer_sheet) { create(:answer_sheet, user:) }
 
-  permissions :resume? do
+  permissions :resume?, :pause?, :show? do
     # The answer sheet is owned by the user,
     # this is how a user takes a quiz. Resuming a quiz
     # is the process of continuing a paused quiz.
-    it "allows the user to resume a paused quiz" do
+    it "permits the owner of the anwser sheet" do
       expect(subject).to permit(user, answer_sheet)
     end
 
-    it "prevents unauthorized users from resuming a quiz" do
+    it "prevents unauthorized user access" do
       expect(subject).to_not permit(unauthorized_user, answer_sheet)
     end
   end
 
-#   permissions :new? do
-#     let(:record) { build(:deck, author: user) }
-#     it "allows the author to access the new deck form" do
-#       expect(subject).to permit(user, record)
-#     end
+  permissions :create? do
+    let(:record) { build(:deck, author: user) }
+    it "allows the user to authorize the creation of a deck" do
+      expect(subject).to permit(user, record)
+    end
 
-#     it "prevents unauthorized access of the new deck form" do
-#       expect(subject).not_to permit(unauthorized_user, record)
-#     end
-#   end
-
-#   permissions :create? do
-#     let(:record) { build(:deck, author: user) }
-#     it "allows the user to authorize the creation of a deck" do
-#       expect(subject).to permit(user, record)
-#     end
-
-#     it "prevents a user from authoring a deck for another user" do
-#       expect(subject).not_to permit(unauthorized_user, record)
-#     end
-#   end
-
-#   permissions :show? do
-#     let(:record) { create(:deck, author: user) }
-
-#     it "allows an author to access their deck" do
-#       expect(subject).to permit(user, record)
-#     end
-
-#     it "prevents unauthorized access to another author's deck" do
-#       expect(subject).to_not permit(unauthorized_user, record)
-#     end
-#   end
+    it "prevents a user from creating a deck for another user" do
+      expect(subject).not_to permit(unauthorized_user, record)
+    end
+  end
 
 #   permissions :edit? do
 #     let(:record) { create(:deck, author: user) }
