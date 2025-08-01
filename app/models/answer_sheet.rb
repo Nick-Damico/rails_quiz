@@ -1,3 +1,12 @@
+# Represents a user's attempt to take a quiz.
+#
+# An `AnswerSheet` is created when a user begins a quiz. It stores the users progress,
+# responses, and status throughout the quiz session.
+#
+# - Each `AnswerSheet` belongs to a user and a quiz.
+# - Resuming a quiz involves continuing an existing `AnswerSheet` in a paused or in-progress state.
+# - Finishing the quiz will typically involve grading the responses stored through related models.
+#
 class AnswerSheet < ApplicationRecord
   belongs_to :quiz
   belongs_to :user
