@@ -8,9 +8,6 @@ RSpec.describe AnswerSheetPolicy, type: :policy do
   let!(:answer_sheet) { create(:answer_sheet, user:) }
 
   permissions :resume?, :pause?, :show?, :destroy? do
-    # The answer sheet is owned by the user,
-    # this is how a user takes a quiz. Resuming a quiz
-    # is the process of continuing a paused quiz.
     it "permits the owner of the anwser sheet" do
       expect(subject).to permit(user, answer_sheet)
     end
