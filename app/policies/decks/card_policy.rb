@@ -1,14 +1,14 @@
 class Decks::CardPolicy < ApplicationPolicy
-  class Scope
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
+  # class Scope
+  #   def initialize(user, scope)
+  #     @user = user
+  #     @scope = scope
+  #   end
 
-    def resolve
-      @scope.all
-    end
-  end
+  #   def resolve
+  #     @scope.all
+  #   end
+  # end
 
   def show?
     user_is_owner?
