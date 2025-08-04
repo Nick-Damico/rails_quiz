@@ -4,7 +4,7 @@ RSpec.describe QuizPolicy, type: :policy do
   subject { described_class }
 
   let(:user) { create(:user) }
-  let(:quizzes) { create_list(:quizzes, 2) }
+  let(:quizzes) { create_list(:quiz, 2) }
 
   permissions "Scope#resolve" do
     it "returns all quizzes" do

@@ -11,6 +11,6 @@ class QuizPolicy < ApplicationPolicy
   end
 
   def show?
-    user.present?
+    user.persisted?
   end
 end
