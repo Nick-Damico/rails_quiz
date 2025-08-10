@@ -42,12 +42,8 @@ module.exports = {
   ],
   safelist: [
     "group-[.is-active]:bg-emerald-500",
-    /border-(emerald)-(500)/
-    ]
-    // {
-    //   // pattern: [
-    //   //   /stroke-(emerald)-(500)/,
-    //   //   /border-(emerald)-(500)/,
-    //   // ],
-    // },
+    {
+      pattern: /border-(red|green|blue)-(100|200|300)/
+    },
+  ]
 };
