@@ -45,7 +45,7 @@
       </p>
     </div>
   </section>
-  <section class="flex flex-col w-full px-2 py-4 bg-gray-800 rounded md:w-2/3">
+  <section data-controller="questions--search" class="flex flex-col w-full px-2 py-4 bg-gray-800 rounded md:w-2/3">
     <%= link_to new_quiz_question_path(@quiz), class: "flex btn rounded ml-auto hover:btn-success transition ease-in-out duration-500" do %>
       <%= render_icon "plus" %>
       <span class="ml-2">Add Question</span>
@@ -54,7 +54,7 @@
       <h2 class="mb-1 text-2xl md:mb-0">
         Questions
       </h2>
-      <form class="w-full md:w-auto">
+      <div class="w-full md:w-auto">
         <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div class="relative">
           <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
@@ -63,11 +63,12 @@
             </svg>
           </div>
           <%= search_field_tag :search, nil,
+              data: { "questions--search-target": "input" },
               autocomplete: 'on',
               class: "block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
               placeholder: "Search" %>
         </div>
-      </form>
+      </div>
     </div>
     <div class="max-h-[650px] h-full">
       <% if @quiz.questions.exists? %>
