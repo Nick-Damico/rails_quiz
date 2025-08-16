@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
+import { addClass, removeClass } from "helpers/html_helper";
 
 // Connects to data-controller="questions--search"
 export default class extends Controller {
@@ -9,7 +10,6 @@ export default class extends Controller {
   }
 
   onInput(e) {
-    console.log("Search input changed:", e.target.value);
     if (!this.hasQuestionTarget) return;
 
     const searchValue = e.target.value.toLowerCase().trim();
@@ -17,12 +17,12 @@ export default class extends Controller {
     for (let question of this.questionTargets) {
       let questionText = question.textContent.toLowerCase().trim();
       if (questionText.includes(searchValue)) { 
-        question.classList.remove("animate-fadeOut");
-        // question.classList.remove("opacity-0");
-        continue;
+        if ([...question.classList].includes("hidden")) {
+          removeClass(question, "hidden");
+        }
+      } else {
+        addClass(question, "hidden");
       }
-
-      question.classList.add("animate-fadeOut");
     }
   }
   }
