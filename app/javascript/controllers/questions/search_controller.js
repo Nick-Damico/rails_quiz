@@ -16,11 +16,13 @@ export default class extends Controller {
 
     for (let question of this.questionTargets) {
       let questionText = question.textContent.toLowerCase().trim();
-      if (questionText.includes(searchValue)) { 
-        if ([...question.classList].includes("hidden")) {
+      let classList = [...question.classList];
+
+      if (questionText.includes(searchValue) && classList.includes("hidden")) { 
           removeClass(question, "hidden");
         }
-      } else {
+
+      if (!questionText.includes(searchValue)) {
         addClass(question, "hidden");
       }
     }
