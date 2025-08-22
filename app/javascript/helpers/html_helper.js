@@ -22,6 +22,9 @@ function removeClass(element, className) {
     _removeClass(element, className);
   }
 }
+function isHidden(element) {
+  return _elementHasClass(element, 'hidden')
+}
 
 /* PRIVATE HELPERS */
 function _elementHasAttribute(element, attribute) {
