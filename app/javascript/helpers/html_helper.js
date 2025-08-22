@@ -48,4 +48,10 @@ function _removeClass(element, className) {
 }
 
 /* EXPORT METHODS */
-export { addClass, removeClass, removeDisabledAttribute, removeHiddenClass };
+export {
+  addClass,
+  isHidden,
+  removeClass,
+  removeDisabledAttribute,
+  removeHiddenClass,
+};
