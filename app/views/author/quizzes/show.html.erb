@@ -73,7 +73,8 @@
         </div>
       </div>
     </div>
-    <div class="max-h-[650px] h-full">
+    <div data-search-filter-target="itemContainer" class="max-h-[650px] h-full">
+      <p data-search-filter-target="emptyMessage" class="hidden w-full mb-2 text-xl italic text-center text-gray-500">No questions found - try a different search.</p>
       <% if @quiz.questions.exists? %>
         <ul id="questionsList" class="flex flex-col gap-1 pr-6 overflow-y-scroll">
           <%= render partial: "question", collection: @quiz.questions, locals: { quiz: @quiz } %>
