@@ -13,7 +13,7 @@ export default class extends Controller {
   }
 
   onInput(evt) {
-    this.debouncedFilter(evt.target.value)
+    this.debouncedFilter(evt.target.value);
   }
 
   filter(text) {
@@ -22,7 +22,7 @@ export default class extends Controller {
     const searchValue = normalize(text);
 
     // TODO: Filter only on whole words
-    for (let item of this.itemTargets) {
+    for (let item of this.items()) {
       let itemText = normalize(item.textContent);
       let classList = [...item.classList];
 
@@ -35,4 +35,4 @@ export default class extends Controller {
       }
     }
   }
-}
+  items() {
