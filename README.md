@@ -47,6 +47,16 @@ QuizIT is a Ruby on Rails application designed to help users create, organize, a
 
 5. Visit the application in your browser at `http://localhost:5000`.
 
+**Optional**
+
+6. Install `mailcatcher` gem locally, this is for testing in `development`. You can always use something else like `letter_opener`. Do not install this via the projects Gemfile.
+
+```bash
+gem install mailcatcher
+# Start SMTP server
+mailcatcher
+```
+
 ---
 
 ## Usage
