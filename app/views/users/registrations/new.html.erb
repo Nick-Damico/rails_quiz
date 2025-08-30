@@ -29,8 +29,9 @@
       </div>
     <% end %>
     <p class="text-sm text-center text-white">Or <a class="font-bold" href=<%= new_user_session_path %>>Log in</a></p>
+    <%= render "shared/confirmation_link" %>
   </div>
-  <p class="text-xs text-center text-gray-500">
-    &copy;<%= Time.now.year %> QuizIt. All rights reserved.
-  </p>
+        <p class="text-xs text-center text-gray-500">
+          &copy;<%= Time.now.year %> QuizIt. All rights reserved.
+        </p>
       </div>
