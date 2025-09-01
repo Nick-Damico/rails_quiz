@@ -14,11 +14,7 @@
     <p class="text-sm text-center text-white">
       <%= link_to "Sign up", new_user_registration_path, class: "font-bold" %>
     </p>
-    <div class="flex items-center my-2">
-      <div class="flex-grow border-t border-gray-300"></div>
-      <span class="mx-2 text-sm text-gray-500">OR</span>
-      <div class="flex-grow border-t border-gray-300"></div>
-    </div>
+    <%= render "shared/horizontal_or" %>
     <p class="text-sm text-center text-white">
       <%= link_to "Log in", new_user_session_path, class: "font-bold" %>
     </p>
