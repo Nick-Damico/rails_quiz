@@ -1,5 +1,5 @@
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
   <div class="pt-2 my-4 text-center border-t border-gray-600">
-    <%= link_to "Didn't receive confirmation instructions?", new_user_confirmation_path(resource_name), class: "text-sm" %><br />
+    <%= link_to "Didn't receive confirmation instructions?", new_user_confirmation_path, class: "text-sm" %><br />
   </div>
 <% end %>
