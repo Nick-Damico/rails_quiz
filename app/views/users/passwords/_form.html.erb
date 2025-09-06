@@ -1,20 +1,27 @@
-<%= form_with model: user, url: update_password_user_path(user), data: { turbo: false } do |f| %>
-  <div class="w-full mb-4 md:w-1/2 field">
-    <%= f.label :current_password, class: "text-white text-xs font-semibold uppercase mb-2" %>
-    <%= f.password_field :current_password, autofocus: true, placeholder: "required to update password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    <%= display_field_error(user, :current_password) %>
+<div class="w-full max-w-md mx-auto mt-16">
+  <div class="px-8 pt-6 pb-8 mb-4 bg-gray-800 rounded-md shadow-md">
+    <h2 class="text-2xl font-light">Change your password</h2>
+    <%= form_for(resource, as: resource_name, url: user_password_path(resource), html: { method: :put }) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+      <div class="mt-6 mb-4 field">
+        <%= f.label :password, "New password", class: "text-white text-xs font-semibold uppercase mb-2" %><br />
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+      <div class="mt-6 mb-4 field">
+        <%= f.label :password_confirmation, "Confirm New password", class: "text-white text-xs font-semibold uppercase mb-2" %><br />
+        <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+      <div class="flex items-center mb-4 actions">
+        <%= f.submit "Change password", class: "text-center w-full bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
+      </div>
+    <% end %>
+    <p class="text-sm text-center text-white">
+      <%= link_to "Sign up", new_user_registration_path, class: "font-bold" %>
+    </p>
+    <%= render "shared/horizontal_or" %>
+    <p class="text-sm text-center text-white">
+      <%= link_to "Log in", new_user_session_path, class: "font-bold" %>
+    </p>
   </div>
-  <div class="w-full mb-4 md:w-1/2 field">
-    <%= f.label :password, class: "text-white text-xs font-semibold uppercase mb-2" %>
-    <%= f.password_field :password, autofocus: true, placeholder: "required", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    <%= display_field_error(user, :password) %>
-  </div>
-  <div class="w-full mb-4 md:w-1/2 field">
-    <%= f.label :password_confirmation, class: "text-white text-xs font-semibold uppercase mb-2" %>
-    <%= f.password_field :password_confirmation, autofocus: true, placeholder: "required", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    <%= display_field_error(user, :password_confirmation) %>
-  </div>
-  <div class="flex items-center mb-4 actions">
-    <%= f.submit t("devise.registrations.update.submit"), class: "text-center btn-success text-white font-semibold uppercase py-2 px-4 rounded focus:outline-none focus:shadow-outline actions cursor-pointer" %>
-  </div>
-<% end %>
+</div>
