@@ -1,1 +1,3 @@
-<%= render "devise/shared/error_messages", resource: resource %>
+<% if defined?(resource) && resource.present? %>
+  <%= render "users/shared/error_messages", resource: resource %>
+<% end %>
