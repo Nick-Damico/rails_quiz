@@ -1,9 +1,7 @@
-<% if flash.any? %>
-  <% flash.each do |key, content| %>
-    <% Array(content).each do |msg| %>
-      <%= render "shared/flash_wrapper" do %>
-        <p><%= msg %></p>
-      <% end %>
+<% flash.any? && flash.each do |flash_type, content| %>
+  <% Array(content).each do |msg| %>
+    <%= render "shared/flash_wrapper", flash_type: do %>
+      <p><%= msg %></p>
     <% end %>
   <% end %>
 <% end %>
