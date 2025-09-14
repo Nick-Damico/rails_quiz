@@ -3,8 +3,15 @@ import { addClass } from "helpers/html_helper";
 
 // Connects to data-controller="flash"
 export default class extends Controller {
+  static values = {
+    useTimeOut: { type: Boolean, default: true },
+    timeOutDelay: { type: Number, default: 3000 },
+  };
+
   connect() {
-    this.removeOnTimeout(3000);
+    if (this.useTimeOutValue) {
+      this.removeOnTimeout(this.timeOutDelayValue);
+    }
   }
 
   onClick(e) {

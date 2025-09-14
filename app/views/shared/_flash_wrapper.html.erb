@@ -1,8 +1,10 @@
-<%# locals: (flash_type: "notice") %>
+<%# locals: (flash_type: "notice", time_out: true, time_out_delay: 3000) %>
 <div
   class="absolute left-0 flex py-2 px-4 w-full mb-4 text-sm rounded top-0 <%= flash_class(flash_type) %>"
   data-turbo-cache="false"
   data-controller="flash"
+  data-flash-time-out-value="<%= time_out %>"
+  data-flash-time-out-delay-value="<%= time_out_delay %>"
   >
   <div class="flex flex-col justify-center">
     <%= yield %>
