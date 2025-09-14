@@ -1,5 +1,5 @@
 module FormHelper
-  def display_field_error(model, field, options = {})
+  def display_field_error(model, field, options = { icon: true })
     field_sym = field.to_sym
     return unless model.errors[field_sym].present?
 
@@ -10,12 +10,12 @@ module FormHelper
 
   private
 
-    def field_with_error_msg(error, options = {})
+    def field_with_error_msg(error, options)
       classes = "flex items-center text-xs text-red-400 mt-1"
       classes << " #{options[:class]}" if options[:class].present?
 
       content_tag(:p, class: classes) do
-        concat field_with_error_icon
+        concat field_with_error_icon if options[:icon]
         concat error.capitalize
       end
     end
