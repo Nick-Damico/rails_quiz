@@ -1,5 +1,5 @@
 <% if defined?(resource) && resource&.errors.any? %>
-  <%= render "shared/flash_wrapper", flash_type: "alert" do %>
+  <%= render "shared/flash_wrapper", flash_type: "alert", time_out: false do %>
     <p>
       <%= I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,
