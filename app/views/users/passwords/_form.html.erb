@@ -3,7 +3,7 @@
     <h2 class="text-2xl font-light">Change your password</h2>
     <%= form_for(resource, as: resource_name, url: user_password_path(resource), html: { method: :put }) do |f| %>
       <%= render "shared/devise_errors" %>
-      <%= f.hidden_field :reset_password_token %>
+      <%= f.hidden_field :reset_password_token, value: resource.reset_password_token %>
       <div class="mt-6 mb-4 field">
         <%= f.label :password, "New password", class: "text-white text-xs font-semibold uppercase mb-2" %><br />
         <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
