@@ -2,20 +2,27 @@ require 'rails_helper'
 
 RSpec.describe 'User Authentication Forms', type: :feature do
   scenario 'User creates an account' do
-      random_password = Faker::Internet.password(min_length: 6, max_length: 6, mix_case: true, special_characters: true)
-      email = Faker::Internet.email
-      username = Faker::Name.name
+    random_password = Faker::Internet.password(min_length: 6, max_length: 6, mix_case: true, special_characters: true)
+    email = Faker::Internet.email
+    username = Faker::Name.name
 
-      visit new_user_registration_path
+    visit new_user_registration_path
 
-      fill_in 'Email', with: email
-      fill_in 'Username', with: username
-      fill_in 'Password', with: random_password
-      fill_in 'Password Confirmation', with: random_password
+    fill_in 'Email', with: email
+    fill_in 'Username', with: username
+    fill_in 'Password', with: random_password
+    fill_in 'Password Confirmation', with: random_password
 
-      click_button 'Sign Up'
+    click_button 'Sign Up'
 
-      expect(page).to have_content("Hello #{username}")
+    # confirm the user manually since we can't access email in tests
+    user = User.find_by(email: email)
+    user.confirm
+
+    login_as(user, scope: :user)
+    visit root_path
+
+    expect(page).to have_content("Hello #{username}")
   end
 
   scenario 'User logs in' do
