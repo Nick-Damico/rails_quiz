@@ -6,7 +6,7 @@ module BreadcrumbHelper
     content = build_content(breadcrumb, last_item)
 
     if breadcrumb.path
-      link_to(content, breadcrumb.path, class: "px-1 py-2 flex items-center underline group")
+      link_to(content, breadcrumb.path, title: breadcrumb.name, class: "px-1 py-2 flex items-center underline group")
     else
       content_tag(:span, content, class: "px-1 py-2 flex items-center")
     end
