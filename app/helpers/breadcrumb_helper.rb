@@ -1,4 +1,7 @@
 module BreadcrumbHelper
+  ## Renders a breadcrumb item.
+  ## If it's the last item, it won't be a link and won't have an > icon .
+  ##
   def breadcrumb_item(breadcrumb, last_item: false)
     content = build_content(breadcrumb, last_item)
 
