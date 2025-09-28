@@ -1,9 +1,13 @@
 <div class="mb-6">
   <ol class="flex px-2 text-sm border-t border-b border-gray-800">
-    <% breadcrumbs.each.with_index(1) do |breadcrumb, index| %>
-      <li class="">
-        <%= breadcrumb_item(breadcrumb, last_item: index == breadcrumbs.size) %>
-      </li>
+    <% if breadcrumbs.any? %>
+      <% breadcrumbs.each.with_index(1) do |breadcrumb, index| %>
+        <li class="">
+          <%= breadcrumb_item(breadcrumb, last_item: index == breadcrumbs.size) %>
+        </li>
+      <% end %>
+    <% elsif Rails.env.development? %>
+      <li class="py-2 italic text-gray-300">No breadcrumbs defined for this page.</li>
     <% end %>
   </ol>
 </div>
