@@ -2,7 +2,7 @@
 <section>
   <div class="flex items-center mb-4">
     <h2 class="text-2xl font-semibold">Study Plans</h2>
-    <%= link_to nil, class: "flex btn rounded ml-auto hover:btn-success transition ease-in-out duration-500" do %>
+    <%= link_to new_user_study_plan_path(current_user), class: "flex btn rounded ml-auto hover:btn-success transition ease-in-out duration-500" do %>
       <%= render_icon "plus" %>
       <span class="ml-2">Create Study Plan</span>
     <% end %>
