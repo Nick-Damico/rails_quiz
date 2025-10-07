@@ -72,10 +72,15 @@ RSpec.describe "StudyPlans", type: :request do
   end
 
   # GET :show
-  xdescribe "GET /users/:user_id/study_plans/:id" do
+  describe "GET /show" do
+    before { get user_study_plan_path(author, study_plan) }
     it "responds with HTTP status ok(200)" do
-      get user_study_plan_path(author, study_plan)
       expect(response).to have_http_status(:ok)
+    end
+
+    it "renders study plan data" do
+      expect(response.body).to include(study_plan.name)
+      expect(response.body).to include(study_plan.description)
     end
   end
 end
