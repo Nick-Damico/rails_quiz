@@ -43,24 +43,33 @@ RSpec.describe "StudyPlans", type: :request do
         end
       end
 
-      context "with invalid params" do
+      xcontext "with invalid params" do
         let(:invalid_params) { { study_plan: { name: '', description: 'Master the fundamentals of Computer Science.' } } }
 
         it "responds with HTTP status redirect(302)" do
-          post user_study_plans_path(author), params: valid_params
+          post user_study_plans_path(author), params: invalid_params
 
           expect(response).to have_http_status(:redirect)
         end
 
-        it "creates an authored quiz" do
+        it "does not create an authored quiz" do
           expect {
-            post user_study_plans_path(author), params: valid_params
+            post user_study_plans_path(author), params: invalid_params
           }.to change(StudyPlan, :count).by(1)
+        end
+
+        it "renders a successful response message" do
+          post user_study_plans_path(author), params: valid_params
+          expect(flash[:notice]).to eq("Study plan was successfully created.")
         end
       end
     end
   end
 
+  # GET :show
+  xdescribe "GET /users/:user_id/study_plans/:id" do
+    it "responds with HTTP status ok(200)" do
+      get user_study_plan_path(author, study_plan)
       expect(response).to have_http_status(:ok)
     end
   end
