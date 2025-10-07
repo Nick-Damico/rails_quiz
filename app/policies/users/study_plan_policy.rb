@@ -14,6 +14,10 @@ class Users::StudyPlanPolicy < ApplicationPolicy
     user_is_owner?
   end
 
+  def create?
+    user_is_owner?
+  end
+
   # def show?
   #   UserDeckPolicy.new(user, record.user_deck).user_is_owner?
   # end

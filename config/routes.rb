@@ -36,7 +36,7 @@ Rails.application.routes.draw do
       patch "update_password", to: "users/passwords#update"
     end
 
-    resources :study_plans, only: %i[index new create], module: :users
+    resources :study_plans, only: %i[index new create show], module: :users
   end
 
   resources :decks, only: %i[index show] do

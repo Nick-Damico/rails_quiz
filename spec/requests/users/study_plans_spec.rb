@@ -1,25 +1,66 @@
 require "rails_helper"
 
 RSpec.describe "StudyPlans", type: :request do
-  let!(:user) { create(:user) }
-  let!(:study_plan) { create(:study_plan, user: user) }
+  let!(:author) { create(:user) }
+  let!(:study_plan) { create(:study_plan, user: author) }
 
   before do
-    sign_in user
+    sign_in author
   end
 
   # GET :index
   describe "GET /study_plans" do
-    it "returns a list of study plans" do
-      get user_study_plans_path(user_id: user.id)
+    it "responds with HTTP status ok(200)" do
+      get user_study_plans_path(user_id: author.id)
       expect(response).to have_http_status(:ok)
     end
   end
 
   # GET :new
   describe "GET /users/:user_id/study_plans/new" do
-    it "returns a list of study plans" do
-      get user_study_plans_path(user_id: user.id)
+    it "responds with HTTP status ok(200)" do
+      get user_study_plans_path(user_id: author.id)
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  # GET :create
+  describe "POST /create" do
+    context 'valid params' do
+      let(:valid_params) { { study_plan: { name: 'CS 101 Study Plan', description: 'Master the fundamentals of Computer Science.' } } }
+
+      context "with valid params" do
+        it "responds with HTTP status redirect(302)" do
+          post user_study_plans_path(author), params: valid_params
+
+          expect(response).to have_http_status(:redirect)
+        end
+
+        it "creates an authored quiz" do
+          expect {
+            post user_study_plans_path(author), params: valid_params
+          }.to change(StudyPlan, :count).by(1)
+        end
+      end
+
+      context "with invalid params" do
+        let(:invalid_params) { { study_plan: { name: '', description: 'Master the fundamentals of Computer Science.' } } }
+
+        it "responds with HTTP status redirect(302)" do
+          post user_study_plans_path(author), params: valid_params
+
+          expect(response).to have_http_status(:redirect)
+        end
+
+        it "creates an authored quiz" do
+          expect {
+            post user_study_plans_path(author), params: valid_params
+          }.to change(StudyPlan, :count).by(1)
+        end
+      end
+    end
+  end
+
       expect(response).to have_http_status(:ok)
     end
   end
