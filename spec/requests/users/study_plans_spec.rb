@@ -9,7 +9,7 @@ RSpec.describe "StudyPlans", type: :request do
   end
 
   # GET :index
-  describe "GET /study_plans" do
+  describe "GET /index" do
     it "responds with HTTP status ok(200)" do
       get user_study_plans_path(user_id: author.id)
       expect(response).to have_http_status(:ok)
@@ -17,7 +17,7 @@ RSpec.describe "StudyPlans", type: :request do
   end
 
   # GET :new
-  describe "GET /users/:user_id/study_plans/new" do
+  describe "GET /new" do
     it "responds with HTTP status ok(200)" do
       get user_study_plans_path(user_id: author.id)
       expect(response).to have_http_status(:ok)
@@ -65,7 +65,7 @@ RSpec.describe "StudyPlans", type: :request do
 
         it "renders a error response message" do
           post user_study_plans_path(author), params: invalid_params
-          expect(flash[:alert]).to eq("There was an error creating this study plan.")
+          expect(response.body).to include("There was an error creating this study plan.")
         end
       end
     end
