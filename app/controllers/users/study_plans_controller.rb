@@ -14,7 +14,8 @@ class Users::StudyPlansController < ApplicationController
     if @study_plan.save
       redirect_to user_study_plan_path(@user, @study_plan), notice: t("flash.study_plans.create.success")
     else
-      render :new
+      flash.now[:alert] = t("flash.study_plans.create.error")
+      render :new, status: :unprocessable_entity
     end
   end
 

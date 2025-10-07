@@ -36,7 +36,7 @@ RSpec.describe "StudyPlans", type: :request do
           expect(response).to have_http_status(:redirect)
         end
 
-        it "creates an authored Study Plan" do
+        it "creates an Study Plan" do
           expect {
             post user_study_plans_path(author), params: valid_params
           }.to change(StudyPlan, :count).by(1)
@@ -48,24 +48,24 @@ RSpec.describe "StudyPlans", type: :request do
         end
       end
 
-      xcontext "with invalid params" do
-        let(:invalid_params) { { study_plan: { name: '', description: 'Master the fundamentals of Computer Science.' } } }
+      context "with invalid params" do
+        let!(:invalid_params) { { study_plan: { name: '', description: 'Master the fundamentals of Computer Science.' } } }
 
-        it "responds with HTTP status redirect(302)" do
+        it "responds with HTTP status unprocessable entity(400)" do
           post user_study_plans_path(author), params: invalid_params
 
-          expect(response).to have_http_status(:redirect)
+          expect(response).to have_http_status(:unprocessable_entity)
         end
 
-        it "does not create an authored quiz" do
+        it "does not create an study plan" do
           expect {
             post user_study_plans_path(author), params: invalid_params
-          }.to change(StudyPlan, :count).by(1)
+          }.to change(StudyPlan, :count).by(0)
         end
 
-        it "renders a successful response message" do
-          post user_study_plans_path(author), params: valid_params
-          expect(flash[:notice]).to eq("Study plan was successfully created.")
+        it "renders a error response message" do
+          post user_study_plans_path(author), params: invalid_params
+          expect(flash[:alert]).to eq("There was an error creating this study plan.")
         end
       end
     end

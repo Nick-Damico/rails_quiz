@@ -123,6 +123,7 @@ en:
     study_plans:
       create:
         success: "Study plan was successfully created."
+        error: "There was an error creating this study plan."
 
     users:
       passwords:
