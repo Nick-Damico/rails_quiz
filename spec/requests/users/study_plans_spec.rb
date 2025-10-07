@@ -36,10 +36,15 @@ RSpec.describe "StudyPlans", type: :request do
           expect(response).to have_http_status(:redirect)
         end
 
-        it "creates an authored quiz" do
+        it "creates an authored Study Plan" do
           expect {
             post user_study_plans_path(author), params: valid_params
           }.to change(StudyPlan, :count).by(1)
+        end
+        it "renders a successful response message" do
+          post user_study_plans_path(author), params: valid_params
+
+          expect(flash[:notice]).to eq("Study plan was successfully created.")
         end
       end
 

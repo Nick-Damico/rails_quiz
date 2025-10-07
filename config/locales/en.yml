@@ -119,6 +119,10 @@ en:
       update:
         success: "Your answer was recorded."
         error: "Question requires an answer. Please select an answer below."
+      
+    study_plans:
+      create:
+        success: "Study plan was successfully created."
 
     users:
       passwords:
