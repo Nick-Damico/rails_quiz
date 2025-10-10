@@ -1,0 +1,28 @@
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+  <th scope="row" class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+    <%= study_plan.name %>
+  </th>
+  <td class="px-3 py-2">
+    <%= study_plan.description %>
+  </td>
+  <td class="px-3 py-2 text-right">
+    <div class="inline-flex border border-gray-400">
+      <%= link_to user_study_plan_path(current_user, study_plan),
+        title: "view",
+        aria: { label: "View Study Plan" },
+        class: "bg-primary text-white px-2 py-2" do %>
+        <%= render_icon "magnifying_glass", klass: "size-5" %>
+      <% end %>
+      <%= link_to user_study_plan_path(current_user, study_plan),
+        data: {
+          turbo_confirm: 'Are you sure you want to delete this Study Plan? This action is permanent!',
+          turbo_method: :delete
+        },
+        title: "delete",
+        aria: { label: "Delete Study Plan" },
+        class: 'bg-alert text-white px-2 py-2' do %>
+        <%= render_icon "x_circle", klass: "size-5" %>
+      <% end %>
+    </div>
+  </td>
+</tr>
