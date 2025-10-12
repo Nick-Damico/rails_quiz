@@ -1,2 +1,67 @@
-<h1><%= @study_plan.name %></h1>
-<p><%= @study_plan.description %></p>
+<%= render "shared/breadcrumbs" %>
+<div class="flex flex-col mb-4 text-white">
+  <header class="mb-10 bg-gray-700 p-4">
+    <h1 class="text-3xl font-bold mb-2">
+      <%= @study_plan.name %>
+    </h1>
+    <p class="text-gray-300">
+      <%= @study_plan.description.presence || "No description provided." %>
+    </p>
+  </header>
+  <!-- Quizzes Section -->
+  <section class="mb-12">
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-2xl font-semibold text-white">
+        Quizzes
+      </h2>
+      <%= link_to "New Quiz", "",
+          class: "text-sm bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700" %>
+    </div>
+    <% if @study_plan.quizzes.any? %>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <% @study_plan.quizzes.each do |quiz| %>
+          <div class="bg-white rounded-xl shadow p-4 hover:shadow-md transition">
+            <h3 class="font-semibold text-lg text-white mb-1">
+              <%= quiz.title %>
+            </h3>
+            <p class="text-sm text-gray-300 mb-3">
+              <%= truncate(quiz.description, length: 100) %>
+            </p>
+            <%= link_to "View Quiz", quiz_path(quiz),
+                class: "text-sm text-blue-600 hover:underline" %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-300">No quizzes added yet.</p>
+    <% end %>
+  </section>
+  <!-- Flashcard Decks Section -->
+  <section>
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-2xl font-semibold text-white">
+        Flashcard Decks
+      </h2>
+      <%= link_to "New Deck", "",
+          class: "text-sm bg-green-600 text-white px-3 py-1.5 rounded hover:bg-green-700" %>
+    </div>
+    <% if @study_plan.decks.any? %>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <% @study_plan.decks.each do |deck| %>
+          <div class="bg-white rounded-xl shadow p-4 hover:shadow-md transition">
+            <h3 class="font-semibold text-lg text-white mb-1">
+              <%= deck.name %>
+            </h3>
+            <p class="text-sm text-gray-300 mb-3">
+              <%= truncate(deck.description, length: 100) %>
+            </p>
+            <%= link_to "View Deck", deck_path(deck),
+                class: "text-sm text-blue-600 hover:underline" %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-300">No decks added yet.</p>
+    <% end %>
+  </section>
+</div>
