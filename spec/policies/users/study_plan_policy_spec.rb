@@ -12,11 +12,10 @@ RSpec.describe Users::StudyPlanPolicy, type: :policy do
     end
   end
 
-  permissions :show? do
+  permissions :show?, :new?, :create? do
     it "permits authenticated user access" do
       expect(subject).to permit(user, study_plans.first)
     end
-
     it "prevents unauthenticated user access" do
       expect(subject).to_not permit(build(:user), study_plans.first)
     end

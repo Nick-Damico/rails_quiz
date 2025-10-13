@@ -1,6 +1,6 @@
 class Users::StudyPlansController < ApplicationController
-  before_action :set_user, only: %i[index new create]
-  before_action :set_study_plan, only: %i[show]
+  before_action :set_user, only: %i[index new create edit update]
+  before_action :set_study_plan, only: %i[show edit update]
 
   def index
     @study_plans = policy_scope([ :users, @user.study_plans ])
@@ -22,6 +22,20 @@ class Users::StudyPlansController < ApplicationController
 
   def show
     @study_plan = authorize([ :users, @study_plan ])
+  end
+
+  def edit
+    @study_plan = authorize([ :users, @study_plan ])
+  end
+
+  def update
+    @study_plan = authorize([ :users, @study_plan ])
+    if @study_plan.update(study_plan_params)
+      redirect_to user_study_plan_path(@user, @study_plan), notice: t("flash.study_plans.update.success")
+    else
+      flash.now[:alert] = t("flash.study_plans.update.error")
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private

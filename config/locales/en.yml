@@ -124,6 +124,9 @@ en:
       create:
         success: "Study plan was successfully created."
         error: "There was an error creating this study plan."
+      update:
+        success: "Study plan was successfully updated."
+        error: "There was an error updating this study plan."
 
     users:
       passwords:

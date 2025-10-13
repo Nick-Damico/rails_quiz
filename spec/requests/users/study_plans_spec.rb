@@ -94,4 +94,43 @@ RSpec.describe "StudyPlans", type: :request do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  describe "PATCH /update" do
+    context "valid params" do
+      let(:valid_params) { { study_plan: { name: "Updated Study Plan", description: "Updated description." } } }
+
+      before { patch user_study_plan_path(author, study_plan), params: valid_params }
+
+      it "responds with HTTP status redirect(302)" do
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it "updates the study plan" do
+        expect(study_plan.reload.name).to eq("Updated Study Plan")
+        expect(study_plan.reload.description).to eq("Updated description.")
+      end
+
+      it "renders a successful response message" do
+        expect(flash[:notice]).to eq("Study plan was successfully updated.")
+      end
+    end
+
+    context "invalid params" do
+      let(:invalid_params) { { study_plan: { name: '', description: "Updated description." } } }
+
+      before { patch user_study_plan_path(author, study_plan), params: invalid_params }
+
+      it "responds with HTTP status unprocessable_entity(402)" do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "does not update the study plan" do
+        expect(study_plan.reload.description).to_not eq("Updated description.")
+      end
+
+      it "renders an error response message" do
+        expect(flash[:alert]).to eq("There was an error updating this study plan.")
+      end
+    end
+  end
 end

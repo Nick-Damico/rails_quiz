@@ -22,7 +22,11 @@ class Users::StudyPlanPolicy < ApplicationPolicy
     user_is_owner?
   end
 
-  # def update?
-  #   UserDeckPolicy.new(user, record.user_deck).user_is_owner?
-  # end
+  def edit?
+    user_is_owner?
+  end
+
+  def update?
+    user_is_owner?
+  end
 end
