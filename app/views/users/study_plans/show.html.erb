@@ -1,7 +1,10 @@
 <%= render "shared/breadcrumbs" %>
 <div class="flex flex-col mb-4 text-white">
-  <header class="mb-10 bg-gray-700 p-4">
-    <h1 class="text-3xl font-bold mb-2">
+  <%= link_to edit_user_study_plan_path(current_user, @study_plan), class: "flex btn-sm btn-warning text-gray-900 rounded items-center ml-auto mb-2", title: "Edit", aria: { label: "Edit Study Plan" } do %>
+    <%= render_icon "pencil", klass: "size-5 mr-1" %> Edit
+  <% end %>
+  <header class="flex flex-col p-4 mb-10 bg-gray-700">
+    <h1 class="mb-2 text-3xl font-bold">
       <%= @study_plan.name %>
     </h1>
     <p class="text-gray-300">
@@ -20,11 +23,11 @@
     <% if @study_plan.quizzes.any? %>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <% @study_plan.quizzes.each do |quiz| %>
-          <div class="bg-white rounded-xl shadow p-4 hover:shadow-md transition">
-            <h3 class="font-semibold text-lg text-white mb-1">
+          <div class="p-4 transition bg-white shadow rounded-xl hover:shadow-md">
+            <h3 class="mb-1 text-lg font-semibold text-white">
               <%= quiz.title %>
             </h3>
-            <p class="text-sm text-gray-300 mb-3">
+            <p class="mb-3 text-sm text-gray-300">
               <%= truncate(quiz.description, length: 100) %>
             </p>
             <%= link_to "View Quiz", quiz_path(quiz),
@@ -48,11 +51,11 @@
     <% if @study_plan.decks.any? %>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <% @study_plan.decks.each do |deck| %>
-          <div class="bg-white rounded-xl shadow p-4 hover:shadow-md transition">
-            <h3 class="font-semibold text-lg text-white mb-1">
+          <div class="p-4 transition bg-white shadow rounded-xl hover:shadow-md">
+            <h3 class="mb-1 text-lg font-semibold text-white">
               <%= deck.name %>
             </h3>
-            <p class="text-sm text-gray-300 mb-3">
+            <p class="mb-3 text-sm text-gray-300">
               <%= truncate(deck.description, length: 100) %>
             </p>
             <%= link_to "View Deck", deck_path(deck),
