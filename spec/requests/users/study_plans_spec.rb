@@ -1,8 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "StudyPlans", type: :request do
+RSpec.describe "StudyPlansController", type: :request do
   let!(:author) { create(:user) }
-  let!(:study_plan) { create(:study_plan, user: author) }
 
   before do
     sign_in author
@@ -76,6 +75,7 @@ RSpec.describe "StudyPlans", type: :request do
 
   # GET :show
   describe "GET /show" do
+    let!(:study_plan) { create(:study_plan, user: author) }
     before { get user_study_plan_path(author, study_plan) }
     it "responds with HTTP status ok(200)" do
       expect(response).to have_http_status(:ok)
@@ -88,6 +88,7 @@ RSpec.describe "StudyPlans", type: :request do
   end
 
   describe "GET /edit" do
+    let!(:study_plan) { create(:study_plan, user: author) }
     it "responds with HTTP status ok(200)" do
       get edit_user_study_plan_path(author, study_plan)
 
@@ -96,6 +97,8 @@ RSpec.describe "StudyPlans", type: :request do
   end
 
   describe "PATCH /update" do
+    let!(:study_plan) { create(:study_plan, user: author) }
+
     context "valid params" do
       let(:valid_params) { { study_plan: { name: "Updated Study Plan", description: "Updated description." } } }
 
@@ -130,6 +133,68 @@ RSpec.describe "StudyPlans", type: :request do
 
       it "renders an error response message" do
         expect(flash[:alert]).to eq("There was an error updating this study plan.")
+      end
+    end
+  end
+  describe "DELETE /destroy" do
+    let!(:study_plan) { create(:study_plan, user: author) }
+
+    context "Valid params" do
+      it "responds with HTTP status redirect(302)" do
+        delete user_study_plan_path(author, study_plan)
+
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it "renders with a success message" do
+        delete user_study_plan_path(author, study_plan)
+
+        expect(flash[:notice]).to eq("Study plan was successfully deleted.")
+      end
+
+      it "destroys the study plan record" do
+        expect {
+          delete user_study_plan_path(author, study_plan)
+        }.to change(StudyPlan, :count).by(-1)
+      end
+    end
+
+    context "Invalid params" do
+      # before do
+      #   allow(study_plan).to receive(:destroy).and_return(false)
+      #   allow(StudyPlan).to receive(:find).and_return(study_plan)
+      # end
+      it "prevents a user from deleting another user's study plan" do
+        another_user = create(:user)
+        sign_out author
+        sign_in another_user
+
+        expect {
+          delete user_study_plan_path(author, study_plan)
+        }.to change(StudyPlan, :count).by(0)
+      end
+
+      it "responds with HTTP status redirect(302)" do
+        delete user_study_plan_path(author, study_plan)
+
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it "renders with an error message" do
+        delete user_study_plan_path(author, study_plan)
+
+        expect(flash[:alert]).to eq("There was an error deleting the study plan.")
+      end
+
+      xit "does not destroy associated quiz records" do
+        expect {
+          delete user_study_plan_path(author, study_plan)
+        }.to change(Quiz, :count).by(0)
+      end
+      xit "does not destroy associated flashcard deck records" do
+        expect {
+          delete user_study_plan_path(author, study_plan)
+        }.to change(Deck, :count).by(0)
       end
     end
   end

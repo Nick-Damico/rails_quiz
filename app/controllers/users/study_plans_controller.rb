@@ -1,6 +1,6 @@
 class Users::StudyPlansController < ApplicationController
-  before_action :set_user, only: %i[index new create edit update]
-  before_action :set_study_plan, only: %i[show edit update]
+  before_action :set_user, except: %i[show]
+  before_action :set_study_plan, only: %i[show edit update destroy]
 
   def index
     @study_plans = policy_scope([ :users, @user.study_plans ])
@@ -35,6 +35,17 @@ class Users::StudyPlansController < ApplicationController
     else
       flash.now[:alert] = t("flash.study_plans.update.error")
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    # We want to make suer that the study_plan.user_id matches the current_user
+    # And the user is the owner of the study plan
+    @study_plan = authorize([ :users, @study_plan ])
+    if @study_plan.destroy
+      redirect_to user_study_plans_path(@user), notice: t("flash.study_plans.destroy.success")
+    else
+      redirect_to user_study_plans_path(@user), alert: t("flash.study_plans.destroy.error")
     end
   end
 

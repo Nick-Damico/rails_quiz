@@ -127,6 +127,9 @@ en:
       update:
         success: "Study plan was successfully updated."
         error: "There was an error updating this study plan."
+      destroy:
+        success: "Study plan was successfully deleted."
+        error: "There was an error deleting the study plan."
 
     users:
       passwords:
