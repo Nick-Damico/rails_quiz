@@ -160,10 +160,6 @@ RSpec.describe "StudyPlansController", type: :request do
     end
 
     context "Invalid params" do
-      # before do
-      #   allow(study_plan).to receive(:destroy).and_return(false)
-      #   allow(StudyPlan).to receive(:find).and_return(study_plan)
-      # end
       it "prevents a user from deleting another user's study plan" do
         another_user = create(:user)
         sign_out author
@@ -172,6 +168,8 @@ RSpec.describe "StudyPlansController", type: :request do
         expect {
           delete user_study_plan_path(author, study_plan)
         }.to change(StudyPlan, :count).by(0)
+
+        expect(flash[:error]).to eq("You cannot perform this action.")
       end
 
       it "responds with HTTP status redirect(302)" do
@@ -181,17 +179,24 @@ RSpec.describe "StudyPlansController", type: :request do
       end
 
       it "renders with an error message" do
+        allow_any_instance_of(StudyPlan).to receive(:destroy).and_return(false)
+
         delete user_study_plan_path(author, study_plan)
 
         expect(flash[:alert]).to eq("There was an error deleting the study plan.")
       end
 
-      xit "does not destroy associated quiz records" do
+      it "does not destroy associated quiz records" do
+        allow_any_instance_of(StudyPlan).to receive(:destroy).and_return(false)
+
         expect {
           delete user_study_plan_path(author, study_plan)
         }.to change(Quiz, :count).by(0)
       end
-      xit "does not destroy associated flashcard deck records" do
+
+      it "does not destroy associated flashcard deck records" do
+        allow_any_instance_of(StudyPlan).to receive(:destroy).and_return(false)
+
         expect {
           delete user_study_plan_path(author, study_plan)
         }.to change(Deck, :count).by(0)
