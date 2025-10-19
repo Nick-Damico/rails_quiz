@@ -39,6 +39,10 @@ Rails.application.routes.draw do
     resources :study_plans, module: :users
   end
 
+  resources :study_plans, only: [] do
+    resources :quizzes, only: %i[create destroy]
+  end
+
   resources :decks, only: %i[index show] do
     resources :cards, shallow: true, module: :decks
   end
