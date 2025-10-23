@@ -130,6 +130,14 @@ en:
       destroy:
         success: "Study plan was successfully deleted."
         error: "There was an error deleting the study plan."
+      
+      quizzes:
+        create:
+          success: "Quiz was successfully added to your study plan."
+          error: "There was an issue adding this quiz to your study plan. Refresh page and try again."
+
+        destroy: 
+          success: "Quiz was successfully removed from your study plan." 
 
     users:
       passwords:

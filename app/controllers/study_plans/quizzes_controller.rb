@@ -4,11 +4,14 @@ module StudyPlans
 
     def create
       @study_plan = authorize(@study_plan, policy_class: Users::StudyPlanPolicy)
-      quiz = Quiz.find(quiz_params[:quiz_id])
-      @study_plan.quizzes << quiz unless @study_plan.quizzes.include?(quiz)
-
-      flash.now[:notice] = "Quiz was successfully added to your study plan."
-      redirect_back(fallback_location: user_study_plan_path(current_user, @study_plan))
+      if (quiz = Quiz.find_by(id: quiz_params[:quiz_id]))
+        @study_plan.quizzes << quiz unless @study_plan.quizzes.include?(quiz)
+        flash.now[:notice] = t("flash.study_plans.quizzes.create.success")
+        redirect_back(fallback_location: user_study_plan_path(current_user, @study_plan))
+      else
+        flash[:alert] = t("flash.study_plans.quizzes.create.error")
+        redirect_to user_study_plan_url(current_user, @study_plan), status: :unprocessable_entity
+      end
     end
 
     def destroy; end

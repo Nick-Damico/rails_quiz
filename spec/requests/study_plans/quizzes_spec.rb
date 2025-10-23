@@ -20,6 +20,30 @@ RSpec.describe "StudyPlans::QuizzesController", type: :request do
         expect {
           post study_plan_quizzes_path(study_plan), params: { quiz: { quiz_id: quiz.id } }
         }.to change { study_plan.quizzes.count }.by(1)
+
+        expect(study_plan.quizzes).to include(quiz)
+      end
+
+      it "sets a flash success notice message" do
+        post study_plan_quizzes_path(study_plan), params: { quiz: { quiz_id: quiz.id } }
+
+        expect(flash[:notice]).to eq("Quiz was successfully added to your study plan.")
+      end
+    end
+
+    context "with invalid params" do
+      it "responds with HTTP status redirect(302)" do
+        bad_id = 0
+        post study_plan_quizzes_path(study_plan), params: { quiz: { quiz_id: bad_id } }
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it "sets a flash error notice message" do
+        bad_id = 0
+        post study_plan_quizzes_path(study_plan), params: { quiz: { quiz_id: bad_id } }
+
+        expect(flash[:alert]).to eq("There was an issue adding this quiz to your study plan. Refresh page and try again.")
       end
     end
   end
