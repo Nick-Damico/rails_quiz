@@ -10,7 +10,7 @@ module StudyPlans
         redirect_back(fallback_location: user_study_plan_path(current_user, @study_plan))
       else
         flash[:alert] = t("flash.study_plans.quizzes.create.error")
-        redirect_to user_study_plan_url(current_user, @study_plan), status: :unprocessable_entity
+        render "users/study_plans/show", status: :unprocessable_entity
       end
     end
 

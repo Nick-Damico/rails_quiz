@@ -32,8 +32,9 @@ RSpec.describe "StudyPlans::QuizzesController", type: :request do
     end
 
     context "with invalid params" do
-      it "responds with HTTP status redirect(302)" do
+      it "responds with HTTP status unprocessable_entity(402)" do
         bad_id = 0
+
         post study_plan_quizzes_path(study_plan), params: { quiz: { quiz_id: bad_id } }
 
         expect(response).to have_http_status(:unprocessable_entity)
@@ -41,6 +42,7 @@ RSpec.describe "StudyPlans::QuizzesController", type: :request do
 
       it "sets a flash error notice message" do
         bad_id = 0
+
         post study_plan_quizzes_path(study_plan), params: { quiz: { quiz_id: bad_id } }
 
         expect(flash[:alert]).to eq("There was an issue adding this quiz to your study plan. Refresh page and try again.")
