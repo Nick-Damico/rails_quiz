@@ -14,7 +14,15 @@ module StudyPlans
       end
     end
 
-    def destroy; end
+    def destroy
+      authorize(@study_plan, policy_class: Users::StudyPlanPolicy)
+      quiz = Quiz.find_by_id(params[:id])
+      @study_plan.quizzes.delete(quiz)
+      if @study_plan.quizzes.exclude?(quiz)
+        flash.now[:notice] = t("flash.study_plans.quizzes.destroy.success", quiz_title: quiz.title)
+        redirect_back(fallback_location: user_study_plan_path(current_user, @study_plan))
+      end
+    end
 
     private
 

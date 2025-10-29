@@ -49,5 +49,18 @@ RSpec.describe "StudyPlans::QuizzesController", type: :request do
 
   # DELETE /study_plans/:study_plan_id/quizzes/:id
   describe "DELETE /destroy" do
+    context "with valid params" do
+      it "responds with HTTP status 302(:found)" do
+        delete study_plan_quiz_path(study_plan, quiz)
+
+        expect(response).to have_http_status(:found)
+      end
+
+      it "sets a flash success notice message" do
+        delete study_plan_quiz_path(study_plan, quiz)
+
+        expect(flash[:notice]).to eq("Quiz: #{quiz.title} was successfully removed from your study plan.")
+      end
+    end
   end
 end

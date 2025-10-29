@@ -137,7 +137,7 @@ en:
           error: "There was an issue adding this quiz to your study plan. Refresh page and try again."
 
         destroy: 
-          success: "Quiz was successfully removed from your study plan." 
+          success: "Quiz: %{quiz_title} was successfully removed from your study plan." 
 
     users:
       passwords:
