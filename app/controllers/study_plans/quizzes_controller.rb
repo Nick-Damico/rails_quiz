@@ -4,8 +4,8 @@ module StudyPlans
 
     def create
       @study_plan = authorize(@study_plan, policy_class: Users::StudyPlanPolicy)
-      if (quiz = Quiz.find_by(id: quiz_params[:quiz_id]))
-        @study_plan.quizzes << quiz unless @study_plan.quizzes.include?(quiz)
+      if (@quiz = Quiz.find_by_id(quiz_params[:quiz_id]))
+        @study_plan.quizzes << @quiz unless @study_plan.quizzes.include?(@quiz)
         flash.now[:notice] = t("flash.study_plans.quizzes.create.success")
         redirect_back(fallback_location: user_study_plan_path(current_user, @study_plan))
       else
