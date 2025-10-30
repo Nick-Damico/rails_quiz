@@ -61,6 +61,16 @@ RSpec.describe "StudyPlans::QuizzesController", type: :request do
 
         expect(flash[:notice]).to eq("Quiz: #{quiz.title} was successfully removed from your study plan.")
       end
+
+      it "removes the quiz from study plan without deleting the record" do
+        study_plan.quizzes << quiz
+
+        expect {
+          delete study_plan_quiz_path(study_plan, quiz)
+        }.to change(Quiz, :count).by(0)
+
+        expect(study_plan.reload.quizzes).not_to include(quiz)
+      end
     end
   end
 end
