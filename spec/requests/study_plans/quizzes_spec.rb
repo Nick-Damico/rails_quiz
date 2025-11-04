@@ -72,5 +72,23 @@ RSpec.describe "StudyPlans::QuizzesController", type: :request do
         expect(study_plan.reload.quizzes).not_to include(quiz)
       end
     end
+
+    context "with invalid params" do
+      it "does not deleting the quiz record" do
+        another_quiz = create(:quiz)
+
+        expect {
+          delete study_plan_quiz_path(study_plan, another_quiz)
+        }.to change(Quiz, :count).by(0)
+      end
+
+      it "sets a flash error alert message" do
+        another_quiz = create(:quiz)
+
+        delete study_plan_quiz_path(study_plan, another_quiz)
+
+        expect(flash[:alert]).to eq("There was an issue removing this quiz from your study plan. Refresh page and try again.")
+      end
+    end
   end
 end

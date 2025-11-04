@@ -138,6 +138,7 @@ en:
 
         destroy: 
           success: "Quiz: %{quiz_title} was successfully removed from your study plan." 
+          error: "There was an issue removing this quiz from your study plan. Refresh page and try again."
 
     users:
       passwords:
