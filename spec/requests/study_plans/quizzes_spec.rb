@@ -57,6 +57,8 @@ RSpec.describe "StudyPlans::QuizzesController", type: :request do
       end
 
       it "sets a flash success notice message" do
+        study_plan.quizzes << quiz
+
         delete study_plan_quiz_path(study_plan, quiz)
 
         expect(flash[:notice]).to eq("Quiz: #{quiz.title} was successfully removed from your study plan.")
