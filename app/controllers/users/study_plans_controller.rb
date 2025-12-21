@@ -1,7 +1,7 @@
 class Users::StudyPlansController < ApplicationController
   before_action :set_user, except: %i[show]
   before_action :set_study_plan, only: %i[show edit update destroy]
-  before_action :set_breadcrumbs, only: %i[show]
+  before_action :set_breadcrumbs, only: %i[show index]
 
   def index
     @study_plans = policy_scope([ :users, @user.study_plans ])
