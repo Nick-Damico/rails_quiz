@@ -1,11 +1,10 @@
 module BreadcrumbHelper
   ## Renders a breadcrumb item.
   ## If it's the last item, it won't be a link and won't have an > icon .
-  ##
   def breadcrumb_item(breadcrumb, last_item: false)
     content = build_content(breadcrumb, last_item)
 
-    if breadcrumb.path
+    if breadcrumb.path && !last_item
       link_to(content, breadcrumb.path, title: breadcrumb.name, class: "px-1 py-2 flex items-center underline group")
     else
       content_tag(:span, content, class: "px-1 py-2 flex items-center")
