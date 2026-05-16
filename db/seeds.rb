@@ -15,6 +15,7 @@ user_1 = FactoryBot.create(
   bio: "Junior Ruby on Rails developer that is eager to learn and grow in the field of software development.",
   username: "Sam Puppers",
   email: "sam_pups@quizit.com",
+  rank: :study_warrior,
   password: "1234Sammy",
   password_confirmation: "1234Sammy"
 )
@@ -24,6 +25,7 @@ user_2 = FactoryBot.create(
   username: Faker::Artist.name,
   email: Faker::Internet.email(domain: 'gmail.com'),
   bio: "Comic book enthusiast and aspiring physician that loves learning.",
+  rank: :dedicated_learner,
   password: "usr2Faker",
   password_confirmation: "usr2Faker"
 )
