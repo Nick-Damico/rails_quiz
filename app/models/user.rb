@@ -8,6 +8,15 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  enum :rank, {
+    curious_mind: 0,
+    dedicated_learner: 1,
+    study_warrior: 2,
+    quiz_master: 3,
+    knowledge_sage: 4,
+    grand_scholar: 5
+  }
+
   validates_presence_of(:username)
   validates_uniqueness_of(:username)
 
