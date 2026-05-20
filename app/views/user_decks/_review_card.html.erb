@@ -44,20 +44,16 @@
           flip <%= render_icon "arrow_turn_right", klass: "size-6 pl-2" %>
         </button>
       </header>
-      <p class="flex items-center grow">
-        <%= card.front %>
-      </p>
+      <%= card_text_tag(card.front) %>
     </article>
-    <article data-user-decks--review-card-target="back" class="flex flex-col hidden w-full p-6 text-lg text-gray-900 bg-blue-600 rounded-lg">
+    <article data-user-decks--review-card-target="back" class="flex flex-col hidden w-full pt-6 text-lg text-gray-900 bg-blue-600 rounded-lg">
       <header class="flex items-center justify-end w-full">
         <span class="mr-auto text-sm font-semibold uppercase">Back</span>
         <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->user-decks--review-card#flip:stop">
           flip <%= render_icon "arrow_turn_right", klass: "size-6 pl-2" %>
         </button>
       </header>
-      <p class="flex items-center justify-center text-md grow">
-        <%= card.back %>
-      </p>
+      <%= card_text_tag(card.back) %>
     </article>
   </div>
   <div data-user-decks--review-card-target="ratingPrompt" class="relative z-10 mt-2 overflow-hidden text-center bg-gray-700 rounded-lg -top-32">

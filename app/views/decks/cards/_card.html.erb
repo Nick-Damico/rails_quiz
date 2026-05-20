@@ -32,9 +32,7 @@
         flip <%= render_icon "arrow_turn_right", klass: "size-6 pl-2" %>
       </button>
     </header>
-    <p class="flex items-center justify-center whitespace-pre-line text-md">
-      <%= card.front %>
-    </p>
+    <%= card_text_tag(card.front) %>
   </section>
   <section data-decks--edit-card-target="back" class="flex flex-col hidden w-full p-6 bg-blue-600 grow">
     <header class="flex items-center justify-end w-full pb-4 border-b border-blue-500">
@@ -46,8 +44,6 @@
         flip <%= render_icon "arrow_turn_right", klass: "size-6 pl-2" %>
       </button>
     </header>
-    <div class="flex items-center justify-center whitespace-pre-line text-md">
-      <%= card.back %>
-    </div>
+    <%= card_text_tag(card.back) %>
   </section>
 </article>
