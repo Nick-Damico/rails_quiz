@@ -23,7 +23,7 @@
     </ul>
   </nav>
   <section data-decks--edit-card-target="front" class="flex flex-col w-full p-6 bg-blue-500 grow">
-    <header class="flex items-center justify-end w-full">
+    <header class="flex items-center justify-end w-full pb-4 border-b border-blue-400">
       <button class="flex items-center p-1 mr-1 rounded" data-action="click->decks--edit-card#displayMenu:stop">
         <%= render_icon "three_dots_horizontal", klass: "size-5" %>
       </button>
@@ -32,12 +32,12 @@
         flip <%= render_icon "arrow_turn_right", klass: "size-6 pl-2" %>
       </button>
     </header>
-    <p class="flex items-center grow">
+    <p class="flex items-center justify-center whitespace-pre-line text-md">
       <%= card.front %>
     </p>
   </section>
   <section data-decks--edit-card-target="back" class="flex flex-col hidden w-full p-6 bg-blue-600 grow">
-    <header class="flex items-center justify-end w-full">
+    <header class="flex items-center justify-end w-full pb-4 border-b border-blue-500">
       <button class="flex items-center p-1 mr-1 rounded" data-action="click->decks--edit-card#displayMenu:stop">
         <%= render_icon "three_dots_horizontal", klass: "size-5" %>
       </button>
@@ -46,8 +46,8 @@
         flip <%= render_icon "arrow_turn_right", klass: "size-6 pl-2" %>
       </button>
     </header>
-    <p class="flex items-center justify-center text-md grow">
+    <div class="flex items-center justify-center whitespace-pre-line text-md">
       <%= card.back %>
-    </p>
+    </div>
   </section>
 </article>
