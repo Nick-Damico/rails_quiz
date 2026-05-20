@@ -4,8 +4,8 @@
       <%= link_to dashboard_user_path( current_user ), class: "flex items-center" do %>
         <%= avatar current_user %>
         <div class="ml-2">
-          <p class="border-b border-gray-600"><%= current_user.username %></p>
-          <p class="text-xs font-light text-gray-400 uppercase"><%= "padawan" %></p>
+          <p class="border-b border-gray-600 text-md"><%= current_user.username %></p>
+          <p class="text-xs font-light text-gray-400 uppercase"><%= display_rank(current_user) %></p>
         </div>
       <% end %>
     </div>
