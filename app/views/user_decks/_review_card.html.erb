@@ -38,7 +38,7 @@
       </div>
     <% end %>
     <article data-user-decks--review-card-target="front" class="flex flex-col w-full p-6 text-lg text-gray-900 bg-blue-500 rounded-lg">
-      <header class="flex items-center justify-end w-full">
+      <header class="flex items-center justify-end w-full pb-4 border-b border-blue-400">
         <span class="mr-auto text-sm font-semibold uppercase">Front</span>
         <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->user-decks--review-card#flip:stop">
           flip <%= render_icon "arrow_turn_right", klass: "size-6 pl-2" %>
@@ -46,8 +46,8 @@
       </header>
       <%= card_text_tag(card.front) %>
     </article>
-    <article data-user-decks--review-card-target="back" class="flex flex-col hidden w-full pt-6 text-lg text-gray-900 bg-blue-600 rounded-lg">
-      <header class="flex items-center justify-end w-full">
+    <article data-user-decks--review-card-target="back" class="flex flex-col hidden w-full p-6 text-lg text-gray-900 bg-blue-600 rounded-lg">
+      <header class="flex items-center justify-end w-full pb-4 border-b border-blue-400">
         <span class="mr-auto text-sm font-semibold uppercase">Back</span>
         <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->user-decks--review-card#flip:stop">
           flip <%= render_icon "arrow_turn_right", klass: "size-6 pl-2" %>
