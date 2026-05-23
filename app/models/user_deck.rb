@@ -37,6 +37,15 @@ class UserDeck < ApplicationRecord
     set_current_time_for(:completed_at)
   end
 
+  def score
+    return 0 unless completed?
+
+    correct_ct = user_deck_cards.count(&:correct?)
+    total_ct = user_deck_cards.count
+
+    (correct_ct / total_ct.to_f * 100).round(1)
+  end
+
   private
 
     def set_current_time_for(column)

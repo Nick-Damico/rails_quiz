@@ -125,4 +125,24 @@ RSpec.describe UserDeck, type: :model do
       expect(user_deck.completed_at.to_s).to eq time_now.to_s
     end
   end
+
+  describe "#score" do
+    let(:user_deck) { create(:user_deck, :with_user_deck_cards, deck: create(:deck, card_count: 4)) }
+    it "returns 100.0 percent when all cards are correct" do
+      user_deck.user_deck_cards.each { |card| card.correct! }
+      user_deck.mark_completed
+
+      expect(user_deck.score).to eq 100.0
+    end
+    it "returns a percentage when not all cards are correct" do
+      user_deck.user_deck_cards.first(3).each { |user_deck_card| user_deck_card.correct! }
+      user_deck.mark_completed
+
+      expect(user_deck.score).to eq 75.0
+    end
+
+    it "returns a score of 0 when user_deck(review) is not completed" do
+      expect(user_deck.score).to eq 0
+    end
+  end
 end

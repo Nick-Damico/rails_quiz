@@ -3,6 +3,7 @@ FactoryBot.define do
     user { create(:user) }
     deck { create(:deck, card_count: 2) }
 
+    # TODO: Move to callback
     trait :with_user_deck_cards do
       after(:create) do |user_deck|
         user_deck.build_user_cards
