@@ -21,6 +21,7 @@ export default class extends CardController {
   connect() { }
 
   /* LIFECYCLE CALLBACKS */
+
   cardTargetConnected(card) {
     if (this._isReviewed(card)) {
       this._showButtons();
@@ -28,6 +29,13 @@ export default class extends CardController {
   }
 
   /* ACTIONS */
+
+  afterRatingCard(e) {
+    this._hideRatingPrompt();
+    this._showButtons();
+    this._setReviewedIcon(e);
+  }
+
   flip(e) {
     /*
       The parent flip method is called when the user clicks on the card.
@@ -42,12 +50,6 @@ export default class extends CardController {
     this._addId(card.dataset.id); // Stores card ids that have been flipped.
   }
 
-  afterRatingCard(e) {
-    debugger
-    this._hideRatingPrompt();
-    this._showButtons();
-    this._setReviewedIcon(e);
-  }
 
   /* PRIVATE */
 
