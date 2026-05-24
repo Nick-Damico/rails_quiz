@@ -18,9 +18,7 @@ export default class extends CardController {
     incorrect: "incorrectIconTarget",
   };
 
-  connect() {
-    addEventListener("turbo:submit-end", (e) => this._afterRatingCard(e));
-  }
+  connect() { }
 
   /* LIFECYCLE CALLBACKS */
   cardTargetConnected(card) {
@@ -44,12 +42,14 @@ export default class extends CardController {
     this._addId(card.dataset.id); // Stores card ids that have been flipped.
   }
 
-  /* PRIVATE */
-  _afterRatingCard(e) {
+  afterRatingCard(e) {
+    debugger
     this._hideRatingPrompt();
     this._showButtons();
     this._setReviewedIcon(e);
   }
+
+  /* PRIVATE */
 
   _showButtons() {
     [
@@ -86,6 +86,7 @@ export default class extends CardController {
   async _setReviewedIcon(e) {
     const response = e.detail.fetchResponse.response;
     if (!response.ok) return;
+    debugger
 
     const data = await response.json();
     if (data.rating === undefined) return;

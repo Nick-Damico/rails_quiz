@@ -60,7 +60,7 @@
     <header class="flex justify-center p-2 bg-gray-800">
       <h3 class="text-lg">How did you do?</h3>
     </header>
-    <%= form_with model: user_deck_card do |f| %>
+    <%= form_with model: user_deck_card, data: { action: "turbo:submit-end->user-decks--review-card#afterRatingCard" } do |f| %>
       <ul class="flex justify-between py-2 place-self-center w-36">
         <li>
           <%= f.button :card_rating,
