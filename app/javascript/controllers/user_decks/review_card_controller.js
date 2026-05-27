@@ -88,7 +88,6 @@ export default class extends CardController {
   async _setReviewedIcon(e) {
     const response = e.detail.fetchResponse.response;
     if (!response.ok) return;
-    debugger
 
     const data = await response.json();
     if (data.rating === undefined) return;
