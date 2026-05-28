@@ -7,6 +7,14 @@ RSpec.describe "UserDeckCards", type: :request do
 
   before { sign_in user }
 
+  describe "GET /index" do
+    let!(:user_deck) { create(:user_deck, :with_user_deck_cards, user:) }
+    it "responds with http success" do
+      get user_deck_cards_path(deck_id: user_deck.deck_id)
+
+      expect(response).to have_http_status(:success)
+    end
+  end
   describe "PATCH /update" do
     let(:valid_params) { { user_deck_card: { card_rating: :correct } } }
 

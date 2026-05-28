@@ -1,9 +1,14 @@
 class UserDeckCardPolicy < ApplicationPolicy
   class Scope
     # NOTE: Be explicit about which records you allow access to!
-    # def resolve
-    #   scope.all
-    # end
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      @scope.joins(:user_deck).where(user_decks: { user_id: @user.id })
+    end
   end
 
   def show?

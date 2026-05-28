@@ -1,8 +1,15 @@
 class UserDeckCardsController < ApplicationController
   before_action :set_user_deck_card, only: %i[update]
 
+  def index
+    @user_deck_cards = policy_scope(UserDeckCard)
+    @user_deck_cards =
+      @user_deck_cards.where(
+        user_decks: { deck_id: params[:deck_id] }
+      )
+  end
   def update
-    authorize(@user_deck_card)
+    authorize @user_deck_card
 
     if @user_deck_card.update(user_deck_card_params)
       render json: { rating: @user_deck_card.card_rating }, status: :ok
