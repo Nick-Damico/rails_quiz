@@ -8,7 +8,7 @@ class Deck < ApplicationRecord
   validates :title, presence: true
 
   def time_to_complete
-    avg_time_per_card = 10
+    avg_time_per_card = 15
     ActiveSupport::Duration.build(cards.count * avg_time_per_card).to_i
   end
 end
