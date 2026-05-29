@@ -1,4 +1,5 @@
 <%= turbo_frame_tag :review_card do %>
+  <!-- Display Current Card Number -->
   <div class="relative mb-2 text-center">
     <hr class="absolute inset-0 z-0 w-full transform -translate-y-1/2 border-gray-700 top-1/2">
     <span class="relative z-10 px-2 bg-gray-950">
@@ -7,6 +8,7 @@
       </span>
     </span>
   </div>
+  <!-- Review Card Content -->
   <div data-user-decks--review-card-target="card" data-rating="<%= user_deck_card.card_rating %>" data-id="<%= card.id %>" class="relative flex w-72 min-h-[400px] z-40">
     <div data-user-decks--review-card-target="correctIcon" class="absolute flex p-2 transition-opacity duration-300 ease-in border-4 rounded-full opacity-0 -left-4 -top-3 border-gray-950 bg-success drop-shadow-md <%= icon_active?(user_deck_card.card_rating, "correct") %>">
       <%= render_icon "thumbs_up" %>
@@ -56,6 +58,7 @@
       <%= card_text_tag(card.back) %>
     </article>
   </div>
+  <!-- Rating Prompt -->
   <div data-user-decks--review-card-target="ratingPrompt" class="relative z-10 mt-2 overflow-hidden text-center bg-gray-700 rounded-lg -top-32">
     <header class="flex justify-center p-2 bg-gray-800">
       <h3 class="text-lg">How did you do?</h3>

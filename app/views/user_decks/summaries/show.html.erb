@@ -35,15 +35,19 @@
             <a class="px-1" href="">Graph</a>
           </li>
           <li data-navigation-target="link" class="flex border-b-2 border-transparent hover:border-white">
-            <a class="px-1" href="">Correct</a>
+            <%= link_to "correct", user_deck_cards_path(deck_id: @user_deck.deck_id, card_rating: :correct), class: "px-1", data: { turbo_frame: :user_deck_cards } %>
           </li>
           <li data-navigation-target="link" class="flex border-b-2 border-transparent hover:border-white">
-            <a class="px-1" href="">Missed</a>
+            <%= link_to "incorrect", user_deck_cards_path(deck_id: @user_deck.deck_id, card_rating: :incorrect), class: "px-1", data: { turbo_frame: :user_deck_cards } %>
           </li>
         </ul>
       </nav>
-      <div class="flex items-center justify-center h-full text-5xl font-thin">
-        <%= column_chart @chart_data, colors: ['#10B981', '#EF4444'], library: { scales: { y: { grid: { color: "#1f2937"} }} } %>
+      <div class="flex flex-1 px-1">
+        <%= turbo_frame_tag :user_deck_cards, class: "flex flex-1 overflow-x-hidden" do %>
+          <div class="flex items-center flex-1 text-5xl font-thin">
+            <%= column_chart @chart_data, colors: ['#10B981', '#EF4444'], library: { scales: { y: { grid: { color: "#1f2937"} }} } %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

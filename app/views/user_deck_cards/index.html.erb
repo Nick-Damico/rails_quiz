@@ -1,0 +1,5 @@
+<%= turbo_frame_tag :user_deck_cards, class: "flex" do %>
+  <div data-controller="user-decks--review-card" class="flex pt-4 pl-6 space-x-6 overflow-x-scroll">
+    <%= render  @user_deck_cards %>
+  </div>
+<% end %>

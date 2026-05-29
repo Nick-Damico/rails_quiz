@@ -2,9 +2,11 @@ class UserDeckCardsController < ApplicationController
   before_action :set_user_deck_card, only: %i[update]
 
   def index
+    # TODO: safeguard params
     @user_deck_cards = policy_scope(UserDeckCard)
     @user_deck_cards =
       @user_deck_cards.where(
+        card_rating: params[:card_rating].to_sym,
         user_decks: { deck_id: params[:deck_id] }
       )
   end

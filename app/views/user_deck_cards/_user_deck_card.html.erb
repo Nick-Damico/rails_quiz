@@ -1,0 +1,27 @@
+<% card = user_deck_card.card %>
+<div data-user-decks--review-card-target="card" data-rating="<%= user_deck_card.card_rating %>" data-id="<%= card.id %>" class="relative flex min-w-72 min-h-[400px] z-40">
+  <div data-user-decks--review-card-target="correctIcon" class="absolute flex p-2 transition-opacity duration-300 ease-in border-4 rounded-full opacity-0 -left-4 -top-3 border-gray-950 bg-success drop-shadow-md <%= icon_active?(user_deck_card.card_rating, "correct") %>">
+    <%= render_icon "thumbs_up" %>
+  </div>
+  <div data-user-decks--review-card-target="incorrectIcon" class="absolute flex p-2 transition-opacity duration-300 border-4 rounded-full opacity-0 -left-4 -top-3 border-gray-950 bg-alert drop-shadow-md <%= icon_active?(user_deck_card.card_rating, "incorrect") %>">
+    <%= render_icon "thumbs_down" %>
+  </div>
+  <article data-user-decks--review-card-target="front" class="flex flex-col w-full p-6 text-lg text-gray-900 bg-blue-500 rounded-lg">
+    <header class="flex items-center justify-end w-full pb-4 border-b border-blue-400">
+      <span class="mr-auto text-sm font-semibold uppercase">Front</span>
+      <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->user-decks--review-card#flip:stop">
+        flip <%= render_icon "arrow_turn_right", klass: "size-6 pl-2" %>
+      </button>
+    </header>
+    <%= card_text_tag(card.front) %>
+  </article>
+  <article data-user-decks--review-card-target="back" class="flex flex-col hidden w-full p-6 text-lg text-gray-900 bg-blue-600 rounded-lg">
+    <header class="flex items-center justify-end w-full pb-4 border-b border-blue-400">
+      <span class="mr-auto text-sm font-semibold uppercase">Back</span>
+      <button class="flex items-center px-3 py-1 text-sm uppercase bg-blue-400 rounded-md" data-action="click->user-decks--review-card#flip:stop">
+        flip <%= render_icon "arrow_turn_right", klass: "size-6 pl-2" %>
+      </button>
+    </header>
+    <%= card_text_tag(card.back) %>
+  </article>
+</div>
