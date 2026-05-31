@@ -27,28 +27,13 @@
         </div>
       </div>
     </div>
-    <div data-controller="navigation" class="flex flex-col flex-grow w-full p-4 bg-gray-900 rounded-lg md:w-2/3 min-h-64">
-      <%# <h3 class="mb-4 text-lg uppercase border-b-2 border-gray-800">Outcomes of Review</h3> %>
-      <nav class="mb-4 text-lg uppercase border-b-2 border-gray-800">
-        <ul class="flex space-x-3">
-          <li data-navigation-target="link" class="aria-[current='active']:border-white flex border-b-2 border-transparent hover:border-white" aria-current="active">
-            <a class="px-1" href="">Graph</a>
-          </li>
-          <li data-navigation-target="link" class="flex border-b-2 border-transparent hover:border-white">
-            <%= link_to "correct", user_deck_cards_path(deck_id: @user_deck.deck_id, card_rating: :correct), class: "px-1", data: { turbo_frame: :user_deck_cards } %>
-          </li>
-          <li data-navigation-target="link" class="flex border-b-2 border-transparent hover:border-white">
-            <%= link_to "incorrect", user_deck_cards_path(deck_id: @user_deck.deck_id, card_rating: :incorrect), class: "px-1", data: { turbo_frame: :user_deck_cards } %>
-          </li>
-        </ul>
-      </nav>
-      <div class="flex flex-1 px-1">
-        <%= turbo_frame_tag :user_deck_cards, class: "flex flex-1 overflow-x-hidden" do %>
-          <div class="flex items-center flex-1 text-5xl font-thin">
-            <%= column_chart @chart_data, colors: ['#10B981', '#EF4444'], library: { scales: { y: { grid: { color: "#1f2937"} }} } %>
-          </div>
-        <% end %>
-      </div>
+    <div class="flex flex-col flex-grow w-full p-4 bg-gray-900 rounded-lg md:w-2/3 min-h-64">
+      <%= turbo_frame_tag :user_deck_cards, class: "flex flex-col flex-1 overflow-x-hidden" do %>
+        <%= render "nav", active_tab: @active_tab, user_deck: @user_deck %>
+        <div class="flex items-center flex-1 text-5xl font-thin">
+          <%= column_chart @chart_data, colors: ['#10B981', '#EF4444'], library: { scales: { y: { grid: { color: "#1f2937"} }} } %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

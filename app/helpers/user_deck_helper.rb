@@ -22,4 +22,8 @@ module UserDeckHelper
   def icon_active?(rating, icon)
     rating == icon ? "opacity-100" : "opacity-0"
   end
+
+  def active_tab?(active_tab, tab)
+    active_tab == tab ? "active" : "false"
+  end
 end

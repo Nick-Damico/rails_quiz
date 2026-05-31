@@ -2,15 +2,16 @@ class UserDeckCardsController < ApplicationController
   before_action :set_user_deck_card, only: %i[update]
 
   def index
-    user_deck = policy_scope(UserDeck).find_by(deck_id: safe_params[:deck_id])
-    authorize user_deck, :show?
+    @user_deck = policy_scope(UserDeck).find_by(deck_id: safe_params[:deck_id])
+    authorize @user_deck, :show?
 
     rating = safe_params[:card_rating].presence_in(UserDeckCard.card_ratings.keys)
     @user_deck_cards =
       policy_scope(UserDeckCard).joins(:user_deck).where(
         card_rating: rating,
-        user_decks: { deck_id: user_deck.id }
+        user_decks: { deck_id: @user_deck.id }
       )
+    @active_tab = rating # sets nav tab to active
   end
 
   def update

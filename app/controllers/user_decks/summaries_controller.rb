@@ -9,6 +9,7 @@ class UserDecks::SummariesController < ApplicationController
       flash[:alert] = t("flash.user_decks.summaries.show.error")
       redirect_to deck_url(@user_deck.deck) and return
     end
+    @active_tab = "graph"
   end
 
   private
