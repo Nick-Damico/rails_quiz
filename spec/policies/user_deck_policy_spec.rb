@@ -7,7 +7,13 @@ RSpec.describe UserDeckPolicy, type: :policy do
   let(:unauthorized_user) { create(:user) }
   let(:record) { create(:user_deck, user: user) }
 
-  permissions ".scope" do; end
+  permissions ".scope" do
+    let!(:owned_user_deck) { create(:user_deck, user: user) }
+    let!(:unauthorized_user_deck) { create(:user_deck, user: unauthorized_user) }
+    it "returns all user decks for the user" do
+      expect(described_class::Scope.new(user, UserDeck).resolve).to contain_exactly(owned_user_deck)
+    end
+  end
 
   permissions :show? do
     it "allows user to access their own deck" do
