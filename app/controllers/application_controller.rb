@@ -15,53 +15,53 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def user_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [ :username ])
-    devise_parameter_sanitizer.permit(:account_update, keys: [ :username ])
-  end
+    def user_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [ :username ])
+      devise_parameter_sanitizer.permit(:account_update, keys: [ :username ])
+    end
 
-  def skip_authorizations
-    skip_authorization
-    skip_policy_scope
-  end
+    def skip_authorizations
+      skip_authorization
+      skip_policy_scope
+    end
 
   private
 
-  def record_not_found
-    flash[:alert] = t("flash.errors.record_not_found")
+    def record_not_found
+      flash[:alert] = t("flash.errors.record_not_found")
 
-    redirect_back_or_to(record_not_found_redirect_url)
-  end
-
-  def user_not_authorized(exception)
-    unless current_user
-      flash[:error] = "You must log in"
-      return redirect_back_or_to(new_user_session_url)
+      redirect_back_or_to(record_not_found_redirect_url)
     end
 
-    policy_name = exception.policy.class.to_s.underscore
+    def user_not_authorized(exception)
+      unless current_user
+        flash[:error] = "You must log in"
+        return redirect_back_or_to(new_user_session_url)
+      end
 
-    flash[:error] = t("#{policy_name}.#{exception.query}", scope: "pundit", default: :default)
-    redirect_back_or_to(unauthorized_redirect_url)
-  end
+      policy_name = exception.policy.class.to_s.underscore
 
-  def record_not_found_redirect_url
-    root_url
-  end
-
-  def unauthorized_redirect_url
-    root_url
-  end
-
-  def verify_pundit_authorization
-    if action_name == "index"
-      verify_policy_scoped
-    else
-      verify_authorized
+      flash[:error] = t("#{policy_name}.#{exception.query}", scope: "pundit", default: :default)
+      redirect_back_or_to(unauthorized_redirect_url)
     end
-  end
 
-  def form_render?
-    %i[ new edit ].include?(params[:action].to_sym)
-  end
+    def record_not_found_redirect_url
+      root_url
+    end
+
+    def unauthorized_redirect_url
+      root_url
+    end
+
+    def verify_pundit_authorization
+      if action_name == "index"
+        verify_policy_scoped
+      else
+        verify_authorized
+      end
+    end
+
+    def form_render?
+      %i[ new edit ].include?(params[:action].to_sym)
+    end
 end
