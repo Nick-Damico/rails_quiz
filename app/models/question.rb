@@ -11,15 +11,15 @@ class Question < ApplicationRecord
 
   private
 
-  def validate_number_of_choices
-    return unless choices.size <= 1
+    def validate_number_of_choices
+      return unless choices.size <= 1
 
-    errors.add(:choices, "must have at least 2 choices")
-  end
+      errors.add(:choices, "must have at least 2 choices")
+    end
 
-  def validate_correct_choice
-    return unless choices.none?(&:correct)
+    def validate_correct_choice
+      return unless choices.none?(&:correct)
 
-    errors.add(:choices, "must have one choice marked as correct")
-  end
+      errors.add(:choices, "must have one choice marked as correct")
+    end
 end

@@ -54,44 +54,44 @@ class QuestionsController < ApplicationController
 
   private
 
-  def authorize_access!
-    authorize @question
-  end
+    def authorize_access!
+      authorize @question
+    end
 
-  def record_not_found_redirect_url
-    if @quiz.present?
-      author_quiz_url(@quiz)
-    else
+    def record_not_found_redirect_url
+      if @quiz.present?
+        author_quiz_url(@quiz)
+      else
+        author_quizzes_url
+      end
+    end
+
+    def unauthorized_redirect_url
       author_quizzes_url
     end
-  end
 
-  def unauthorized_redirect_url
-    author_quizzes_url
-  end
-
-  def set_quiz
-    @quiz = Quiz.find(params[:quiz_id])
-  end
-
-  def set_question
-    @question = Question.find(params[:id])
-  end
-
-  def question_params
-    params.require(:question).permit(:quiz_id, :content, choices_attributes: %i[id content correct])
-  end
-
-  def set_breadcrumbs
-    add_breadcrumb("Design")
-    if @quiz&.author_id.present?
-      add_breadcrumb("Quizzes", author_quizzes_path)
-      add_breadcrumb(@quiz.title, author_quiz_path(@quiz))
+    def set_quiz
+      @quiz = Quiz.find(params[:quiz_id])
     end
-    add_breadcrumb(@question.content, quiz_question_path(@quiz, @question)) if form_render?
-  end
 
-  def form_render?
-    [ :edit ].include?(params[:action].to_sym)
-  end
+    def set_question
+      @question = Question.find(params[:id])
+    end
+
+    def question_params
+      params.require(:question).permit(:quiz_id, :content, choices_attributes: %i[id content correct])
+    end
+
+    def set_breadcrumbs
+      add_breadcrumb("Design")
+      if @quiz&.author_id.present?
+        add_breadcrumb("Quizzes", author_quizzes_path)
+        add_breadcrumb(@quiz.title, author_quiz_path(@quiz))
+      end
+      add_breadcrumb(@question.content, quiz_question_path(@quiz, @question)) if form_render?
+    end
+
+    def form_render?
+      [ :edit ].include?(params[:action].to_sym)
+    end
 end

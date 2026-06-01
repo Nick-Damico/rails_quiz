@@ -21,7 +21,7 @@ class Questions::ChoicePolicy < ApplicationPolicy
 
   private
 
-  def user_is_author?
-    QuestionPolicy.new(user, record.question).user_is_author?
-  end
+    def user_is_author?
+      QuestionPolicy.new(user, record.question).user_is_author?
+    end
 end

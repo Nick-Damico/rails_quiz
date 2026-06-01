@@ -54,34 +54,34 @@ module Author
 
     private
 
-    def authorize_access!
-      authorize([ :author, @quiz ])
-    end
+      def authorize_access!
+        authorize([ :author, @quiz ])
+      end
 
-    def record_not_found_redirect_url
-      author_quizzes_url
-    end
+      def record_not_found_redirect_url
+        author_quizzes_url
+      end
 
-    def unauthorized_redirect_url
-      author_quizzes_url
-    end
+      def unauthorized_redirect_url
+        author_quizzes_url
+      end
 
-    def quiz_params
-      params.require(:quiz).permit(:title, :description, :author_id)
-    end
+      def quiz_params
+        params.require(:quiz).permit(:title, :description, :author_id)
+      end
 
-    def set_quiz
-      @quiz = Quiz.find(params[:id])
-    end
+      def set_quiz
+        @quiz = Quiz.find(params[:id])
+      end
 
-    def set_author
-      @author = current_user
-    end
+      def set_author
+        @author = current_user
+      end
 
-    def set_breadcrumbs
-      add_breadcrumb("Design")
-      add_breadcrumb("Quizzes", author_quizzes_path) if @author.present?
-      add_breadcrumb(@quiz.title, author_quiz_path(@quiz)) if @quiz.present?
-    end
+      def set_breadcrumbs
+        add_breadcrumb("Design")
+        add_breadcrumb("Quizzes", author_quizzes_path) if @author.present?
+        add_breadcrumb(@quiz.title, author_quiz_path(@quiz)) if @quiz.present?
+      end
   end
 end

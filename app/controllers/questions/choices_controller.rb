@@ -57,28 +57,28 @@ class Questions::ChoicesController < ApplicationController
 
   private
 
-  def authorize_access!
-    authorize @choice, policy_class: Questions::ChoicePolicy
-  end
+    def authorize_access!
+      authorize @choice, policy_class: Questions::ChoicePolicy
+    end
 
-  def choice_params
-    params.require(:question_choice).permit(:content, :correct, :question_id)
-  end
+    def choice_params
+      params.require(:question_choice).permit(:content, :correct, :question_id)
+    end
 
-  def set_choice
-    @choice = Question::Choice.find(params[:id])
-  end
+    def set_choice
+      @choice = Question::Choice.find(params[:id])
+    end
 
-  # The "new" parameter for :question_id is used to handle dynamically building a new
-  # choice form element when the question is not yet persisted. This supports nested
-  # attributes functionality for the choices fields on the new question form.
-  def set_question
-    @question =
-      if params[:question_id] == "new"
-        Question.new
-      else
-        # eager_load quiz to avoid additional queries during #authorize
-        Question.preload(:quiz).find(params[:question_id])
-      end
-  end
+    # The "new" parameter for :question_id is used to handle dynamically building a new
+    # choice form element when the question is not yet persisted. This supports nested
+    # attributes functionality for the choices fields on the new question form.
+    def set_question
+      @question =
+        if params[:question_id] == "new"
+          Question.new
+        else
+          # eager_load quiz to avoid additional queries during #authorize
+          Question.preload(:quiz).find(params[:question_id])
+        end
+    end
 end
