@@ -5,7 +5,7 @@
       <h2 class="py-2 text-xl text-center uppercase border-b border-gray-500 font-xl">
         <%= deck.persisted? ? "Edit" : "Create" %> Deck
       </h2>
-      <%= form_with model: [:author, deck], class: "px-2" do |ff| %>
+      <%= form_with model: [ :author, deck ], class: "px-2" do |ff| %>
         <%= ff.hidden_field :author_id, value: author.id %>
         <div class="mb-4 field">
           <%= ff.label :title, class: "text-white text-xs font-semibold uppercase mb-2" %>

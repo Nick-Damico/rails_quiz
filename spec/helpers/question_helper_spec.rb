@@ -6,7 +6,7 @@ RSpec.describe QuestionHelper, type: :helper do
       expect(num_to_letter(0)).to eq 'a'
     end
 
-    it 'handles String representations of numbers without error' do 
+    it 'handles String representations of numbers without error' do
       expect(num_to_letter('0')).to eq 'a'
     end
 

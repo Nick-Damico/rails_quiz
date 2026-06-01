@@ -5,7 +5,7 @@
       <h2 class="py-2 text-xl text-center uppercase border-b border-gray-500 font-xl">
         <%= question.persisted? ? "Edit" : "Create" %> Question
       </h2>
-      <%= form_with model: [quiz, question], class: "px-2" do |f| %>
+      <%= form_with model: [ quiz, question ], class: "px-2" do |f| %>
         <%= f.hidden_field :quiz_id, value: quiz.id %>
         <div class="mt-2 mb-4 field">
           <%= f.label :content, "Question Text", class: "text-white text-xs font-semibold uppercase mb-2" %>
