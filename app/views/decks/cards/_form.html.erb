@@ -16,7 +16,7 @@
           </div>
           <div class="w-full sm:w-1/2">
             <%= f.label :back, class: "flex uppercase" do %>
-              <span class="mr-2 text-md">Card Back</span> <%= display_field_error(card, :front, class: 'mt-0') %>
+              <span class="mr-2 text-md">Card Back</span> <%= display_field_error(card, :front, class: "mt-0") %>
             <% end %>
             <%= f.text_area :back, cols: 40, rows: 15, placeholder: "Enter the answer or definition...", class: "bg-gray-800 text-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
           </div>
@@ -33,7 +33,7 @@
               value: "new", 
               class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
           <% end %>
-          <%= button_tag"Save & Return", 
+          <%= button_tag "Save & Return", 
             name: "follow_up_action", 
             value: "show", 
             class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
@@ -49,7 +49,7 @@
       <div data-controller="decks--edit-card" class="flex flex-wrap justify-center gap-4 p-4 md:justify-start">
         <% persisted_cards = deck.cards.select(&:persisted?) %>
         <% if persisted_cards.any? %>
-          <%= render deck.cards.select(&:persisted?), deck: , selected: card%>
+          <%= render deck.cards.select(&:persisted?), deck:, selected: card%>
         <% else %>
           <p class="w-full italic text-center text-gray-500">No cards available. Use form above to add cards to deck.</p>
         <% end %>
