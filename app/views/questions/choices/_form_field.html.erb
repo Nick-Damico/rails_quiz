@@ -24,12 +24,12 @@
       <% else %>
         <button class='box-border flex justify-center items-center p-2 h-[40px] border-2 border-red-500 rounded bg-red-400'
                 data-action="click->question-form#remove_choice:prevent"
-          data-confirm-msg="<%= t('buttons.choice.delete') %>">
+          data-confirm-msg="<%= t("buttons.choice.delete") %>">
           <%= render_icon "x_circle" %>
         </button>
       <% end %>
       <p class="items-center hidden mt-1 text-xs text-green-500 peer-checked:flex correct-choice-icon">
-        <%= render_icon "circle_check", classes: 'size-5' %>
+        <%= render_icon "circle_check", classes: "size-5" %>
         Correct Answer
       </p>
     </div>

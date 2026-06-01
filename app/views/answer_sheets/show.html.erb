@@ -9,8 +9,8 @@
       <p class="text-4xl">Your final score</p>
     </div>
     <div class='hidden w-1/2 md:block'>
-      <%= pie_chart [['Correct', @correct_count], ['Missed', @incorrect_count]], height: "250px",
-                  colors: ['rgb(16 185 129)', 'rgb(239 68 68)'] %>
+      <%= pie_chart [ [ "Correct", @correct_count ], [ "Missed", @incorrect_count ] ], height: "250px",
+                  colors: [ "rgb(16 185 129)", "rgb(239 68 68)" ] %>
     </div>
   </div>
   <div class='flex flex-col gap-2 text-left md:flex-row'>
@@ -33,7 +33,7 @@
         </span>
       </summary>
       <ul class='px-2'>
-        <%= render  partial: 'incorrect_answer_sheet_question', collection: @incorrect_answer_sheet_questions, as: :answer_sheet_question %>
+        <%= render partial: "incorrect_answer_sheet_question", collection: @incorrect_answer_sheet_questions, as: :answer_sheet_question %>
       </ul>
     </details>
   </div>

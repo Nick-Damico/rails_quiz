@@ -24,7 +24,7 @@
       </thead>
       <tbody>
         <% @decks.each do |deck| %>
-          <%= render 'deck', author: @author, deck: %>
+          <%= render "deck", author: @author, deck: %>
         <% end %>
       </tbody>
     </table>

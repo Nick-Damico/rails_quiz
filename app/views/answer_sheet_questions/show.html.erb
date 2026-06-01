@@ -13,7 +13,7 @@
         <% radio_btn_index = 0 %>
         <%= f.collection_radio_buttons :answer_id, @question.choices, :id, :content do |builder| %>
           <div class="flex mb-4 transition duration-500 ease-in-out border border-gray-500 peer-checked:bg-success hover:bg-primary">
-            <%= builder.radio_button class: 'hidden peer' %>
+            <%= builder.radio_button class: "hidden peer" %>
             <%= builder.label class: "flex flex-1 p-2 peer-checked:bg-success cursor-pointer" do %>
               <span class="w-12 mr-1 font-bold text-center"><%= num_to_letter(radio_btn_index).upcase %>.</span>
               <p class="w-full"><%= builder.object.content %></p>
@@ -27,7 +27,7 @@
           <% end %>
           <%= f.submit @answer_sheet_question.position < @question_count ? "Next" : "Finish",
               class: "flex flex-1 items-center btn btn-success border border-gray-500 disabled:bg-transparent disabled:cursor-not-allowed disabled:border-gray-700 disabled:text-gray-700 transition ease-in-out",
-              data: { "answer-sheet-question-form-target": 'submitButton' },
+              data: { "answer-sheet-question-form-target": "submitButton" },
               disabled: true %>
         </div>
       <% end %>

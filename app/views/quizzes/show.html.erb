@@ -20,13 +20,13 @@
         <span class="text-2xl">
           <%= format_as_two_digits(minutes) %>
         </span><br>
-        <%= 'minute'.pluralize(minutes) %>
+        <%= "minute".pluralize(minutes) %>
       </p>
       <p id="quiz-question-count" class="flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500">
         <span class="text-2xl">
           <%= format_as_two_digits(@quiz.questions.count) %>
         </span><br>
-        <%= 'question'.pluralize(@quiz.questions.count) %>
+        <%= "question".pluralize(@quiz.questions.count) %>
       </p>
     </div>
   </section>

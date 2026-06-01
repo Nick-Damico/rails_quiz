@@ -24,7 +24,7 @@
       </thead>
       <tbody>
         <% @quizzes.each do |quiz| %>
-          <%= render 'quiz', author: @author, quiz: %>
+          <%= render "quiz", author: @author, quiz: %>
         <% end %>
       </tbody>
     </table>
