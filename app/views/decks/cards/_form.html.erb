@@ -10,7 +10,7 @@
         <div class="flex flex-col gap-4 mb-4 sm:flex-row">
           <div class="w-full sm:w-1/2">
             <%= f.label :front, class: "flex uppercase" do %>
-              <span class="mr-2 text-md">Card Front</span> <%= display_field_error(card, :front, class: 'mt-0') %>
+              <span class="mr-2 text-md">Card Front</span> <%= display_field_error(card, :front, class: "mt-0") %>
             <% end %>
             <%= f.text_area :front, cols: 40, rows: 15, autofocus: true, placeholder: "Enter the question or term...", class: "bg-gray-800 text-white shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
           </div>

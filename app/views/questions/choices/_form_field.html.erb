@@ -14,7 +14,7 @@
       <% end %>
       <% if choice_form.object.persisted? %>
         <%= link_to question_choice_path(choice_form.object.question, choice_form.object),
-          class: 'box-border flex justify-center items-center p-2 border-2 border-red-500 rounded bg-red-400 h-[40px]',
+          class: "box-border flex justify-center items-center p-2 border-2 border-red-500 rounded bg-red-400 h-[40px]",
           data: {
             turbo_method: :delete,
             turbo_confirm: t("buttons.choice.delete")
