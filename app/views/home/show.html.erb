@@ -3,9 +3,9 @@
 <div class='bg-gradient-to-b from-indigo-900'>
   <section class="py-6 px-4 mx-auto max-w-screen-xl">
     <% if user_signed_in? %>
-      <h2 class="text-3xl mb-4">Hello <%= current_user.username %></h2>  
+      <h2 class="text-3xl mb-4">Hello <%= current_user.username %></h2>
     <% else %>
-      <h2 class="text-3xl mb-4">Welcome to QuizIt!</h2>  
+      <h2 class="text-3xl mb-4">Welcome to QuizIt!</h2>
     <% end %>
 
     <p class="prose text-white text-lg font-thin mb-16">

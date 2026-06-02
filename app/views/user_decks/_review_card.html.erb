@@ -67,14 +67,14 @@
       <ul class="flex justify-between py-2 place-self-center w-36">
         <li>
           <%= f.button :card_rating,
-            value: :incorrect, 
+            value: :incorrect,
             class: "flex p-2 bg-alert drop-shadow-md rounded-full hover:scale-110 transition-scale" do %>
             <%= render_icon "thumbs_down", klass: "size-8" %>
           <% end %>
         </li>
         <li>
           <%= f.button :card_rating,
-            value: :correct, 
+            value: :correct,
             class: "flex p-2 bg-success drop-shadow-md rounded-full hover:scale-110 transition-scale" do %>
             <%= render_icon "thumbs_up", klass: "size-8" %>
           <% end %>

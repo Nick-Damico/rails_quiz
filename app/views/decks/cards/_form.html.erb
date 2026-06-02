@@ -23,19 +23,19 @@
         </div>
         <div class="flex flex-col gap-4 sm:flex-row sm:gap-2">
           <% unless new_card?(card) %>
-            <%= button_tag "Save & Add Another", 
-              name: "follow_up_action", 
-              value: "new", 
+            <%= button_tag "Save & Add Another",
+              name: "follow_up_action",
+              value: "new",
               class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
           <% else %>
-            <%= button_tag "Save", 
-              name: "follow_up_action", 
-              value: "new", 
+            <%= button_tag "Save",
+              name: "follow_up_action",
+              value: "new",
               class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
           <% end %>
-          <%= button_tag "Save & Return", 
-            name: "follow_up_action", 
-            value: "show", 
+          <%= button_tag "Save & Return",
+            name: "follow_up_action",
+            value: "show",
             class: "w-full sm:w-auto btn btn-rounded btn-success uppercase" %>
         </div>
       <% end %>
@@ -49,7 +49,7 @@
       <div data-controller="decks--edit-card" class="flex flex-wrap justify-center gap-4 p-4 md:justify-start">
         <% persisted_cards = deck.cards.select(&:persisted?) %>
         <% if persisted_cards.any? %>
-          <%= render deck.cards.select(&:persisted?), deck:, selected: card%>
+          <%= render deck.cards.select(&:persisted?), deck:, selected: card %>
         <% else %>
           <p class="w-full italic text-center text-gray-500">No cards available. Use form above to add cards to deck.</p>
         <% end %>

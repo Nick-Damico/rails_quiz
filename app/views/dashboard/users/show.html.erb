@@ -22,7 +22,7 @@
           <%= ff.file_field :avatar,
             accept: "image/*",
             class: "hidden",
-            data: { "users--avatar-uploader-target": "fileInput", action: "change->users--avatar-uploader#onChange" }%>
+            data: { "users--avatar-uploader-target": "fileInput", action: "change->users--avatar-uploader#onChange" } %>
         <% end %>
         <%= render_icon "camera",
               klass: "size-12 stroke-gray-500 group-[.is-active]:stroke-emerald-500 group-hover/dropzone:stroke-emerald-500 transition ease-in-out duration-500",
