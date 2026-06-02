@@ -9,9 +9,10 @@ RSpec.describe Deck, type: :model do
 
   describe "#time_to_complete" do
     it "returns the total estimated time to complete all cards in seconds" do
+      # TODO: hard coded time per card, will make configurable later
       deck = create(:deck, card_count: 2)
 
-      expect(deck.time_to_complete).to eq(20)
+      expect(deck.time_to_complete).to eq(30)
     end
 
     it "returns 0 for a deck with no cards" do
