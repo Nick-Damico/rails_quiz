@@ -8,7 +8,7 @@
                             class: "cursor-pointer self-center justify-self-center w-full h-[40px] border-2 border-gray-700 rounded bg-black flex items-center justify-center peer-checked:bg-green-500 peer-checked:border-green-700 group",
                             role: "checkbox",
                             aria: { checked: "false", describedby: "choice-description" },
-                            data: { 'question-form-target': 'choiceCheckboxLabel', action: "click->question-form#setAriaChecked" },
+                            data: { 'question-form-target': "choiceCheckboxLabel", action: "click->question-form#setAriaChecked" },
                             tabindex: "1" do %>
         <%= render_icon "circle_check", { klass: "stroke-gray-500 size-6 peer-checked:group-[]:stroke-white" } %>
       <% end %>
