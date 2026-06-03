@@ -9,7 +9,7 @@ class UserDeckCardsController < ApplicationController
     @user_deck_cards =
       policy_scope(UserDeckCard).joins(:user_deck).where(
         card_rating: rating,
-        user_decks: { deck_id: @user_deck.id }
+        user_decks: { id: @user_deck.id }
       )
     @active_tab = rating # sets nav tab to active
   end
