@@ -409,7 +409,7 @@ deck_3.cards.create!([
 ])
 
 deck_4 = user_2.authored_decks.create!(
-  title: "A+ 220-1102 Acronyms (A-E)"
+  title: "A+ 220-1102 Acronyms (A-E)",
   description: "A+ 220-1102 Acronyms outlined by the CompTIA objects handout."
 )
 
@@ -455,14 +455,8 @@ deck_4 = deck_4.cards.create!([
   { front: "EFS", back: "Encrypting File System" },
   { front: "EOL", back: "End-of-life" },
   { front: "eSATA", back: "External Serial Advanced Technology Attachment" },
-  { front: "ESD", back: "Electrostatic Discharge" }
+  { front: "ESD", back: "Electrostatic Discharge" },
   { front: "eSIM", back: "Embedded SIM" },
   { front: "EULA", back: "End-user License Agreement" },
   { front: "exFAT", back: "Extended File Allocation Table" }
 ])
-
-
-
-
-
-
