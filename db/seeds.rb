@@ -407,3 +407,62 @@ deck_3.cards.create!([
   { front: "VoIP", back: "Voice over Internet Protocol - Technology for transmitting voice communications over packet-switched networks." },
   { front: "VLAN", back: "Virtual LAN - Logically separates a physical network into multiple broadcast domains for segmentation and management." }
 ])
+
+deck_4 = user_2.authored_decks.create!(
+  title: "A+ 220-1102 Acronyms (A-E)"
+  description: "A+ 220-1102 Acronyms outlined by the CompTIA objects handout."
+)
+
+deck_4 = deck_4.cards.create!([
+  { front: "AAA", back: "Authentication, Authorization, and Accounting" },
+  { front: "ACL", back: "Access Control List" },
+  { front: "ADF", back: "Automatic Document Feeder" },
+  { front: "AES", back: "Advanced Encryption Standard" },
+  { front: "AMD", back: "Advanced Micro Devices, Inc." },
+  { front: "AP", back: "Access Point" },
+  { front: "APFS", back: "Apple File System" },
+  { front: "APIPA", back: "Automatic Private Internet Protocol Addressing" },
+  { front: "ARM", back: "Advanced RISC (Reduced Instruction Set Computer) Machine" },
+  { front: "ATX", back: "Advanced Technology Extended" },
+  { front: "AUP", back: "Acceptable Use Policy" },
+  { front: "BEC", back: "Business Email Compromise" },
+  { front: "BIOS", back: "Basic Input/Output System" },
+  { front: "BNC", back: "Bayonet Neill-Concelman" },
+  { front: "BSOD", back: "Blue Screen of Death" },
+  { front: "BYOD", back: "Bring Your Own Device" },
+  { front: "CAS", back: "Column Address Strobe" },
+  { front: "CAC", back: "Calling-card Authorization Computer" },
+  { front: "CIFS", back: "Common Internet File System" },
+  { front: "CMDB", back: "Configuration Management Database" },
+  { front: "CMOS", back: "Complementary Metal-Oxide Semiconductor" },
+  { front: "CNAME", back: "Canonical Name" },
+  { front: "CPU", back: "Central Processing Unit" },
+  { front: "DB-9", back: "Serial Communications D-Shell Connector, 9 pins" },
+  { front: "DDoS", back: "Distributed Denial of Service" },
+  { front: "DDR", back: "Double Data Rate" },
+  { front: "DHCP", back: "Dynamic Host Configuration Protocol" },
+  { front: "DIMM", back: "Dual In-line Memory Module" },
+  { front: "DKIM", back: "DomainKeys Identified Mail" },
+  { front: "DLP", back: "Data Loss Prevention" },
+  { front: "DMARC", back: "Domain-based Message Authentication, Reporting, and Conformance" },
+  { front: "DNS", back: "Domain Name System" },
+  { front: "DoS", back: "Denial of Service" },
+  { front: "DRM", back: "Digital Rights Management" },
+  { front: "DSL", back: "Digital Subscriber Line" },
+  { front: "DVI", back: "Digital Visual Interface" },
+  { front: "ECC", back: "Error-correcting Code" },
+  { front: "EDR", back: "Endpoint Detection and Response" },
+  { front: "EFS", back: "Encrypting File System" },
+  { front: "EOL", back: "End-of-life" },
+  { front: "eSATA", back: "External Serial Advanced Technology Attachment" },
+  { front: "ESD", back: "Electrostatic Discharge" }
+  { front: "eSIM", back: "Embedded SIM" },
+  { front: "EULA", back: "End-user License Agreement" },
+  { front: "exFAT", back: "Extended File Allocation Table" }
+])
+
+
+
+
+
+
