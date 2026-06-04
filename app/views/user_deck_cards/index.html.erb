@@ -1,7 +1,7 @@
 <%= turbo_frame_tag :user_deck_cards, class: "flex" do %>
   <%= render "user_decks/summaries/nav", active_tab: @active_tab, user_deck: @user_deck, deck_id: @user_deck.id %>
   <div class="flex flex-1 px-1">
-    <div data-controller="user-decks--review-card" class="flex pt-4 pl-6 space-x-6 overflow-x-scroll">
+    <div data-controller="user-decks--review-card" class="flex p-4 pl-6 space-x-6 overflow-x-scroll">
       <%= render @user_deck_cards %>
     </div>
   </div>
