@@ -6,10 +6,7 @@
         <%= @deck.title %> <br>
       </h1>
     </div>
-    <div class="mb-2 ml-4 font-semibold">
-      <p class="uppercase">Author:</p>
-      <p class="ml-3 italic font-light"><%= @deck.author.username %></p>
-    </div>
+    <%= render "shared/author_avatar", object: @deck %>
     <div class="mb-12 ml-4 font-semibold">
       <p class="uppercase">Description:</p>
       <p class="ml-3 italic font-light"><%= @deck.description %></p>

@@ -9,10 +9,7 @@
         <%= @quiz.title %> <br>
       </h2>
     </div>
-    <div class="my-2 ml-4 font-semibold">
-      <p>AUTHOR:</p>
-      <p class="ml-3 italic font-light"><%= @author.username %></p>
-    </div>
+    <%= render "shared/author_avatar", object: @quiz %>
     <div class="mb-2 ml-4 font-semibold">
       <p class="">DESCRIPTION:</p>
       <% if @quiz.description.present? %>

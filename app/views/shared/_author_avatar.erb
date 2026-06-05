@@ -1,0 +1,9 @@
+<div class="my-2 ml-4 font-semibold">
+  <p class="uppercase">Author:</p>
+  <div class="flex items-center ml-3">
+    <%= link_to dashboard_user_path(object.author), class: "mr-2" do %>
+      <%= avatar(object.author) %>
+    <% end %>
+    <p class="italic font-light"><%= object.author.username %></p>
+  </div>
+</div>
