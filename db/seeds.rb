@@ -369,7 +369,7 @@ deck_1.cards.create!([
   }
 ])
 
-deck_2 = cards.authored_decks.create!(
+deck_2 = user_1.authored_decks.create!(
   title: "A+ 220-1101 Cloud Models & Characteristics",
   description: "Cloud computing models and Characteristics outlined by the CompTIA A+ 220-1101 exam."
 )
