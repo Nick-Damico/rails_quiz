@@ -8,15 +8,41 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:16
+
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: quiz_it_test
+
+        ports:
+          - 5432:5432
+
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      RAILS_ENV: test
+      DB_HOST: localhost
+
     steps:
       - uses: actions/checkout@v4
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.4.9
+          ruby-version: 3.4.1
+          bundler-cache: true
 
-      - run: ruby -v
+      - run: bundle exec rails db:prepare
 
-      - run: bundle install
+      - run: bundle exec rubocop
+
+      - run: bundle exec erb_lint app/views
 
       - run: bundle exec rspec
+

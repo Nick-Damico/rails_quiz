@@ -357,6 +357,7 @@ quiz_comics.questions.create!([
 
 puts "SEEDING DECKS & FLASHCARDS"
 
+## USER_1 DECKS
 deck_1 = user_1.authored_decks.create!(
   title: 'Design Patterns',
   description: 'An introductory set of flashcards to help identify and understand common design patterns in software development.',
@@ -367,6 +368,24 @@ deck_1.cards.create!([
     back: "Behavioral, Creational, and Structural"
   }
 ])
+
+deck_2 = cards.authored_decks.create!(
+  title: "A+ 220-1101 Cloud Models & Characteristics",
+  description: "Cloud computing models and Characteristics outlined by the CompTIA A+ 220-1101 exam."
+)
+
+deck_2.cards.create!([
+  { front: "Define Public Cloud", back: "Available to everyone over the internet." },
+  { front: "Define Private Cloud", back: "You own and run in a data center. Your own virtualized local data center." },
+  { front: "Define Hybrid Cloud", back: "A mix of both public and private." },
+  { front: "Define Community Cloud", back: "Several organizations share teh same resources, this helps decrease the cost of maintaing a private cloud." },
+  { front: "Iass", back: "Insfrastructure as a Service" },
+  { front: "PaaS", back: "Platform as a Service" },
+  { front: "SaaS", back: "Software as a Service" },
+  { front: "", back: "Software as a Service" }
+])
+
+## USER_2 DECKS
 
 deck_3 = user_2.authored_decks.create!(
   title: 'Common Networking / Security / Infrastructure Acronyms in A+ ',
@@ -408,12 +427,12 @@ deck_3.cards.create!([
   { front: "VLAN", back: "Virtual LAN - Logically separates a physical network into multiple broadcast domains for segmentation and management." }
 ])
 
-deck_4 = user_2.authored_decks.create!(
+deck_3 = user_2.authored_decks.create!(
   title: "A+ 220-1102 Acronyms (A-E)",
   description: "A+ 220-1102 Acronyms outlined by the CompTIA objects handout."
 )
 
-deck_4 = deck_4.cards.create!([
+deck_3 = deck_3.cards.create!([
   { front: "AAA", back: "Authentication, Authorization, and Accounting" },
   { front: "ACL", back: "Access Control List" },
   { front: "ADF", back: "Automatic Document Feeder" },
@@ -436,6 +455,7 @@ deck_4 = deck_4.cards.create!([
   { front: "CMDB", back: "Configuration Management Database" },
   { front: "CMOS", back: "Complementary Metal-Oxide Semiconductor" },
   { front: "CNAME", back: "Canonical Name" },
+  { front: "COPE", back: "Company-Owned, Personally Enabled" },
   { front: "CPU", back: "Central Processing Unit" },
   { front: "DB-9", back: "Serial Communications D-Shell Connector, 9 pins" },
   { front: "DDoS", back: "Distributed Denial of Service" },
