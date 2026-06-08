@@ -381,8 +381,7 @@ deck_2.cards.create!([
   { front: "Define Community Cloud", back: "Several organizations share teh same resources, this helps decrease the cost of maintaing a private cloud." },
   { front: "Iass", back: "Insfrastructure as a Service" },
   { front: "PaaS", back: "Platform as a Service" },
-  { front: "SaaS", back: "Software as a Service" },
-  { front: "", back: "Software as a Service" }
+  { front: "SaaS", back: "Software as a Service" }
 ])
 
 ## USER_2 DECKS
