@@ -10,4 +10,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4.9
+
       - run: ruby -v
+
+      - run: bundle install
+
+      - run: bundle exec rspec
