@@ -8,6 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+return unless Rails.env.development?
+
 puts "SEEDING AUTHORS"
 
 user_1 = FactoryBot.create(
