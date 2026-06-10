@@ -6,7 +6,7 @@ class Author::QuizPolicy < ApplicationPolicy
     end
 
     def resolve
-      Quiz.where(author: @user)
+      @scope.where(author: @user)
     end
   end
 
