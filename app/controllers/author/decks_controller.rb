@@ -4,7 +4,7 @@ class Author::DecksController < ApplicationController
   before_action :set_breacrumbs, only: %i[edit index new show]
 
   def index
-    @decks = policy_scope([ :author, Deck ])
+    @decks = policy_scope([ :author, Deck ]).order(:title, :created_at)
   end
 
   def show

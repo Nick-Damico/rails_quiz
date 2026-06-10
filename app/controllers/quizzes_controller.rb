@@ -3,7 +3,7 @@ class QuizzesController < ApplicationController
   before_action :set_breadcrumbs
 
   def index
-    @quizzes = policy_scope(Quiz)
+    @quizzes = policy_scope(Quiz).order(:title, :created_at)
   end
 
   def show
