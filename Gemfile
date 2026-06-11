@@ -25,6 +25,7 @@ gem "jbuilder"
 gem "devise"
 gem "chartkick" # [https://chartkick.com]
 gem "pundit" # [https://github.com/varvet/pundit]
+gem "pagy", "~> 43.5" # MINOR version restriction, to avoid breaking changes
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
