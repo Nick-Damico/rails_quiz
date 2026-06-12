@@ -4,7 +4,7 @@ class QuizzesController < ApplicationController
 
   def index
     @pagy, @quizzes = pagy(
-      :offset, policy_scope(Quiz).order(:title, :created_at)
+      :countish, policy_scope(Quiz).order(:title, :created_at)
     )
   end
 

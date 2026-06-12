@@ -7,7 +7,7 @@ module Author
 
     def index
       @pagy, @quizzes = pagy(
-        :offset, policy_scope([ :author, Quiz ]).order(:title, :created_at)
+        :countish, policy_scope([ :author, Quiz ]).order(:title, :created_at)
       )
     end
 
