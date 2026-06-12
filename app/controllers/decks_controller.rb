@@ -2,7 +2,7 @@ class DecksController < ApplicationController
   before_action :set_deck, only: %i[show]
   before_action :set_breadcrumbs, only: %i[index show]
   def index
-    @decks = policy_scope(Deck).order(:title, :created_at)
+    @pagy, @decks = pagy(:offset, policy_scope(Deck).order(:title, :created_at))
   end
 
   def show

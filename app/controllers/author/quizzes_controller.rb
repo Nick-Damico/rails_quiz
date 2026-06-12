@@ -6,8 +6,9 @@ module Author
     before_action :authorize_access!, except: %i[create index new]
 
     def index
-      @quizzes = policy_scope([ :author, Quiz ])
-                  .order(:title, :created_at)
+      @pagy, @quizzes = pagy(
+        :offset, policy_scope([ :author, Quiz ]).order(:title, :created_at)
+      )
     end
 
     def show
