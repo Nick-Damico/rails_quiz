@@ -8,6 +8,7 @@ module IconHelper
     if cached.nil? || (cached[:klass] != icon_class || cached[:data] != data_attrs)
       @render_map[partial_name.to_sym] = {
         klass: icon_class,
+        data: data_attrs,
         html: render(
           "icons/#{partial_name}",
           klass: icon_class,
