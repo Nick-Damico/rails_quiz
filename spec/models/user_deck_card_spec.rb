@@ -25,4 +25,16 @@ RSpec.describe UserDeckCard, type: :model do
       expect(result).to eq({ "correct" => 1, "incorrect" => 1 })
     end
   end
+
+  context "space repetition" do
+    let(:user_deck_card) { create(:user_deck_card) }
+    describe "#update_ease_factor" do
+      it "calculates the new ease factor based on the user provided card rating" do
+        user_deck_card.card_rating = :correct # quality = 2
+
+        expect(user_deck_card.ease_factor).to eq(2.5) # intial ease factor
+
+        expect(user_deck_card.update_ease_factor).to eq(2.18)
+      end
+    end
 end

@@ -12,6 +12,19 @@ class UserDeckCard < ApplicationRecord
     incorrect: 1,
     correct: 2
   }
+  # SM-2 algorithm:
+  def update_ease_factor
+    card_rating_val = card_rating_numeric_value
+
+    self.ease_factor = ease_factor + (
+      0.1 -
+      (5 - card_rating_val) *
+        (
+          0.08 +
+          (5 - card_rating_val) *
+          0.02
+        ))
+  end
 
   def reset_rating!
     not_rated!
