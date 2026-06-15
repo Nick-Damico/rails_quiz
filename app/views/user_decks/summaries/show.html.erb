@@ -31,7 +31,9 @@
       <%= turbo_frame_tag :user_deck_cards, class: "flex flex-col flex-1 overflow-x-hidden" do %>
         <%= render "nav", active_tab: @active_tab, user_deck: @user_deck %>
         <div class="flex items-center flex-1 text-5xl font-thin">
-          <%= column_chart @chart_data, colors: [ "#10B981", "#EF4444" ], library: { scales: { y: { grid: { color: "#1f2937" } } } } %>
+          <% correct_hex = "#10B981" %>
+          <% incorrect_hex = "#EF4444" %>
+          <%= column_chart @chart_data, colors: [ correct_hex, incorrect_hex ], library: { scales: { y: { grid: { color: "#1f2937" } } } } %>
         </div>
       <% end %>
     </div>
