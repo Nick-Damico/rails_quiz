@@ -12,6 +12,16 @@ class UserDeckCard < ApplicationRecord
     incorrect: 1,
     correct: 2
   }
+
+  def increment_successful_reviews
+    self.successful_reviews =
+      if correct?
+        successful_reviews + 1
+      elsif incorrect?
+        0
+      end
+  end
+
   # SM-2 algorithm:
   def update_ease_factor
     card_rating_val = card_rating_numeric_value
@@ -26,7 +36,31 @@ class UserDeckCard < ApplicationRecord
         ))
   end
 
+  def update_interval_days
+    self.interval_days =
+      if correct?
+        case successful_reviews
+        when 1 then 1
+        when 2 then 3
+        else
+          (interval_days * ease_factor).round
+        end
+      else
+        1
+      end
+  end
+
+  def update_review_at
+    self.next_review_at = interval_days.days.from_now
+  end
+
   def reset_rating!
     not_rated!
   end
+
+  private
+
+    def card_rating_numeric_value
+      UserDeckCard.card_ratings[card_rating.to_s]
+    end
 end
