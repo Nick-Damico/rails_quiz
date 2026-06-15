@@ -37,4 +37,25 @@ RSpec.describe UserDeckCard, type: :model do
         expect(user_deck_card.update_ease_factor).to eq(2.18)
       end
     end
+
+    describe "#increment_successful_reviews" do
+      it "increments the successful reviews count if the card rating is correct" do
+        user_deck_card.card_rating = :correct
+
+        expect(user_deck_card.successful_reviews).to eq(0)
+
+        expect(user_deck_card.increment_successful_reviews).to eq(1)
+      end
+
+      it "resets the successful reviews count to zero if the card rating is incorrect" do
+        user_deck_card.card_rating = :correct
+        user_deck_card.increment_successful_reviews
+
+        expect(user_deck_card.successful_reviews).to eq(1)
+
+        user_deck_card.card_rating = :incorrect
+
+        expect(user_deck_card.increment_successful_reviews).to eq(0)
+      end
+    end
 end
