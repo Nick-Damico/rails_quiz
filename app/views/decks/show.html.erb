@@ -27,11 +27,30 @@
       </p>
     </div>
   </section>
-  <div class="flex flex-col p-4 space-y-4 border border-gray-500 rounded md:flex-row md:space-y-0 md:space-x-4">
-    <%= button_to user_decks_path,
-                    params: { user_deck: { deck_id: @deck.id, user_id: current_user.id } },
-                    class: "flex items-center justify-center btn btn-primary rounded" do %>
-      <%= render_icon("play_circle", klass: "size-5 mr-1") %> Study
+  <div class="flex flex-col p-4 space-y-4 border border-gray-500 rounded">
+    <%= form_with model: @user_deck do |f| %>
+      <%= f.hidden_field :deck_id, value: @user_deck.deck_id %>
+      <%= f.hidden_field :user_id, value: @user_deck.user_id %>
+      <details class="border-b border-gray-500 pb-2 mb-2 border p-2">
+        <summary>Flashcard Settings</summary>
+        <label class="ml-2 mt-2 relative inline-flex items-center cursor-pointer">
+          <%= f.check_box :use_space_repetition, class: "sr-only peer" %>
+          <div class="
+            w-11 h-6 bg-gray-400 rounded-full
+            peer-focus:ring-4 peer-focus:ring-blue-300
+            peer-checked:bg-blue-600
+            after:content-['']
+            after:absolute after:top-[2px] after:left-[2px]
+            after:bg-white after:border after:rounded-full
+            after:h-5 after:w-5
+            after:transition-all
+            peer-checked:after:translate-x-full"></div>
+          <span class="ml-3 text-sm font-medium"> Enable Spaced Repetition </span>
+        </label>
+      </details>
+      <%= f.button type: :submit, class: "flex items-center justify-center btn btn-primary rounded" do %>
+        <%= render_icon("play_circle", klass: "size-5 mr-1") %> Study
+      <% end %>
     <% end %>
     <%#= link_to "#", class: "flex items-center justify-center btn btn-success rounded" do %>
       <%#= render_icon("plus", klass: "size-5 mr-1") %>  <!-- Add to Study Plan -->
