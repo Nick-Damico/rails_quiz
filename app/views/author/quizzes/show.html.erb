@@ -10,7 +10,7 @@
       </h2>
     </div>
     <%= render "shared/author_avatar", object: @quiz %>
-    <div class="mb-2 ml-4 font-semibold">
+    <%= render "shared/card_description" do %>
       <p class="">DESCRIPTION:</p>
       <% if @quiz.description.present? %>
         <p class="ml-3 italic font-light"><%= @quiz.description %></p>
@@ -25,7 +25,7 @@
           </p>
         </div>
       <% end %>
-    </div>
+    <%end%>
     <div class="flex justify-between mt-auto space-x-4 border-t border-gray-500">
       <p class="flex-1 p-1 text-xl font-light text-center uppercase">
         <% minutes = seconds_to_minutes(@quiz.time_to_complete) %>

@@ -7,10 +7,10 @@
       </h1>
     </div>
     <%= render "shared/author_avatar", object: @deck %>
-    <div class="mb-12 ml-4 font-semibold">
+    <%= render "shared/card_description" do %>
       <p class="uppercase">Description:</p>
       <p class="ml-3 italic font-light"><%= @deck.description %></p>
-    </div>
+    <% end %>
     <div class="flex justify-between space-x-4 border-t border-gray-500">
       <p id="quiz-duration" class="flex-1 p-1 text-xl font-light text-center uppercase">
         <% minutes = seconds_to_minutes(@deck.time_to_complete) %>
@@ -28,7 +28,7 @@
     </div>
   </section>
   <div class="flex flex-col p-4 space-y-4 border border-gray-500 rounded">
-    <%= form_with model: @user_deck do |f| %>
+    <%= form_with model: @user_deck, url: user_decks_path, method: :post do |f| %>
       <%= f.hidden_field :deck_id, value: @user_deck.deck_id %>
       <%= f.hidden_field :user_id, value: @user_deck.user_id %>
       <details class="border-b border-gray-500 pb-2 mb-2 border p-2">
