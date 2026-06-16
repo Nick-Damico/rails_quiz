@@ -87,16 +87,26 @@ RSpec.describe "UserDeck", type: :request do
           end
         end
       end
+
+      context "allows user to enable spaced-repetition mode" do
+        let!(:valid_params) { { user_deck: { user_id: user.id, deck_id: deck.id, use_space_repetition: 1 } } }
+
+        it "creates a user_deck record with spaced_repetition enabled" do
+          post_request
+
+          expect(UserDeck.last.use_space_repetition).to eq(true)
+        end
+      end
     end
   end
 
   describe "GET /show" do
-  let!(:user_deck) { create(:user_deck, :with_user_deck_cards, user: user) }
+    let!(:user_deck) { create(:user_deck, :with_user_deck_cards, user: user) }
 
-  it "responds with HTTP status success" do
-    get user_deck_path(user_deck)
+    it "responds with HTTP status success" do
+      get user_deck_path(user_deck)
 
-    expect(response).to have_http_status(:success)
+      expect(response).to have_http_status(:success)
+    end
   end
-end
 end

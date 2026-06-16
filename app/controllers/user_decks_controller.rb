@@ -48,7 +48,7 @@ class UserDecksController < ApplicationController
     end
 
     def user_deck_params
-      params.require(:user_deck).permit(:user_id, :deck_id)
+      params.require(:user_deck).permit(:user_id, :deck_id, :use_space_repetition)
     end
 
     def set_user
