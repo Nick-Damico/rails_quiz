@@ -30,88 +30,40 @@ RSpec.describe UserDeckCard, type: :model do
 
   context "space repetition" do
     let(:user_deck_card) { create(:user_deck_card) }
-    describe "#update_ease_factor" do
-      it "calculates the new ease factor based on the user provided card rating" do
-        user_deck_card.card_rating = :correct # quality = 2
 
-        expect(user_deck_card.ease_factor).to eq(2.5) # intial ease factor
-
-        expect(user_deck_card.update_ease_factor).to eq(2.18)
-      end
-    end
-
-    describe "#increment_successful_reviews" do
-      it "increments the successful reviews count if the card rating is correct" do
+    describe "#calcuate_next_recall" do
+      it "updates the ease factor, successful reviews, interval days, and next review date based on the card rating" do
         user_deck_card.card_rating = :correct
-
+        expect(user_deck_card.interval_days).to eq(0)
         expect(user_deck_card.successful_reviews).to eq(0)
 
-        expect(user_deck_card.increment_successful_reviews).to eq(1)
+        freeze_time do
+          user_deck_card.calcuate_next_recall
+
+          expect(user_deck_card.ease_factor).to eq(BigDecimal("2.18"))
+          expect(user_deck_card.successful_reviews).to eq(1)
+          expect(user_deck_card.next_review_at).to eq(1.days.from_now)
+          expect(user_deck_card.interval_days).to eq(1)
+        end
       end
-
       it "resets the successful reviews count to zero if the card rating is incorrect" do
-        user_deck_card.card_rating = :correct
-        user_deck_card.increment_successful_reviews
-
-        expect(user_deck_card.successful_reviews).to eq(1)
+        user_deck_card.successful_reviews = 2
 
         user_deck_card.card_rating = :incorrect
 
-        expect(user_deck_card.increment_successful_reviews).to eq(0)
-      end
-    end
-    describe "#update_interval_days" do
-      it "sets the next interval to 1 day if correct on first review" do
-        user_deck_card.card_rating = :correct
-        user_deck_card.increment_successful_reviews
+        user_deck_card.calcuate_next_recall
 
-        expect(user_deck_card.interval_days).to eq(0)
-
-        user_deck_card.update_interval_days
-        expect(user_deck_card.interval_days).to eq(1)
+        expect(user_deck_card.successful_reviews).to eq(0)
       end
+
       it "sets the next interval to 3 days if correct on second review" do
         user_deck_card.card_rating = :correct
-        user_deck_card.interval_days = 1 # value if correct on first review
-        user_deck_card.successful_reviews = 2
+        user_deck_card.successful_reviews = 1
+        user_deck_card.interval_days = 1
 
-        user_deck_card.update_interval_days
+        user_deck_card.calcuate_next_recall
 
         expect(user_deck_card.interval_days).to eq(3)
-      end
-
-      it "resets the next interval to 1 day if incorrect" do
-        user_deck_card.card_rating = :incorrect
-        user_deck_card.interval_days = 1 # value if correct on first review
-        user_deck_card.successful_reviews = 2
-
-        user_deck_card.update_interval_days
-
-        expect(user_deck_card.interval_days).to eq(1)
-      end
-
-      it "calculates the next interval based on ease factor if correct on third or later review" do
-        user_deck_card.card_rating = :correct
-        user_deck_card.interval_days = 3
-        user_deck_card.successful_reviews = 3
-        user_deck_card.ease_factor = 2.5
-
-        user_deck_card.update_interval_days
-
-        expect(user_deck_card.interval_days).to eq(8)
-      end
-    end
-    describe "#update_review_at" do
-      it "sets next review date for the next day on first success" do
-        user_deck_card.card_rating = :correct
-        user_deck_card.interval_days = 1 # value if correct on first review
-        user_deck_card.successful_reviews = 1
-
-        freeze_time do
-          user_deck_card.update_review_at
-
-          expect(user_deck_card.update_review_at).to eq(1.days.from_now)
-        end
       end
     end
   end
