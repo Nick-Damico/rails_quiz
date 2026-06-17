@@ -47,6 +47,25 @@ RSpec.describe UserDeckCard, type: :model do
     end
   end
 
+  describe "#reset_space_repetition!" do
+    it "resets the spaced-repetition supporting fields to default values" do
+      user_deck_card = create(
+        :user_deck_card,
+        ease_factor: 1.5,
+        interval_days: 5,
+        next_review_at: 3.days.from_now,
+        successful_reviews: 2
+      )
+
+      user_deck_card.reset_space_repetition!
+
+      expect(user_deck_card.ease_factor).to eq(UserDeckCard::EASE_FACTOR_DEFAULT)
+      expect(user_deck_card.interval_days).to eq(UserDeckCard::INTERVAL_DAYS_DEFAULT)
+      expect(user_deck_card.next_review_at).to eq(UserDeckCard::NEXT_REVIEW_AT_DEFAULT)
+      expect(user_deck_card.successful_reviews).to eq(UserDeckCard::SUCCESSFUL_REVIEWS_DEFAULT)
+    end
+  end
+
   context "space repetition" do
     let(:user_deck_card) { create(:user_deck_card) }
 
