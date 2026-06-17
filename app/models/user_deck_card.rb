@@ -20,12 +20,12 @@ class UserDeckCard < ApplicationRecord
   SUCCESSFUL_REVIEWS_DEFAULT  = 0
 
   def calcuate_next_recall
+    # ORDER OF UPDATES MATTERS
     self.ease_factor        = update_ease_factor
     self.successful_reviews = increment_successful_reviews
     self.interval_days      = update_interval_days
     self.next_review_at     = update_review_at
   end
-
 
   def reset_rating!
     not_rated!
