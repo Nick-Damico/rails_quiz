@@ -4,6 +4,7 @@ class UserDeckCard < ApplicationRecord
 
   scope :by_user_deck, ->(user_deck) { where(user_deck_id: user_deck.id) }
   scope :group_by_rating, ->(user_deck) { by_user_deck(user_deck).group(:card_rating) }
+  scope :due_for_review, ->(user_deck) { by_user_deck(user_deck).where("next_review_at <= ? OR next_review_at IS NULL", Time.current) }
 
   delegate :deck, to: :user_deck
 

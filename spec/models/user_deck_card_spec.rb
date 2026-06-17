@@ -28,6 +28,25 @@ RSpec.describe UserDeckCard, type: :model do
     end
   end
 
+  describe ".due_for_review" do
+    let!(:user_deck) { create(:user_deck) }
+    let!(:due_card) {
+      create(:user_deck_card, user_deck: user_deck, next_review_at: 1.day.ago)
+    }
+    let!(:upcoming_card) {
+      create(:user_deck_card, user_deck: user_deck, next_review_at: 1.day.from_now)
+    }
+    let!(:new_card) {
+      create(:user_deck_card, user_deck: user_deck, next_review_at: nil)
+    }
+
+    it "returns cards that are due for review" do
+      result = UserDeckCard.due_for_review(user_deck)
+
+      expect(result).to contain_exactly(due_card, new_card)
+    end
+  end
+
   context "space repetition" do
     let(:user_deck_card) { create(:user_deck_card) }
 
