@@ -49,7 +49,7 @@
         </label>
       </details>
       <% if @user_deck.use_space_repetition? %>
-        <span class="flex mb-2 text-sm">You have ( <%= @user_deck_cards.count %> ) cards due for review today.</span>
+        <span class="flex mb-2 text-sm">You have ( <%= @due_for_review_count %> ) cards due for review today.</span>
       <% end %>
       <%= f.button type: :submit, class: "flex items-center justify-center btn btn-primary rounded" do %>
         <%= render_icon("play_circle", klass: "size-5 mr-1") %> Study
