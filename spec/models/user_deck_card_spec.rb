@@ -45,6 +45,18 @@ RSpec.describe UserDeckCard, type: :model do
 
       expect(result).to contain_exactly(due_card, new_card)
     end
+
+    it "includes cards due at the end of the current day" do
+      due_end_of_day = create(
+        :user_deck_card,
+        user_deck: user_deck,
+        next_review_at: Time.current.end_of_day
+      )
+
+      result = UserDeckCard.due_for_review(user_deck)
+
+      expect(result).to include(due_end_of_day)
+    end
   end
 
   describe "#reset_space_repetition!" do

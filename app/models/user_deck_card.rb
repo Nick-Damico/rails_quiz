@@ -4,7 +4,12 @@ class UserDeckCard < ApplicationRecord
 
   scope :by_user_deck, ->(user_deck) { where(user_deck_id: user_deck.id) }
   scope :group_by_rating, ->(user_deck) { by_user_deck(user_deck).group(:card_rating) }
-  scope :due_for_review, ->(user_deck) { by_user_deck(user_deck).where("next_review_at <= ? OR next_review_at IS NULL", Time.current) }
+  # TODO: Use a Range from start of day to end of day.
+  scope :due_for_review, ->(user_deck) {
+    by_user_deck(user_deck)
+    .where(next_review_at: ..Time.current.end_of_day)
+    .or(where(next_review_at: nil))
+  }
 
   delegate :deck, to: :user_deck
 
@@ -46,7 +51,6 @@ class UserDeckCard < ApplicationRecord
       UserDeckCard.card_ratings[card_rating.to_s]
     end
 
-    # SR METHODS
     def increment_successful_reviews
       correct? ? successful_reviews + 1 : 0
     end
