@@ -77,7 +77,7 @@ class UserDeckCard < ApplicationRecord
         else  (interval_days * ease_factor).round
         end
       else
-        1
+        0
       end
     end
 
