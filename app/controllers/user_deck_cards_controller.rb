@@ -17,6 +17,10 @@ class UserDeckCardsController < ApplicationController
   def update
     authorize @user_deck_card
 
+    if @user_deck_card.user_deck.use_space_repetition?
+      @user_deck_card.calculate_next_recall(user_deck_card_params[:card_rating])
+    end
+
     if @user_deck_card.update(user_deck_card_params)
       render json: { rating: @user_deck_card.card_rating }, status: :ok
     else
