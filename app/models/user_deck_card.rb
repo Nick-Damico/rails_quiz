@@ -23,8 +23,9 @@ class UserDeckCard < ApplicationRecord
   NEXT_REVIEW_AT_DEFAULT      = nil
   SUCCESSFUL_REVIEWS_DEFAULT  = 0
 
-  def calcuate_next_recall
+  def calculate_next_recall(new_rating)
     # ORDER OF UPDATES MATTERS
+    self.card_rating        = new_rating || :not_rated
     self.ease_factor        = update_ease_factor
     self.successful_reviews = increment_successful_reviews
     self.interval_days      = update_interval_days
