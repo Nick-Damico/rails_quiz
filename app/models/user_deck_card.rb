@@ -3,13 +3,12 @@ class UserDeckCard < ApplicationRecord
   belongs_to :card, class_name: "Decks::Card"
 
   scope :by_user_deck, ->(user_deck) { where(user_deck_id: user_deck.id) }
-  scope :group_by_rating, ->(user_deck) { by_user_deck(user_deck).group(:card_rating) }
-  # TODO: Use a Range from start of day to end of day.
   scope :due_for_review, ->(user_deck) {
     by_user_deck(user_deck)
     .where(next_review_at: ..Time.current.end_of_day)
     .or(where(next_review_at: nil))
   }
+  scope :group_by_rating, ->(user_deck) { by_user_deck(user_deck).group(:card_rating) }
 
   delegate :deck, to: :user_deck
 
