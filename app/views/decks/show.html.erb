@@ -31,9 +31,9 @@
     <%= form_with model: @user_deck, url: user_decks_path, method: :post do |f| %>
       <%= f.hidden_field :deck_id, value: @user_deck.deck_id %>
       <%= f.hidden_field :user_id, value: @user_deck.user_id %>
-      <details class="border-b border-gray-500 pb-2 mb-2 border p-2">
-        <summary>Flashcard Settings</summary>
-        <label class="ml-2 mt-2 relative inline-flex items-center cursor-pointer">
+      <details class="border-b border-gray-500 pb-2 mb-2">
+        <summary class="mb-2">Flashcard Settings</summary>
+        <label class="relative inline-flex items-center cursor-pointer">
           <%= f.check_box :use_space_repetition, class: "sr-only peer" %>
           <div class="
             w-11 h-6 bg-gray-400 rounded-full
@@ -48,6 +48,9 @@
           <span class="ml-3 text-sm font-medium"> Enable Spaced Repetition </span>
         </label>
       </details>
+      <% if @user_deck.use_space_repetition? %>
+        <span class="flex mb-2 text-sm">You have ( <%= @user_deck_cards.count %> ) cards due for review today.</span>
+      <% end %>
       <%= f.button type: :submit, class: "flex items-center justify-center btn btn-primary rounded" do %>
         <%= render_icon("play_circle", klass: "size-5 mr-1") %> Study
       <% end %>
