@@ -6,7 +6,7 @@ class UserDeckCard < ApplicationRecord
   scope :due_for_review, ->(user_deck) {
     by_user_deck(user_deck)
     .where(next_review_at: ..Time.current.end_of_day)
-    .or(where(next_review_at: nil))
+    .or(where(next_review_at: nil, user_deck: user_deck))
   }
   scope :group_by_rating, ->(user_deck) { by_user_deck(user_deck).group(:card_rating) }
 
