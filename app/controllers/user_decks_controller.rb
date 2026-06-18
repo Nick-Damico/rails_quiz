@@ -9,8 +9,14 @@ class UserDecksController < ApplicationController
     @user_deck = authorize(@user_deck)
 
     set_breadcrumbs
-    @user_deck_card = @user_deck.find_card_with_fallback(params[:card_id])
-    @user_deck_card_ids = @user_deck.user_deck_card_ids.sort
+    if @user_deck.use_space_repetition?
+      @user_deck_cards = UserDeckCard.due_for_review(@user_deck).order(:id)
+    else
+      @user_deck_cards = @user_deck.user_deck_card_ids.order(:id)
+    end
+
+    @user_deck_card = @user_deck.find_card_with_fallback(params[:card_id], cards: @user_deck_cards)
+    @user_deck_card_ids = @user_deck_cards.pluck(:id)
   end
 
   def create

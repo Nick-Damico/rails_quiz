@@ -22,11 +22,11 @@ class UserDeck < ApplicationRecord
     (completed_at - started_at).round
   end
 
-  def find_card_with_fallback(card_id, fallback_method: :first)
+  def find_card_with_fallback(card_id, cards: [], fallback_method: :first)
     allowed_fallbacks = %i[first last]
     fallback_method = :first unless allowed_fallbacks.include?(fallback_method)
 
-    user_deck_cards.find_by(id: card_id) || user_deck_cards.sort_by(&:id).send(fallback_method)
+    cards.find_by(id: card_id) || cards.send(fallback_method)
   end
 
   def mark_started
