@@ -82,21 +82,38 @@ RSpec.describe UserDeck, type: :model do
 
   describe "#find_card_with_fallback" do
     context "with a card_id" do
-      it "finds the card" do
+      it "finds the card by ID in the supplied collection" do
         user_deck_card = user_deck.user_deck_cards.first
+        user_deck_cards = user_deck.user_deck_cards
 
-        expect(user_deck.find_card_with_fallback(user_deck_card.id)).to eq(user_deck_card)
+        found_card = user_deck.find_card_with_fallback(
+          user_deck_card.id, user_deck_cards: user_deck_cards
+        )
+
+        expect(found_card).to eq(user_deck_card)
       end
     end
 
     context "without a card_id" do
-      it "returns the first card" do
-        expect(user_deck.find_card_with_fallback(0)).to eq(user_deck.user_deck_cards.first)
+      it "defaults to returning the first card from the collection if card is not found" do
+        first_card = user_deck.user_deck_cards.first
+        bad_id = 0
+
+        found_card = user_deck.find_card_with_fallback(
+          bad_id,
+          user_deck_cards: user_deck.user_deck_cards
+        )
+
+        expect(first_card).to eq(found_card)
       end
 
       describe "optional :fallback_method" do
-        it "returns the last card set to :last" do
-          expect(user_deck.find_card_with_fallback(0, fallback_method: :last)).to eq(user_deck.user_deck_cards.last)
+        it "allows optional fallback for last card" do
+          expect(
+            user_deck.find_card_with_fallback(
+              0, user_deck_cards: user_deck.user_deck_cards, fallback_method: :last
+            )
+          ).to eq(user_deck.user_deck_cards.last)
         end
       end
     end
