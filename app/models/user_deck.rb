@@ -37,7 +37,7 @@ class UserDeck < ApplicationRecord
     set_current_time_for(:completed_at)
   end
 
-  def prepare_for_review
+  def prepare_cards_for_review
     build_user_cards.each(&:reset_rating!)
   end
 
