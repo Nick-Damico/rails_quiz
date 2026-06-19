@@ -9,7 +9,7 @@ class UserDeck < ApplicationRecord
 
   # TODO: Move to callback
   def build_user_cards
-    return unless cards.present?
+    return UserDeckCard.none unless cards.present?
 
     user_deck_cards.build(new_cards.map { |card| { card: } })
   end
@@ -35,6 +35,10 @@ class UserDeck < ApplicationRecord
 
   def mark_completed
     set_current_time_for(:completed_at)
+  end
+
+  def prepare_for_review
+    build_user_cards.each(&:reset_rating!)
   end
 
   def score
