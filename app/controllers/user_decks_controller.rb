@@ -5,6 +5,15 @@ class UserDecksController < ApplicationController
   before_action :set_user, only: %i[create]
   before_action :set_user_deck, only: %i[show update]
 
+  # TODO: Revisit review card selection workflow.
+  #
+  # Questions:
+  # - Is #find_card_with_fallback still necessary, or can it be removed?
+  # - Move card selection/query logic out of the controller and into UserDeck.
+  #
+  # Goal:
+  # - Reduce controller responsibility and centralize review card logic.
+  # - replace with something like `UserDeck#review_cards`
   def show
     @user_deck = authorize(@user_deck)
 
@@ -12,10 +21,12 @@ class UserDecksController < ApplicationController
     if @user_deck.use_space_repetition?
       @user_deck_cards = UserDeckCard.due_for_review(@user_deck).order(:id)
     else
-      @user_deck_cards = @user_deck.user_deck_card_ids.order(:id)
+      @user_deck_cards = UserDeckCard.by_user_deck(@user_deck).order(:id)
     end
+    @user_deck_card = @user_deck.find_card_with_fallback(
+      params[:card_id], user_deck_cards: @user_deck_cards
+    )
 
-    @user_deck_card = @user_deck.find_card_with_fallback(params[:card_id], cards: @user_deck_cards)
     @user_deck_card_ids = @user_deck_cards.pluck(:id)
   end
 
