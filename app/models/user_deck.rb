@@ -39,7 +39,7 @@ class UserDeck < ApplicationRecord
 
   def next_review_date
     # TODO: maybe save this to a field on the user_deck to reduce queries.
-    UserDeckCard.next_review_date(user_deck: self).strftime("%B %d, %Y")
+    UserDeckCard.next_review_date(user_deck: self)
   end
 
   end
