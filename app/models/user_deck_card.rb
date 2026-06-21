@@ -23,6 +23,12 @@ class UserDeckCard < ApplicationRecord
   NEXT_REVIEW_AT_DEFAULT      = nil
   SUCCESSFUL_REVIEWS_DEFAULT  = 0
 
+  def self.next_review_date(user_deck:)
+    UserDeckCard.by_user_deck(user_deck)
+                .order(:next_review_at)
+                .pick(:next_review_at)
+  end
+
   def calculate_next_recall(new_rating)
     # ORDER OF UPDATES MATTERS
     self.card_rating        = new_rating || :not_rated

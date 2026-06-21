@@ -37,9 +37,11 @@ class UserDeck < ApplicationRecord
     set_current_time_for(:completed_at)
   end
 
-  def prepare_cards_for_review
-    build_user_cards
-    user_deck_cards.each(&:reset_rating!)
+  def next_review_date
+    # TODO: maybe save this to a field on the user_deck to reduce queries.
+    UserDeckCard.next_review_date(user_deck: self).strftime("%B %d, %Y")
+  end
+
   end
 
   def score
