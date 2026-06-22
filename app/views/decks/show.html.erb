@@ -27,14 +27,19 @@
       </p>
     </div>
   </section>
-  <div class="flex flex-col p-4 space-y-4 border border-gray-500 rounded">
+  <div data-controller="decks--review-settings" class="flex flex-col p-4 space-y-4 border border-gray-500 rounded">
     <%= form_with model: @user_deck, url: user_decks_path, method: :post do |f| %>
       <%= f.hidden_field :deck_id, value: @user_deck.deck_id %>
       <%= f.hidden_field :user_id, value: @user_deck.user_id %>
       <details class="border-b border-gray-500 pb-2 mb-2">
         <summary class="mb-2">Flashcard Settings</summary>
         <label class="relative inline-flex items-center cursor-pointer">
-          <%= f.check_box :use_space_repetition, class: "sr-only peer" %>
+          <%= f.check_box :use_space_repetition,
+                class: "sr-only peer",
+                data: {
+                  "action" => "change->decks--review-settings#toggleSpaceRepetition",
+                  "decks--review-settings-target" => "spaceRepetitionCheckbox"
+                } %>
           <div class="
             w-11 h-6 bg-gray-400 rounded-full
             peer-focus:ring-4 peer-focus:ring-blue-300
@@ -49,9 +54,25 @@
         </label>
       </details>
       <% if @user_deck.use_space_repetition? %>
-        <span class="flex mb-2 text-sm">You have ( <%= @due_for_review_count %> ) cards due for review today.</span>
+        <% if @due_for_review_count.positive? %>
+          <p class="flex mb-2 text-sm" data-decks--review-settings-target="nextReviewMsg">
+            You have <span class="text-orange-500 px-1">(<%= pluralize(@due_for_review_count, "card") %>)</span> due for review today.
+          </p>
+        <% else %>
+          <p class="flex mb-2 text-sm" data-decks--review-settings-target="nextReviewMsg">
+            No cards due for review. Next review on
+            <span class="text-orange-500 px-1">
+              (<%= @user_deck.next_review_date.strftime("%B %d, %Y") %>)
+            </span>
+          </p>
+        <% end %>
       <% end %>
-      <%= f.button type: :submit, class: "flex items-center justify-center btn btn-primary rounded" do %>
+      <%= f.button type: :submit,
+            class: "flex items-center justify-center btn btn-primary rounded disabled:border disabled:bg-transparent disabled:cursor-not-allowed disabled:border-gray-700 disabled:text-gray-700",
+            disabled: !@due_for_review_count.positive?,
+            data: {
+              "decks--review-settings-target" => "submitBtn",
+            } do %>
         <%= render_icon("play_circle", klass: "size-5 mr-1") %> Study
       <% end %>
     <% end %>

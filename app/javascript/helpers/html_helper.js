@@ -5,10 +5,19 @@ function removeDisabledAttribute(element) {
   }
 }
 
-function removeHiddenClass(element) {
-  if (_elementHasClass(element, "hidden")) {
-    _removeClass(element, "hidden");
+function addDisabledAttribute(element) {
+  if (!_elementHasAttribute(element, "disabled")) {
+    _addAttribute(element, "disabled");
   }
+}
+
+
+function isDisabled(element) {
+  return _elementHasAttribute(element, "disabled");
+}
+
+function toggleHidden(element) {
+  element.classList.toggle("hidden");
 }
 
 function addClass(element, className) {
@@ -17,13 +26,20 @@ function addClass(element, className) {
   _addClass(element, className);
 }
 
+function removeHiddenClass(element) {
+  if (_elementHasClass(element, "hidden")) {
+    _removeClass(element, "hidden");
+  }
+}
+
 function removeClass(element, className) {
   if (_elementHasClass(element, className)) {
     _removeClass(element, className);
   }
 }
+
 function isHidden(element) {
-  return _elementHasClass(element, 'hidden')
+  return _elementHasClass(element, "hidden");
 }
 
 /* PRIVATE HELPERS */
@@ -43,6 +59,11 @@ function _addClass(element, className) {
   element.classList.add(className);
 }
 
+/* TODO: MDN - Look into using TrustedHTML element instead of setAttribute */
+function _addAttribute(element, attribute) {
+  element.setAttribute(attribute, attribute);
+}
+
 function _removeClass(element, className) {
   element.classList.remove(className);
 }
@@ -50,8 +71,11 @@ function _removeClass(element, className) {
 /* EXPORT METHODS */
 export {
   addClass,
+  addDisabledAttribute,
+  isDisabled,
   isHidden,
   removeClass,
   removeDisabledAttribute,
   removeHiddenClass,
+  toggleHidden
 };
