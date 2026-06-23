@@ -42,18 +42,33 @@ class UserDeck < ApplicationRecord
     UserDeckCard.next_review_date(user_deck: self)
   end
 
+  def no_review_due?
+    use_space_repetition && cards_due_for_review.none?
+  end
+
+  def review_due?
+    use_space_repetition && cards_due_for_review.any?
+  end
+
+  def prepare_for_review
+    prepare_cards_for_review
+    self.review_count = cards_due_for_review.count
   end
 
   def score
     return 0 unless completed?
 
     correct_ct = user_deck_cards.count(&:correct?)
-    total_ct = user_deck_cards.count
+    total_ct = use_space_repetition? ? review_count : user_deck_cards.count
 
     (correct_ct / total_ct.to_f * 100).round(1)
   end
 
   private
+
+    def cards_due_for_review
+      UserDeckCard.due_for_review(self)
+    end
 
     def set_current_time_for(column)
       update_column(column, Time.current.utc)
@@ -61,5 +76,14 @@ class UserDeck < ApplicationRecord
 
     def new_cards
       Decks::Card.new_cards(self)
+    end
+
+    def prepare_cards_for_review
+      build_user_cards
+      user_deck_cards.each(&:reset_rating!)
+
+      if use_space_repetition == false && use_space_repetition_changed?
+        user_deck_cards.each(&:reset_space_repetition!)
+      end
     end
 end

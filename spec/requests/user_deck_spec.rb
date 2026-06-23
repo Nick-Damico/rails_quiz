@@ -61,13 +61,11 @@ RSpec.describe "UserDeck", type: :request do
           expect { post_request }.to change(UserDeck, :count).by(0)
         end
 
-        context "with user_deck_cards" do
-          it "does not build user_deck_cards" do
-            user_deck.build_user_cards
-            user_deck.save
+        it "does not build user_deck_cards" do
+          user_deck.build_user_cards
+          user_deck.save
 
-            expect { post_request }.to change(UserDeckCard, :count).by(0)
-          end
+          expect { post_request }.to change(UserDeckCard, :count).by(0)
         end
 
         context "without user_deck_cards" do
@@ -95,6 +93,45 @@ RSpec.describe "UserDeck", type: :request do
           post_request
 
           expect(UserDeck.last.use_space_repetition).to eq(true)
+        end
+      end
+
+      context "space-repetition enabled" do
+        describe "no cards due for review" do
+          let!(:user_deck) { create(:user_deck, :with_user_deck_cards, user_id: user.id) }
+          let!(:valid_params) { { user_deck: { user_id: user.id, deck_id: user_deck.deck.id, use_space_repetition: true } } }
+
+          it "returns http status redirect" do
+            user_deck.update_column(:use_space_repetition, true)
+            user_deck.user_deck_cards.each do |c|
+              c.update_column(:next_review_at, 1.days.from_now)
+            end
+
+            post_request
+
+            expect(response).to have_http_status(:redirect)
+            expect(flash[:notice]).to eq("There are no cards due for review today.")
+          end
+        end
+      end
+
+      context "disabling space-repetition" do
+        let!(:user_deck) { create(:user_deck, :with_user_deck_cards, user_id: user.id, use_space_repetition: true) }
+        let!(:valid_params) { { user_deck: { user_id: user.id, deck_id: user_deck.deck.id, use_space_repetition: false } } }
+
+        it "switches user back to reviewing all cards" do
+          *user_deck_cards, last =  user_deck.user_deck_cards
+          user_deck_cards.each do |card|
+            card.update_column(:next_review_at, 1.days.from_now)
+          end
+          last.update_column(:next_review_at, Time.current)
+
+          expect(UserDeckCard.due_for_review(user_deck).count).to eq(1)
+          expect(user_deck.review_due?).to eq(true)
+
+          post_request
+
+          expect(UserDeckCard.due_for_review(user_deck).count).to eq(user_deck.user_deck_cards.count)
         end
       end
     end

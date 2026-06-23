@@ -31,13 +31,24 @@ class UserDecksController < ApplicationController
   end
 
   def create
-    @user_deck = UserDeck.find_or_initialize_by(user_deck_params)
+    @user_deck = UserDeck.find_or_initialize_by(
+      user_id: user_deck_params[:user_id], deck_id: user_deck_params[:deck_id]
+    )
+    @user_deck.assign_attributes(user_deck_params)
     @user_deck = authorize(@user_deck)
-    @user_deck.prepare_cards_for_review
+
+    if @user_deck.persisted? && @user_deck.no_review_due?
+      redirect_back_or_to(
+        @user_deck.deck,
+        notice: t("flash.user_decks.no_review_due")
+      )
+      return
+    end
+
+    @user_deck.prepare_for_review
 
     if @user_deck.save
       @user_deck.mark_started
-
       flash[:notice] = t("flash.user_decks.create.success")
       redirect_to @user_deck
     else

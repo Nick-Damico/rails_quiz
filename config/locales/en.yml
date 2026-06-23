@@ -147,6 +147,8 @@ en:
           error: "There was an error updating the password."
 
     user_decks:
+      no_review_due: "There are no cards due for review today."
+
       create:
         success: "Flashcard deck study session started."
         error: "There was an error starting this study session. Refresh page and try again."
