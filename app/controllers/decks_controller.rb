@@ -8,7 +8,7 @@ class DecksController < ApplicationController
   def show
     @deck = authorize(@deck)
     @user_deck = current_user.user_decks.find_or_initialize_by(deck: @deck)
-    @due_for_review_count = UserDeckCard.due_for_review(@user_deck).count
+    @due_for_review_count = @user_deck.cards_for_review.count
   end
 
   private

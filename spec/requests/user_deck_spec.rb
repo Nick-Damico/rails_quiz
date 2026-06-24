@@ -126,12 +126,12 @@ RSpec.describe "UserDeck", type: :request do
           end
           last.update_column(:next_review_at, Time.current)
 
-          expect(UserDeckCard.due_for_review(user_deck).count).to eq(1)
+          expect(user_deck.cards_for_review.count).to eq(1)
           expect(user_deck.review_due?).to eq(true)
 
           post_request
 
-          expect(UserDeckCard.due_for_review(user_deck).count).to eq(user_deck.user_deck_cards.count)
+          expect(user_deck.cards_for_review.count).to eq(user_deck.user_deck_cards.count)
         end
       end
     end

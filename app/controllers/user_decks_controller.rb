@@ -19,7 +19,7 @@ class UserDecksController < ApplicationController
 
     set_breadcrumbs
     if @user_deck.use_space_repetition?
-      @user_deck_cards = UserDeckCard.due_for_review(@user_deck).order(:id)
+      @user_deck_cards = @user_deck.cards_for_review.order(:id)
     else
       @user_deck_cards = UserDeckCard.by_user_deck(@user_deck).order(:id)
     end

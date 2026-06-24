@@ -14,6 +14,10 @@ class UserDeck < ApplicationRecord
     user_deck_cards.build(new_cards.map { |card| { card: } })
   end
 
+  def cards_for_review
+    UserDeckCard.due_for_review(self)
+  end
+
   def completed?
     !!completed_at
   end
@@ -43,16 +47,16 @@ class UserDeck < ApplicationRecord
   end
 
   def no_review_due?
-    use_space_repetition && cards_due_for_review.none?
+    use_space_repetition && cards_for_review.none?
   end
 
   def review_due?
-    use_space_repetition && cards_due_for_review.any?
+    use_space_repetition && cards_for_review.any?
   end
 
   def prepare_for_review
     prepare_cards_for_review
-    self.review_count = cards_due_for_review.count
+    self.review_count = cards_for_review.count
   end
 
   def score
@@ -65,10 +69,6 @@ class UserDeck < ApplicationRecord
   end
 
   private
-
-    def cards_due_for_review
-      UserDeckCard.due_for_review(self)
-    end
 
     def set_current_time_for(column)
       update_column(column, Time.current.utc)
