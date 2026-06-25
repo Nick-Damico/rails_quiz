@@ -80,13 +80,13 @@ RSpec.describe UserDeck, type: :model do
     end
   end
 
-  describe "#find_card_with_fallback" do
+  describe "#find_card_by_id_or_fallback" do
     context "with a card_id" do
       it "finds the card by ID in the supplied collection" do
         user_deck_card = user_deck.user_deck_cards.first
         user_deck_cards = user_deck.user_deck_cards
 
-        found_card = user_deck.find_card_with_fallback(
+        found_card = user_deck.find_card_by_id_or_fallback(
           user_deck_card.id, user_deck_cards: user_deck_cards
         )
 
@@ -99,7 +99,7 @@ RSpec.describe UserDeck, type: :model do
         first_card = user_deck.user_deck_cards.first
         bad_id = 0
 
-        found_card = user_deck.find_card_with_fallback(
+        found_card = user_deck.find_card_by_id_or_fallback(
           bad_id,
           user_deck_cards: user_deck.user_deck_cards
         )
@@ -110,7 +110,7 @@ RSpec.describe UserDeck, type: :model do
       describe "optional :fallback_method" do
         it "allows optional fallback for last card" do
           expect(
-            user_deck.find_card_with_fallback(
+            user_deck.find_card_by_id_or_fallback(
               0, user_deck_cards: user_deck.user_deck_cards, fallback_method: :last
             )
           ).to eq(user_deck.user_deck_cards.last)

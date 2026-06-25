@@ -15,7 +15,11 @@ class UserDeck < ApplicationRecord
   end
 
   def cards_for_review
-    UserDeckCard.due_for_review(self)
+    if use_space_repetition?
+      UserDeckCard.due_for_review(self)
+    else
+      UserDeckCard.by_user_deck(self)
+    end
   end
 
   def completed?
@@ -26,7 +30,7 @@ class UserDeck < ApplicationRecord
     (completed_at - started_at).round
   end
 
-  def find_card_with_fallback(card_id, user_deck_cards: [], fallback_method: :first)
+  def find_card_by_id_or_fallback(card_id, user_deck_cards: [], fallback_method: :first)
     allowed_fallbacks = %i[first last]
     fallback_method = :first unless allowed_fallbacks.include?(fallback_method)
 

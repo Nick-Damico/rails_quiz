@@ -5,29 +5,23 @@ class UserDecksController < ApplicationController
   before_action :set_user, only: %i[create]
   before_action :set_user_deck, only: %i[show update]
 
-  # TODO: Revisit review card selection workflow.
-  #
-  # Questions:
-  # - Is #find_card_with_fallback still necessary, or can it be removed?
-  # - Move card selection/query logic out of the controller and into UserDeck.
-  #
-  # Goal:
-  # - Reduce controller responsibility and centralize review card logic.
-  # - replace with something like `UserDeck#review_cards`
   def show
     @user_deck = authorize(@user_deck)
 
     set_breadcrumbs
-    if @user_deck.use_space_repetition?
-      @user_deck_cards = @user_deck.cards_for_review.order(:id)
+
+    if session[:card_ids]&.any?
+      @user_deck_cards = UserDeckCard.where(id: session[:card_ids]).order(:id)
     else
-      @user_deck_cards = UserDeckCard.by_user_deck(@user_deck).order(:id)
+      @user_deck_cards = @user_deck.cards_for_review.order(:id)
+      session[:card_ids] = @user_deck_cards.pluck(:id)
     end
-    @user_deck_card = @user_deck.find_card_with_fallback(
+
+    @user_deck_card = @user_deck.find_card_by_id_or_fallback(
       params[:card_id], user_deck_cards: @user_deck_cards
     )
 
-    @user_deck_card_ids = @user_deck_cards.pluck(:id)
+    @user_deck_card_ids = session[:card_ids]
   end
 
   def create
@@ -36,6 +30,12 @@ class UserDecksController < ApplicationController
     )
     @user_deck.assign_attributes(user_deck_params)
     @user_deck = authorize(@user_deck)
+
+    # TODO: Fix request flow
+    # 1. user starts SR review
+    # 2. navigates to Study > Flashcards > clicks 'Study'.
+    # 3. What is the expected behavior?
+    reset_session
 
     if @user_deck.persisted? && @user_deck.no_review_due?
       redirect_back_or_to(
@@ -76,6 +76,12 @@ class UserDecksController < ApplicationController
 
     def user_deck_params
       params.require(:user_deck).permit(:user_id, :deck_id, :use_space_repetition)
+    end
+
+    def reset_session
+      return unless session.key?(:card_ids)
+
+      session.delete(:card_ids)
     end
 
     def set_user
