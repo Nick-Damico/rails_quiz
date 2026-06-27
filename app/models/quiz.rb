@@ -1,5 +1,6 @@
 class Quiz < ApplicationRecord
   belongs_to :author, class_name: "User"
+  belongs_to :category
   has_many :questions, dependent: :destroy
 
   validates_presence_of :title

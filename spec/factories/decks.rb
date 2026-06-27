@@ -3,6 +3,7 @@ FactoryBot.define do
     title { "#{Faker::Lorem.sentence(word_count: 2)} Deck" }
     description { Faker::Lorem.paragraph }
     author { create(:user) }
+    category { create(:category) }
 
     transient do
       card_count { 0 }

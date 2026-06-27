@@ -1,5 +1,6 @@
 class Deck < ApplicationRecord
   belongs_to :author, class_name: "User"
+  belongs_to :category
 
   has_many :cards, class_name: "Decks::Card"
   has_many :user_decks

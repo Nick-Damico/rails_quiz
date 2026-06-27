@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :category do
-    name { Faker::Educator.unique.subject }
+    sequence(:name) { |n| "#{Faker::Educator.subject} #{n}" }
     slug { name.parameterize }
   end
 end
