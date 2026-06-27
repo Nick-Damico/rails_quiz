@@ -1,15 +1,20 @@
+user_1 = User.find_by!(email: "sam_pups@quizit.com")
+user_2 = User.last
+
 puts "SEEDING QUIZZES & QUESTIONS"
 
 quiz_1 = Quiz.create!(
   title: "Ruby Data Types",
   description: "Test your knowledge of fundamental Ruby data types and their practical applications. Perfect for Junior Ruby on Rails developers preparing for interviews or honing their skills.",
-  author: user_1
+  author: user_1,
+  category: Category.find_by(slug: "technology")
 )
 
 quiz_2 = Quiz.create!(
   title: "Fundamentals of Data Structures",
   description: "Assess your understanding of essential data structures and their applications. This quiz is designed for junior developers looking to strengthen their foundational knowledge.",
-  author: user_1
+  author: user_1,
+  category: Category.find_by(slug: "technology")
 )
 
 quiz_1.questions.create!([
@@ -180,7 +185,8 @@ quiz_2.questions.create!([
 quiz_2 = Quiz.create!(
   title: "Fundamentals of Data Structures",
   description: "Assess your understanding of essential data structures and their applications. This quiz is designed for junior developers looking to strengthen their foundational knowledge.",
-  author: user_1
+  author: user_1,
+  category: Category.find_by(slug: "technology")
 )
 
 quiz_2.questions.create!([
@@ -269,7 +275,8 @@ quiz_2.questions.create!([
 quiz_comics = Quiz.create!(
   title: "Comic Book Knowledge",
   description: "Test your knowledge of comic book history, characters, and publishers! This quiz covers both classic and modern comic book lore.",
-  author: user_2
+  author: user_2,
+  category: Category.find_by(slug: "general")
 )
 
 quiz_comics.questions.create!([

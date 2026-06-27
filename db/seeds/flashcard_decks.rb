@@ -1,9 +1,13 @@
+user_1 = User.find_by!(email: "sam_pups@quizit.com")
+user_2 = User.last
+
 puts "SEEDING DECKS & FLASHCARDS"
 
 ## USER_1 DECKS
 deck_1 = user_1.authored_decks.create!(
   title: 'Design Patterns',
   description: 'An introductory set of flashcards to help identify and understand common design patterns in software development.',
+  category: Category.find_by(slug: "technology")
 )
 deck_1.cards.create!([
   {
@@ -14,7 +18,8 @@ deck_1.cards.create!([
 
 deck_2 = user_1.authored_decks.create!(
   title: "A+ 220-1101 Cloud Models & Characteristics",
-  description: "Cloud computing models and Characteristics outlined by the CompTIA A+ 220-1101 exam."
+  description: "Cloud computing models and Characteristics outlined by the CompTIA A+ 220-1101 exam.",
+  category: Category.find_by(slug: "technology")
 )
 
 deck_2.cards.create!([
@@ -31,7 +36,8 @@ deck_2.cards.create!([
 
 deck_3 = user_2.authored_decks.create!(
   title: 'Common Networking / Security / Infrastructure Acronyms in A+ ',
-  description: "These are common acronyms you'll encounter in the A+ 1101-1202 exam, compiled from Professor Messer's A+ course"
+  description: "These are common acronyms you'll encounter in the A+ 1101-1202 exam, compiled from Professor Messer's A+ course",
+  category: Category.find_by(slug: "technology")
 )
 
 deck_3.cards.create!([
@@ -71,7 +77,8 @@ deck_3.cards.create!([
 
 deck_3 = user_2.authored_decks.create!(
   title: "A+ 220-1102 Acronyms (A-E)",
-  description: "A+ 220-1102 Acronyms outlined by the CompTIA objects handout."
+  description: "A+ 220-1102 Acronyms outlined by the CompTIA objects handout.",
+  category: Category.find_by(slug: "technology")
 )
 
 deck_3 = deck_3.cards.create!([

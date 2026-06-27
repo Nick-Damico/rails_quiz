@@ -40,6 +40,6 @@ user_2.avatar.attach(io: File.open(Rails.root.join("spec", "fixtures", "files", 
                      filename: "avatar_2.jpg",
                      content_type: "image/jpeg")
 
+load Rails.root.join("db", "seeds", "category.rb")
 load Rails.root.join("db", "seeds", "quizzes.rb")
 load Rails.root.join("db", "seeds", "flashcard_decks.rb")
-load Rails.root.join("db", "seeds", "categories.rb")
