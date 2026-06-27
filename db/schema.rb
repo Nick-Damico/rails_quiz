@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_06_26_170426) do
+ActiveRecord::Schema[7.2].define(version: 2026_06_27_161252) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,7 +87,9 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_26_170426) do
     t.bigint "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id", null: false
     t.index ["author_id"], name: "index_decks_on_author_id"
+    t.index ["category_id"], name: "index_decks_on_category_id"
   end
 
   create_table "question_choices", force: :cascade do |t|
@@ -113,7 +115,9 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_26_170426) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "author_id", null: false
+    t.bigint "category_id", null: false
     t.index ["author_id"], name: "index_quizzes_on_author_id"
+    t.index ["category_id"], name: "index_quizzes_on_category_id"
   end
 
   create_table "study_plan_decks", force: :cascade do |t|
@@ -203,9 +207,11 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_26_170426) do
   add_foreign_key "answer_sheets", "quizzes"
   add_foreign_key "answer_sheets", "users"
   add_foreign_key "cards", "decks"
+  add_foreign_key "decks", "categories"
   add_foreign_key "decks", "users", column: "author_id"
   add_foreign_key "question_choices", "questions"
   add_foreign_key "questions", "quizzes"
+  add_foreign_key "quizzes", "categories"
   add_foreign_key "quizzes", "users", column: "author_id"
   add_foreign_key "study_plan_decks", "decks"
   add_foreign_key "study_plan_decks", "study_plans"
