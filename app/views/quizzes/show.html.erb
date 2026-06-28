@@ -8,8 +8,14 @@
     </div>
     <%= render "shared/author_avatar", object: @quiz %>
     <%= render "shared/card_description" do %>
-      <p class="uppercase">Description:</p>
-      <p class="ml-3 italic font-light"><%= @quiz.description %></p>
+      <div>
+        <dt class="uppercase">Category:</dt>
+        <dd class="ml-3 mb-3 italic font-light"><%= @quiz.category.name %></dd>
+      </div>
+      <div>
+        <dt class="uppercase">Description:</dt>
+        <dd class="ml-3 italic font-light"><%= @quiz.description %></dd>
+      </div>
     <% end %>
     <div class="flex justify-between space-x-4 border-t border-gray-500">
       <p id="quiz-duration" class="flex-1 p-1 text-xl font-light text-center uppercase">

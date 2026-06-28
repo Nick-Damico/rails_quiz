@@ -11,20 +11,26 @@
     </div>
     <%= render "shared/author_avatar", object: @deck %>
     <%= render "shared/card_description" do %>
-      <p class="">DESCRIPTION:</p>
-      <% if @deck.description.present? %>
-        <p class="ml-3 italic font-light"><%= @deck.description %></p>
-      <% else %>
-        <div class="p-2 ml-3 italic text-gray-500">
-          <p class="font-semibold">No description available.</p>
-          <p class="mb-2 text-sm">
-            Consider adding a description to provide more information for users. You can include details about the quiz format, difficulty, or expected knowledge level.
-          </p>
-          <p class="text-sm not-italic text-gray-400">
-            You can add a description via the <span class="font-semibold text-white">Edit</span> button above.
-          </p>
-        </div>
-      <% end %>
+      <div>
+        <dt class="uppercase">Category:</dt>
+        <dd class="ml-3 mb-3 italic font-light"><%= @deck.category.name %></dd>
+      </div>
+      <div>
+        <dt class="uppercase">Description:</dt>
+        <% if @deck.description.present? %>
+          <dd class="ml-3 italic font-light"><%= @deck.description %></dd>
+        <% else %>
+          <div class="p-2 ml-3 italic text-gray-500">
+            <p class="font-semibold">No description available.</p>
+            <p class="mb-2 text-sm">
+              Consider adding a description to provide more information for users. You can include details about the quiz format, difficulty, or expected knowledge level.
+            </p>
+            <p class="text-sm not-italic text-gray-400">
+              You can add a description via the <span class="font-semibold text-white">Edit</span> button above.
+            </p>
+          </div>
+        <% end %>
+      </div>
     <% end %>
     <div class="flex justify-between mt-auto space-x-4 border-t border-gray-500">
       <p class="flex-1 p-1 text-xl font-light text-center uppercase">
