@@ -7,6 +7,11 @@
       </h2>
       <%= form_with model: @quiz, url:, class: "px-2" do |f| %>
         <div class="mb-4 field">
+          <%= f.label :category_id, class: "text-white text-xs font-semibold uppercase mb-2" %>
+          <%= f.collection_select :category_id, @categories, :id, :name, { include_blank: "Selection required" }, class: "shadow appearance-none border text-gray-700 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" %>
+          <%= display_field_error(quiz, :category) %>
+        </div>
+        <div class="mb-4 field">
           <%= f.label :title, class: "text-white text-xs font-semibold uppercase mb-2" %>
           <%= f.text_field :title, placeholder: "Example: The Human Skeleton - Structure and Function", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" %>
           <%= display_field_error(quiz, :title) %>

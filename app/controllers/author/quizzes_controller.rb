@@ -2,6 +2,7 @@ module Author
   class QuizzesController < ApplicationController
     before_action :set_quiz, only: %i[destroy edit show update]
     before_action :set_author, only: %i[create destroy edit index new show]
+    before_action :set_categories, only: %i[create edit new update]
     before_action :set_breadcrumbs
     before_action :authorize_access!, except: %i[create index new]
 
@@ -68,15 +69,19 @@ module Author
       end
 
       def quiz_params
-        params.require(:quiz).permit(:title, :description, :author_id)
-      end
-
-      def set_quiz
-        @quiz = Quiz.find(params[:id])
+        params.require(:quiz).permit(:title, :description, :author_id, :category_id)
       end
 
       def set_author
         @author = current_user
+      end
+
+      def set_categories
+        @categories = Category.all.order(:name)
+      end
+
+      def set_quiz
+        @quiz = Quiz.find(params[:id])
       end
 
       def set_breadcrumbs

@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Author Adds New Quiz", type: :feature do
   let(:author) { create(:user) }
+  let!(:category) { create(:category, name: "Technology") }
 
   before do
     sign_in author
@@ -11,6 +12,7 @@ RSpec.describe "Author Adds New Quiz", type: :feature do
     quiz_attributes = attributes_for(:quiz, author: author)
     visit new_author_quiz_path
 
+    select "Technology", from: "Category"
     fill_in "Title", with: quiz_attributes[:title]
     fill_in "Description", with: quiz_attributes[:description]
     click_button "Create Quiz"
@@ -23,6 +25,7 @@ RSpec.describe "Author Adds New Quiz", type: :feature do
     quiz_attributes = attributes_for(:quiz, author: author)
     visit new_author_quiz_path
 
+    select "Technology", from: "Category"
     fill_in "Title", with: ""
     fill_in "Description", with: quiz_attributes[:description]
     click_button "Create Quiz"

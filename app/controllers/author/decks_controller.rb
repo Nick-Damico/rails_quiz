@@ -1,5 +1,6 @@
 class Author::DecksController < ApplicationController
   before_action :set_author
+  before_action :set_categories, only: %i[edit create new update]
   before_action :set_deck, only: %i[destroy edit show update]
   before_action :set_breacrumbs, only: %i[edit index new show]
 
@@ -55,11 +56,15 @@ class Author::DecksController < ApplicationController
   private
 
     def deck_params
-      params.require(:deck).permit(:title, :description, :author_id)
+      params.require(:deck).permit(:title, :description, :author_id, :category_id)
     end
 
     def set_author
       @author = current_user
+    end
+
+    def set_categories
+      @categories = Category.all.order(:name) || Category.none
     end
 
     def set_deck

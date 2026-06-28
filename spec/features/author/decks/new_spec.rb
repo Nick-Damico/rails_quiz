@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "author/decks new page", type: :feature do
   let(:author) { create(:user) }
+  let!(:category) { create(:category, name: "General") }
 
   before do
     sign_in author
@@ -16,6 +17,7 @@ RSpec.describe "author/decks new page", type: :feature do
     scenario "author creates a new deck" do
       deck_attrs = attributes_for(:deck, author:)
 
+      select "General", from: "Category"
       fill_in "Title", with: deck_attrs[:title]
       fill_in "Description", with: deck_attrs[:description]
       click_button "Create Deck"
@@ -29,6 +31,7 @@ RSpec.describe "author/decks new page", type: :feature do
     scenario "author fails to create a new deck" do
       deck_attrs = attributes_for(:deck, author:)
 
+      select "General", from: "Category"
       fill_in "Title", with: ''
       fill_in "Description", with: deck_attrs[:description]
 

@@ -31,7 +31,16 @@ RSpec.describe "Author::Decks", type: :request do
 
   describe "POST /create" do
     context 'valid params' do
-      let(:valid_params) { { deck: { title: 'Structural Design Patterns', description: 'Learn to identify structural design patterns.', author_id: author.id } } }
+      let(:valid_params) {
+        {
+          deck: {
+            title: 'Structural Design Patterns',
+            description: 'Learn to identify structural design patterns.',
+            author_id: author.id,
+            category_id: create(:category).id
+          }
+        }
+      }
 
       context "with valid params" do
         it "responds with HTTP status redirect(302)" do
@@ -50,7 +59,16 @@ RSpec.describe "Author::Decks", type: :request do
 
     context 'invalid params' do
       # Missing required :title field
-      let(:invalid_params) { { deck: { title: '', description: 'Learn to identify structural design patterns.', author_id: author.id } } }
+      let(:invalid_params) {
+        {
+          deck: {
+            title: '',
+            description: 'Learn to identify structural design patterns.',
+            author_id: author.id,
+            category_id: create(:category).id
+          }
+        }
+      }
 
       it "responds with HTTP status unprocessable entity(400)" do
         post author_decks_path, params: invalid_params

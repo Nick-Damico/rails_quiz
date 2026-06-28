@@ -32,7 +32,15 @@ RSpec.describe Author::QuizzesController, type: :request do
 
   describe "POST /create" do
     context 'valid params' do
-      let(:valid_params) { { quiz: { title: 'Best Quiz', description: 'My first Quiz!' } } }
+      let(:valid_params) {
+        { quiz:
+          {
+            title: 'Best Quiz',
+            description: 'My first Quiz!',
+            category_id: create(:category).id
+          }
+        }
+      }
 
       context "with valid params" do
         it "responds with HTTP status redirect(302)" do

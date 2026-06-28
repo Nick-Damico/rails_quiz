@@ -5,8 +5,13 @@
       <h2 class="py-2 text-xl text-center uppercase border-b border-gray-500 font-xl">
         <%= deck.persisted? ? "Edit" : "Create" %> Deck
       </h2>
-      <%= form_with model: [ :author, deck ], class: "px-2" do |ff| %>
+      <%= form_with model: [ :author, deck ], class: "p-2" do |ff| %>
         <%= ff.hidden_field :author_id, value: author.id %>
+        <div class="mb-4 field">
+          <%= ff.label :category_id, class: "text-white text-xs font-semibold uppercase mb-2" %>
+          <%= ff.collection_select :category_id, @categories, :id, :name, { include_blank: "Selection required" }, class: "shadow appearance-none border text-gray-700 rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline" %>
+          <%= display_field_error(deck, :category) %>
+        </div>
         <div class="mb-4 field">
           <%= ff.label :title, class: "text-white text-xs font-semibold uppercase mb-2" %>
           <%= ff.text_field :title, placeholder: "Enter a short, descriptive title for your deck", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:bg-white focus:outline-none focus:shadow-outline" %>
