@@ -33,10 +33,8 @@ categories = [
   { name: "Engineering", slug: "engineering" },
   { name: "Arts", slug: "arts" },
   { name: "Music", slug: "music" },
-  { name: "Philosophy", slug: "philosophy" },
-  { name: "Psychology", slug: "psychology" },
+  { name: "Philosophy & Psychology", slug: "philosophy" },
   { name: "Education", slug: "education" },
-  { name: "Hobbies", slug: "hobbies" },
   { name: "Sports", slug: "sports" },
   { name: "General", slug: "general" }
 ]

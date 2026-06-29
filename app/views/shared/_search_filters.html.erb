@@ -1,0 +1,8 @@
+<details class="pb-4 mb-4 border-b border-gray-800" open>
+  <summary class="text-xl">Category Filters</summary>
+  <div class="grid grid-cols-3 md:grid-cols-9 gap-1 p-2 justify-self-center">
+    <% @filter_objects[:categories].each do |category| %>
+      <%= link_to category.name, nil, class: "flex items-center justify-center flex-grow w-32 h-32 text-center duration-300 ease-in-out border border-gray-800 hover:bg-blue-800" %>
+    <% end %>
+  </div>
+</details>
