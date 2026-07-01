@@ -52,7 +52,7 @@
   }
 
   .btn-border-only {
-    @apply transition duration-300 ease-in-out border border-gray-800 hover:border-emerald-600;
+    @apply transition duration-300 ease-in-out border border-gray-800;
   }
 }
 
