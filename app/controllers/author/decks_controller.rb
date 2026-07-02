@@ -5,7 +5,10 @@ class Author::DecksController < ApplicationController
   before_action :set_breacrumbs, only: %i[edit index new show]
 
   def index
-    @pagy, @decks = pagy(:countish, policy_scope([ :author, Deck ]).order(:title, :created_at))
+    search = DeckSearch.new(policy_scope([ :author, Deck ]), params)
+
+    @filter_options = search.filter_options
+    @pagy, @decks = pagy(:countish, search.query.order(:title, :created_at))
   end
 
   def show

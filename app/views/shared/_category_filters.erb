@@ -1,11 +1,11 @@
 <details class="pb-4 mb-4 border-b border-gray-800" open>
   <summary class="mb-4 text-xl">Category Filters</summary>
-  <%= form_with url: author_decks_path, method: :get, class: "flex flex-col" do |form| %>
+  <%= form_with url: url, method: :get, class: "flex flex-col" do |form| %>
     <div class="grid grid-cols-3 gap-1 md:grid-cols-9">
-      <% @filter_options.fetch(:categories, []).each.with_index(1) do |category, index| %>
+      <% @filter_options.fetch(:categories, []).each do |category| %>
         <div class="border border-gray-800 hover:border-blue-800 ease-out duration-300">
-          <%= check_box_tag "filter[category_ids][]", category.id, false, { class: "sr-only peer", id: "category_ids_#{index}" } %>
-          <%= label_tag "category_ids_#{index}", category.name, class: "flex items-center justify-center h-full py-4 text-center peer-checked:bg-blue-800 duration-300 ease-out cursor-pointer" %>
+          <%= check_box_tag "filter[category_ids][]", category.id, filter_selected?(category.id, "category_ids"), { class: "sr-only peer", id: "category_ids_#{category.id}" } %>
+          <%= label_tag "category_ids_#{category.id}", category.name, class: "flex items-center justify-center h-full py-4 text-center peer-checked:bg-blue-800 duration-300 ease-out cursor-pointer" %>
         </div>
       <% end %>
     </div>
