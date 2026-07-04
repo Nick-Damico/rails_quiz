@@ -10,9 +10,13 @@ class ApplicationSearch
     safe_params
   end
 
+  def query
+    scope
+  end
+
   private
 
     def safe_params
-      @params.fetch(:filter, {}).permit(category_ids: [])
+      @params.require(:filter).permit(:outside_value, category_ids: [])
     end
 end
