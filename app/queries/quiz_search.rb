@@ -1,4 +1,4 @@
-class DeckSearch < ApplicationSearch
+class QuizSearch < ApplicationSearch
   def filter_options
     filters = {}
     filters[:categories] = categories

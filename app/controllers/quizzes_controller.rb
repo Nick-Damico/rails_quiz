@@ -3,8 +3,11 @@ class QuizzesController < ApplicationController
   before_action :set_breadcrumbs
 
   def index
+    search = QuizSearch.new(policy_scope(Quiz), params)
+
+    @filter_options = search.filter_options
     @pagy, @quizzes = pagy(
-      :countish, policy_scope(Quiz).order(:title, :created_at)
+      :countish, search.query.order(:title, :created_at)
     )
   end
 
