@@ -7,13 +7,15 @@ module Author
     before_action :authorize_access!, except: %i[create index new]
 
     def index
+      search = QuizSearch.new(policy_scope([ :author, Quiz ]), params)
+
+      @filter_options = search.filter_options
       @pagy, @quizzes = pagy(
-        :countish, policy_scope([ :author, Quiz ]).order(:title, :created_at)
+        :countish, search.query.order(:title, :created_at)
       )
     end
 
-    def show
-    end
+    def show; end
 
     def new
       @quiz = authorize([ :author, @author.authored_quizzes.new ])
