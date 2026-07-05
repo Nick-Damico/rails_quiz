@@ -3,7 +3,8 @@
   <section class="flex flex-col self-start w-full pt-2 bg-gray-800 rounded">
     <div class="inline-flex items-center p-1 px-4 mb-4 bg-blue-500">
       <h1 class="text-4xl font-semi-bold">
-        <%= @deck.title %> <br>
+        <%= @deck.title %>
+        <br>
       </h1>
     </div>
     <%= render "shared/author_avatar", object: @deck %>
@@ -18,14 +19,22 @@
       </div>
     <% end %>
     <div class="flex justify-between space-x-4 border-t border-gray-500">
-      <p id="quiz-duration" class="flex-1 p-1 text-xl font-light text-center uppercase">
+      <p
+        id="quiz-duration"
+        class="flex-1 p-1 text-xl font-light text-center uppercase"
+      >
         <% minutes = seconds_to_minutes(@deck.time_to_complete) %>
         <span class="text-2xl">
           <%= format_as_two_digits(minutes) %>
         </span><br>
         <%= "minute".pluralize(minutes) %>
       </p>
-      <p id="quiz-question-count" class="flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500">
+      <p
+        id="quiz-question-count"
+        class="
+          flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500
+        "
+      >
         <span class="text-2xl">
           <%= format_as_two_digits(@deck.cards.count) %>
         </span><br>
@@ -33,37 +42,49 @@
       </p>
     </div>
   </section>
-  <div data-controller="decks--review-settings" class="flex flex-col p-4 space-y-4 border border-gray-500 rounded">
+  <div
+    data-controller="decks--review-settings"
+    class="flex flex-col p-4 space-y-4 border border-gray-500 rounded"
+  >
     <%= form_with model: @user_deck, url: user_decks_path, method: :post do |f| %>
       <%= f.hidden_field :deck_id, value: @user_deck.deck_id %>
       <%= f.hidden_field :user_id, value: @user_deck.user_id %>
       <details class="border-b border-gray-500 pb-2 mb-6" open>
-        <summary class="flex items-center text-2xl mb-4"><%= render_icon "cog-6-tooth", klass: "size-8" %> <span class="ml-2">Settings</span></summary>
+        <summary class="flex items-center text-2xl mb-4"><%= render_icon "cog-6-tooth", klass: "size-8" %>
+          <span class="ml-2">Settings</span></summary>
         <label class="relative inline-flex items-center cursor-pointer">
           <%= f.check_box :use_space_repetition,
-                class: "sr-only peer",
-                data: {
-                  "action" => "change->decks--review-settings#toggleSpaceRepetition",
-                  "decks--review-settings-target" => "spaceRepetitionCheckbox"
-                } %>
-          <div class="
-            w-11 h-6 bg-gray-400 rounded-full
-            peer-focus:ring-4 peer-focus:ring-blue-300
-            peer-checked:bg-blue-600
-            after:content-['']
-            after:absolute after:top-[2px] after:left-[2px]
-            after:bg-white after:border after:rounded-full
-            after:h-5 after:w-5
-            after:transition-all
-            peer-checked:after:translate-x-full"></div>
-          <span class="ml-3 text-sm font-medium"> Enable Spaced Repetition </span>
+                      class: "sr-only peer",
+                      data: {
+                        "action" =>
+                          "change->decks--review-settings#toggleSpaceRepetition",
+                        "decks--review-settings-target" => "spaceRepetitionCheckbox",
+                      } %>
+          <div
+            class="
+              w-11 h-6 bg-gray-400 rounded-full peer-focus:ring-4 peer-focus:ring-blue-300
+              peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px]
+              after:left-[2px] after:bg-white after:border after:rounded-full after:h-5
+              after:w-5 after:transition-all peer-checked:after:translate-x-full
+            "
+          ></div>
+          <span class="ml-3 text-sm font-medium">
+            Enable Spaced Repetition
+          </span>
         </label>
-        <p class="<%= @user_deck.use_space_repetition? ? "flex" : "hidden" %> items-center text-xs text-orange-500">Warning: Disabling Spaced Repetition will reset progress at start of review.</p>
+        <p
+          class="
+            <%= @user_deck.use_space_repetition? ? "flex" : "hidden" %> items-center text-xs text-orange-500
+          "
+        >Warning: Disabling Spaced Repetition will reset progress at start of
+          review.</p>
       </details>
       <% if @user_deck.use_space_repetition? %>
         <% if @due_for_review_count.positive? %>
           <p class="flex mb-2 text-sm" data-decks--review-settings-target="nextReviewMsg">
-            You have <span class="text-orange-500 px-1">(<%= pluralize(@due_for_review_count, "card") %>)</span> due for review today.
+            You have
+            <span class="text-orange-500 px-1">(<%= pluralize(@due_for_review_count, "card") %>)</span>
+            due for review today.
           </p>
         <% else %>
           <p class="flex mb-2 text-sm" data-decks--review-settings-target="nextReviewMsg">
@@ -76,15 +97,17 @@
       <% end %>
       <%= f.button type: :submit,
             class: "flex items-center justify-center btn btn-primary rounded disabled:border disabled:bg-transparent disabled:cursor-not-allowed disabled:border-gray-700 disabled:text-gray-700",
-            disabled: !@due_for_review_count.positive?,
+            disabled: study_button_disabled?(@user_deck, @due_for_review_count),
             data: {
               "decks--review-settings-target" => "submitBtn",
             } do %>
-        <%= render_icon("play_circle", klass: "size-5 mr-1") %> Study
+        <%= render_icon("play_circle", klass: "size-5 mr-1") %>
+        Study
       <% end %>
     <% end %>
     <%#= link_to "#", class: "flex items-center justify-center btn btn-success rounded" do %>
-      <%#= render_icon("plus", klass: "size-5 mr-1") %>  <!-- Add to Study Plan -->
-      <%# end %>
-    </div>
+    <%#= render_icon("plus", klass: "size-5 mr-1") %>
+    <!-- Add to Study Plan -->
+    <%# end %>
   </div>
+</div>

@@ -1,4 +1,5 @@
 module UserDeckHelper
+  # Card Review Mechanics ( Flipping Card and pagging through previously reviewed cards )
   def card_number(user_deck_card, ids)
     id_index(user_deck_card.id, ids) + 1
   end
@@ -25,5 +26,13 @@ module UserDeckHelper
 
   def active_tab?(active_tab, tab)
     active_tab == tab ? "active" : "false"
+  end
+
+  # End Of Card Review Mechanics
+
+  def study_button_disabled?(user_deck, review_card_count = 0)
+    return false unless user_deck.use_space_repetition?
+
+    !review_card_count.positive?
   end
 end
