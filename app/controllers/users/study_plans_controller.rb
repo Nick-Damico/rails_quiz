@@ -1,7 +1,7 @@
 class Users::StudyPlansController < ApplicationController
   before_action :set_user, except: %i[show]
   before_action :set_study_plan, only: %i[show edit update destroy]
-  before_action :set_breadcrumbs, only: %i[show index]
+  before_action :set_breadcrumbs, only: %i[show index new]
 
   def index
     @study_plans = policy_scope([ :users, @user.study_plans ])
@@ -64,9 +64,13 @@ class Users::StudyPlansController < ApplicationController
     end
 
     def set_breadcrumbs
+      add_breadcrumb("Study")
       add_breadcrumb("Study Plans", user_study_plans_path(current_user))
       if @study_plan.present?
         add_breadcrumb(@study_plan.name, user_study_plan_path(current_user, @study_plan))
+      end
+      if form_render?
+        add_breadcrumb("#{params[:action].capitalize} Study Plan")
       end
     end
 end
