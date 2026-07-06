@@ -1,0 +1,20 @@
+<div data-controller="modal">
+  <button data-modal-target="button" class="btn btn-primary" data-action="click->modal#showModal">open</button>
+  <dialog
+    id="item-dialog"
+    data-modal-target="modal"
+    class="
+      w-[min(32rem,calc(100vw-2rem))]
+      max-h-[calc(100vh-2rem)]
+      overflow-hidden
+      rounded-xl
+      border-0
+      bg-gray-700
+      p-0
+      text-white
+      shadow-2xl
+      backdrop:bg-slate-950/50
+    ">
+    <%= yield %>
+  </dialog>
+</div>

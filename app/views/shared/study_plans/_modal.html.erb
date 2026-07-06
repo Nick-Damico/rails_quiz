@@ -1,0 +1,60 @@
+<%= render "shared/modal_wrapper" do %>
+  <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+    <h2 class="text-lg font-semibold">Select a Study Plan</h2>
+
+    <form method="dialog">
+      <button
+        type="submit"
+        aria-label="Close dialog"
+        class="rounded p-1 text-slate-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </form>
+  </div>
+
+  <div class="border-b border-slate-200 px-5 py-4">
+    <label for="category-search" class="mb-1 block text-sm font-medium">
+      Search categories
+    </label>
+
+    <input
+      id="category-search"
+      type="search"
+      placeholder="Search..."
+      autocomplete="off"
+      class="
+        w-full
+        rounded-md
+        border
+        border-slate-300
+        px-3
+        py-2
+        text-sm
+        placeholder:text-slate-400
+        focus:border-indigo-500
+        focus:outline-none
+        focus:ring-2
+        focus:ring-indigo-500/30
+      ">
+  </div>
+
+  <ul class="max-h-96 overflow-y-auto p-2">
+    <li>
+      <button
+        type="button"
+        class="
+          w-full
+          rounded-md
+          px-3
+          py-2.5
+          text-left
+          text-sm
+          hover:bg-slate-100
+          focus:bg-slate-100
+          focus:outline-none
+        ">
+        Study Group 1
+      </button>
+      </li>
+  </ul>
+<% end %>
