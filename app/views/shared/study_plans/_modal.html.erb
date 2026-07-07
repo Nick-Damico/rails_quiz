@@ -1,60 +1,47 @@
 <%= render "shared/modal_wrapper" do %>
-  <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+  <div class="flex items-center justify-between px-5 py-4 border-b border-slate-200">
     <h2 class="text-lg font-semibold">Select a Study Plan</h2>
-
-    <form method="dialog">
-      <button
-        type="submit"
-        aria-label="Close dialog"
-        class="rounded p-1 text-slate-500 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </form>
+    <div>
+      <%= button_tag(
+            type: "button",
+            aria_label: "Close dialog",
+            class: "btn btn-primary rounded-md",
+            command: "close",
+            commandfor: "study-plans-dialog"
+          ) do %>
+        <span aria-hidden="true text-xl">&times;</span>
+      <% end %>
+    </div>
   </div>
-
-  <div class="border-b border-slate-200 px-5 py-4">
-    <label for="category-search" class="mb-1 block text-sm font-medium">
-      Search categories
+  <div class="px-5">
+    <label for="category-search" class="sr-only">
+      Search Study Plans
     </label>
-
-    <input
-      id="category-search"
-      type="search"
-      placeholder="Search..."
-      autocomplete="off"
-      class="
-        w-full
-        rounded-md
-        border
-        border-slate-300
-        px-3
-        py-2
-        text-sm
-        placeholder:text-slate-400
-        focus:border-indigo-500
-        focus:outline-none
-        focus:ring-2
-        focus:ring-indigo-500/30
-      ">
+    <!--<input id="study-plans-search" type="search" placeholder="Search..." autocomplete="off" class="w-full px-3 py-2 text-sm border rounded-md border-slate-300 placeholder:text-slate-400">-->
   </div>
-
-  <ul class="max-h-96 overflow-y-auto p-2">
-    <li>
-      <button
-        type="button"
-        class="
-          w-full
-          rounded-md
-          px-3
-          py-2.5
-          text-left
-          text-sm
-          hover:bg-slate-100
-          focus:bg-slate-100
-          focus:outline-none
-        ">
-        Study Group 1
-      </button>
-      </li>
-  </ul>
+  <%= form_with url: user_study_plan_path(current_user), method: :patch, class: "flex justify-end" do |f| %>
+    <%= f.hidden :deck_id, value: @deck.id %>
+    <ul class="flex flex-col gap-2 p-2 overflow-y-auto max-h-96">
+      <% if @study_plans.any? %>
+        <%= f.collection_radio_buttons :id, @study_plans, :id, :name do |r_b| %>
+          <div>
+            <%= r_b.radio_button class: "sr-only peer" %>
+            <%= r_b.label class: "flex w-full px-3 py-3 text-sm text-left border border-gray-600 rounded-md cursor-pointer peer-checked:bg-blue-500 group hover:bg-blue-500 focus:bg-blue-500 focus:outline-none" %>
+          </div>
+        <% end %>
+      <% else %>
+        <li class="px-3 py-2 text-sm text-gray-500">No study plans found.</li>
+      <% end %>
+    </ul>
+    <div class="flex justify-end gap-2 py-4 border-t border-gray-700">
+      <%= button_tag(
+          "Cancel",
+          class: "btn btn-warning",
+          type: "button",
+          command: "close",
+          commandfor: "study-plans-dialog"
+          ) %>
+      <%= f.submit class: "btn btn-success mr-6" %>
+    </div>
+  <% end %>
 <% end %>

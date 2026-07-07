@@ -11,7 +11,7 @@
     <%= render "shared/card_description" do %>
       <div>
         <dt class="uppercase">Category:</dt>
-        <dd class="ml-3 mb-3 italic font-light"><%= @deck.category.name %></dd>
+        <dd class="mb-3 ml-3 italic font-light"><%= @deck.category.name %></dd>
       </div>
       <div>
         <dt class="uppercase">Description:</dt>
@@ -30,9 +30,7 @@
       </p>
       <p
         id="quiz-question-count"
-        class="
-          flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500
-        ">
+        class="flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500 ">
         <span class="text-2xl">
           <%= format_as_two_digits(@deck.cards.count) %>
         </span><br>
@@ -46,8 +44,8 @@
     <%= form_with model: @user_deck, url: user_decks_path, method: :post do |f| %>
       <%= f.hidden_field :deck_id, value: @user_deck.deck_id %>
       <%= f.hidden_field :user_id, value: @user_deck.user_id %>
-      <details class="border-b border-gray-500 pb-2 mb-6" open>
-        <summary class="flex items-center text-2xl mb-4"><%= render_icon "cog-6-tooth", klass: "size-8" %>
+      <details class="pb-2 mb-6 border-b border-gray-500" open>
+        <summary class="flex items-center mb-4 text-2xl"><%= render_icon "cog-6-tooth", klass: "size-8" %>
           <span class="ml-2">Settings</span></summary>
         <label class="relative inline-flex items-center cursor-pointer">
           <%= f.check_box :use_space_repetition,
@@ -78,31 +76,39 @@
         <% if @due_for_review_count.positive? %>
           <p class="flex mb-2 text-sm" data-decks--review-settings-target="nextReviewMsg">
             You have
-            <span class="text-orange-500 px-1">(<%= pluralize(@due_for_review_count, "card") %>)</span>
+            <span class="px-1 text-orange-500">(<%= pluralize(@due_for_review_count, "card") %>)</span>
             due for review today.
           </p>
         <% else %>
           <p class="flex mb-2 text-sm" data-decks--review-settings-target="nextReviewMsg">
             No cards due for review. Next review on
-            <span class="text-green-500 px-1">
+            <span class="px-1 text-green-500">
               (<%= @user_deck.next_review_date.strftime("%B %d, %Y") %>)
             </span>
           </p>
         <% end %>
       <% end %>
-      <%= f.button type: :submit,
+      <div class="flex gap-2" data-controller="modal">
+        <%= f.button type: :submit,
             class: "flex items-center justify-center btn btn-primary rounded disabled:border disabled:bg-transparent disabled:cursor-not-allowed disabled:border-gray-700 disabled:text-gray-700",
             disabled: study_button_disabled?(@user_deck, @due_for_review_count),
             data: {
               "decks--review-settings-target" => "submitBtn",
             } do %>
-        <%= render_icon("play_circle", klass: "size-5 mr-1") %>
-        Study
-      <% end %>
+          <%= render_icon("play_circle", klass: "size-5 mr-1") %>
+          Study
+        <% end %>
+        <%= button_tag( 
+              type: "button",
+              class: "flex items-center justify-center btn btn-success rounded",
+              command: "show-modal",
+              commandfor: "study-plans-dialog"
+            ) do %>
+          <%= render_icon("plus", klass: "size-5 mr-1") %>
+          Add to Study Plan
+        <% end %>
+        <%= render "shared/study_plans/modal" %>
+      </div>
     <% end %>
-    <%#= link_to "#", class: "flex items-center justify-center btn btn-success rounded" do %>
-    <%#= render_icon("plus", klass: "size-5 mr-1") %>
-    <!-- Add to Study Plan -->
-    <%# end %>
   </div>
 </div>
