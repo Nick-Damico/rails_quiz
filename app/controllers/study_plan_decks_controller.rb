@@ -6,7 +6,7 @@ class StudyPlanDecksController < ApplicationController
     @study_plan_deck = @study_plan.study_plan_decks.new(study_plan_deck_params)
 
     if @study_plan_deck.save
-      flash.now[:notice] = t("flash.study_plan_decks.create.success")
+      flash[:notice] = t("flash.study_plan_decks.create.success")
       redirect_to user_study_plan_url(current_user, @study_plan)
     else
       flash.now[:alert] = t("flash.study_plan_decks.create.error")
