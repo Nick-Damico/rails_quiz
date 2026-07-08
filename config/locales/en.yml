@@ -144,6 +144,7 @@ en:
       create:
         success: "Deck was successfully added to your study plan."
         error: "There was an issue adding this deck to your study plan. Refresh page and try again."
+        already_exists: "Deck already added to your study plan. Please select a different deck."
 
     users:
       passwords:

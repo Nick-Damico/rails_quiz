@@ -36,6 +36,28 @@ RSpec.describe "Users::StudyPlanDecks", type: :request do
       end
     end
 
-  end
+    context "when the deck is already in the study plan" do
+      before do
+        create(:study_plan_deck, study_plan: study_plan, deck: deck)
+      end
+      it "does not create another study plan deck association" do
+        expect { create_study_plan_deck }
+          .not_to change(StudyPlanDeck, :count)
+      end
+
+      it "redirects the deck show page" do
+        create_study_plan_deck
+
+        expect(response).to redirect_to deck_path(deck)
+      end
+
+      it "sets an error flash message" do
+        create_study_plan_deck
+
+        expect(flash[:alert]).to eq(
+          "Deck already added to your study plan. Please select a different deck."
+        )
+      end
+    end
 
 end
