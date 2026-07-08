@@ -140,6 +140,11 @@ en:
           success: "Quiz: %{quiz_title} was successfully removed from your study plan." 
           error: "There was an issue removing this quiz from your study plan. Refresh page and try again."
 
+    study_plan_decks:
+      create:
+        success: "Deck was successfully added to your study plan."
+        error: "There was an issue adding this deck to your study plan. Refresh page and try again."
+
     users:
       passwords:
         update:

@@ -12,6 +12,7 @@ class DecksController < ApplicationController
     @deck = authorize(@deck)
     @user_deck = current_user.user_decks.find_or_initialize_by(deck: @deck)
     @due_for_review_count = @user_deck.cards_for_review.count
+    @study_plans = StudyPlan.where(user: current_user).order(:name)
   end
 
   private
