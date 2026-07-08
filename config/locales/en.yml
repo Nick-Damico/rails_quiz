@@ -166,12 +166,17 @@ en:
   buttons:
     back: "Go Back"
 
-    questions:
-      delete: "Are you sure you want to delete this Question?"
     cards:
       delete: "Are you sure you want to delete this Flashcard?"
+
     choice:
       delete: "Are you sure you want to delete this Option?"
+
+    questions:
+      delete: "Are you sure you want to delete this Question?"
+
+    study_plan_decks:
+      create: "Add to Study Plan"
 
   helpers:
     submit:
