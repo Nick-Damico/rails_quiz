@@ -21,7 +21,8 @@
     <div class="flex justify-between space-x-4 border-t border-gray-500">
       <p
         id="quiz-duration"
-        class="flex-1 p-1 text-xl font-light text-center uppercase">
+        class="flex-1 p-1 text-xl font-light text-center uppercase"
+      >
         <% minutes = seconds_to_minutes(@deck.time_to_complete) %>
         <span class="text-2xl">
           <%= format_as_two_digits(minutes) %>
@@ -30,7 +31,10 @@
       </p>
       <p
         id="quiz-question-count"
-        class="flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500 ">
+        class="
+          flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500
+        "
+      >
         <span class="text-2xl">
           <%= format_as_two_digits(@deck.cards.count) %>
         </span><br>
@@ -40,7 +44,8 @@
   </section>
   <div
     data-controller="decks--review-settings"
-    class="flex flex-col p-4 space-y-4 border border-gray-500 rounded">
+    class="flex flex-col p-4 space-y-4 border border-gray-500 rounded"
+  >
     <%= form_with model: @user_deck, url: user_decks_path, method: :post do |f| %>
       <%= f.hidden_field :deck_id, value: @user_deck.deck_id %>
       <%= f.hidden_field :user_id, value: @user_deck.user_id %>
@@ -61,7 +66,8 @@
               peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px]
               after:left-[2px] after:bg-white after:border after:rounded-full after:h-5
               after:w-5 after:transition-all peer-checked:after:translate-x-full
-            "></div>
+            "
+          ></div>
           <span class="ml-3 text-sm font-medium">
             Enable Spaced Repetition
           </span>
@@ -69,7 +75,8 @@
         <p
           class="
             <%= @user_deck.use_space_repetition? ? "flex" : "hidden" %> items-center text-xs text-orange-500
-          ">Warning: Disabling Spaced Repetition will reset progress at start of
+          "
+        >Warning: Disabling Spaced Repetition will reset progress at start of
           review.</p>
       </details>
       <% if @user_deck.use_space_repetition? %>
