@@ -59,5 +59,5 @@ RSpec.describe "Users::StudyPlanDecks", type: :request do
         )
       end
     end
-
+  end
 end
