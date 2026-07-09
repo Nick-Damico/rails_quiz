@@ -11,7 +11,6 @@ function addDisabledAttribute(element) {
   }
 }
 
-
 function isDisabled(element) {
   return _elementHasAttribute(element, "disabled");
 }
@@ -77,5 +76,5 @@ export {
   removeClass,
   removeDisabledAttribute,
   removeHiddenClass,
-  toggleHidden
+  toggleHidden,
 };
