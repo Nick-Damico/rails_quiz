@@ -19,13 +19,13 @@
     </label>
     <!--<input id="study-plans-search" type="search" placeholder="Search..." autocomplete="off" class="w-full px-3 py-2 text-sm border rounded-md border-slate-300 placeholder:text-slate-400">-->
   </div>
-  <%= form_with model: StudyPlanDeck.new(deck: @deck), url: study_plan_decks_path, method: :post, class: "flex flex-col justify-end" do |f| %>
-    <%= f.hidden_field :deck_id, value: @deck.id %>
+  <%= form_with model: model_for_modal(object), url: url_for_modal(object), method: :post, class: "flex flex-col justify-end" do |f| %>
+    <%= hidden_field_for_modal(f, object) %>
     <ul class="flex flex-col gap-2 p-2 overflow-y-auto max-h-96">
       <% if @study_plans.any? %>
         <%= f.collection_radio_buttons :study_plan_id, @study_plans, :id, :name do |r_b| %>
           <div>
-            <% disabled = r_b.object.decks.include?(@deck) %>
+            <% disabled = radio_btn_disabled?(r_b, object) %>
             <%= r_b.radio_button class: "sr-only peer", disabled: disabled %>
             <%= r_b.label class: "flex w-full px-3 py-3 text-sm text-left border border-gray-600 rounded-md cursor-pointer peer-checked:bg-blue-500 group hover:bg-blue-500 focus:bg-blue-500 focus:outline-none #{disabled ? "disabled_radio_btn" : "" }" %>
           </div>
