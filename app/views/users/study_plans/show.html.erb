@@ -24,15 +24,15 @@
     <% if @study_plan.quizzes.any? %>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <% @study_plan.quizzes.each do |quiz| %>
-          <div class="p-4 transition bg-white shadow rounded-xl hover:shadow-md">
+          <div class="p-4 transition bg-gray-800 shadow rounded-xl hover:shadow-md">
             <h3 class="mb-1 text-lg font-semibold text-white">
               <%= quiz.title %>
             </h3>
             <p class="mb-3 text-sm text-gray-300">
               <%= truncate(quiz.description, length: 100) %>
             </p>
-            <%= link_to "View Quiz", quiz_path(quiz),
-                class: "text-sm text-blue-600 hover:underline" %>
+            <%= link_to "View Deck", quiz_path(quiz),
+                class: "btn-sm btn-primary" %>
           </div>
         <% end %>
       </div>
