@@ -52,8 +52,15 @@
         <%= render_icon "play_circle", klass: "size-5 mr-1" %> Start Quiz
       <% end %>
     <% end %>
-    <%#= link_to "#", class: "flex items-center justify-center btn btn-success rounded" do %>
-      <%#= render_icon "plus", klass: "size-5 mr-1" %> <!-- Add to Study Plan -->
-      <%# end %>
-    </div>
+    <%= button_tag(
+              type: "button",
+              class: "flex items-center justify-center btn btn-success rounded",
+              command: "show-modal",
+              commandfor: "study-plans-dialog"
+            ) do %>
+      <%= render_icon("plus", klass: "size-5 mr-1") %>
+      <%= t("buttons.study_plan_quizzes.create") %>
+    <% end %>
+    <%= render "shared/study_plans/modal", object: @quiz %>
   </div>
+</div>

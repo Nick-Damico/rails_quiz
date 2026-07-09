@@ -41,6 +41,8 @@ Rails.application.routes.draw do
 
   resources :study_plan_decks, only: %i[create]
 
+  resources :study_plan_quizzes, only: %i[create]
+
   resources :study_plans, only: [] do
     resources :quizzes, only: %i[create destroy], module: :study_plans
   end

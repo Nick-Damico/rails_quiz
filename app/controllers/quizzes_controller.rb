@@ -14,6 +14,7 @@ class QuizzesController < ApplicationController
   def show
     authorize @quiz
     @in_progress_answer_sheet = AnswerSheet.in_progress_answer_sheet_for(quiz: @quiz, user: current_user)
+    @study_plans = StudyPlan.where(user: current_user).order(:name)
   end
 
   private

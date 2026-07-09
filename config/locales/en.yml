@@ -146,6 +146,12 @@ en:
         error: "There was an issue adding this deck to your study plan. Refresh page and try again."
         already_exists: "Deck already added to your study plan. Please select a different deck."
 
+    study_plan_quizzes:
+      create:
+        success: "Quiz was successfully added to your study plan."
+        error: "There was an issue adding this quiz to your study plan. Refresh page and try again."
+        already_exists: "Quiz already added to your study plan. Please select a different quiz."
+
     users:
       passwords:
         update:
@@ -176,6 +182,9 @@ en:
       delete: "Are you sure you want to delete this Question?"
 
     study_plan_decks:
+      create: "Add to Study Plan"
+
+    study_plan_quizzes:
       create: "Add to Study Plan"
 
   helpers:

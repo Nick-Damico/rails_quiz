@@ -1,7 +1,7 @@
 # spec/requests/study_plan_decks_spec.rb
 require "rails_helper"
 
-RSpec.describe "Users::StudyPlanDecks", type: :request do
+RSpec.describe "StudyPlanDecks", type: :request do
   let(:user) { create(:user) }
   let(:study_plan) { create(:study_plan, user: user) }
   let(:deck) { create(:deck) }
