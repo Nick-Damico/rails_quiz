@@ -1,12 +1,17 @@
 <%= render "shared/breadcrumbs" %>
 <section>
-  <div class="flex items-center mb-4">
-    <h2 class="text-2xl font-semibold">Study Plans</h2>
-    <%= link_to new_user_study_plan_path(current_user), class: "flex btn rounded ml-auto hover:btn-success transition ease-in-out duration-500" do %>
+  <header class="w-full flex items-center mb-10">
+    <div>
+      <h2 class="text-2xl font-semibold">Study Plans</h2>
+      <p>
+        Keep related quizzes and flashcard decks together for each subject or learning goal.
+      </p>
+    </div>
+    <%= link_to new_user_study_plan_path(current_user), class: "flex self-end btn rounded ml-auto hover:btn-success transition ease-in-out duration-500" do %>
       <%= render_icon "plus" %>
       <span class="ml-2">Create Study Plan</span>
     <% end %>
-  </div>
+  </header>
   <div class="relative overflow-x-auto">
     <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

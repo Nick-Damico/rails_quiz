@@ -18,21 +18,21 @@
       <h2 class="text-2xl font-semibold text-white">
         Quizzes
       </h2>
-      <%= link_to "New Quiz", "",
+      <%#= link_to "New Quiz", "",
           class: "text-sm bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700" %>
     </div>
     <% if @study_plan.quizzes.any? %>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <% @study_plan.quizzes.each do |quiz| %>
-          <div class="p-4 transition bg-gray-800 shadow rounded-xl hover:shadow-md">
+          <div class="flex flex-col p-4 transition bg-gray-800 shadow rounded-xl hover:shadow-md">
             <h3 class="mb-1 text-lg font-semibold text-white">
               <%= quiz.title %>
             </h3>
-            <p class="mb-3 text-sm text-gray-300">
+            <p class="mb-6 text-sm text-gray-300">
               <%= truncate(quiz.description, length: 100) %>
             </p>
-            <%= link_to "View Deck", quiz_path(quiz),
-                class: "btn-sm btn-primary" %>
+            <%= link_to "View Quiz", quiz_path(quiz),
+                class: "mt-auto size-max btn-sm btn-primary" %>
           </div>
         <% end %>
       </div>
@@ -47,21 +47,21 @@
       <h2 class="text-2xl font-semibold text-white">
         Flashcard Decks
       </h2>
-      <%= link_to "New Deck", "",
+      <%#= link_to "New Deck", "",
           class: "text-sm bg-green-600 text-white px-3 py-1.5 rounded hover:bg-green-700" %>
     </div>
     <% if @study_plan.decks.any? %>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <% @study_plan.decks.each do |deck| %>
-          <div class="p-4 transition bg-gray-800 shadow rounded-xl hover:shadow-md">
+          <div class="flex flex-col p-4 transition bg-gray-800 shadow rounded-xl hover:shadow-md">
             <h3 class="mb-1 text-lg font-semibold text-white">
               <%= deck.title %>
             </h3>
-            <p class="mb-4 text-sm text-gray-300">
+            <p class="mb-6 text-sm text-gray-300">
               <%= truncate(deck.description, length: 100) %>
             </p>
             <%= link_to "View Deck", deck_path(deck),
-                class: "btn-sm btn-primary" %>
+                class: "mt-auto size-max btn-sm btn-primary" %>
           </div>
         <% end %>
       </div>
