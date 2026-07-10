@@ -14,7 +14,7 @@ module ModalHelper
     end
   end
 
-  def radio_btn_disabled?(radio_btn, object)
+  def modal_radio_btn_disabled?(radio_btn, object)
     class_name = object.class.name
 
     if class_name == "Deck"
