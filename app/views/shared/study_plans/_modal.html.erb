@@ -27,7 +27,7 @@
           <div>
             <% disabled = modal_radio_btn_disabled?(r_b, object) %>
             <%= r_b.radio_button class: "sr-only peer", disabled: disabled %>
-            <%= r_b.label class: "flex w-full px-3 py-3 text-sm text-left border border-gray-600 rounded-md cursor-pointer peer-checked:bg-blue-500 group hover:bg-blue-500 focus:bg-blue-500 focus:outline-none #{disabled ? "disabled_radio_btn" : "" }" %>
+            <%= r_b.label class: "flex w-full px-3 py-3 text-sm text-left border border-gray-600 rounded-md cursor-pointer peer-checked:bg-blue-500 group hover:bg-blue-500 focus:bg-blue-500 focus:outline-none peer-disabled:text-gray-400 peer-disabled:cursor-not-allowed peer-disabled:bg-transparent peer-disabled:after:block peer-disabled:after:ml-auto peer-disabled:after:text-red-500 peer-disabled:after:content-['Already-added']" %>
           </div>
         <% end %>
       <% else %>
