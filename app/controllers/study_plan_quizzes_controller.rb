@@ -20,6 +20,16 @@ class StudyPlanQuizzesController < ApplicationController
     end
   end
 
+  def destroy
+    study_plan_quiz = StudyPlanQuiz.find(params[:id])
+    study_plan = authorize([ :users, study_plan_quiz.study_plan ])
+
+    if study_plan_quiz.destroy
+      flash[:notice] = t("flash.study_plan_quizzes.destroy.success")
+      redirect_to user_study_plan_url(study_plan)
+    end
+  end
+
   private
 
     def set_quiz

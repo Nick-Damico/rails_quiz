@@ -60,4 +60,24 @@ RSpec.describe "StudyPlanQuizzes", type: :request do
       end
     end
   end
+
+  describe "DELETE /study_plan_quiz/:id" do
+    let!(:study_plan_quiz) { create(:study_plan_quiz, study_plan: study_plan, quiz: quiz) }
+
+    subject(:delete_study_plan_quiz) do
+      delete study_plan_quiz_path(study_plan_quiz)
+    end
+
+    it "removes the quiz from the study plan" do
+      expect { delete_study_plan_quiz }.to change(StudyPlanQuiz, :count).by(-1)
+    end
+
+    it "sets a success flash message" do
+      delete_study_plan_quiz
+
+      expect(flash[:notice]).to eq(
+        "Quiz was successfully removed from your study plan."
+      )
+    end
+  end
 end

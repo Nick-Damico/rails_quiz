@@ -20,6 +20,16 @@ class StudyPlanDecksController < ApplicationController
     end
   end
 
+  def destroy
+    study_plan_deck = StudyPlanDeck.find(params[:id])
+    study_plan = authorize([ :users, study_plan_deck.study_plan ])
+
+    if study_plan_deck.destroy
+      flash[:notice] = t("flash.study_plan_decks.destroy.success")
+      redirect_to user_study_plan_url(study_plan)
+    end
+  end
+
   private
 
     def set_deck

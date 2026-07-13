@@ -39,9 +39,9 @@ Rails.application.routes.draw do
     resources :study_plans, module: :users
   end
 
-  resources :study_plan_decks, only: %i[create]
+  resources :study_plan_decks, only: %i[create destroy]
 
-  resources :study_plan_quizzes, only: %i[create]
+  resources :study_plan_quizzes, only: %i[create destroy]
 
   resources :study_plans, only: [] do
     resources :quizzes, only: %i[create destroy], module: :study_plans
