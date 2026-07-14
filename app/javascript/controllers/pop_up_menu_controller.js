@@ -5,31 +5,25 @@ import { addClass, isHidden, toggleHidden } from "helpers/html_helper";
 export default class extends Controller {
   static targets = ["menu"];
 
-  connect() {}
+  /* Lifecycles */
+  connect() {
+    this.eventClick = this.handleOutsideClick.bind(this);
+    document.addEventListener("click", this.eventClick);
+  }
+
+  disconnect() {
+    document.removeEventListner("click", this.eventClick);
+  }
 
   /* ACTIONS */
   displayMenu(e) {
-    if (!isHidden(this.menuTarget)) this._removeEventListener(); 
-
-    // State Change
     toggleHidden(this.menuTarget);
-
-    // Check if menu is visible after state change
-    if (!isHidden(this.menuTarget)) {
-      this.eventClick = this._handleOutsideClick;
-      document.addEventListener("click", this.eventClick.bind(this));
-    }
   }
 
-  /* PRIVATE */
-  _handleOutsideClick(e) {
-    if (!this.menuTarget.contains(e.target) && !isHidden(this.menuTarget)) {
-      addClass(this.menuTarget, "hidden");
-      this._removeEventListener()
-    }
-  }
+  handleOutsideClick(e) {
+    if (this.element.contains(e.target)) return;
+    if (isHidden(this.menuTarget)) return;
 
-  _removeEventListener() {
-    document.removeEventListener("click", this.eventClick);
+    addClass(this.menuTarget, "hidden");
   }
 }
