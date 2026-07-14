@@ -6,7 +6,7 @@
     <ul class="flex flex-col">
       <% if policy([ :author, object.send(method) ]).edit? %>
         <li class="flex px-2 py-1 hover:bg-blue-500">
-          <%= link_to public_send("edit_author_#{method}_path", object), class: "flex grow transition duration-500" do %>
+          <%= link_to public_send("edit_author_#{method}_path", object.send(method)), class: "flex grow transition duration-500" do %>
             <span class="flex w-6 text-left" aria-label="Edit card">
               <%= render_icon "pencil", klass: "size-5" %>
             </span>
