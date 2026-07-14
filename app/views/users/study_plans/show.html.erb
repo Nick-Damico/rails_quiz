@@ -19,11 +19,11 @@
       <%#= link_to "New Deck", "",
           class: "text-sm bg-green-600 text-white px-3 py-1.5 rounded hover:bg-green-700" %>
     </div>
-    <% if @study_plan.decks.any? %>
+    <% if @study_plan_decks.any? %>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <% @study_plan_decks.each do |study_plan_deck| %>
           <div class="flex flex-col p-4 transition bg-gray-800 shadow rounded-xl hover:shadow-md">
-            <%= render "shared/pop_up_menu", object: study_plan_deck %>
+            <%= render "shared/pop_up_menu", object: study_plan_deck, method: 'deck' %>
             <h3 class="mb-1 text-lg font-semibold text-white">
               <%= study_plan_deck.deck.title %>
             </h3>
@@ -48,10 +48,11 @@
       <%#= link_to "New Quiz", "",
           class: "text-sm bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700" %>
     </div>
-    <% if @study_plan.quizzes.any? %>
+    <% if @study_plan_quizzes.any? %>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <% @study_plan_quizzes.each do |study_plan_quiz| %>
           <div class="flex flex-col p-4 transition bg-gray-800 shadow rounded-xl hover:shadow-md">
+            <%= render "shared/pop_up_menu", object: study_plan_quiz, method: "quiz" %>
             <h3 class="mb-1 text-lg font-semibold text-white">
               <%= study_plan_quiz.quiz.title %>
             </h3>
