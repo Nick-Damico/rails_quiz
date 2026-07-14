@@ -23,6 +23,8 @@ class Users::StudyPlansController < ApplicationController
 
   def show
     @study_plan = authorize([ :users, @study_plan ])
+    @study_plan_quizzes = @study_plan.study_plan_quizzes
+    @study_plan_decks = @study_plan.study_plan_decks
   end
 
   def edit
@@ -40,8 +42,6 @@ class Users::StudyPlansController < ApplicationController
   end
 
   def destroy
-    # We want to make suer that the study_plan.user_id matches the current_user
-    # And the user is the owner of the study plan
     @study_plan = authorize([ :users, @study_plan ])
     if @study_plan.destroy
       redirect_to user_study_plans_path(@user), notice: t("flash.study_plans.destroy.success")

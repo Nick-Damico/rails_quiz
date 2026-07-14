@@ -62,22 +62,45 @@ RSpec.describe "StudyPlanDecks", type: :request do
   end
 
   describe "DELETE /study_plan_deck/:id" do
-    let!(:study_plan_deck) { create(:study_plan_deck, study_plan: study_plan, deck: deck) }
+    context "successfully removing a deck from the study plan" do
+      let!(:study_plan_deck) { create(:study_plan_deck, study_plan: study_plan, deck: deck) }
 
-    subject(:delete_study_plan_deck) do
-      delete study_plan_deck_path(study_plan_deck)
+      subject(:delete_study_plan_deck) do
+        delete study_plan_deck_path(study_plan_deck)
+      end
+
+      it "removes the deck from the study plan" do
+        expect { delete_study_plan_deck }.to change(StudyPlanDeck, :count).by(-1)
+      end
+
+      it "renders a success flash message" do
+        delete_study_plan_deck
+
+        expect(flash[:notice]).to eq(
+          "Deck was successfully removed from your study plan."
+        )
+      end
     end
 
-    it "removes the deck from the study plan" do
-      expect { delete_study_plan_deck }.to change(StudyPlanDeck, :count).by(-1)
-    end
+    context "when the deck cannot be removed" do
+      let!(:study_plan_deck) { create(:study_plan_deck, study_plan:, deck:) }
 
-    it "sets a success flash message" do
-      delete_study_plan_deck
+      before do
+        allow_any_instance_of(StudyPlanDeck).to receive(:destroy).and_return(false)
+      end
 
-      expect(flash[:notice]).to eq(
-        "Deck was successfully removed from your study plan."
-      )
+      it "does not remove the deck" do
+        expect { delete study_plan_deck_path(study_plan_deck) }
+          .not_to change(StudyPlanDeck, :count)
+      end
+
+      it "shows an error message" do
+        delete study_plan_deck_path(study_plan_deck)
+
+        expect(flash[:alert]).to eq(
+          "Unable to remove deck from study plan. Refresh page and try again."
+        )
+      end
     end
   end
 end

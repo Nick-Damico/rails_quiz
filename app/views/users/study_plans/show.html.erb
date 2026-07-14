@@ -11,38 +11,7 @@
       <%= @study_plan.description.presence || "No description provided." %>
     </p>
   </header>
-  <!-- Quizzes Section -->
-  <hr class="mb-4 border-gray-500">
   <section class="mb-12">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-2xl font-semibold text-white">
-        Quizzes
-      </h2>
-      <%#= link_to "New Quiz", "",
-          class: "text-sm bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700" %>
-    </div>
-    <% if @study_plan.quizzes.any? %>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <% @study_plan.quizzes.each do |quiz| %>
-          <div class="flex flex-col p-4 transition bg-gray-800 shadow rounded-xl hover:shadow-md">
-            <h3 class="mb-1 text-lg font-semibold text-white">
-              <%= quiz.title %>
-            </h3>
-            <p class="mb-6 text-sm text-gray-300">
-              <%= truncate(quiz.description, length: 100) %>
-            </p>
-            <%= link_to "View Quiz", quiz_path(quiz),
-                class: "mt-auto size-max btn-sm btn-primary" %>
-          </div>
-        <% end %>
-      </div>
-    <% else %>
-      <p class="text-gray-300">No quizzes added yet.</p>
-    <% end %>
-  </section>
-  <!-- Flashcard Decks Section -->
-  <hr class="mb-4 border-gray-500">
-  <section>
     <div class="flex items-center justify-between mb-4">
       <h2 class="text-2xl font-semibold text-white">
         Flashcard Decks
@@ -52,21 +21,50 @@
     </div>
     <% if @study_plan.decks.any? %>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <% @study_plan.decks.each do |deck| %>
+        <% @study_plan_decks.each do |study_plan_deck| %>
           <div class="flex flex-col p-4 transition bg-gray-800 shadow rounded-xl hover:shadow-md">
+            <%= render "shared/pop_up_menu", object: study_plan_deck %>
             <h3 class="mb-1 text-lg font-semibold text-white">
-              <%= deck.title %>
+              <%= study_plan_deck.deck.title %>
             </h3>
             <p class="mb-6 text-sm text-gray-300">
-              <%= truncate(deck.description, length: 100) %>
+              <%= truncate(study_plan_deck.deck.description, length: 100) %>
             </p>
-            <%= link_to "View Deck", deck_path(deck),
+            <%= link_to "View Deck", deck_path(study_plan_deck.deck),
                 class: "mt-auto size-max btn-sm btn-primary" %>
           </div>
         <% end %>
       </div>
     <% else %>
       <p class="text-gray-300">No decks added yet.</p>
+    <% end %>
+  </section>
+  <hr class="mb-4 border-gray-500">
+  <section>
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-2xl font-semibold text-white">
+        Quizzes
+      </h2>
+      <%#= link_to "New Quiz", "",
+          class: "text-sm bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700" %>
+    </div>
+    <% if @study_plan.quizzes.any? %>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <% @study_plan_quizzes.each do |study_plan_quiz| %>
+          <div class="flex flex-col p-4 transition bg-gray-800 shadow rounded-xl hover:shadow-md">
+            <h3 class="mb-1 text-lg font-semibold text-white">
+              <%= study_plan_quiz.quiz.title %>
+            </h3>
+            <p class="mb-6 text-sm text-gray-300">
+              <%= truncate(study_plan_quiz.quiz.description, length: 100) %>
+            </p>
+            <%= link_to "View Quiz", quiz_path(study_plan_quiz.quiz),
+                class: "mt-auto size-max btn-sm btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-300">No quizzes added yet.</p>
     <% end %>
   </section>
 </div>

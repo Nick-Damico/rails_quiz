@@ -27,6 +27,9 @@ class StudyPlanDecksController < ApplicationController
     if study_plan_deck.destroy
       flash[:notice] = t("flash.study_plan_decks.destroy.success")
       redirect_to user_study_plan_url(study_plan)
+    else
+      flash[:alert] = t("flash.study_plan_decks.destroy.error")
+      redirect_to user_study_plan_url(study_plan)
     end
   end
 

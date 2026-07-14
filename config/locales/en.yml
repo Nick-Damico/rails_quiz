@@ -147,6 +147,7 @@ en:
         already_exists: "Deck already added to your study plan. Please select a different deck."
       destroy:
         success: "Deck was successfully removed from your study plan."
+        error: "Unable to remove deck from study plan. Refresh page and try again."
 
 
     study_plan_quizzes:
@@ -156,6 +157,7 @@ en:
         already_exists: "Quiz already added to your study plan. Please select a different quiz."
       destroy:
         success: "Quiz was successfully removed from your study plan."
+        destroy: "Unable to remove quiz from study plan. Refresh page and try again."
 
     users:
       passwords:
