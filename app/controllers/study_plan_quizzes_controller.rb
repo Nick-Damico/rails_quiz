@@ -26,7 +26,7 @@ class StudyPlanQuizzesController < ApplicationController
 
     if study_plan_quiz.destroy
       flash[:notice] = t("flash.study_plan_quizzes.destroy.success")
-      redirect_to user_study_plan_url(study_plan)
+      redirect_to user_study_plan_url(current_user, study_plan)
     end
   end
 
