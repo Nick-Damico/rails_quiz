@@ -54,8 +54,9 @@ QuizIT is a Ruby on Rails application designed to help users create, organize, a
 ```bash
 gem install mailcatcher
 # Start SMTP server
-mailcatcher
+mailcatcher --foreground
 ```
+
 
 ---
 
