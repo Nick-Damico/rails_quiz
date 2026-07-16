@@ -1,39 +1,5 @@
-<%= render "shared/profile_bar" if user_signed_in? %>
-<div class='bg-gradient-to-b from-indigo-900'>
-  <section class="py-6 px-4 mx-auto max-w-screen-xl">
-    <% if user_signed_in? %>
-      <h2 class="text-3xl mb-4">Hello <%= current_user.username %></h2>
-    <% else %>
-      <h2 class="text-3xl mb-4">Welcome to QuizIt!</h2>
-    <% end %>
-    <p class="prose text-white text-lg font-light mb-16">
-      Start your daily learning journey... Select from a community quiz or flashcard deck, or design your own!
-    </p>
-    <div class="grid max-w-5xl grid-cols-1 gap-6 px-6 mx-auto mt-16 md:grid-cols-3">
-      <div class="p-6 rounded-xl bg-gray-900">
-        <h2 class="mb-2 text-xl font-semibold text-white">
-          Design
-        </h2>
-        <p class="text-gray-400">
-          Build custom quizzes and flashcard decks for any topic.
-        </p>
-      </div>
-      <div class="p-6 rounded-xl bg-gray-900">
-        <h2 class="mb-2 text-xl font-semibold text-white">
-          Study
-        </h2>
-        <p class="text-gray-400">
-          Review cards and reinforce concepts through repetition.
-        </p>
-      </div>
-      <div class="p-6 rounded-xl bg-gray-900">
-        <h2 class="mb-2 text-xl font-semibold text-white">
-          Study Plans
-        </h2>
-        <p class="text-gray-400">
-          Build a custom study plan to meet your learning goals.
-        </p>
-      </div>
-    </div>
-  </section>
-</div>
+<% if user_signed_in? %>
+  <%= render "authenticated" %>
+<% else %>
+  <%= render "guest" %>
+<% end %>

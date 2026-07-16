@@ -9,4 +9,8 @@ class StudyPlan < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
+
+  def resource_count
+    quizzes.count + decks.count
+  end
 end
