@@ -4,7 +4,7 @@ RSpec.describe 'User Authentication Forms', type: :feature do
   scenario 'User creates an account' do
     random_password = Faker::Internet.password(min_length: 6, max_length: 6, mix_case: true, special_characters: true)
     email = Faker::Internet.email
-    username = Faker::Name.name
+    username = "Sam Pups"
 
     visit new_user_registration_path
 
@@ -22,12 +22,12 @@ RSpec.describe 'User Authentication Forms', type: :feature do
     login_as(user, scope: :user)
     visit root_path
 
-    expect(page).to have_content("Hello #{username}")
+    expect(page).to have_content("Welcome back, Sam Pups!")
   end
 
   scenario 'User logs in' do
     random_password = Faker::Internet.password(min_length: 6, max_length: 6, mix_case: true, special_characters: true)
-    username = Faker::Name.name
+    username = "Sam Pups"
     user = create(:user, username: username, password: random_password, password_confirmation: random_password)
 
     visit new_user_session_path
@@ -37,7 +37,7 @@ RSpec.describe 'User Authentication Forms', type: :feature do
 
     click_button 'Log in'
 
-    expect(page).to have_content("Hello #{user.username}")
+    expect(page).to have_content("Welcome back, Sam Pups!")
   end
 
   scenario 'displays error for invalid log in attempt' do
