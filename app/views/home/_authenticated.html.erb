@@ -1,65 +1,68 @@
+<% content_for :home_page, true %>
 <%= render "shared/profile_bar" %>
 <div class='bg-gradient-to-b from-indigo-900'>
-  <section class="max-w-screen-xl px-4 py-6 mx-auto">
-    <h1 class="mb-4 text-4xl">Welcome back, <%= current_user.username %>!</h1>
-    <p class="mb-16 text-lg font-light prose text-white">
-      Start your daily learning journey by taking a Quiz or reviewing Flashcard decks. Design your own or select from one of our community created quizzes or decks.
-    </p>
-    <div class="grid grid-cols-12 gap-6 mx-auto mt-16 mb-8">
-      <div class="col-span-12 md:col-span-8">
-        <h2 class="mb-4 text-2xl">Getting started</h2>
-        <div class="flex flex-col md:flex-row md:gap-x-2 gap-y-2 md:gap-y-0">
-          <div class="p-6 bg-gray-900 rounded-xl">
-            <h3 class="mb-2 text-xl font-semibold text-white">
-              Study
-            </h3>
-            <p class="text-gray-400">
-              Review cards or take a quiz to reinforce concepts through repetition.
-            </p>
+  <div class="wrapper">
+    <section class="px-4 py-6 mx-auto">
+      <h1 class="mb-4 text-4xl">Welcome back, <%= current_user.username %>!</h1>
+      <p class="mb-16 text-lg font-light prose text-white">
+        Start your daily learning journey by taking a Quiz or reviewing Flashcard decks. Design your own or select from one of our community created quizzes or decks.
+      </p>
+      <div class="grid grid-cols-12 gap-6 mx-auto mt-16 mb-8">
+        <div class="col-span-12 md:col-span-8 md:border-r md:border-gray-700 md:pr-4">
+          <h2 class="mb-4 text-2xl">Getting started</h2>
+          <div class="flex flex-col md:flex-row md:gap-x-2 gap-y-2 md:gap-y-0">
+            <div class="p-6 bg-gray-900 rounded-xl">
+              <h3 class="mb-2 text-xl font-semibold text-white">
+                Study
+              </h3>
+              <p class="text-gray-400">
+                Review cards or take a quiz to reinforce concepts through repetition.
+              </p>
+            </div>
+            <div class="p-6 bg-gray-900 rounded-xl">
+              <h3 class="mb-2 text-xl font-semibold text-white">
+                Design
+              </h3>
+              <p class="text-gray-400">
+                Build custom quizzes and flashcard decks for any topic.
+              </p>
+            </div>
+            <div class="p-6 bg-gray-900 rounded-xl">
+              <h3 class="mb-2 text-xl font-semibold text-white">
+                Study Plans
+              </h3>
+              <p class="text-gray-400">
+                Build a custom study plan to meet your learning goals.
+              </p>
+            </div>
           </div>
-          <div class="p-6 bg-gray-900 rounded-xl">
-            <h3 class="mb-2 text-xl font-semibold text-white">
-              Design
-            </h3>
-            <p class="text-gray-400">
-              Build custom quizzes and flashcard decks for any topic.
-            </p>
-          </div>
-          <div class="p-6 bg-gray-900 rounded-xl">
-            <h3 class="mb-2 text-xl font-semibold text-white">
-              Study Plans
-            </h3>
-            <p class="text-gray-400">
-              Build a custom study plan to meet your learning goals.
-            </p>
+        </div>
+        <div class="col-span-12 md:col-span-4">
+          <h2 class="flex mb-4 text-2xl">Study Plans <span class="flex justify-center w-8 h-8 ml-2 border border-gray-700 rounded-full"><%= @study_plans.size %></span></h2>
+          <div class="flex flex-col">
+            <ul>
+              <% @study_plans.each do |study_plan| %>
+                <li class="flex items-center mb-4">
+                  <%= render_icon "pencil" %>
+                  <div class="flex flex-col ml-3">
+                    <h3 class="border-b border-gray-700"><%= study_plan.name %></h3>
+                    <p>Resources <%= study_plan.resource_count %></p>
+                  </div>
+                  <%= link_to ">", user_study_plan_path(current_user, study_plan), class: "btn-sm btn-border-only ml-auto" %>
+                </li>
+              <% end %>
+            </ul>
           </div>
         </div>
       </div>
-      <div class="col-span-12 md:col-span-4">
-        <h2 class="flex mb-4 text-2xl">Study Plans <span class="flex justify-center w-8 h-8 ml-2 border border-gray-700 rounded-full"><%= @study_plans.size %></span></h2>
-        <div class="flex flex-col">
-          <ul>
-            <% @study_plans.each do |study_plan| %>
-              <li class="flex items-center mb-4">
-                <%= render_icon "pencil" %>
-                <div class="flex flex-col ml-3">
-                  <h3 class="border-b border-gray-700"><%= study_plan.name %></h3>
-                  <p>Resources <%= study_plan.resource_count %></p>
-                </div>
-                <%= link_to ">", user_study_plan_path(current_user, study_plan), class: "btn-sm btn-border-only ml-auto" %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <section class="mb-8">
-      <h2 class="mb-4 text-2xl">New community learning resources</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quaerat illo neque ab autem et saepe blanditiis reiciendis beatae culpa. Quo eius porro hic nihil eaque mollitia quae repudiandae sunt!</p>
+      <section class="mb-8">
+        <h2 class="mb-4 text-2xl">New community learning resources</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quaerat illo neque ab autem et saepe blanditiis reiciendis beatae culpa. Quo eius porro hic nihil eaque mollitia quae repudiandae sunt!</p>
+      </section>
+      <section>
+        <h2 class="mb-4 text-2xl">Latest News</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quaerat illo neque ab autem et saepe blanditiis reiciendis beatae culpa. Quo eius porro hic nihil eaque mollitia quae repudiandae sunt!</p>
+      </section>
     </section>
-    <section>
-      <h2 class="mb-4 text-2xl">Latest News</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quaerat illo neque ab autem et saepe blanditiis reiciendis beatae culpa. Quo eius porro hic nihil eaque mollitia quae repudiandae sunt!</p>
-    </section>
-  </section>
+  </div>
 </div>

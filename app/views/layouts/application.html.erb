@@ -22,12 +22,16 @@
     <header>
       <%= render "shared/navbar" %>
     </header>
-    <main class="relative flex-grow pt-3">
+    <main class="relative flex-grow">
       <%= render "shared/flash" %>
       <%= render "shared/devise_errors" %>
-      <div class="max-w-screen-xl px-4 py-6 mx-auto wrapper">
+      <% if content_for?(:home_page) %>
         <%= yield %>
-      </div>
+      <% else %>
+        <div class="wrapper">
+          <%= yield %>
+        </div>
+      <% end %>
     </main>
     <%= render "shared/footer" %>
   </body>
