@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
   def show
     if user_signed_in?
-      @study_plans = current_user.study_plans.order(:name)
+      @study_plans = StudyPlan.includes(:decks, :quizzes).where(user: current_user).order(:name).limit(5)
     end
   end
 end
