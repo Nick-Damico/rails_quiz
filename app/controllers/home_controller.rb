@@ -3,8 +3,8 @@ class HomeController < ApplicationController
   before_action :skip_authorizations, only: %i[show]
 
   def show
-    if user_signed_in?
-      @study_plans = StudyPlan.includes(:decks, :quizzes).where(user: current_user).order(:name).limit(5)
-    end
+    return unless user_signed_in?
+
+    @study_plans = StudyPlan.includes(:decks, :quizzes).where(user: current_user).order(:name).limit(5)
   end
 end

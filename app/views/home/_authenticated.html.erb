@@ -4,7 +4,7 @@
   <div class="wrapper">
     <section class="px-4 py-6 mx-auto">
       <h1 class="mb-4 text-4xl">Welcome back, <%= current_user.username %>!</h1>
-      <p class="mb-16 text-lg font-light prose text-white">
+      <p class="mb-16 text-lg font-light leading-7 text-white max-w-prose">
         Start your daily learning journey by taking a Quiz or reviewing Flashcard decks. Design your own or select from one of our community created quizzes or decks.
       </p>
       <div class="grid grid-cols-12 gap-6 mx-auto mt-16 mb-8">
@@ -21,18 +21,18 @@
             </div>
             <div class="p-6 bg-gray-900 rounded-xl">
               <h3 class="mb-2 text-xl font-semibold text-white">
-                Design
-              </h3>
-              <p class="text-gray-400">
-                Build custom quizzes and flashcard decks for any topic.
-              </p>
-            </div>
-            <div class="p-6 bg-gray-900 rounded-xl">
-              <h3 class="mb-2 text-xl font-semibold text-white">
                 Study Plans
               </h3>
               <p class="text-gray-400">
                 Build a custom study plan to meet your learning goals.
+              </p>
+            </div>
+            <div class="p-6 bg-gray-900 rounded-xl">
+              <h3 class="mb-2 text-xl font-semibold text-white">
+                Design
+              </h3>
+              <p class="text-gray-400">
+                Build custom quizzes and flashcard decks for any topic.
               </p>
             </div>
           </div>
@@ -46,25 +46,30 @@
                   <%= render_icon "pencil" %>
                   <div class="flex flex-col ml-3">
                     <h3 class="border-b border-gray-700"><%= study_plan.name %></h3>
-                    <p>Resources <%= study_plan.resource_count %></p>
+                    <p>Learning resources: <%= study_plan.resource_count %></p>
                   </div>
-                  <%= link_to user_study_plan_path(current_user, study_plan), class: "btn ml-auto p-2" do %>
-                    <%= render_icon "chevron_right", klass: "hover:translate-x-2 transition-transform ease-in-out size-6" %>
+                  <%= link_to user_study_plan_path(current_user, study_plan), class: "btn ml-auto p-3 group" do %>
+                    <%= render_icon "chevron_right", klass: "group-hover:translate-x-2 transition-transform ease-in-out size-6" %>
                   <% end %>
                 </li>
               <% end %>
             </ul>
-            <%= link_to "Manage Study Plans", user_study_plans_path(current_user), class: "btn btn-primary" %>
+            <%= link_to user_study_plans_path(current_user), class: "flex self-start group btn btn-primary" do %>
+              <p class="mr-3">
+                Manage Study Plans
+              </p>
+              <%= render_icon "chevron_right", klass: "group-hover:translate-x-2 transition-transform ease-in-out size-6" %>
+            <% end %>
           </div>
         </div>
       </div>
-      <section class="mb-8">
-        <h2 class="mb-4 text-2xl">New community learning resources</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quaerat illo neque ab autem et saepe blanditiis reiciendis beatae culpa. Quo eius porro hic nihil eaque mollitia quae repudiandae sunt!</p>
+      <section class="mb-12">
+        <h2 class="pb-3 mb-4 text-2xl border-b border-gray-700">New community learning resources</h2>
+        <p class="leading-7 text-white max-w-prose">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quaerat illo neque ab autem et saepe blanditiis reiciendis beatae culpa. Quo eius porro hic nihil eaque mollitia quae repudiandae sunt!</p>
       </section>
-      <section>
-        <h2 class="mb-4 text-2xl">Latest News</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quaerat illo neque ab autem et saepe blanditiis reiciendis beatae culpa. Quo eius porro hic nihil eaque mollitia quae repudiandae sunt!</p>
+      <section class="mb-12">
+        <h2 class="pb-3 mb-4 text-2xl border-b border-gray-700">Latest News</h2>
+        <p class="leading-7 text-white max-w-prose">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quaerat illo neque ab autem et saepe blanditiis reiciendis beatae culpa. Quo eius porro hic nihil eaque mollitia quae repudiandae sunt!</p>
       </section>
     </section>
   </div>
