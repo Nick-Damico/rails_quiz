@@ -1,53 +1,6 @@
 <%= render "shared/breadcrumbs" %>
 <div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
-  <section class="inline-flex flex-col self-start w-full md:w-1/3 bg-gray-800 rounded pt-4 pb-2 px-2 min-h-[400px]">
-    <%= link_to edit_author_quiz_path(@quiz), class: "flex btn-sm rounded items-center ml-auto mb-2 hover:btn-primary transition ease-in-out duration-500" do %>
-      <%= render_icon "pencil", klass: "size-5 mr-1" %> Edit
-    <% end %>
-    <div class="inline-flex items-center p-1 px-4 bg-blue-500">
-      <h2 class="text-3xl font-semi-bold">
-        <%= @quiz.title %> <br>
-      </h2>
-    </div>
-    <%= render "shared/author_avatar", object: @quiz %>
-    <%= render "shared/card_description" do %>
-      <div>
-        <dt class="uppercase">Category:</dt>
-        <dd class="ml-3 mb-3 italic font-light"><%= @quiz.category.name %></dd>
-      </div>
-      <div>
-        <dt class="uppercase">Description:</dt>
-        <% if @quiz.description.present? %>
-          <dd class="ml-3 italic font-light"><%= @quiz.description %></dd>
-        <% else %>
-          <div class="p-2 ml-3 italic text-gray-500">
-            <p class="font-semibold">No description available.</p>
-            <p class="mb-2 text-sm">
-              Consider adding a description to provide more information for users. You can include details about the quiz format, difficulty, or expected knowledge level.
-            </p>
-            <p class="text-sm not-italic text-gray-400">
-              You can add a description via the <span class="font-semibold text-white">Edit</span> button above.
-            </p>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="flex justify-between mt-auto space-x-4 border-t border-gray-500">
-      <p class="flex-1 p-1 text-xl font-light text-center uppercase">
-        <% minutes = seconds_to_minutes(@quiz.time_to_complete) %>
-        <span class="text-2xl">
-          <%= format_as_two_digits(minutes) %>
-        </span><br>
-        <%= "minute".pluralize(minutes) %>
-      </p>
-      <p class="flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500">
-        <span class="text-2xl">
-          <%= format_as_two_digits(@quiz.questions.count) %>
-        </span><br>
-        <%= "question".pluralize(@quiz.questions.count) %>
-      </p>
-    </div>
-  </section>
+  <%= render "shared/main_card", { object: @quiz, edit_path: edit_author_quiz_path(@quiz), collection_method: :questions } %>
   <section data-controller="search-filter" class="flex flex-col w-full px-2 py-4 bg-gray-800 rounded md:w-2/3">
     <%= link_to new_quiz_question_path(@quiz), class: "flex btn rounded ml-auto hover:btn-success transition ease-in-out duration-500" do %>
       <%= render_icon "plus" %>
