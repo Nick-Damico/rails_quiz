@@ -58,7 +58,7 @@
     @apply transition duration-300 ease-in-out bg-yellow-500 hover:bg-yellow-600;
   }
 
-  .btn-border-only {
+  .btn-transparent {
     @apply transition duration-300 ease-in-out border border-gray-800;
   }
 }

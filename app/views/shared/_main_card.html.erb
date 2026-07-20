@@ -3,7 +3,7 @@
   <div class="flex flex-col items-start justify-between pb-3">
     <% if policy([ :author, object ]).edit? %>
       <%= link_to edit_path,
-      class: "flex text-black self-end items-center btn-xs btn-warning" do %>
+      class: "flex text-black self-end items-center btn-xs btn-transparent text-white hover:btn-warning hover:text-black" do %>
         <%= render_icon "pencil", klass: "size-4 mr-2" %>
         Edit
       <% end %>
