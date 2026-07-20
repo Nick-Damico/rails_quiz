@@ -37,9 +37,9 @@
             </div>
           </div>
         </div>
-        <div class="col-span-12 md:col-span-4">
+        <div class="flex flex-col col-span-12 md:col-span-4">
           <h2 class="flex mb-4 text-2xl">Study Plans <span class="flex justify-center w-8 h-8 ml-2 border border-gray-700 rounded-full"><%= @study_plans.size %></span></h2>
-          <div class="flex flex-col">
+          <div class="flex flex-col grow">
             <ul>
               <% @study_plans.each do |study_plan| %>
                 <li class="flex items-center mb-4">
@@ -54,7 +54,7 @@
                 </li>
               <% end %>
             </ul>
-            <%= link_to user_study_plans_path(current_user), class: "flex self-start group btn btn-primary" do %>
+            <%= link_to user_study_plans_path(current_user), class: "flex self-start group btn btn-primary mt-auto" do %>
               <p class="mr-3">
                 Manage Study Plans
               </p>
