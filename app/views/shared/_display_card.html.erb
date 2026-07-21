@@ -1,0 +1,48 @@
+<section class="inline-flex flex-col self-start w-full bg-gray-800 p-2 rounded min-h-[400px]">
+  <!-- Header -->
+  <div class="flex flex-col items-start justify-between pb-3">
+    <div>
+      <h1 class="text-2xl font-bold leading-tight text-white">
+        <%= object.title %>
+      </h1>
+      <span class="inline-flex mt-3 rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+        <%= object.category.name %>
+      </span>
+    </div>
+  </div>
+  <!-- Author -->
+  <div class="border-t border-gray-700">
+    <%= render "shared/author_avatar", object: object %>
+  </div>
+  <!-- Description -->
+  <div class="flex-1 border-t border-gray-700 py-5">
+    <% if object.description.present? %>
+      <p class="leading-7 text-gray-300">
+        <%= object.description %>
+      </p>
+    <% else %>
+      <div class="rounded-lg border border-dashed border-gray-600 p-4">
+        <p class="font-medium text-gray-300">
+          No description yet.
+        </p>
+        <p class="mt-2 text-sm leading-6 text-gray-400">
+          Add a description to help users understand what they'll learn from this deck.
+        </p>
+      </div>
+    <% end %>
+  </div>
+  <div class="flex justify-between mt-auto space-x-4 border-t border-gray-500">
+    <p class="flex-1 p-1 text-xl font-light text-center uppercase">
+      <% minutes = seconds_to_minutes(object.time_to_complete) %>
+      <span class="text-2xl">
+        <%= format_as_two_digits(minutes) %>
+      </span><br>
+      <%= "minute".pluralize(minutes) %>
+    </p>
+    <p class="flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500">
+      <% collection_count = object.send(collection_method).count %>
+      <span class="text-2xl"><%= format_as_two_digits(collection_count) %></span><br>
+      <%= collection_method.to_s.pluralize(collection_count) %>
+    </p>
+  </div>
+</section>

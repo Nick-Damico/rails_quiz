@@ -1,45 +1,6 @@
 <%= render "shared/breadcrumbs" %>
 <div class="flex flex-col space-y-2 md:space-y-2 w-full lg:w-1/2 max-w-[600px]">
-  <section class="flex flex-col self-start w-full pt-2 bg-gray-800 rounded">
-    <div class="inline-flex items-center p-1 px-4 mb-4 bg-blue-500">
-      <h1 class="text-4xl font-semi-bold">
-        <%= @deck.title %>
-        <br>
-      </h1>
-    </div>
-    <%= render "shared/author_avatar", object: @deck %>
-    <%= render "shared/card_description" do %>
-      <div>
-        <dt class="uppercase">Category:</dt>
-        <dd class="mb-3 ml-3 italic font-light"><%= @deck.category.name %></dd>
-      </div>
-      <div>
-        <dt class="uppercase">Description:</dt>
-        <dd class="ml-3 italic font-light"><%= @deck.description %></dd>
-      </div>
-    <% end %>
-    <div class="flex justify-between space-x-4 border-t border-gray-500">
-      <p
-        id="quiz-duration"
-        class="flex-1 p-1 text-xl font-light text-center uppercase">
-        <% minutes = seconds_to_minutes(@deck.time_to_complete) %>
-        <span class="text-2xl">
-          <%= format_as_two_digits(minutes) %>
-        </span><br>
-        <%= "minute".pluralize(minutes) %>
-      </p>
-      <p
-        id="quiz-question-count"
-        class="
-          flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500
-        ">
-        <span class="text-2xl">
-          <%= format_as_two_digits(@deck.cards.count) %>
-        </span><br>
-        <%= "cards".pluralize(@deck.cards.count) %>
-      </p>
-    </div>
-  </section>
+  <%= render "shared/display_card", object: @deck, collection_method: :cards %>
   <div
     data-controller="decks--review-settings"
     class="flex flex-col p-4 space-y-4 border border-gray-500 rounded">
