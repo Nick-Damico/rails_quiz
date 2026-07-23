@@ -1,6 +1,13 @@
 <section class="inline-flex flex-col self-start w-full bg-gray-800 p-2 rounded min-h-[400px]">
   <!-- Header -->
   <div class="flex flex-col items-start justify-between pb-3">
+    <% if policy([ :author, object ]).edit? %>
+      <%= link_to edit_path,
+      class: "flex text-black self-end items-center btn-xs btn-transparent text-white hover:btn-warning hover:text-black" do %>
+        <%= render_icon "pencil", klass: "size-4 mr-2" %>
+        Edit
+      <% end %>
+    <% end %>
     <div>
       <h1 class="text-2xl font-bold leading-tight text-white">
         <%= object.title %>
@@ -23,7 +30,7 @@
     <% else %>
       <div class="rounded-lg border border-dashed border-gray-600 p-4">
         <p class="font-medium text-gray-300">
-          No description yet.
+          No description available.
         </p>
         <p class="mt-2 text-sm leading-6 text-gray-400">
           Add a description to help users understand what they'll learn from this deck.
@@ -40,9 +47,8 @@
       <%= "minute".pluralize(minutes) %>
     </p>
     <p class="flex-1 p-1 text-xl font-light text-center uppercase border-l border-gray-500">
-      <% collection_count = object.send(collection_method).count %>
-      <span class="text-2xl"><%= format_as_two_digits(collection_count) %></span><br>
-      <%= collection_method.to_s.pluralize(collection_count) %>
+      <span class="text-2xl"><%= format_as_two_digits(item_count) %></span><br>
+      <%= item_name %>
     </p>
   </div>
 </section>

@@ -1,6 +1,10 @@
 <%= render "shared/breadcrumbs" %>
 <div class="flex flex-col space-y-2 md:space-y-2 w-full lg:w-1/2 max-w-[600px]">
-  <%= render "shared/display_card", object: @deck, collection_method: :cards %>
+  <%= render "shared/resource_card",
+              object: @deck,
+              edit_path: edit_author_deck_path(@deck),
+              item_count: @deck.cards.count,
+              item_name: "cards" %>
   <div
     data-controller="decks--review-settings"
     class="flex flex-col p-4 space-y-4 border border-gray-500 rounded">
