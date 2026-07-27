@@ -1,6 +1,6 @@
 module Author
   class QuizzesController < ApplicationController
-    before_action :set_quiz, only: %i[destroy edit show update]
+    before_action :set_quiz, only: %i[destroy edit publish show update unpublish]
     before_action :set_author, only: %i[create destroy edit index new show]
     before_action :set_categories, only: %i[create edit new update]
     before_action :set_breadcrumbs
@@ -55,6 +55,18 @@ module Author
         redirect_to author_quizzes_url
       end
     end
+
+    def publish
+      authorize([ :author, @quiz ])
+      if @quiz.publish!
+        flash[:notice] = t("flash.quizzes.publish.success")
+        render :show, status: :ok
+      else
+        flash[:alert] = t("flash.quizzes.publish.error")
+        redirect_to author_quiz_url(@quiz)
+      end
+    end
+
 
     private
 

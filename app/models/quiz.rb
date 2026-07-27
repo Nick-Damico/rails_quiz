@@ -16,6 +16,10 @@ class Quiz < ApplicationRecord
     update_column(:published_at, Time.current) if publishable?
   end
 
+  def unpublish!
+    update_column(:published_at, nil) if published?
+  end
+
   def publishable?
     questions.count >= PUBLISHABLE_QUESTION_COUNT
   end

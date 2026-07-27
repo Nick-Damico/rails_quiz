@@ -58,6 +58,8 @@ en:
       destroy:
         success: "Quiz was successfully deleted."
         error: "There was an error deleting the quiz."
+      publish:
+        success: "Quiz was successfully published."
 
     questions:
       create:

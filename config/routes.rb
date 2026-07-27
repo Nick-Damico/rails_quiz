@@ -14,8 +14,12 @@ Rails.application.routes.draw do
   root "home#show"
 
   namespace :author do
-    resources :decks
-    resources :quizzes
+    resources :quizzes do
+      member do
+        patch "publish"
+        patch "unpublish"
+      end
+    end
   end
 
   resources :answer_sheets, only: %i[create destroy show] do
