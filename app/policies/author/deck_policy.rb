@@ -33,4 +33,12 @@ class Author::DeckPolicy < ApplicationPolicy
   def destroy?
     user_is_owner?
   end
+
+  def publish?
+    user_is_owner?
+  end
+
+  def unpublish?
+    publish?
+  end
 end

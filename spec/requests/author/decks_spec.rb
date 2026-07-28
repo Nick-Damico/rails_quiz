@@ -79,7 +79,7 @@ RSpec.describe "Author::Decks", type: :request do
       it 'does not create an authored deck' do
         expect {
           post author_decks_path, params: invalid_params
-        }.to change(Quiz, :count).by(0)
+        }.to change(Deck, :count).by(0)
       end
     end
   end
@@ -128,6 +128,44 @@ RSpec.describe "Author::Decks", type: :request do
 
         expect(flash[:alert]).to eq(I18n.t("flash.decks.update.error"))
       end
+    end
+  end
+  describe "PATCH author/decks/:id/publish" do
+    let!(:deck) { create(:deck, author: author, title: "CS 101", published_at: nil, card_count: 5) }
+    it "responds with HTTP status success(200)" do
+      patch publish_author_deck_path(deck)
+
+      expect(response).to have_http_status(:success)
+    end
+    it "publishes the deck" do
+      patch publish_author_deck_path(deck)
+
+      expect(deck.reload).to be_published
+    end
+
+    it "renders with a success message" do
+      patch publish_author_deck_path(deck)
+
+      expect(flash[:notice]).to eq("Flashcard deck was successfully published.")
+    end
+  end
+
+  describe "PATCH author/decks/:id/unpublish" do
+    let!(:deck) { create(:deck, author: author, published_at: Time.current) }
+    it "responds with HTTP status success(200)" do
+      patch unpublish_author_deck_path(deck)
+
+      expect(response).to have_http_status(:success)
+    end
+    it "unpublishes the deck" do
+      patch unpublish_author_deck_path(deck)
+
+      expect(deck.reload).not_to be_published
+    end
+    it "renders with a success message" do
+      patch unpublish_author_deck_path(deck)
+
+      expect(flash[:notice]).to eq("Flashcard deck was successfully unpublished.")
     end
   end
 

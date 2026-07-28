@@ -1,7 +1,7 @@
 class Author::DecksController < ApplicationController
   before_action :set_author
   before_action :set_categories, only: %i[edit create new update]
-  before_action :set_deck, only: %i[destroy edit show update]
+  before_action :set_deck, only: %i[destroy edit publish show update unpublish]
   before_action :set_breacrumbs, only: %i[edit index new show]
 
   def index
@@ -53,6 +53,28 @@ class Author::DecksController < ApplicationController
     else
       flash.now[:alert] = t("flash.decks.destroy.error")
       redirect_to author_decks_url
+    end
+  end
+
+  def publish
+    authorize([ :author, @deck ])
+    if @deck.publish!
+      flash[:notice] = t("flash.decks.publish.success")
+      render :show, status: :ok
+    else
+      flash[:alert] = t("flash.decks.publish.error")
+      redirect_to author_quiz_url(@deck)
+    end
+  end
+
+  def unpublish
+    authorize([ :author, @deck ])
+    if @deck.unpublish!
+      flash[:notice] = t("flash.decks.unpublish.success")
+      render :show, status: :ok
+    else
+      flash[:alert] = t("flash.decks.unpublish.error")
+      redirect_to author_deck_url(@deck)
     end
   end
 

@@ -14,6 +14,13 @@ Rails.application.routes.draw do
   root "home#show"
 
   namespace :author do
+    resources :decks do
+      member do
+        patch "publish"
+        patch "unpublish"
+      end
+    end
+
     resources :quizzes do
       member do
         patch "publish"

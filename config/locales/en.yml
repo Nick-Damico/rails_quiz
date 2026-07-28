@@ -108,6 +108,12 @@ en:
       destroy:
         success: "Deck was successfully deleted."
         error: "There was an error deleting the deck."
+      publish:
+        success: "Flashcard deck was successfully published."
+        error: "There was an error publishing the deck. Please refresh page and try again."
+      unpublish:
+        success: "Flashcard deck was successfully unpublished."
+        error: "There was an error unpublishing the deck. Please refresh page and try again."
 
     answer_sheets:
       create:
