@@ -60,6 +60,10 @@ en:
         error: "There was an error deleting the quiz."
       publish:
         success: "Quiz was successfully published."
+        error: "There was an error publishing the quiz. Please refresh page and try again."
+      unpublish:
+        success: "Quiz was successfully unpublished."
+        error: "There was an error unpublishing the quiz. Please refresh page and try again."
 
     questions:
       create:

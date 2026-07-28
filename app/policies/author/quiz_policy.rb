@@ -34,6 +34,9 @@ class Author::QuizPolicy < ApplicationPolicy
     user_is_owner?
   end
 
+  def unpublish?
+    publish?
+  end
 
   def destroy?
     user_is_owner?

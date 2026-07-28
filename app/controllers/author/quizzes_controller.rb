@@ -67,6 +67,16 @@ module Author
       end
     end
 
+    def unpublish
+      authorize([ :author, @quiz ])
+      if @quiz.unpublish!
+        flash[:notice] = t("flash.quizzes.unpublish.success")
+        render :show, status: :ok
+      else
+        flash[:alert] = t("flash.quizzes.unpublish.error")
+        redirect_to author_quiz_url(@quiz)
+      end
+    end
 
     private
 
