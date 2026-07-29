@@ -1,13 +1,13 @@
 <%= render "shared/breadcrumbs" %>
-<div class="flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
-  <div class="md:w-1/3">
+<div class="grid grid-cols-3 grid-rows-2 gap-3">
+  <div class="col-span-1 row-span-1">
     <%= render "shared/resource_card",
               object: @deck,
               edit_path: edit_author_deck_path(@deck),
               item_count: @deck.cards.count,
               item_name: "cards" %>
   </div>
-  <section data-controller="search-filter" class="flex flex-col w-full px-2 py-4 bg-gray-800 rounded md:w-2/3">
+  <section data-controller="search-filter" class="col-span-2 row-span-2 px-2 py-4 bg-gray-800 rounded">
     <%= link_to new_deck_card_path(deck_id: @deck.id), class: "flex btn rounded ml-auto hover:btn-success transition ease-in-out duration-500" do %>
       <%= render_icon "plus" %>
       <span class="ml-2">Add Flashcard</span>
@@ -51,4 +51,28 @@
       <% end %>
     </div>
   </section>
+  <div class="col-span-1 row-span-1">
+    <div class="flex flex-col p-2 space-y-4 border border-gray-500 rounded">
+      <%= form_with model: @deck, url: publish_author_deck_path(@deck), method: :patch, data: { turbo: false } do |f| %>
+        <details class="mb-6 border-b border-gray-500" open>
+          <summary class="flex items-center mb-2 text-2xl"><%= render_icon "cog-6-tooth", klass: "size-8" %>
+            <span class="ml-2">Settings</span></summary>
+        </details>
+        <label class="relative flex items-center cursor-pointer mb-4">
+          <%= f.check_box :publish, checked: @deck.published?, class: "sr-only peer" %>
+          <div
+            class="
+              w-11 h-6 bg-gray-400 rounded-full peer-focus:ring-4 peer-focus:ring-blue-300
+              peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px]
+              after:left-[2px] after:bg-white after:border after:rounded-full after:h-5
+              after:w-5 after:transition-all peer-checked:after:translate-x-full
+            "></div>
+          <span class="ml-3 text-sm font-medium">
+            Publish
+          </span>
+        </label>
+        <%= f.submit class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
 </div>

@@ -150,25 +150,6 @@ RSpec.describe "Author::Decks", type: :request do
     end
   end
 
-  describe "PATCH author/decks/:id/unpublish" do
-    let!(:deck) { create(:deck, author: author, published_at: Time.current) }
-    it "responds with HTTP status success(200)" do
-      patch unpublish_author_deck_path(deck)
-
-      expect(response).to have_http_status(:success)
-    end
-    it "unpublishes the deck" do
-      patch unpublish_author_deck_path(deck)
-
-      expect(deck.reload).not_to be_published
-    end
-    it "renders with a success message" do
-      patch unpublish_author_deck_path(deck)
-
-      expect(flash[:notice]).to eq("Flashcard deck was successfully unpublished.")
-    end
-  end
-
   describe "DELETE /destroy" do
     let!(:deck) { create(:deck, author: author) }
 

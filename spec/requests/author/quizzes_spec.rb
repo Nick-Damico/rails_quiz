@@ -142,25 +142,6 @@ RSpec.describe Author::QuizzesController, type: :request do
     end
   end
 
-  describe "PATCH author/quizzes/:id/unpublish" do
-    let!(:quiz) { create(:quiz, author: author, published_at: Time.current) }
-    it "responds with HTTP status success(200)" do
-      patch unpublish_author_quiz_path(quiz)
-
-      expect(response).to have_http_status(:success)
-    end
-    it "unpublishes the quiz" do
-      patch unpublish_author_quiz_path(quiz)
-
-      expect(quiz.reload).not_to be_published
-    end
-    it "renders with a success message" do
-      patch unpublish_author_quiz_path(quiz)
-
-      expect(flash[:notice]).to eq("Quiz was successfully unpublished.")
-    end
-  end
-
   describe "DELETE /destroy" do
     let!(:quiz) { create(:quiz, author: author) }
 
