@@ -18,5 +18,11 @@ FactoryBot.define do
         questions_count { 1 }
       end
     end
+
+    trait :with_publishable do
+      transient do
+        questions_count { 5 }
+      end
+    end
   end
 end

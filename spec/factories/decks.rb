@@ -18,4 +18,8 @@ FactoryBot.define do
   trait :with_cards do
     transient { card_count { 2 } }
   end
+
+  trait :with_publishable do
+    transient { card_count { 5 } }
+  end
 end
