@@ -131,21 +131,19 @@ RSpec.describe "Author::Decks", type: :request do
     end
   end
   describe "PATCH author/decks/:id/publish" do
-    let!(:deck) { create(:deck, author: author, title: "CS 101", published_at: nil, card_count: 5) }
-    it "responds with HTTP status success(200)" do
-      patch publish_author_deck_path(deck)
+    let!(:deck) { create(:deck, :with_publishable, author: author, published_at: nil) }
+    let(:publish_request) { patch publish_author_deck_path(deck), params: { deck: { publish: "1" } } }
 
-      expect(response).to have_http_status(:success)
+    before { publish_request }
+
+    it "responds with HTTP status see_other(303)" do
+      expect(response).to have_http_status(:see_other)
     end
     it "publishes the deck" do
-      patch publish_author_deck_path(deck)
-
       expect(deck.reload).to be_published
     end
 
     it "renders with a success message" do
-      patch publish_author_deck_path(deck)
-
       expect(flash[:notice]).to eq("Flashcard deck was successfully published.")
     end
   end

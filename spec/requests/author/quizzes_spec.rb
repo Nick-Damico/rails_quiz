@@ -123,21 +123,18 @@ RSpec.describe Author::QuizzesController, type: :request do
   end
 
   describe "PATCH author/quizzes/:id/publish" do
-    let!(:quiz) { create(:quiz, author: author, title: "CS 101", published_at: nil, questions_count: 5) }
-    it "responds with HTTP status success(200)" do
-      patch publish_author_quiz_path(quiz)
+    let!(:quiz) { create(:quiz, :with_publishable, author: author, title: "CS 101", published_at: nil) }
+    let(:publish_request) { patch publish_author_quiz_path(quiz), params: { quiz: { publish: "1" } } }
 
-      expect(response).to have_http_status(:success)
+    before { publish_request }
+    it "responds with HTTP status see_other(303)" do
+      expect(response).to have_http_status(:see_other)
     end
     it "publishes the quiz" do
-      patch publish_author_quiz_path(quiz)
-
       expect(quiz.reload).to be_published
     end
 
     it "renders with a success message" do
-      patch publish_author_quiz_path(quiz)
-
       expect(flash[:notice]).to eq("Quiz was successfully published.")
     end
   end

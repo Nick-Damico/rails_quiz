@@ -53,7 +53,7 @@
   </section>
   <div class="col-span-1 row-span-1">
     <div class="flex flex-col p-2 space-y-4 border border-gray-500 rounded">
-      <%= form_with model: @deck, url: publish_author_deck_path(@deck), method: :patch, data: { turbo: false } do |f| %>
+      <%= form_with model: @deck, url: publish_author_deck_path(@deck), method: :patch do |f| %>
         <details class="mb-6 border-b border-gray-500" open>
           <summary class="flex items-center mb-2 text-2xl"><%= render_icon "cog-6-tooth", klass: "size-8" %>
             <span class="ml-2">Settings</span></summary>

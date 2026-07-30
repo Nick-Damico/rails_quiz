@@ -58,15 +58,19 @@ module Author
 
     def publish
       authorize([ :author, @quiz ])
-      if params.dig(:quiz, :publish) == "1" && !@quiz.published?
+      publish = params.dig(:quiz, :publish) == "1"
+
+      if publish && !@quiz.published?
         @quiz.publish!
         flash[:notice] = t("flash.quizzes.publish.success")
-      elsif params.dig(:quiz, :publish) == "0" && @quiz.published?
+      elsif !publish && @quiz.published?
         @quiz.unpublish!
         flash[:notice] = t("flash.quizzes.unpublish.success")
+      else
+        flash[:alert] = t("flash.quizzes.publish.error")
       end
 
-      redirect_to author_quiz_url(@quiz)
+      redirect_to author_quiz_url(@quiz), status: :see_other
     end
 
     private

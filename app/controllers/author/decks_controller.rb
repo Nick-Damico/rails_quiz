@@ -58,15 +58,19 @@ class Author::DecksController < ApplicationController
 
   def publish
     authorize([ :author, @deck ])
-    if params.dig(:deck, :publish) == "1" && !@deck.published?
+    publish = params.dig(:deck, :publish) == "1"
+
+    if publish && !@deck.published?
       @deck.publish!
       flash[:notice] = t("flash.decks.publish.success")
-    elsif params.dig(:deck, :publish) == "0" && @deck.published?
+    elsif !publish && @deck.published?
       @deck.unpublish!
       flash[:notice] = t("flash.decks.unpublish.success")
+    else
+      flash[:alert] = t("flash.decks.publish.error")
     end
 
-    redirect_to author_deck_url(@deck)
+    redirect_to author_deck_url(@deck), status: :see_other
   end
 
   private
