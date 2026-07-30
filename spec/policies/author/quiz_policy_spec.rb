@@ -71,6 +71,17 @@ RSpec.describe Author::QuizPolicy, type: :policy do
     end
   end
 
+  permissions :publish? do
+    let(:record) { create(:quiz, :with_publishable, author: user) }
+    it "allows an author to publish a quiz" do
+      expect(subject).to permit(user, record)
+    end
+
+    it "prevents a user from publishing another author's quiz" do
+      expect(subject).to_not permit(unauthorized_user, record)
+    end
+  end
+
   permissions :destroy? do
     let(:record) { create(:quiz, author: user) }
     it "allows an author to delete their quiz" do

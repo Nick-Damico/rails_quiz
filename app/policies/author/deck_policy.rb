@@ -37,8 +37,4 @@ class Author::DeckPolicy < ApplicationPolicy
   def publish?
     user_is_owner?
   end
-
-  def unpublish?
-    publish?
-  end
 end

@@ -73,6 +73,17 @@ RSpec.describe Author::DeckPolicy, type: :policy do
     end
   end
 
+  permissions :publish? do
+    let(:record) { create(:deck, :with_publishable, author: user) }
+    it "allows an author to publish a deck" do
+      expect(subject).to permit(user, record)
+    end
+
+    it "prevents a user from publishing another author's deck" do
+      expect(subject).to_not permit(unauthorized_user, record)
+    end
+  end
+
   permissions :destroy? do
     let(:record) { create(:deck, author: user) }
     it "allows an author to delete their deck" do
