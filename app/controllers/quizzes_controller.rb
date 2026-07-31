@@ -3,7 +3,9 @@ class QuizzesController < ApplicationController
   before_action :set_breadcrumbs
 
   def index
-    search = QuizSearch.new(policy_scope(Quiz), params)
+    default_scope = policy_scope(Quiz).published
+
+    search = QuizSearch.new(default_scope, params)
 
     @filter_options = search.filter_options
     @pagy, @quizzes = pagy(

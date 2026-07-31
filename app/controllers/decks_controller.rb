@@ -2,7 +2,9 @@ class DecksController < ApplicationController
   before_action :set_deck, only: %i[show]
   before_action :set_breadcrumbs, only: %i[index show]
   def index
-    search = DeckSearch.new(policy_scope(Deck), params)
+    default_scope = policy_scope(Deck).published
+
+    search = DeckSearch.new(default_scope, params)
 
     @filter_options = search.filter_options
     @pagy, @decks = pagy(:countish, search.query.order(:title, :created_at))

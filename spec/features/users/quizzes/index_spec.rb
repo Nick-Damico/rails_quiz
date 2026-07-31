@@ -4,7 +4,7 @@ RSpec.describe "user quizzes index page", type: :feature do
   let(:user) { create(:user) }
 
   context "with quizzes" do
-    let!(:quiz) { create(:quiz) }
+    let!(:quiz) { create(:quiz, published_at: Time.current) }
 
     before do
       sign_in user

@@ -8,7 +8,16 @@ RSpec.describe Deck, type: :model do
 
   it { should validate_presence_of(:title) }
 
-  context "#publish!" do
+  describe ".published" do
+    it "returns only published quizzes" do
+      published = create(:deck, :with_publishable, published_at: Time.current)
+      create(:deck)
+
+      expect(described_class.published).to contain_exactly(published)
+    end
+  end
+
+  describe "#publish!" do
     let!(:deck) { create(:deck, card_count: 5) }
     it "publishes a publishale quiz by setting the published_at datetime" do
       deck = create(:deck, card_count: 5)
@@ -27,7 +36,7 @@ RSpec.describe Deck, type: :model do
     end
   end
 
-  context "#published?" do
+  describe "#published?" do
     it "returns false if published_at is nil" do
       deck = build(:deck, published_at: nil)
 
@@ -41,7 +50,7 @@ RSpec.describe Deck, type: :model do
     end
   end
 
-  context "#publishable?" do
+  describe "#publishable?" do
     it "returns false if the quiz has less than 5 cards" do
       deck = create(:deck, card_count: 4)
 
@@ -69,7 +78,7 @@ RSpec.describe Deck, type: :model do
     end
   end
 
-  context "#unpublish!" do
+  describe "#unpublish!" do
     it "unpublishes a quiz removing its published_at datetime" do
       deck = create(:deck, published_at: Time.current)
 

@@ -8,7 +8,10 @@ class Deck < ApplicationRecord
 
   validates :title, presence: true
 
+  scope :published, -> { where.not(published_at: nil) }
+
   PUBLISHABLE_CARD_COUNT = 5
+
 
   def publish!
     update_column(:published_at, Time.current) if publishable?

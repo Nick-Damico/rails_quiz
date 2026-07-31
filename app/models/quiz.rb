@@ -6,6 +6,8 @@ class Quiz < ApplicationRecord
   validates_presence_of :title
   validates_presence_of :author
 
+  scope :published, -> { where.not(published_at: nil) }
+
   PUBLISHABLE_QUESTION_COUNT = 5
   SECONDS_PER_QUESTION = 30.0
 

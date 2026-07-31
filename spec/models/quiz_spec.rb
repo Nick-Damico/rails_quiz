@@ -7,7 +7,16 @@ RSpec.describe Quiz, type: :model do
 
   it { should have_many(:questions) }
 
-  context "#publish!" do
+  describe ".published" do
+    it "returns only published quizzes" do
+      published = create(:quiz, :with_publishable, published_at: Time.current)
+      create(:quiz)
+
+      expect(described_class.published).to contain_exactly(published)
+    end
+  end
+
+  describe "#publish!" do
     let!(:quiz) { create(:quiz, questions_count: 5) }
     it "publishes a publishale quiz by setting the published_at datetime" do
       quiz = create(:quiz, questions_count: 5)
@@ -26,7 +35,7 @@ RSpec.describe Quiz, type: :model do
     end
   end
 
-  context "#published?" do
+  describe "#published?" do
     it "returns false if published_at is nil" do
       quiz = build(:quiz, published_at: nil)
 
@@ -40,7 +49,7 @@ RSpec.describe Quiz, type: :model do
     end
   end
 
-  context "#publishable?" do
+  describe "#publishable?" do
     it "returns false if the quiz has less than 5 questions" do
       quiz = create(:quiz, questions_count: 4)
 
@@ -54,7 +63,7 @@ RSpec.describe Quiz, type: :model do
     end
   end
 
-  context "#time_to_complete" do
+  describe "#time_to_complete" do
     it "returns the total estimated time to complete all cards in seconds" do
       quiz = create(:quiz, questions_count: 2)
 
@@ -68,7 +77,7 @@ RSpec.describe Quiz, type: :model do
     end
   end
 
-  context "#unpublish!" do
+  describe "#unpublish!" do
     it "unpublishes a quiz removing its published_at datetime" do
       quiz = create(:quiz, published_at: Time.current)
 
