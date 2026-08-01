@@ -14,7 +14,12 @@ class Deck < ApplicationRecord
 
 
   def publish!
-    update_column(:published_at, Time.current) if publishable?
+    unless publishable?
+      errors.add(:base, "Deck must have at least #{PUBLISHABLE_CARD_COUNT} cards to be published.")
+      return false
+    end
+
+    update_column(:published_at, Time.current)
   end
 
   def publishable?

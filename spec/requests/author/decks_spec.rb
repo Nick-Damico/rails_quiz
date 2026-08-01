@@ -146,6 +146,18 @@ RSpec.describe "Author::Decks", type: :request do
     it "renders with a success message" do
       expect(flash[:notice]).to eq("Flashcard deck was successfully published.")
     end
+
+    context "not publishable" do
+      let(:deck) { create(:deck, :with_unpublishable, author: author, published_at: nil) }
+
+      it "renders with an error message" do
+        expect(flash[:alert]).to eq([ "Deck must have at least 5 cards to be published." ])
+      end
+
+      it "does not publish the deck" do
+        expect(deck.reload).not_to be_published
+      end
+    end
   end
 
   describe "DELETE /destroy" do

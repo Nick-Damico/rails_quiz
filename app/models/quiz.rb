@@ -15,7 +15,12 @@ class Quiz < ApplicationRecord
   # estimated time per question. This will allow for more or
   # less time based on question difficulty.
   def publish!
-    update_column(:published_at, Time.current) if publishable?
+    unless publishable?
+      errors.add(:base, "Quiz must have at least #{PUBLISHABLE_QUESTION_COUNT} questions to be published.")
+      return false
+    end
+
+    update_column(:published_at, Time.current)
   end
 
   def unpublish!

@@ -137,6 +137,18 @@ RSpec.describe Author::QuizzesController, type: :request do
     it "renders with a success message" do
       expect(flash[:notice]).to eq("Quiz was successfully published.")
     end
+
+    context "not publishable" do
+      let(:quiz) { create(:quiz, :with_unpublishable, author: author, published_at: nil) }
+
+      it "renders with an error message" do
+        expect(flash[:alert]).to eq([ "Quiz must have at least 5 questions to be published." ])
+      end
+
+      it "does not publish the quiz" do
+        expect(quiz.reload).not_to be_published
+      end
+    end
   end
 
   describe "DELETE /destroy" do
