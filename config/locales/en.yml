@@ -205,6 +205,12 @@ en:
 
     study_plan_quizzes:
       create: "Add to Study Plan"
+    
+    decks:
+      settings: "Save"
+
+    quizzes:
+      settings: "Save"
 
   helpers:
     submit:
