@@ -7,6 +7,10 @@ class Dashboard::UserPolicy < ApplicationPolicy
     is_current_user?
   end
 
+  def public_profile?
+    true
+  end
+
   private
 
     def is_current_user?

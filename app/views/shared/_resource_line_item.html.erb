@@ -1,0 +1,24 @@
+<!-- Generic partial that can display decks or quizzes as an <li> element -->
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+  <th scope="row" class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+    <%= object.title %>
+  </th>
+  <td class="px-3 py-2">
+    <%= object.description %>
+  </td>
+  <td class="px-3 py-2">
+    <span class="rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+      <%#= object.category.name %>
+    </span>
+  </td>
+  <td class="px-3 py-2 text-right">
+    <div class="inline-flex border border-gray-400">
+      <%= link_to show_path,
+        title: "view",
+        aria: { label: "View Deck" },
+        class: "bg-primary text-white px-2 py-2" do %>
+        <%= render_icon "magnifying_glass", klass: "size-5" %>
+      <% end %>
+    </div>
+  </td>
+</tr>

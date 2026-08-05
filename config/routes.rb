@@ -39,7 +39,11 @@ Rails.application.routes.draw do
   resources :answer_sheet_questions, only: %i[show update]
 
   namespace :dashboard do
-    resources :users, only: %i[show update]
+    resources :users, only: %i[show update] do
+      member do
+        get "public_profile", to: "users#public_profile"
+      end
+    end
   end
 
   resources :users do

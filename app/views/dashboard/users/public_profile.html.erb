@@ -1,0 +1,43 @@
+<%= render "shared/breadcrumbs" %>
+<div class="flex flex-col border border-gray-700 p-4 rounded">
+  <div class="flex flex-col pb-4 items-center col-span-2 text-center">
+    <div class="border-emerald-500 box-content relative flex items-center justify-center p-4 mb-2 overflow-hidden bg-gray-800 border-2 rounded-full h-24 w-24">
+      <%= image_tag(
+          @user.avatar.attached? ? @user.avatar : "",
+          class: "#{"hidden" unless @user.avatar.attached?} absolute inset-0 object-cover w-full h-full"
+      ) %>
+    </div>
+    <h2 class="text-2xl">Learning resources designed by <br>
+      <%= @user.username %></h2>
+  </div>
+  <section>
+    <nav
+  class="border-y border-gray-200 dark:border-gray-700 mb-4"
+  aria-label="Resource Types">
+      <ul class="flex -mb-px text-sm font-medium">
+        <li>
+          <%= link_to "Quizzes",
+            public_profile_dashboard_user_path(@user, tab: :deck),
+            class: "inline-block p-4 border-b-2 rounded-t-lg text-blue-600 border-blue-600", data: { turbo: false } %>
+        </li>
+        <li>
+          <%= link_to "Decks",
+            public_profile_dashboard_user_path(@user, tab: :quiz),
+            class: "inline-block p-4 border-b-2 rounded-t-lg border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300", data: { turbo: false } %>
+        </li>
+      </ul>
+    </nav>
+    <div>
+      <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+          <%= render "shared/decks/thead" %>
+          <tbody>
+            <% @resources.each do |deck| %>
+              <%= render "shared/resource_line_item", object: deck, show_path: deck_path(deck) %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <%= render "shared/pagy" %>
+    </div>
+  </section>
