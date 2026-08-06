@@ -17,12 +17,12 @@
       <ul class="flex -mb-px text-sm font-medium">
         <li>
           <%= link_to "Quizzes",
-            public_profile_dashboard_user_path(@user, tab: :deck),
+            public_profile_dashboard_user_path(@user, tab: :quiz),
             class: "inline-block p-4 border-b-2 rounded-t-lg text-blue-600 border-blue-600", data: { turbo: false } %>
         </li>
         <li>
           <%= link_to "Decks",
-            public_profile_dashboard_user_path(@user, tab: :quiz),
+            public_profile_dashboard_user_path(@user, tab: :deck),
             class: "inline-block p-4 border-b-2 rounded-t-lg border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300", data: { turbo: false } %>
         </li>
       </ul>
@@ -32,8 +32,8 @@
         <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
           <%= render "shared/decks/thead" %>
           <tbody>
-            <% @resources.each do |deck| %>
-              <%= render "shared/resource_line_item", object: deck, show_path: deck_path(deck) %>
+            <% @resources.each do |item| %>
+              <%= render "shared/resource_line_item", object: item, show_path: polymorphic_path(item) %>
             <% end %>
           </tbody>
         </table>
