@@ -18,12 +18,12 @@
         <li>
           <%= link_to "Quizzes",
             public_profile_dashboard_user_path(@user, tab: :quiz),
-            class: "inline-block p-4 border-b-2 rounded-t-lg text-blue-600 border-blue-600", data: { turbo: false } %>
+            class: public_profile_tab_classes(@tab, "quiz"), data: { turbo: false } %>
         </li>
         <li>
           <%= link_to "Decks",
             public_profile_dashboard_user_path(@user, tab: :deck),
-            class: "inline-block p-4 border-b-2 rounded-t-lg border-transparent text-gray-500 hover:text-gray-600 hover:border-gray-300", data: { turbo: false } %>
+            class: public_profile_tab_classes(@tab, "deck"), data: { turbo: false } %>
         </li>
       </ul>
     </nav>
