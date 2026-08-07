@@ -57,7 +57,7 @@
       <% end %>
       <div class="flex gap-2" data-controller="modal">
         <%= f.button type: :submit,
-            class: "flex items-center justify-center btn btn-primary rounded disabled:border disabled:bg-transparent disabled:cursor-not-allowed disabled:border-gray-700 disabled:text-gray-700",
+            class: "flex items-center justify-center rounded btn btn-primary disabled:border disabled:bg-transparent disabled:cursor-not-allowed disabled:border-gray-700 disabled:text-gray-700",
             disabled: study_button_disabled?(@user_deck, @due_for_review_count),
             data: {
               "decks--review-settings-target" => "submitBtn",
@@ -67,7 +67,7 @@
         <% end %>
         <%= button_tag(
               type: "button",
-              class: "flex items-center justify-center btn btn-success rounded",
+              class: "flex items-center justify-center rounded btn btn-success",
               command: "show-modal",
               commandfor: "study-plans-dialog"
             ) do %>
