@@ -13,7 +13,7 @@ module Dashboard::UsersHelper
     if user == current_user
       dashboard_user_path(user)
     else
-      public_profile_dashboard_user_path(user)
+      public_profile_user_path(user)
     end
   end
 end

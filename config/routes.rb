@@ -39,16 +39,13 @@ Rails.application.routes.draw do
   resources :answer_sheet_questions, only: %i[show update]
 
   namespace :dashboard do
-    resources :users, only: %i[show update] do
-      member do
-        get "public_profile", to: "users#public_profile"
-      end
-    end
+    resources :users, only: %i[show update]
   end
 
   resources :users do
     member do
       patch "update_password", to: "users/passwords#update"
+      get "public_profile", to: "users#show"
     end
 
     resources :study_plans, module: :users
