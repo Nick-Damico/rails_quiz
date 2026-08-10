@@ -76,7 +76,7 @@ GEM
       tzinfo (~> 2.0, >= 2.0.5)
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
-    ast (2.4.2)
+    ast (2.4.3)
     base64 (0.3.0)
     bcrypt (3.1.22)
     benchmark (0.5.0)
