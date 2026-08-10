@@ -53,7 +53,7 @@ group :development, :test do
   gem "factory_bot_rails"
 
   # Rails integration of RSpec [https://github.com/rspec/rspec-rails]
-  gem "rspec-rails", "~> 7.0.0"
+  gem "rspec-rails", "~> 8.0.0"
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
