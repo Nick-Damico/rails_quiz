@@ -55,9 +55,11 @@ Rails.application.routes.draw do
 
   resources :study_plan_quizzes, only: %i[create destroy]
 
-  resources :study_plans, only: [] do
-    resources :quizzes, only: %i[create destroy], module: :study_plans
-  end
+  # TODO: Review and remove if no longer needed. Recent redesign of study plans were moved to non-namespaced StudyPlanDecksController.
+  #
+  # resources :study_plans, only: [] do
+  #   resources :quizzes, only: %i[create destroy], module: :study_plans
+  # end
 
   resources :decks, only: %i[index show] do
     resources :cards, shallow: true, module: :decks

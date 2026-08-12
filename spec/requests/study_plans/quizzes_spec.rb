@@ -1,5 +1,6 @@
 require "rails_helper"
 
+## TODO: Review if this has any value. Recent redesign of study plans were moved to non-namespaced StudyPlanDecksController.
 RSpec.describe "StudyPlans::QuizzesController", type: :request do
   let!(:user) { create(:user) }
   let!(:study_plan) { create(:study_plan, user:) }
