@@ -2,14 +2,22 @@
   <div class="mt-2 mb-4" data-question-form-target="choice">
     <%= choice_form.label :content, "Option:", class: "text-white text-xs font-semibold uppercase mb-2" %>
     <div class="grid grid-rows-[auto_auto] grid-cols-[1fr_40px_40px] gap-1">
-      <%= choice_form.text_field :content, placeholder: "Example: New Option Text", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <%= choice_form.text_area :content, cols: 20, rows: 1, placeholder: "Example: New Option Text", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       <%= choice_form.check_box :correct, { data: { "question-form-target": "choiceCheckbox", action: "click->question-form#clearCheckboxes" }, class: "peer hidden" }, "true", "false" %>
-      <%= choice_form.label :correct,
-                            class: "cursor-pointer self-center justify-self-center w-full h-[40px] border-2 border-gray-700 rounded bg-black flex items-center justify-center peer-checked:bg-green-500 peer-checked:border-green-700 group",
-                            role: "checkbox",
-                            aria: { checked: "false", describedby: "choice-description" },
-                            data: { 'question-form-target': "choiceCheckboxLabel", action: "click->question-form#setAriaChecked" },
-                            tabindex: "1" do %>
+      <%= choice_form.label(
+          :correct,
+          class: "cursor-pointer justify-self-center w-full h-[40px] border-2 border-gray-700 rounded bg-black flex items-center justify-center peer-checked:bg-green-500 peer-checked:border-green-700 group",
+          role: "checkbox",
+          aria: {
+            checked: "false",
+            describedby: "choice-description"
+          },
+          data: {
+            'question-form-target': "choiceCheckboxLabel",
+            action: "click->question-form#setAriaChecked"
+          },
+          tabindex: "1"
+      ) do %>
         <%= render_icon "circle_check", { klass: "stroke-gray-500 size-6 peer-checked:group-[]:stroke-white" } %>
       <% end %>
       <% if choice_form.object.persisted? %>
