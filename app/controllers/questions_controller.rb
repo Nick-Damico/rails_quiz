@@ -83,6 +83,7 @@ class QuestionsController < ApplicationController
     end
 
     def set_breadcrumbs
+      add_breadcrumb("Home", root_path)
       add_breadcrumb("Design")
       if @quiz&.author_id.present?
         add_breadcrumb("Quizzes", author_quizzes_path)

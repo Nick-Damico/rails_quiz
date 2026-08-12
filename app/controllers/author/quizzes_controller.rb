@@ -102,6 +102,7 @@ module Author
       end
 
       def set_breadcrumbs
+        add_breadcrumb("Home", root_path)
         add_breadcrumb("Design")
         add_breadcrumb("Quizzes", author_quizzes_path) if @author.present?
         add_breadcrumb(@quiz.title, author_quiz_path(@quiz)) if @quiz.present?

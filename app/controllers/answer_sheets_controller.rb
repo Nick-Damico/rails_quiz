@@ -79,6 +79,7 @@ class AnswerSheetsController < ApplicationController
     end
 
     def set_breadcrumbs
+      add_breadcrumb("Home", root_path)
       add_breadcrumb("Study")
       add_breadcrumb("Quizzes", quizzes_path)
       if @answer_sheet&.quiz

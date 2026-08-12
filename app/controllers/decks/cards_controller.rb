@@ -77,6 +77,7 @@ class Decks::CardsController < ApplicationController
     end
 
     def set_breadcrumbs
+      add_breadcrumb("Home", root_path)
       add_breadcrumb("Design")
       add_breadcrumb("Decks", author_decks_path)
 

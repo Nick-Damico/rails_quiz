@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     end
 
     def set_breadcrumbs
+      add_breadcrumb("Home", root_path)
       if action_name == "show"
         add_breadcrumb "Public Profile"
         add_breadcrumb @user.username

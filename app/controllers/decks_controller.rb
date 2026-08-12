@@ -20,6 +20,7 @@ class DecksController < ApplicationController
   private
 
     def set_breadcrumbs
+      add_breadcrumb("Home", root_path)
       add_breadcrumb "Study"
       add_breadcrumb "Decks", decks_path
       if @deck.present?

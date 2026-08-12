@@ -64,6 +64,7 @@ class Users::StudyPlansController < ApplicationController
     end
 
     def set_breadcrumbs
+      add_breadcrumb("Home", root_path)
       add_breadcrumb("Study")
       add_breadcrumb("Study Plans", user_study_plans_path(current_user))
       if @study_plan.present?
