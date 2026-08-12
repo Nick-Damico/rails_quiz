@@ -50,7 +50,7 @@ class AnswerSheetsController < ApplicationController
       redirect_to @answer_sheet.answer_sheet_questions.first
     else
       flash[:alert] = t("flash.answer_sheets.create.error")
-      redirect_to quizzes_path, status: :unprocessable_entity
+      redirect_to quizzes_path, status: :unprocessable_content
     end
   end
 

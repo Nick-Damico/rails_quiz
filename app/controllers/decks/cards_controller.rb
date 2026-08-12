@@ -15,7 +15,7 @@ class Decks::CardsController < ApplicationController
     @card = authorize(@deck.cards.new(card_params))
     unless @card.save
       flash.now[:alert] = t("flash.cards.create.error")
-      return render :new, status: :unprocessable_entity
+      return render :new, status: :unprocessable_content
     end
 
     flash[:notice] = t("flash.cards.create.success")
@@ -36,7 +36,7 @@ class Decks::CardsController < ApplicationController
     set_breadcrumbs
     unless @card.save
       flash.now[:alert] = t("flash.cards.update.error")
-      render :edit, status: :unprocessable_entity and return
+      render :edit, status: :unprocessable_content and return
     end
 
     flash[:notice] = t("flash.cards.update.success")
@@ -48,7 +48,7 @@ class Decks::CardsController < ApplicationController
     @deck = @card.deck
     unless @card.destroy
       flash.now[:alert] = t("flash.cards.destory.erro")
-      render :edit, status: :unprocessable_entity and return
+      render :edit, status: :unprocessable_content and return
     end
 
     flash[:notice] = t("flash.cards.destroy.success")

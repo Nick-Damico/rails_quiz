@@ -55,7 +55,7 @@ RSpec.describe "StudyPlansController", type: :request do
         it "responds with HTTP status unprocessable entity(400)" do
           post user_study_plans_path(author), params: invalid_params
 
-          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response).to have_http_status(:unprocessable_content)
         end
 
         it "does not create an study plan" do
@@ -124,7 +124,7 @@ RSpec.describe "StudyPlansController", type: :request do
       before { patch user_study_plan_path(author, study_plan), params: invalid_params }
 
       it "responds with HTTP status unprocessable_entity(402)" do
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "does not update the study plan" do

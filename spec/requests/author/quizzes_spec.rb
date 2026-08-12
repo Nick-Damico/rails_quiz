@@ -64,7 +64,7 @@ RSpec.describe Author::QuizzesController, type: :request do
       it "responds with HTTP status unprocessable entity(400)" do
         post author_quizzes_path, params: invalid_params
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it 'does not create an authored quiz' do
@@ -111,7 +111,7 @@ RSpec.describe Author::QuizzesController, type: :request do
       it "responds with HTTP status unprocessable_entity(422)" do
         put author_quiz_path(quiz), params: { quiz: invalid_params }
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "renders with an error message" do

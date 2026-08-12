@@ -28,7 +28,7 @@ module Author
         redirect_to author_quiz_url(@quiz)
       else
         flash.now[:alert] = t("flash.quizzes.create.error")
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -42,7 +42,7 @@ module Author
       else
         @author = @quiz.author
         flash[:alert] = t("flash.quizzes.update.error")
-        render :edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_content
       end
     end
 

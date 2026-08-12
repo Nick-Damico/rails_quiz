@@ -74,7 +74,7 @@ RSpec.describe AnswerSheetQuestionsController, type: :request do
       it "responds with HTTP status unprocessable_entity(422)" do
         put answer_sheet_question_path(answer_sheet_question), params: invalid_params
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "renders flash alert with error message" do

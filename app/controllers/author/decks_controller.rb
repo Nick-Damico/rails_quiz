@@ -26,7 +26,7 @@ class Author::DecksController < ApplicationController
       redirect_to [ :author, @deck ]
     else
       flash.now[:alert] = t("flash.decks.create.error")
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -41,7 +41,7 @@ class Author::DecksController < ApplicationController
       redirect_to [ :author, @deck ]
     else
       flash.now[:alert] = t("flash.decks.update.error")
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

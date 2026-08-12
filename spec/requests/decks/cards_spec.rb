@@ -125,7 +125,7 @@ RSpec.describe "Decks::Cards", type: :request do
       it "responds with HTTP status unprocessable_entity(422)" do
         put card_path(card), params: invalid_params
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

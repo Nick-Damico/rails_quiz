@@ -24,7 +24,7 @@ class Questions::ChoicesController < ApplicationController
       redirect_to quiz_question_url(@question.quiz_id, @question)
     else
       flash.now[:alert] = t("flash.choices.create.error")
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 
@@ -37,7 +37,7 @@ class Questions::ChoicesController < ApplicationController
       redirect_to quiz_question_url(@question.quiz_id, @question)
     else
       flash.now[:alert] = t("flash.choices.update.error")
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 

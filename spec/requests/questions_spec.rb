@@ -58,7 +58,7 @@ RSpec.describe "Questions", type: :request do
       it "responds with HTTP status unprocessable entity(422)" do
         post quiz_questions_path(quiz), params: invalid_params
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "does not create a question record" do
@@ -134,7 +134,7 @@ RSpec.describe "Questions", type: :request do
       it "responds with HTTP status unprocessable_entity(422)" do
         put quiz_question_path(quiz, question), params: invalid_params
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

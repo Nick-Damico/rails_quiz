@@ -18,7 +18,7 @@ class AnswerSheetQuestionsController < ApplicationController
     else
       set_show_variables
       flash[:alert] = t("flash.answer_sheet_questions.update.error")
-      render :show, status: :unprocessable_entity
+      render :show, status: :unprocessable_content
     end
   end
 

@@ -73,7 +73,7 @@ RSpec.describe "Author::Decks", type: :request do
       it "responds with HTTP status unprocessable entity(400)" do
         post author_decks_path, params: invalid_params
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it 'does not create an authored deck' do
@@ -120,7 +120,7 @@ RSpec.describe "Author::Decks", type: :request do
       it "responds with HTTP status unprocessable_entity(422)" do
         put author_deck_path(deck), params: { deck: invalid_params }
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "renders with an error message" do

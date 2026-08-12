@@ -53,7 +53,7 @@ RSpec.describe "Question::Choices", type: :request do
       it "responds with HTTP status unprocessable entity(422)" do
         post question_choices_path(question), params: invalid_params
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "does not create a Choice record" do
@@ -115,7 +115,7 @@ RSpec.describe "Question::Choices", type: :request do
       it "responds with HTTP status unprocessable entity(422)" do
         put question_choice_path(question, choice), params: invalid_params
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "does not update the Choice record" do
