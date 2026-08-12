@@ -77,7 +77,7 @@ RSpec.describe "Author Adds New Question", type: :feature do
     visit new_quiz_question_path(quiz)
 
     within("#question_choices_fields") do
-      expect(all("input[type='text']").count).to eq(2) # Verify two empty choice fields
+      expect(all("textarea").count).to eq(2) # Verify two empty choice fields
     end
   end
 end

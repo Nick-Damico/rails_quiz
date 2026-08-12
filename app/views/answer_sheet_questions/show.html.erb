@@ -5,8 +5,8 @@
 <% end %>
 <section class="w-full max-w-xl mx-auto mt-5 border border-gray-500 rounded">
   <div class="px-3 pb-3">
-    <h2 class="py-3 mb-3 text-xl text-center border-b border-gray-500">
-      <%= @question.content %>
+    <h2 class="py-3 mb-3 text-xl border-b border-gray-500">
+      <%= formatted_text_tag(@question.content) %>
     </h2>
     <div class="flex flex-col">
       <%= form_for @answer_sheet_question, data: { controller: "answer-sheet-question-form", action: "input->answer-sheet-question-form#enableSubmit" } do |f| %>
