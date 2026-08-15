@@ -69,7 +69,11 @@
       </section>
       <section class="mb-12">
         <h2 class="pb-3 mb-4 text-2xl border-b border-gray-700">Latest News</h2>
-        <p class="leading-7 text-white max-w-prose">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quaerat illo neque ab autem et saepe blanditiis reiciendis beatae culpa. Quo eius porro hic nihil eaque mollitia quae repudiandae sunt!</p>
+        <ul>
+          <li>
+            <%= link_to @news_post.title, news_post_path(@news_post), class: 'underline' %>
+          </li>
+        </ul>
       </section>
     </section>
   </div>
