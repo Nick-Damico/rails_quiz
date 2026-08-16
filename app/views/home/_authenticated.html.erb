@@ -70,9 +70,11 @@
       <section class="mb-12">
         <h2 class="pb-3 mb-4 text-2xl border-b border-gray-700">Latest News</h2>
         <ul>
-          <li>
-            <%= link_to @news_post.title, news_post_path(@news_post), class: 'underline' %>
-          </li>
+          <% @news_posts.each do |news_post| %>
+            <li>
+              <%= link_to news_post.title, news_post_path(news_post), class: "underline" %>
+            </li>
+          <% end %>
         </ul>
       </section>
     </section>
