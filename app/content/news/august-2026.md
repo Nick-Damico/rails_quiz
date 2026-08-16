@@ -6,7 +6,9 @@ date: 08-13-2026
 # August 2026 Updates
 
 ## What's new
-You can now add quizzes and decks to Study Plans.
+- added public profile pages
+- added Study Plans
+- users can now add organize decks and quizzes within a study plan
 
-- create a Study Plan
-- add quizzes and decks
+## Fixes
+- replace `text_fields` with `textareas` on quiz form
