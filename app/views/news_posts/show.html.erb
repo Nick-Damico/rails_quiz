@@ -1,3 +1,10 @@
-<article class="prose prose-lg prose-headings:text-gray-300 prose-a:text-blue-600 prose-headings:text-2xl text-white">
-  <%= @news_post.to_html.html_safe %>
-</article>
+<%= render "shared/breadcrumbs" %>
+<div class="bg-gray-800 p-6">
+  <article
+  class="prose prose-lg prose-h1:text-3xl prose-headings:text-gray-300
+         prose-a:text-blue-600 prose-headings:text-2xl
+         prose-code:text-green-500 text-white"
+  >
+    <%= @news_post.to_html.html_safe %>
+  </article>
+</div>
