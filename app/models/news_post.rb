@@ -10,26 +10,23 @@ class NewsPost
 
   attr_reader :slug, :title, :date, :content
 
-  def initialize(front_matter, content)
-    @slug = front_matter["title"].parameterize
-    @title = front_matter["title"]
-    @date = front_matter["date"]
-    @content = content
+  # def initialize(front_matter, content)
+  def initialize(file_path)
+    raise "FileNotFoundError" unless File.exist?(file_path)
+
+    parsed_file = parse_file(file_path)
+    @slug     = parsed_file.front_matter["title"].parameterize
+    @title    = parsed_file.front_matter["title"]
+    @date     = parsed_file.front_matter["date"]
+    @content  = parsed_file.content
   end
 
-  def self.all
-    all_files.map do |file|
-      parsed_file = self.parse_file(file)
-      new(parsed_file.front_matter, parsed_file.content)
-    end
+  def self.all(path: PATH)
+    all_files(path: path).map { |file| new(file) }
   end
 
-  def self.find_by_slug(slug)
+  def self.find_by_slug(slug, path: PATH)
     all.find { |news_post| news_post.slug == slug }
-  end
-
-  def self.parse_file(file)
-    ::FrontMatterParser::Parser.parse_file(file)
   end
 
   def self.most_recent
@@ -49,6 +46,10 @@ class NewsPost
 
   private
 
+    def self.all_files(path: PATH)
+      Dir.glob(path.join("*.md"))
+    end
+
     def self.recent_file
       files = Dir.glob(PATH.join("*.md"))
       return nil unless files.any?
@@ -56,7 +57,11 @@ class NewsPost
       files.first
     end
 
-    def self.all_files
-      Dir.glob(PATH.join("*.md"))
+    def self.parse_file(file)
+      ::FrontMatterParser::Parser.parse_file(file)
+    end
+
+    def parse_file(file)
+      ::FrontMatterParser::Parser.parse_file(file)
     end
 end
