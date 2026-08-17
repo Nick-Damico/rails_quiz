@@ -28,7 +28,13 @@ RSpec.describe NewsPost, type: :model do
 
   describe ".find_by_slug" do
     it "returns an instance of NewsPost" do
-      expect(NewsPost.find_by_slug("2026-august-updates", path: path)).to be_a(NewsPost)
+      expected_slug = "2026-august-updates"
+      expect(NewsPost.find_by_slug(expected_slug, path: path)).to be_a(NewsPost)
+      expect(NewsPost.find_by_slug(expected_slug, path: path).slug).to eq(expected_slug)
+    end
+
+    it "returns nil if no matching slug is found" do
+      expect(NewsPost.find_by_slug("invalid-slug", path: path)).to be_nil
     end
   end
 end

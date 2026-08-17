@@ -10,19 +10,19 @@ class NewsPost
 
   attr_reader :slug, :title, :date, :content
 
-  # def initialize(front_matter, content)
   def initialize(file_path)
     raise "FileNotFoundError" unless File.exist?(file_path)
 
-    parsed_file = parse_file(file_path)
-    @slug     = parsed_file.front_matter["title"].parameterize
-    @title    = parsed_file.front_matter["title"]
-    @date     = parsed_file.front_matter["date"]
-    @content  = parsed_file.content
+    parsed_file   = parse_file(file_path)
+    front_matter  = parsed_file.front_matter
+    @slug         = front_matter["title"].parameterize
+    @title        = front_matter["title"]
+    @date         = front_matter["date"]
+    @content      = parsed_file.content
   end
 
   def self.all(path: PATH)
-    all_files(path: path).map { |file| new(file) }
+    all_files(path: path).map { |file_path| new(file_path) }
   end
 
   def self.find_by_slug(slug, path: PATH)
