@@ -11,13 +11,13 @@ class NewsPost
   attr_reader :slug, :title, :date, :content
 
   def initialize(file_path)
-    raise "FileNotFoundError" unless File.exist?(file_path)
+    raise "FileNotFoundError: #{file_path}" unless File.exist?(file_path)
 
     parsed_file   = parse_file(file_path)
     front_matter  = parsed_file.front_matter
     @slug         = front_matter["title"].parameterize
     @title        = front_matter["title"]
-    @date         = front_matter["date"]
+    @date         = Date.parse(front_matter["date"])
     @content      = parsed_file.content
   end
 
@@ -29,11 +29,8 @@ class NewsPost
     all.find { |news_post| news_post.slug == slug }
   end
 
-  def self.most_recent
-    return nil unless (file = recent_file)
-
-    parsed_file = parse_file(file)
-    new(parsed_file.front_matter, parsed_file.content)
+  def self.sort_by_date(path: PATH)
+    sort_by(&:date).reverse
   end
 
   def to_param

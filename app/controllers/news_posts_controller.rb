@@ -3,7 +3,7 @@ class NewsPostsController < ApplicationController
   before_action :set_breadcrumbs, only: %i[show]
 
   def index
-    @news_posts = NewsPost.all
+    @news_posts = NewsPost.sort_by_date
   end
 
   def show

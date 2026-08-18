@@ -14,7 +14,7 @@ RSpec.describe NewsPost, type: :model do
 
       expect(news_post.slug).to eq("2026-august-updates")
       expect(news_post.title).to eq("2026 August Updates")
-      expect(news_post.date).to eq("08-13-2026")
+      expect(news_post.date).to eq(Date.parse("2026-08-13"))
       expect(news_post.content).to include("August 2026 Update")
     end
   end
@@ -35,6 +35,17 @@ RSpec.describe NewsPost, type: :model do
 
     it "returns nil if no matching slug is found" do
       expect(NewsPost.find_by_slug("invalid-slug", path: path)).to be_nil
+    end
+  end
+
+  describe ".sort_by_date" do
+    it "returns NewsPost in descending order of date" do
+      news_post_1 = NewsPost.new(path.join("example_news_post_1.md"))
+      news_post_2 = NewsPost.new(path.join("example_news_post_2.md"))
+
+      results = NewsPost.sort_by_date(path: path)
+
+      expect(results.map(&:slug)).to eq([ news_post_1.slug, news_post_2.slug ])
     end
   end
 end
