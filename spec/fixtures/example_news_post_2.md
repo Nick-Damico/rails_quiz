@@ -1,6 +1,6 @@
 ---
 title: 2026 July Updates
-date: 07-01-2026
+date: '2026-07-01'
 ---
 
 # July 2026 Update
