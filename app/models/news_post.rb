@@ -26,11 +26,11 @@ class NewsPost
   end
 
   def self.find_by_slug(slug, path: PATH)
-    all.find { |news_post| news_post.slug == slug }
+    all(path: path).find { |news_post| news_post.slug == slug }
   end
 
   def self.sort_by_date(path: PATH)
-    sort_by(&:date).reverse
+    all(path: path).sort_by(&:date).reverse
   end
 
   def to_param
