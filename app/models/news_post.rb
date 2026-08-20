@@ -15,22 +15,22 @@ class NewsPost
 
     parsed_file   = parse_file(file_path)
     front_matter  = parsed_file.front_matter
-    @slug         = front_matter["title"].parameterize
     @title        = front_matter["title"]
     @date         = Date.parse(front_matter["date"])
     @content      = parsed_file.content
+    @slug         = front_matter["title"].parameterize
   end
 
   def self.all(path: PATH)
-    all_files(path: path).map { |file_path| new(file_path) }
+    all_files(path:).map { |file_path| new(file_path) }
   end
 
   def self.find_by_slug(slug, path: PATH)
-    all(path: path).find { |news_post| news_post.slug == slug }
+    all(path:).find { |news_post| news_post.slug == slug }
   end
 
   def self.sort_by_date(path: PATH)
-    all(path: path).sort_by(&:date).reverse
+    all(path:).sort_by(&:date).reverse
   end
 
   def to_param
@@ -45,13 +45,6 @@ class NewsPost
 
     def self.all_files(path: PATH)
       Dir.glob(path.join("*.md"))
-    end
-
-    def self.recent_file
-      files = Dir.glob(PATH.join("*.md"))
-      return nil unless files.any?
-
-      files.first
     end
 
     def self.parse_file(file)
