@@ -57,6 +57,39 @@ gem install mailcatcher
 mailcatcher --foreground
 ```
 
+---
+
+# News Post
+## Creating News Posts
+
+News posts are used by the site author to announce updates, changes, and new features on the site.
+
+Create a new `.md` file in the `app/content/news` directory. Each post must include front matter with the following required fields:
+
+title — The title of the news post.
+date — The publication date, using ISO 8601 format (YYYY-MM-DD). The ISO format is required for the date to be parsed correctly.
+
+For example:
+
+```markdown
+---
+title: New Quiz Features
+date: 2026-08-21
+---
+## New Quiz Features
+
+We've added several improvements to quizzes, including...
+
+More details about the changes can go here.
+
+```
+**The Markdown content following the front matter is rendered as the body of the news post.**
+
+### File Naming
+
+Use a descriptive filename ending in .md, for example:
+
+app/content/news/new-quiz-features.md
 
 ---
 
