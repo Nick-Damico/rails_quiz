@@ -59,15 +59,15 @@ mailcatcher --foreground
 
 ---
 
-# News Post
-## Creating News Posts
+## News Post
+### Creating News Posts
 
 News posts are used by the site author to announce updates, changes, and new features on the site.
 
 Create a new `.md` file in the `app/content/news` directory. Each post must include front matter with the following required fields:
 
-title — The title of the news post.
-date — The publication date, using ISO 8601 format (YYYY-MM-DD). The ISO format is required for the date to be parsed correctly.
+- `title` — The title of the news post.
+- `date` The publication date, using ISO 8601 format (YYYY-MM-DD). The ISO format is required for the date to be parsed correctly.
 
 For example:
 
@@ -90,14 +90,6 @@ More details about the changes can go here.
 Use a descriptive filename ending in .md, for example:
 
 app/content/news/new-quiz-features.md
-
----
-
-## Usage
-
-1. Sign up or log in to your account.
-2. Create quizzes and flashcards tailored to your learning needs.
-3. Save, organize, and manage your study materials.
 
 ---
 
