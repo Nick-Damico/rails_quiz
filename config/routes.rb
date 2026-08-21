@@ -65,6 +65,8 @@ Rails.application.routes.draw do
     resources :cards, shallow: true, module: :decks
   end
 
+  resources :news_posts, only: %i[show]
+
   resources :quizzes, only: %i[index show] do
     resources :questions, only: %i[create edit destroy new show update]
   end
