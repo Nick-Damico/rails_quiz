@@ -45,7 +45,7 @@ gem "image_processing", "~> 2.0"
 gem "mini_magick", "~> 5.3"
 
 gem "commonmarker", require: false
-gem "front_matter_parser"
+gem "front_matter_parser", require: false
 
 
 group :development, :test do

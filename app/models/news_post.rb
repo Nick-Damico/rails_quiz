@@ -1,4 +1,5 @@
 require "commonmarker"
+require "front_matter_parser"
 
 class NewsPost
   PATH = Rails.root.join("app", "content", "news").freeze
