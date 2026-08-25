@@ -38,6 +38,10 @@
     @apply px-2 py-1 cursor-pointer;
   }
 
+  .btn-lg {
+    @apply px-6 py-4 cursor-pointer;
+  }
+
   .btn-rounded {
     @apply rounded-sm;
   }
