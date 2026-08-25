@@ -1,35 +1,55 @@
 <% content_for :full_width, true %>
-<div class='bg-gradient-to-b from-indigo-900'>
-  <section class="py-6 px-4 mx-auto max-w-screen-xl">
-    <h2 class="text-3xl mb-4">Welcome to QuizIt!</h2>
-    <p class="prose text-white text-lg font-light mb-16">
-      Start your daily learning journey... Select from a community quiz or flashcard deck, or design your own!
-    </p>
-    <div class="grid max-w-5xl grid-cols-1 gap-6 px-6 mx-auto mt-16 md:grid-cols-3">
-      <div class="p-6 rounded-xl bg-gray-900">
-        <h2 class="mb-2 text-xl font-semibold text-white">
-          Design
-        </h2>
-        <p class="text-gray-400">
-          Build custom quizzes and flashcard decks for any topic.
-        </p>
+<div class='pt-10 bg-gradient-to-b from-indigo-900'>
+  <section class="max-w-screen-xl px-4 py-6 mx-auto">
+    <div class="text-center">
+      <h2 class="mb-4 text-4xl font-extrabold">Quizzes and Flashcards made simple!</h2>
+      <p class="mb-16 text-lg font-light text-center text-white">
+        <span class="font-bold text-blue-500">QuizIt</span> is designed to help you learn and retain information with the use of quizzes and flashcards.
+      </p>
+    </div>
+    <section class="flex flex-col">
+      <h2 class="mb-4 text-3xl font-semibold text-center">Features</h2>
+      <div class="grid grid-cols-2 gap-12 max-w-[900px] mx-auto">
+        <div class="p-4">
+          <h3 class="flex items-center mb-2 text-xl">
+            <%= render_icon "paint-brush", klass: "size-6 mr-2" %>
+            Design
+          </h3>
+          <p class="mb-4 text-md font-light prose text-white">
+            Design your own quizzes and flashcards with ease. We provide you with the tools to customize your quizzes and flashcards to fit your learning style.
+          </p>
+        </div>
+        <div class="p-4">
+          <h3 class="flex items-center mb-2 text-xl">
+            <%= render_icon "academic-cap", klass: "size-6 mr-2" %>
+            Study
+          </h3>
+          <p class="mb-4 text-md font-light prose text-white">
+            Study quizzes and flashcards at your own pace. You can enable spaced repetition to help you retain information better and track your progress over time.
+          </p>
+        </div>
+        <div class="p-4">
+          <h3 class="flex items-center mb-2 text-xl">
+            <%= render_icon "share", klass: "size-6 mr-2" %>
+            Share
+          </h3>
+          <p class="mb-4 text-md font-light prose text-white">
+            Share your quizzes and flashcards with friends, classmates, or colleagues. You can also collaborate on creating quizzes together.
+          </p>
+        </div>
+        <div class="p-4">
+          <h3 class="flex items-center mb-2 text-xl">
+            <%= render_icon "presentation-chart", klass: "size-6 mr-2" %>
+            Study Plans
+          </h3>
+          <p class="mb-4 text-md font-light prose text-white">
+            Organize quizzes and flashcards into study plans to help you stay on track with your learning goals. You can set reminders and track your progress over time.
+          </p>
+        </div>
       </div>
-      <div class="p-6 rounded-xl bg-gray-900">
-        <h2 class="mb-2 text-xl font-semibold text-white">
-          Study
-        </h2>
-        <p class="text-gray-400">
-          Review cards and reinforce concepts through repetition.
-        </p>
-      </div>
-      <div class="p-6 rounded-xl bg-gray-900">
-        <h2 class="mb-2 text-xl font-semibold text-white">
-          Study Plans
-        </h2>
-        <p class="text-gray-400">
-          Build a custom study plan to meet your learning goals.
-        </p>
-      </div>
+    </section>
+    <div class="text-center mt-8">
+      <%= link_to "Sign Up", new_user_registration_path, class: "px-6 py-3 mt-8 text-lg font-semibold text-white bg-blue-500 rounded hover:bg-blue-600" %>
     </div>
   </section>
 </div>
