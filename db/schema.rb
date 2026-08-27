@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_07_24_141319) do
+ActiveRecord::Schema[7.2].define(version: 2026_08_26_140826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "user_role", ["admin", "user"]
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -195,6 +199,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_07_24_141319) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.integer "rank", default: 0
+    t.enum "role", default: "user", null: false, enum_type: "user_role"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["rank"], name: "index_users_on_rank"

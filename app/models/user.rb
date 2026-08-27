@@ -17,6 +17,11 @@ class User < ApplicationRecord
     grand_scholar: 5
   }
 
+  enum :role, {
+    admin: "admin",
+    user: "user"
+  }
+
   validates_presence_of(:username)
   validates_uniqueness_of(:username)
 
