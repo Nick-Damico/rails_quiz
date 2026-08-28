@@ -29,6 +29,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    resources :dashboard, only: %i[show]
+  end
+
   resources :answer_sheets, only: %i[create destroy show] do
     member do
       get "pause"
