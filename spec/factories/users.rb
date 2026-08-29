@@ -10,6 +10,10 @@ FactoryBot.define do
     end
   end
 
+  trait :with_admin do
+    role { :admin }
+  end
+
   trait :with_bio do
     bio { Faker::Lorem.paragraph }
   end

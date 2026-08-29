@@ -21,8 +21,13 @@
       <ul class="flex flex-col mt-4 font-medium bg-gray-900 border border-gray-700 rounded-lg md:flex-row rtl:space-x-reverse md:mt-0 md:border-0">
         <% if user_signed_in? %>
           <li>
-            <a href="<%= root_path %>" class="flex px-4 py-4 text-white hover:text-green-500" aria-current="page">Home</a>
+            <%= link_to "Home", root_path, class: "flex px-4 py-4 text-white hover:text-green-500", aria_current: "page"%>
           </li>
+          <% if current_user.admin? %>
+            <li>
+              <%= link_to "Admin", admin_dashboard_path(current_user), class: "flex px-4 py-4 text-white hover:text-green-500", aria_current: "page"%>
+            </li>
+          <% end %>
           <li class="relative group">
             <button class="flex items-center px-2 py-4">
               <span class="mr-1">Study</span>

@@ -1,7 +1,9 @@
 class Admin::DashboardController < ApplicationController
-  before_action :set_user, only: %i[show]
-  before_action :authorize_access!
-
   def show
+    @user = current_user
+    authorize @user
+    @pagy, @resources = pagy(:countish, User.all)
   end
+
+  private
 end
