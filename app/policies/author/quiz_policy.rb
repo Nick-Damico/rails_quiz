@@ -1,10 +1,5 @@
 class Author::QuizPolicy < ApplicationPolicy
-  class Scope
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
+  class Scope < ApplicationPolicy::Scope
     def resolve
       @scope.where(author: @user)
     end

@@ -1,9 +1,5 @@
 class UserDeckPolicy < ApplicationPolicy
-  class Scope
-    def initialize(user, scope)
-      @user, @scope = user, scope
-    end
-
+  class Scope < ApplicationPolicy::Scope
     def resolve
       @scope.where(user_id: @user.id)
     end
