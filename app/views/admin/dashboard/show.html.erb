@@ -6,7 +6,7 @@
       <li>
         <%= link_to "Users",
             public_profile_user_path(@user, tab: :user),
-            class: public_profile_tab_classes(@tab, "quiz"), data: { turbo: false } %>
+            class: public_profile_tab_classes(@tab, "user"), data: { turbo: false } %>
       </li>
       <li>
         <%= link_to "Quizzes",
@@ -23,10 +23,26 @@
   <div>
     <div class="relative overflow-x-auto">
       <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
-        <%= render "shared/decks/thead" %>
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <%= %>
+            <th scope="col" class="px-3 py-3">
+              Title
+            </th>
+            <th scope="col" class="px-3 py-3">
+              Description
+            </th>
+            <th scope="col" class="px-3 py-3">
+              Created On
+            </th>
+            <th scope="col" class="px-3 py-3 text-right">
+              Actions
+            </th>
+          </tr>
+        </thead>
         <tbody>
-          <% @resources.each do |item| %>
-            <%#= render "shared/resource_line_item", object: item, show_path: polymorphic_path(item) %>
+          <% @objects.each do |object| %>
+            <%= render "admin/dashboard/object_line_item", object: object, show_path: polymorphic_path(object) %>
           <% end %>
         </tbody>
       </table>

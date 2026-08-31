@@ -5,7 +5,8 @@ class Admin::DashboardController < ApplicationController
     default_scope = policy_scope([ :admin, User ])
     search = UserSearch.new(default_scope, params)
 
-    @pagy, @resources = pagy(:countish, search.query)
+    @pagy, objects = pagy(:countish, search.query)
+    @objects = objects.map { |user| Admin::UserPresenter.new(user) }
   end
 
   private
