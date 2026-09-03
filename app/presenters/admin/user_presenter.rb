@@ -21,7 +21,7 @@ class Admin::UserPresenter
     user.created_at.strftime("%Y-%m-%d")
   end
 
-  def description
+  def email
     user.email
   end
 end

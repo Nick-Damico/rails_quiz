@@ -17,6 +17,14 @@ class Admin::QuizPresenter
     quiz.title
   end
 
+  def author
+    quiz.author
+  end
+
+  def author_name
+    quiz.author.username
+  end
+
   def created_on
     quiz.created_at.strftime("%Y-%m-%d")
   end

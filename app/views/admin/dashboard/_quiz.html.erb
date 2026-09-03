@@ -1,0 +1,42 @@
+<div class="relative overflow-x-auto">
+  <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-3 py-3">
+          Title
+        </th>
+        <th scope="col" class="px-3 py-3">
+          Author
+        </th>
+        <th scope="col" class="px-3 py-3">
+          Created On
+        </th>
+        <th scope="col" class="px-3 py-3 text-right">
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% objects.each do |object| %>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <th scope="row" class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <%= object.title %>
+          </th>
+          <td class="px-3 py-2">
+            <%= link_to object.author_name, public_profile_user_path(object.author), class: "underline" %>
+          </td>
+          <td class="px-3 py-2">
+            <%= object.created_on %>
+          </td>
+          <td class="px-3 py-2 text-right">
+            <div class="inline-flex border border-gray-400">
+              <%= link_to public_profile_user_path(object), title: "view", aria: { label: "View Deck" }, class: "bg-primary text-white px-2 py-2" do %>
+                <%= render_icon "magnifying_glass", klass: "size-5" %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
