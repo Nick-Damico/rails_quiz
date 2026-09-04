@@ -16,12 +16,12 @@
         <li>
           <%= link_to "Quizzes",
             public_profile_user_path(@user, tab: :quiz),
-            class: public_profile_tab_classes(@tab, "quiz"), data: { turbo: false } %>
+            class: tab_classes(@tab, "quiz"), data: { turbo: false } %>
         </li>
         <li>
           <%= link_to "Decks",
             public_profile_user_path(@user, tab: :deck),
-            class: public_profile_tab_classes(@tab, "deck"), data: { turbo: false } %>
+            class: tab_classes(@tab, "deck"), data: { turbo: false } %>
         </li>
       </ul>
     </nav>

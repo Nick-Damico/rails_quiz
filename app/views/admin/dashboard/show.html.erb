@@ -6,17 +6,17 @@
       <li>
         <%= link_to "Users",
             admin_dashboard_path(@user, tab: :user),
-            class: public_profile_tab_classes(@tab, "user"), data: { turbo: false } %>
+            class: tab_classes(@tab, "user"), data: { turbo: false } %>
       </li>
       <li>
         <%= link_to "Quizzes",
             admin_dashboard_path(@user, tab: :quiz),
-            class: public_profile_tab_classes(@tab, "quiz"), data: { turbo: false } %>
+            class: tab_classes(@tab, "quiz"), data: { turbo: false } %>
       </li>
       <li>
         <%= link_to "Decks",
             admin_dashboard_path(@user, tab: :deck),
-            class: public_profile_tab_classes(@tab, "deck"), data: { turbo: false } %>
+            class: tab_classes(@tab, "deck"), data: { turbo: false } %>
       </li>
     </ul>
   </nav>
