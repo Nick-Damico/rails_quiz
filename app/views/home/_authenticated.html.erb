@@ -2,9 +2,9 @@
 <%= render "shared/profile_bar" %>
 <div class="bg-gradient-to-b from-indigo-950 via-gray-950 to-gray-950">
   <div class="wrapper">
-    <header>
+    <header class="px-4 pt-6 pb-12 md:pb-16">
       <p class="mb-2 text-sm font-medium tracking-wide text-indigo-300 uppercase">
-        Your Learning dashboard
+        Your learning dashboard
       </p>
       <h1 class="mb-4 text-4xl font-semibold tracking-tight md:text-5xl">
         Welcome back, <%= current_user.username %>
@@ -13,91 +13,102 @@
         Continue learning with quizzes, flashcards, and personalized study plans, or create resources of your own.
       </p>
     </header>
-    <section class="px-4 py-6 mx-auto">
-      <div class="grid grid-cols-12 gap-6 mx-auto mt-16 mb-8">
-        <div class="col-span-12 md:col-span-8 md:border-r md:border-gray-700 md:pr-4">
-          <h2 class="mb-4 text-2xl">Getting started</h2>
-          <div class="grid gap-4 md:grid-cols-3">
-            <%= link_to '', class: "group p-6 border border-gray-800 bg-gray-900/70 rounded-xl hover:border-indigo-500/50 hover:bg-gray-900 transition" do %>
-              <div class="flex items-center justify-between mb-4">
-                <%= render_icon "pencil" %>
-                <%= render_icon "chevron_right", klass: "size-5 text-gray-500 group-hover:text-white group-hover:translate-x-1 transition" %>
-              </div>
-              <h3 class="mb-2 text-lg font-semibold text-white">
-                Study
-              </h3>
-              <p class="text-sm leading-6 text-gray-400">
-                Review flashcards or take a quiz to reinforce what you've learned.
-              </p>
-            <% end %>
-            <%= link_to '', class: "group p-6 border border-gray-800 bg-gray-900/70 rounded-xl hover:border-indigo-500/50 hover:bg-gray-900 transition-colors" do %>
-              <div class="flex items-center justify-between mb-4">
-                <%= render_icon "pencil" %>
-                <%= render_icon "chevron_right", klass: "size-5 text-gray-500 group-hover:text-white group-hover:translate-x-1 transition" %>
-              </div>
-              <h3 class="mb-2 text-lg font-semibold text-white">
-                Study Plans
-              </h3>
-              <p class="text-sm leading-6 text-gray-400">
-                Build a custom study plan to meet your learning goals.
-              </p>
-            <% end %>
-            <%= link_to '', class: "group p-6 border border-gray-800 bg-gray-900/70 rounded-xl hover:border-indigo-500/50 hover:bg-gray-900 transition-colors" do %>
-              <div class="flex items-center justify-between mb-4">
-                <%= render_icon "pencil" %>
-                <%= render_icon "chevron_right", klass: "size-5 text-gray-500 group-hover:text-white group-hover:translate-x-1 transition" %>
-              </div>
-              <h3 class="mb-2 text-lg font-semibold text-white">
-                Design
-              </h3>
-              <p class="text-sm leading-6 text-gray-400">
-                Build custom quizzes and flashcard decks for any topic.
-              </p>
-            <% end %>
-          </div>
-        </div>
-        <div class="flex flex-col col-span-12 md:col-span-4">
-          <div class="flex items-center justify-between mb-4">
-            <h2 class="flex font-semi-bold text-2xl">
-              Your Study Plans <span class="flex justify-center w-8 h-8 ml-2 border border-gray-700 rounded-full"><%= @study_plans.size %></span>
-            </h2>
-          </div>
-          <div class="flex flex-col grow">
-            <ul class="mb-3">
-              <% @study_plans.each do |study_plan| %>
-                <li>
-                  <%= link_to user_study_plan_path(current_user, study_plan), class: "group flex items-center gap-3 p-3 -mx-3 rounded-lg hover:bg-gray-900 transition" do %>
-                    <div class="flex items-center justify-center size-10 rounded-lg bg-gray-800">
-                      <%= render_icon "pencil" %>
-                    </div>
-                    <div class="min-w-0">
-                      <h3 class="font-medium text-white truncate">
-                        <%= study_plan.name %>
-                      </h3>
-                      <p class="text-sm text-gray-400">
-                        <%= pluralize(study_plan.resource_count, "resource") %>
-                      </p>
-                    </div>
-                    <%= render_icon "chevron_right", klass: "ml-auto size-5 text-gray-500 group-hover:text-white group-hover:translate-x-1 transition" %>
-                  <% end %>
-                </li>
+    <main class="px-4 mx-auto">
+      <section class="pb-16">
+        <div class="grid grid-cols-12 gap-6">
+          <div class="col-span-12 md:col-span-8 md:border-r md:border-gray-700 md:pr-4">
+            <h2 class="mb-4 text-2xl">Getting started</h2>
+            <div class="grid gap-4 md:grid-cols-3">
+              <%= link_to "", class: "group p-6 border border-gray-800 bg-gray-900/70 rounded-xl hover:border-indigo-500/50 hover:bg-gray-900 transition-colors" do %>
+                <div class="flex items-center justify-between mb-4">
+                  <%= render_icon "pencil" %>
+                  <%= render_icon "chevron_right", klass: "size-5 text-gray-500 group-hover:text-white group-hover:translate-x-1 transition-transform" %>
+                </div>
+                <h3 class="mb-2 text-lg font-semibold text-white">
+                  Study
+                </h3>
+                <p class="text-sm leading-6 text-gray-400">
+                  Review flashcards or take a quiz to reinforce what you've learned.
+                </p>
               <% end %>
-            </ul>
-            <%= link_to user_study_plans_path(current_user), class: "flex self-start group btn btn-primary mt-auto" do %>
-              <p class="mr-3">
-                Manage Study Plans
-              </p>
-              <%= render_icon "chevron_right", klass: "group-hover:translate-x-2 transition-transform ease-in-out size-6" %>
-            <% end %>
+              <%= link_to "", class: "group p-6 border border-gray-800 bg-gray-900/70 rounded-xl hover:border-indigo-500/50 hover:bg-gray-900 transition-colors" do %>
+                <div class="flex items-center justify-between mb-4">
+                  <%= render_icon "pencil" %>
+                  <%= render_icon "chevron_right", klass: "size-5 text-gray-500 group-hover:text-white group-hover:translate-x-1 transition-transform" %>
+                </div>
+                <h3 class="mb-2 text-lg font-semibold text-white">
+                  Study Plans
+                </h3>
+                <p class="text-sm leading-6 text-gray-400">
+                  Build a custom study plan to meet your learning goals.
+                </p>
+              <% end %>
+              <%= link_to "", class: "group p-6 border border-gray-800 bg-gray-900/70 rounded-xl hover:border-indigo-500/50 hover:bg-gray-900 transition-colors" do %>
+                <div class="flex items-center justify-between mb-4">
+                  <%= render_icon "pencil" %>
+                  <%= render_icon "chevron_right", klass: "size-5 text-gray-500 group-hover:text-white group-hover:translate-x-1 transition-transform" %>
+                </div>
+                <h3 class="mb-2 text-lg font-semibold text-white">
+                  Design
+                </h3>
+                <p class="text-sm leading-6 text-gray-400">
+                  Build custom quizzes and flashcard decks for any topic.
+                </p>
+              <% end %>
+            </div>
+          </div>
+          <div class="flex flex-col col-span-12 md:col-span-4">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="flex text-2xl font-semibold">
+                Your Study Plans
+                <span class="flex items-center justify-center w-8 h-8 ml-2 text-sm border border-gray-700 rounded-full">
+                  <%= @study_plans.size %>
+                </span>
+              </h2>
+            </div>
+            <div class="flex flex-col grow">
+              <ul class="mb-3">
+                <% @study_plans.each do |study_plan| %>
+                  <li>
+                    <%= link_to user_study_plan_path(current_user, study_plan), class: "group flex items-center gap-3 p-3 -mx-3 rounded-lg hover:bg-gray-900 transition-colors" do %>
+                      <div class="flex items-center justify-center bg-gray-800 rounded-lg size-10">
+                        <%= render_icon "pencil" %>
+                      </div>
+                      <div class="min-w-0">
+                        <h3 class="font-medium text-white truncate">
+                          <%= study_plan.name %>
+                        </h3>
+                        <p class="text-sm text-gray-400">
+                          <%= pluralize(study_plan.resource_count, "resource") %>
+                        </p>
+                      </div>
+                      <%= render_icon "chevron_right", klass: "ml-auto size-5 text-gray-500 group-hover:text-white group-hover:translate-x-1 transition-transform" %>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+              <%= link_to user_study_plans_path(current_user), class: "flex self-start group btn btn-primary mt-auto" do %>
+                <p class="mr-3">
+                  Manage Study Plans
+                </p>
+                <%= render_icon "chevron_right", klass: "group-hover:translate-x-2 transition-transform ease-in-out size-6" %>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-      <section class="mb-12">
-        <h2 class="pb-3 mb-4 text-2xl border-b border-gray-700">New community learning resources</h2>
-        <p class="leading-7 text-white max-w-prose">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quaerat illo neque ab autem et saepe blanditiis reiciendis beatae culpa. Quo eius porro hic nihil eaque mollitia quae repudiandae sunt!</p>
       </section>
-      <section class="mb-12">
-        <h2 class="pb-3 mb-4 text-2xl border-b border-gray-700">Latest News</h2>
+      <section class="py-12 border-t border-gray-800">
+        <h2 class="pb-3 mb-4 text-2xl">
+          New community learning resources
+        </h2>
+        <p class="leading-7 text-white max-w-prose">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio quaerat illo neque ab autem et saepe blanditiis reiciendis beatae culpa. Quo eius porro hic nihil eaque mollitia quae repudiandae sunt!
+        </p>
+      </section>
+      <section class="py-12 border-t border-gray-800">
+        <h2 class="pb-3 mb-4 text-2xl">
+          Latest News
+        </h2>
         <ul>
           <% @news_posts.each do |news_post| %>
             <li>
@@ -106,6 +117,6 @@
           <% end %>
         </ul>
       </section>
-    </section>
+    </main>
   </div>
 </div>
