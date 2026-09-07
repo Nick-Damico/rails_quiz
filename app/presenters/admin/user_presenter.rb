@@ -9,11 +9,15 @@ class Admin::UserPresenter
     user
   end
 
+  def id
+    user.id
+  end
+
   def field_names
     %i[username email created_on actions]
   end
 
-  def title
+  def username
     user.username
   end
 
