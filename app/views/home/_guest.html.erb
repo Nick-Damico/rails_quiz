@@ -1,15 +1,15 @@
 <% content_for :full_width, true %>
-<div class='pt-10 bg-gradient-to-b from-indigo-900'>
-  <section class="max-w-screen-xl px-4 py-6 mx-auto">
-    <div class="text-center my-16">
-      <h2 class="mb-4 text-4xl font-extrabold">Quizzes and Flashcards made simple!</h2>
-      <p class="text-lg font-light text-center text-white">
-        <span class="font-bold text-blue-500">QuizIt</span> is designed to help you learn and retain information with the use of quizzes and flashcards.
+<div class='pt-10 bg-gradient-to-b from-indigo-950 via-gray-950 to-gray-950'>
+  <section class="max-w-screen-xl mx-auto text-lg leading-8 text-gray-300 px-4 py-20">
+    <div class="my-16 text-center">
+      <h2 class="mb-4 text-4xl font-extrabold">Learn smarter. Remember longer.</h2>
+      <p class="max-w-2xl mx-auto text-lg laeding-8 text-gray-300 font-light text-center">
+        Create quizzes and flashbards, study at your own pace, and build personalized study plans to help you reach your learning goals.
       </p>
     </div>
     <section class="flex flex-col max-w-[900px] mx-auto">
       <h2 class="pb-4 mb-4 text-3xl font-semibold text-center">
-        Features
+        A better way to study
       </h2>
       <div class="grid grid-cols-2 gap-12">
         <div class="p-4">
@@ -17,7 +17,7 @@
             <%= render_icon "paint-brush", klass: "size-6 mr-2" %>
             Design
           </h3>
-          <p class="mb-4 text-md font-light prose text-white">
+          <p class="mb-4 font-light prose text-white text-md">
             Design your own quizzes and flashcards with ease. We provide you with the tools to customize your quizzes and flashcards to fit your learning style.
           </p>
         </div>
@@ -26,7 +26,7 @@
             <%= render_icon "share", klass: "size-6 mr-2" %>
             Share
           </h3>
-          <p class="mb-4 text-md font-light prose text-white">
+          <p class="mb-4 font-light prose text-white text-md">
             Share your quizzes and flashcards with friends, classmates, or colleagues. You can also collaborate on creating quizzes together.
           </p>
         </div>
@@ -35,7 +35,7 @@
             <%= render_icon "academic-cap", klass: "size-6 mr-2" %>
             Study
           </h3>
-          <p class="mb-4 text-md font-light prose text-white">
+          <p class="mb-4 font-light prose text-white text-md">
             Study quizzes and flashcards at your own pace. You can enable spaced repetition to help you retain information better and track your progress over time.
           </p>
         </div>
@@ -44,14 +44,14 @@
             <%= render_icon "presentation-chart", klass: "size-6 mr-2" %>
             Study Plans
           </h3>
-          <p class="mb-4 text-md font-light prose text-white">
+          <p class="mb-4 font-light prose text-white text-md">
             Organize quizzes and flashcards into study plans to help you stay on track with your learning goals. You can set reminders and track your progress over time.
           </p>
         </div>
       </div>
     </section>
-    <div class="text-center mt-8">
-      <%= link_to "Sign Up", new_user_registration_path, class: "btn-lg btn-primary uppercase rounded mt-8 text-lg font-semibold text-white" %>
+    <div class="mt-8 text-center">
+      <%= link_to "Get Started", new_user_registration_path, class: "btn-lg btn-primary uppercase rounded mt-8 text-lg font-semibold text-white" %>
     </div>
   </section>
 </div>
