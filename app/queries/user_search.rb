@@ -7,12 +7,6 @@ class UserSearch < ApplicationSearch
 
   def query
     scope
-
-    # return scope unless params.dig(:category_ids).present?
-
-    # @scope = scope.where(category_id: params.dig(:category_ids))
-
-    # scope
   end
 
   private
