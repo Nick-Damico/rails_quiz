@@ -11,9 +11,9 @@ RSpec.describe Admin::UserPresenter do
     end
   end
 
-  describe "#title" do
+  describe "#username" do
     it "returns the user's username" do
-      expect(subject.title).to eq("sam pups")
+      expect(subject.username).to eq("sam pups")
     end
   end
 
@@ -22,9 +22,9 @@ RSpec.describe Admin::UserPresenter do
       expect(subject.created_on).to eq(user.created_at.strftime("%Y-%m-%d"))
     end
   end
-  describe "#description" do
+  describe "#email" do
     it "returns the user's email" do
-      expect(subject.description).to eq("sam_pups@example.com")
+      expect(subject.email).to eq("sam_pups@example.com")
     end
   end
 end

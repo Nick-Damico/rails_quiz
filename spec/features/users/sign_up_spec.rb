@@ -22,7 +22,7 @@ RSpec.describe 'User Authentication Forms', type: :feature do
     login_as(user, scope: :user)
     visit root_path
 
-    expect(page).to have_content("Welcome back, Sam Pups!")
+    expect(page).to have_content("Welcome back, Sam Pups")
   end
 
   scenario 'User logs in' do
@@ -37,7 +37,7 @@ RSpec.describe 'User Authentication Forms', type: :feature do
 
     click_button 'Log in'
 
-    expect(page).to have_content("Welcome back, Sam Pups!")
+    expect(page).to have_content("Welcome back, Sam Pups")
   end
 
   scenario 'displays error for invalid log in attempt' do
