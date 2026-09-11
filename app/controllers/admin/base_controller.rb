@@ -5,6 +5,6 @@ class Admin::BaseController < ApplicationController
   private
 
     def authorize_admin!
-      authorize [ :admin, :base ], :access?
+      authorize :admin, :access?, policy_class: AdminPolicy
     end
 end
