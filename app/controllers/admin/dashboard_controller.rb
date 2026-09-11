@@ -1,4 +1,4 @@
-class Admin::DashboardController < ApplicationController
+class Admin::DashboardController < Admin::BaseController
   def show
     @user = current_user
     authorize @user
@@ -13,6 +13,4 @@ class Admin::DashboardController < ApplicationController
     @pagy, objects = pagy(:countish, search.query)
     @objects = objects.map { |object| presenter.new(object) }
   end
-
-  private
 end
