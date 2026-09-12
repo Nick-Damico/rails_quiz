@@ -1,42 +1,68 @@
-<div class="relative overflow-x-auto">
-  <table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-      <tr>
-        <th scope="col" class="px-3 py-3">
-          Username
+<table class="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <tr>
+      <th scope="col" class="px-3 py-3">
+        Username
+      </th>
+      <th scope="col" class="px-3 py-3">
+        Email
+      </th>
+      <th scope="col" class="px-3 py-3">
+        Created On
+      </th>
+      <th scope="col" class="px-3 py-3 text-right">
+        Actions
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% objects.each do |object| %>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row" class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          <%= link_to object.username, public_profile_user_path(object.id), class: "underline" %>
         </th>
-        <th scope="col" class="px-3 py-3">
-          Email
-        </th>
-        <th scope="col" class="px-3 py-3">
-          Created On
-        </th>
-        <th scope="col" class="px-3 py-3 text-right">
-          Actions
-        </th>
+        <td class="px-3 py-2">
+          <%= object.email %>
+        </td>
+        <td class="px-3 py-2">
+          <%= object.created_on %>
+        </td>
+        <td class="px-3 py-2 text-right">
+          <div data-controller="pop-up-menu" class="relative inline-block">
+            <button
+                  class="flex items-center rounded"
+                  data-action="click->pop-up-menu#displayMenu">
+              <%= render_icon "three_dots_horizontal", klass: "size-5" %>
+            </button>
+            <nav
+                data-pop-up-menu-target="menu"
+                class="absolute z-50 hidden p-2 bg-black border border-gray-500 rounded-md min-w-24 right-0"
+                aria-label="Card menu">
+              <ul class="flex flex-col text-white">
+                <li class="flex hover:bg-blue-500">
+                  <%= link_to edit_admin_user_path(object), class: "flex px-2 py-1 transition duration-500" do %>
+                    <span class="flex" aria-label="Edit card">
+                      <%= render_icon "pencil", klass: "size-5 mr-2" %>
+                    </span>
+                    edit
+                  <% end %>
+                </li>
+                <li class="flex px-2 py-1 hover:bg-blue-500">
+                  <%= button_to admin_user_path(object),
+                        class: "flex grow",
+                        method: :delete,
+                        aria: { label: "Remove" } do %>
+                    <span class="flex w-6 text-left">
+                      <%= render_icon "x_circle", klass: "text-left size-5" %>
+                    </span>
+                    <span class="ml-1 text-sm grow">remove</span>
+                  <% end %>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% objects.each do |object| %>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-          <th scope="row" class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <%= link_to object.username, public_profile_user_path(object.id), class: "underline" %>
-          </th>
-          <td class="px-3 py-2">
-            <%= object.email %>
-          </td>
-          <td class="px-3 py-2">
-            <%= object.created_on %>
-          </td>
-          <td class="px-3 py-2 text-right">
-            <div class="inline-flex border border-gray-400">
-              <%= link_to public_profile_user_path(object), title: "view", aria: { label: "View Deck" }, class: "bg-primary text-white px-2 py-2" do %>
-                <%= render_icon "magnifying_glass", klass: "size-5" %>
-              <% end %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+    <% end %>
+  </tbody>
+</table>
