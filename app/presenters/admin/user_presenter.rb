@@ -5,12 +5,16 @@ class Admin::UserPresenter
     @user = user
   end
 
+  def id
+    user.id
+  end
+
   def to_model
     user
   end
 
-  def id
-    user.id
+  def to_param
+    String(user.id)
   end
 
   def field_names
