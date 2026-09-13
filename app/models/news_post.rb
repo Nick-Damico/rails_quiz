@@ -48,10 +48,6 @@ class NewsPost
       Dir.glob(path.join("*.md"))
     end
 
-    def self.parse_file(file)
-      ::FrontMatterParser::Parser.parse_file(file)
-    end
-
     def parse_file(file)
       ::FrontMatterParser::Parser.parse_file(file)
     end
