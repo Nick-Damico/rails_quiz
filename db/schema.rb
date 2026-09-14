@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_08_26_140826) do
+ActiveRecord::Schema[7.2].define(version: 2026_09_14_133835) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -200,6 +200,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_08_26_140826) do
     t.string "unconfirmed_email"
     t.integer "rank", default: 0
     t.enum "role", default: "user", null: false, enum_type: "user_role"
+    t.boolean "hidden", default: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["rank"], name: "index_users_on_rank"

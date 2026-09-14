@@ -47,21 +47,30 @@ RSpec.describe Admin::UsersController, type: :request do
       end
 
       context "with valid params" do
-        it "responds with status code of ok" do
+        it "redirects to admin dashboard" do
           patch admin_user_path(user), params: { user: { username: "sammy pups" } }
 
-          expect(response).to have_http_status(:ok)
+          expect(response).to redirect_to(admin_dashboard_url(tab: "user"))
         end
 
         it "updates the information" do
           patch admin_user_path(user), params: { user: { username: "sammy pups", email: "new_pups@example.com" } }
 
           user.reload
-          expect(response).to have_http_status(:ok)
           expect(user.username).to eq("sammy pups")
           expect(user.unconfirmed_email).to eq("new_pups@example.com")
         end
+
+        context "when deactivating a users account" do
+          it "sets the user to hidden" do
+            patch admin_user_path(user), params: { user: { hidden: "1" } }
+
+            user.reload
+            expect(user).to be_hidden
+          end
+        end
       end
+
       context "with invalid params" do
         it "responds with status code of unprocessable content" do
           patch admin_user_path(user), params: { user: { username: "" } }

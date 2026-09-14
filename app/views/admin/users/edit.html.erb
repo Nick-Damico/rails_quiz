@@ -37,6 +37,15 @@
             </p>
           <% end %>
         </div>
+        <div class="mb-4 field">
+          <%= form.label :hidden, "Deactivate User",
+                       class: "text-white text-xs font-semibold uppercase mb-2" %>
+          <%= form.check_box :hidden,
+                           class: "mr-2 leading-tight" %>
+          <span class="text-sm text-gray-300">
+            Hide this user from public view
+          </span>
+        </div>
       </div>
       <div class="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
         <%= link_to "Cancel",

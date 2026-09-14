@@ -21,6 +21,10 @@ class Admin::UserPresenter
     %i[username email created_on actions]
   end
 
+  def hidden?
+    user.hidden?
+  end
+
   def username
     user.username
   end

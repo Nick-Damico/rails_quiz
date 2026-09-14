@@ -5,21 +5,23 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if @user.update(user_params)
-      flash.now[:success] = "user updated successfully"
-      render :edit, status: :ok
+      if @user.hidden?
+        flash[:notice] = "user account deactivated successfully"
+      else
+        flash[:notice] = "user updated successfully"
+      end
+
+      redirect_to admin_dashboard_url(tab: "user")
     else
       flash.now[:alert] = @user.errors.full_messages
       render :edit, status: :unprocessable_content
     end
   end
 
-  def destroy
-  end
-
   private
 
     def user_params
-      params.require(:user).permit(:username, :email)
+      params.require(:user).permit(:username, :email, :hidden)
     end
 
     def authorize_admin!

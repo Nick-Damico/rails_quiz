@@ -2,6 +2,9 @@
   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
       <th scope="col" class="px-3 py-3">
+        Deactivated
+      </th>
+      <th scope="col" class="px-3 py-3">
         Username
       </th>
       <th scope="col" class="px-3 py-3">
@@ -18,9 +21,12 @@
   <tbody>
     <% objects.each do |object| %>
       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th scope="row" class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        <td class="px-3 py-2">
+          <%= object.hidden? ? render_icon("checkmark", klass: "text-red-500 size-6") : "-" %>
+        </td>
+        <td scope="row" class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
           <%= link_to object.username, public_profile_user_path(object.id), class: "underline" %>
-        </th>
+        </td>
         <td class="px-3 py-2">
           <%= object.email %>
         </td>
