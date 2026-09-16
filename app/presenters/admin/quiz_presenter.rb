@@ -9,6 +9,10 @@ class Admin::QuizPresenter
     quiz
   end
 
+  def to_param
+    String(quiz.id)
+  end
+
   def field_names
     %i[username email created_on actions]
   end
@@ -31,5 +35,13 @@ class Admin::QuizPresenter
 
   def description
     quiz.description
+  end
+
+  def hidden?
+    quiz.hidden?
+  end
+
+  def published?
+    quiz.published?
   end
 end

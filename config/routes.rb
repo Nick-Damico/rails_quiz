@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :dashboard, only: %i[show]
     resources :users, only: %i[edit update]
+    resources :quizzes, only: %i[edit update]
   end
 
   resources :answer_sheets, only: %i[create destroy show] do

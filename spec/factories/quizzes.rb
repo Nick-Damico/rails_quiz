@@ -19,6 +19,14 @@ FactoryBot.define do
       end
     end
 
+    trait :published do
+      with_publishable
+
+      after(:create) do |quiz|
+        quiz.publish!
+      end
+    end
+
     trait :with_publishable do
       transient do
         questions_count { 5 }

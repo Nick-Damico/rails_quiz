@@ -1,9 +1,7 @@
-class Admin::QuizPolicy < ApplicationPolicy
+class Admin::QuizPolicy < AdminPolicy
   class Scope < ApplicationPolicy::Scope
     def resolve
-      if @user.admin?
-        @scope.all
-      end
+      @scope.all
     end
   end
 end
