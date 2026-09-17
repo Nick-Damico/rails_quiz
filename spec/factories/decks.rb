@@ -14,6 +14,13 @@ FactoryBot.define do
     end
   end
 
+  trait :published do
+    with_publishable
+
+    after(:create) do |deck|
+      deck.publish!
+    end
+  end
 
   trait :with_cards do
     transient { card_count { 2 } }

@@ -13,6 +13,10 @@ class Admin::DeckPresenter
     deck.id
   end
 
+  def to_param
+    String(deck.id)
+  end
+
   def title
     deck.title
   end
@@ -27,5 +31,13 @@ class Admin::DeckPresenter
 
   def created_on
     deck.created_at.strftime("%Y-%m-%d")
+  end
+
+  def hidden?
+    deck.hidden?
+  end
+
+  def published?
+    deck.published?
   end
 end
