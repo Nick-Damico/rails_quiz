@@ -1,0 +1,5 @@
+class AddColumnHiddenToDecks < ActiveRecord::Migration[7.2]
+  def change
+    add_column :decks, :hidden, :boolean
+  end
+end
