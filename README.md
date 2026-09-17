@@ -9,6 +9,7 @@ QuizIT is a Ruby on Rails application designed to help users create, organize, a
 ### Current Features
 
 - **Quiz and Flashcard Creation**: Users can create custom quizzes and flashcards for studying.
+- **Study Groups**: Organize your quizzes and flashcards into a related topic or grouping.
 - **User Management**: Secure user accounts to organize and manage your study materials.
 
 ### Upcoming Features
