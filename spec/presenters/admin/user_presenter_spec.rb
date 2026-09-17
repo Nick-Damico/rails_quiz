@@ -10,6 +10,11 @@ RSpec.describe Admin::UserPresenter do
       expect(subject.field_names).to contain_exactly(:username, :email, :created_on, :actions)
     end
   end
+  describe "#id" do
+    it "returns the user's id" do
+      expect(subject.id).to eq(user.id)
+    end
+  end
 
   describe "#username" do
     it "returns the user's username" do
