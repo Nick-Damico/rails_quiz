@@ -1,20 +1,25 @@
-<h1 class="text-2xl mb-6">Welcome Admin!</h1>
-<section>
-  <h2 class="text-xl mb-4">Manage</h2>
-  <nav class="border-y border-gray-200 dark:border-gray-700 mb-4" aria-label="Resource Types">
-    <ul class="flex -mb-px text-sm font-medium">
+<h1 class="text-2xl font-semibold mb-1">Admin Dashboard</h1>
+<p class="text-sm text-gray-500 dark:text-gray-400 mb-8">
+  Manage users, quizzes, and decks.
+</p>
+<section aria-labelledby="resource-heading">
+  <h2 class="text-lg font-semibold mb-4">
+    Resources
+  </h2>
+  <nav class="border-b border-gray-200 dark:border-gray-700 mb-6">
+    <ul class="flex gap-6 -mb-x text-sm font-medium">
       <li>
-        <%= link_to "Users",
-            admin_dashboard_path(@user, tab: :user),
-            class: tab_classes(@tab, "user"), data: { turbo: false } %>
+        <%= link_to "Users (#{@user_count})",
+        admin_dashboard_path(@user, tab: :user),
+        class: tab_classes(@tab, "user"), data: { turbo: false } %>
       </li>
       <li>
-        <%= link_to "Quizzes",
-            admin_dashboard_path(@user, tab: :quiz),
-            class: tab_classes(@tab, "quiz"), data: { turbo: false } %>
+        <%= link_to "Quizzes (#{@quiz_count})",
+        admin_dashboard_path(@user, tab: :quiz),
+        class: tab_classes(@tab, "quiz"), data: { turbo: false } %>
       </li>
       <li>
-        <%= link_to "Decks",
+        <%= link_to "Decks (#{@deck_count})",
             admin_dashboard_path(@user, tab: :deck),
             class: tab_classes(@tab, "deck"), data: { turbo: false } %>
       </li>

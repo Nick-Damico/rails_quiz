@@ -12,5 +12,8 @@ class Admin::DashboardController < Admin::BaseController
     @user = current_user
     @pagy, objects = pagy(:countish, search.query)
     @objects = objects.map { |object| presenter.new(object) }
+    @user_count = User.count
+    @quiz_count = Quiz.count
+    @deck_count = Deck.count
   end
 end
