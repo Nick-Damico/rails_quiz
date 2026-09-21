@@ -12,7 +12,7 @@ export default class extends Controller {
   }
 
   disconnect() {
-    document.removeEventListner("click", this.eventClick);
+    document.removeEventListener("click", this.eventClick);
   }
 
   /* ACTIONS */
