@@ -5,7 +5,7 @@ class Admin::UsersController < Admin::BaseController
     default_scope = policy_scope([ :admin, User.all ])
     search = UserSearch.new(default_scope, params)
 
-    @tab = "User"
+    @tab = "user"
     @user = current_user # maybe remove
     @pagy, users = pagy(:countish, search.query)
     @objects = users.map { |user| Admin::UserPresenter.new(user) }
