@@ -15,13 +15,13 @@
       </li>
       <li>
         <%= link_to "Quizzes (#{@quiz_count})",
-        admin_dashboard_path(@user, tab: :quiz),
-        class: tab_classes(@tab, "quiz"), data: { turbo: false } %>
+        admin_dashboard_path(tab: :quiz),
+        class: tab_classes(@tab, "quiz"), data: { turbo_frame: :table_content } %>
       </li>
       <li>
         <%= link_to "Decks (#{@deck_count})",
             admin_dashboard_path(@user, tab: :deck),
-            class: tab_classes(@tab, "deck"), data: { turbo: false } %>
+            class: tab_classes(@tab, "deck"), data: { turbo_frame: :table_content } %>
       </li>
     </ul>
   </nav>

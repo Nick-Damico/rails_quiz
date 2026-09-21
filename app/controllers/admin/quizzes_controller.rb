@@ -1,5 +1,16 @@
 class Admin::QuizzesController < Admin::BaseController
-  before_action :set_quiz
+  before_action :set_quiz, except: %i[index]
+
+  def index
+    default_scope = policy_scope([ :admin, Quiz.all ])
+    search = QuizSearch.new(default_scope, params)
+
+    @tab = "quiz"
+    @quiz = current_user # maybe remove
+    @pagy, quizzes = pagy(:countish, search.query)
+    @objects = quizzes.map { |quiz| Admin::QuizPresenter.new(quiz) }
+    @quiz_count = Quiz.count
+  end
 
   def edit; end
 
