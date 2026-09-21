@@ -10,8 +10,8 @@
     <ul class="flex gap-6 -mb-x text-sm font-medium">
       <li>
         <%= link_to "Users (#{@user_count})",
-        admin_dashboard_path(@user, tab: :user),
-        class: tab_classes(@tab, "user"), data: { turbo: false } %>
+        admin_users_path(tab: :user),
+        class: tab_classes(@tab, "user"), data: { turbo_frame: :table_content } %>
       </li>
       <li>
         <%= link_to "Quizzes (#{@quiz_count})",
@@ -26,7 +26,9 @@
     </ul>
   </nav>
   <div>
-    <%= render @tab.downcase, objects: @objects %>
+    <%= turbo_frame_tag :table_content do %>
+      <%= render @tab.downcase, objects: @objects %>
+    <% end %>
     <%= render "shared/pagy" %>
   </div>
 </section>
