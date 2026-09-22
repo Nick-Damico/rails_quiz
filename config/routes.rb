@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :dashboard, only: %i[show]
     resources :users, only: %i[edit index update]
-    resources :decks, only: %i[edit update]
+    resources :decks, only: %i[edit index update]
     resources :quizzes, only: %i[edit index update]
   end
 

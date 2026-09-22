@@ -1,1 +1,7 @@
-<%= render "admin/dashboard/user", objects: @objects %>
+<%= turbo_frame_tag :table_content do %>
+  <%= render "admin/dashboard/navigation" %>
+  <div>
+    <%= render "admin/dashboard/user", objects: @users %>
+    <%= render "shared/pagy" %>
+  </div>
+<% end %>

@@ -8,8 +8,11 @@ class Admin::UsersController < Admin::BaseController
     @tab = "user"
     @user = current_user # maybe remove
     @pagy, users = pagy(:countish, search.query)
-    @objects = users.map { |user| Admin::UserPresenter.new(user) }
+    @users = users.map { |user| Admin::UserPresenter.new(user) }
+    # navigation tabs
     @user_count = User.count
+    @deck_count = Deck.count
+    @quiz_count = Quiz.count
   end
 
   def edit; end

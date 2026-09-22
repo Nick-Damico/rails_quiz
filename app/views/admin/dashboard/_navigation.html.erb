@@ -1,0 +1,19 @@
+<nav class="border-b border-gray-200 dark:border-gray-700 mb-6">
+  <ul class="flex gap-6 -mb-x text-sm font-medium">
+    <li>
+      <%= link_to "Users (#{@user_count})",
+        admin_users_path(tab: :user),
+        class: tab_classes(@tab, "user") %>
+    </li>
+    <li>
+      <%= link_to "Quizzes (#{@quiz_count})",
+        admin_quizzes_path(tab: :quiz),
+        class: tab_classes(@tab, "quiz") %>
+    </li>
+    <li>
+      <%= link_to "Decks (#{@deck_count})",
+        admin_decks_path(tab: :deck),
+        class: tab_classes(@tab, "deck") %>
+    </li>
+  </ul>
+</nav>

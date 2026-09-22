@@ -1,5 +1,19 @@
 class Admin::DecksController < Admin::BaseController
-  before_action :set_deck
+  before_action :set_deck, except: %i[index]
+
+  def index
+    default_scope = policy_scope([ :admin, Deck.all ])
+    search = UserSearch.new(default_scope, params)
+
+    @tab = "deck"
+    @user = current_user # maybe remove
+    @pagy, decks = pagy(:countish, search.query)
+    @decks = decks.map { |deck| Admin::DeckPresenter.new(deck) }
+    # navigation tabs
+    @deck_count = Deck.count
+    @quiz_count = Quiz.count
+    @user_count = User.count
+  end
 
   def edit; end
 
