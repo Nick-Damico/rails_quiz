@@ -2,17 +2,14 @@ class Admin::UsersController < Admin::BaseController
   before_action :set_user, except: %i[index]
 
   def index
+    super
+
     default_scope = policy_scope([ :admin, User.all ])
     search = UserSearch.new(default_scope, params)
 
-    @tab = "user"
     @user = current_user # maybe remove
     @pagy, users = pagy(:countish, search.query)
     @users = users.map { |user| Admin::UserPresenter.new(user) }
-    # navigation tabs
-    @user_count = User.count
-    @deck_count = Deck.count
-    @quiz_count = Quiz.count
   end
 
   def edit; end

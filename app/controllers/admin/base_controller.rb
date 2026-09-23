@@ -6,6 +6,14 @@ class Admin::BaseController < ApplicationController
     redirect_back_or_to root_url
   end
 
+  def index
+    # navigation tabs
+    @tab = params[:tab].presence || "user"
+    @user_count = User.count
+    @deck_count = Deck.count
+    @quiz_count = Quiz.count
+  end
+
   private
 
     def authorize_admin!

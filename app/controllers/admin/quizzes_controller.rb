@@ -2,17 +2,13 @@ class Admin::QuizzesController < Admin::BaseController
   before_action :set_quiz, except: %i[index]
 
   def index
+    super
     default_scope = policy_scope([ :admin, Quiz.all ])
     search = QuizSearch.new(default_scope, params)
 
-    @tab = "quiz"
     @quiz = current_user # maybe remove
     @pagy, quizzes = pagy(:countish, search.query)
     @quizzes = quizzes.map { |quiz| Admin::QuizPresenter.new(quiz) }
-    # navigation tab
-    @quiz_count = Quiz.count
-    @user_count = User.count
-    @deck_count = Deck.count
   end
 
   def edit; end
