@@ -19,9 +19,14 @@ class ApplicationSearch
     scope
   end
 
+  def filter_category_ids
+    safe_params.dig(:filter, :category_ids)
+  end
+
   private
 
     def safe_params
-      @params.fetch(:filter, ActionController::Parameters.new).permit(:outside_value, category_ids: [])
+      @params.permit(:q, filter: { category_ids: [] })
+      # @params.fetch(:filter, ActionController::Parameters.new).permit(category_ids: [])
     end
 end
