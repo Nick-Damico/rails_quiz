@@ -7,6 +7,7 @@
     Resources
   </h2>
   <%= turbo_frame_tag :table_content do %>
+    <%= render "search" %>
     <%= render "navigation" %>
     <div>
       <%= render @tab.downcase, objects: @objects %>
