@@ -6,11 +6,19 @@ class QuizSearch < ApplicationSearch
   end
 
   def query
-    return scope unless params.dig(:category_ids).present?
+    @scope = text_query(scope) if text_search.present?
 
-    @scope = scope.where(category_id: params.dig(:category_ids))
+    return @scope unless filter_category_ids.present?
+
+    @scope = scope.where(category_id: filter_category_ids)
 
     scope
+  end
+
+  def text_query(scope)
+    text = text_search.downcase
+    scope.where("LOWER(title) LIKE :text", text: "%#{text}%")
+         .or(scope.where("LOWER(description) LIKE :text", text: "%#{text}%"))
   end
 
   private
