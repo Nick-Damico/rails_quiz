@@ -10,9 +10,5 @@ class UserSearch < ApplicationSearch
     scope.where("LOWER(username) LIKE :text", text: "%#{text_search.downcase}%")
   end
 
-  def text_search
-    params[:q]
-  end
-
   private
 end

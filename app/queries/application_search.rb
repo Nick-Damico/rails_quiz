@@ -19,6 +19,10 @@ class ApplicationSearch
     scope
   end
 
+  def text_search
+    params[:q]
+  end
+
   def filter_category_ids
     safe_params.dig(:filter, :category_ids)
   end
