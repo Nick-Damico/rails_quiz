@@ -1,4 +1,5 @@
 <%= turbo_frame_tag :table_content do %>
+  <%= render "admin/dashboard/search" %>
   <%= render "admin/dashboard/navigation" %>
   <div>
     <%= render "admin/dashboard/user", objects: @users %>
