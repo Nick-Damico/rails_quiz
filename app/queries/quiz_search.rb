@@ -16,9 +16,16 @@ class QuizSearch < ApplicationSearch
   end
 
   def text_query(scope)
-    text = text_search.downcase
-    scope.where("LOWER(title) LIKE :text", text: "%#{text}%")
-         .or(scope.where("LOWER(description) LIKE :text", text: "%#{text}%"))
+    text = "%#{text_search}%"
+
+    scope
+      .joins(:category)
+      .where(
+        "quizzes.title ILIKE :text OR
+         quizzes.description ILIKE :text OR
+         categories.name ILIKE :text",
+        text: text
+      )
   end
 
   private
