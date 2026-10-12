@@ -15,18 +15,20 @@ class QuizSearch < ApplicationSearch
     scope
   end
 
-  def text_query(scope)
-    text = "%#{text_search}%"
+  private
 
-    scope
-      .joins(:category)
-      .where(
-        "quizzes.title ILIKE :text OR
+    def text_query(scope)
+      text = "%#{text_search}%"
+
+      scope
+        .joins(:category)
+        .where(
+          "quizzes.title ILIKE :text OR
          quizzes.description ILIKE :text OR
          categories.name ILIKE :text",
-        text: text
-      )
-  end
+          text: text
+        )
+    end
 
   private
     def categories
