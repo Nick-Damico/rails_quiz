@@ -7,6 +7,7 @@ class Admin::QuizzesController < Admin::BaseController
     search = QuizSearch.new(default_scope, params)
 
     @quiz = current_user # maybe remove
+    @path = admin_quizzes_path
     @pagy, quizzes = pagy(:countish, search.query)
     @quizzes = quizzes.map { |quiz| Admin::QuizPresenter.new(quiz) }
   end

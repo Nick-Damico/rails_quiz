@@ -10,6 +10,7 @@ class Admin::DashboardController < Admin::BaseController
 
     @tab = selected_class_name
     @user = current_user
+    @path = admin_users_path
     @pagy, objects = pagy(:countish, search.query)
     @objects = objects.map { |object| presenter.new(object) }
     @user_count = User.count

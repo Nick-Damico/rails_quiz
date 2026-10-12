@@ -4,9 +4,10 @@ class Admin::DecksController < Admin::BaseController
   def index
     super
     default_scope = policy_scope([ :admin, Deck.all ])
-    search = UserSearch.new(default_scope, params)
+    search = DeckSearch.new(default_scope, params)
 
     @user = current_user # maybe remove
+    @path = admin_decks_path
     @pagy, decks = pagy(:countish, search.query)
     @decks = decks.map { |deck| Admin::DeckPresenter.new(deck) }
   end
