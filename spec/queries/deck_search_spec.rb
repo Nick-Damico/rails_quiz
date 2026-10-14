@@ -50,5 +50,35 @@ RSpec.describe DeckSearch, type: :model do
         expect(search.query).to contain_exactly(deck_1)
       end
     end
+
+    context "with text search and category filters" do
+      let!(:ruby_cs_deck) do
+        create(
+          :deck,
+          title: "Ruby Programming",
+          description: "Fundamentals of programming with Ruby.",
+          category: category_cs
+        )
+      end
+
+      let!(:ruby_art_deck) do
+        create(
+          :deck,
+          title: "Ruby Art",
+          description: "Exploring the artistic aspects of Ruby programming.",
+          category: category_arts
+        )
+      end
+
+      it "matches text only within the selected categories" do
+        params = ActionController::Parameters.new(
+          q: "ruby",
+          filter: { category_ids: [ category_cs.id ] }
+        )
+        search = DeckSearch.new(Deck.all, params)
+
+        expect(search.query).to contain_exactly(ruby_cs_deck)
+      end
+    end
   end
 end
