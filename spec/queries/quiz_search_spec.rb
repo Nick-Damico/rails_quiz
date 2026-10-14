@@ -51,4 +51,34 @@ RSpec.describe QuizSearch, type: :model do
       end
     end
   end
+
+  context "with text search and category filters" do
+    let!(:ruby_cs_quiz) do
+      create(
+        :quiz,
+        title: "Ruby Programming",
+        description: "Fundamentals of programming with Ruby.",
+        category: category_cs
+      )
+    end
+
+    let!(:ruby_art_quiz) do
+      create(
+        :quiz,
+        title: "Ruby Art",
+        description: "Exploring the artistic aspects of Ruby programming.",
+        category: category_arts
+      )
+    end
+
+    it "matches text only within the selected categories" do
+      params = ActionController::Parameters.new(
+        q: "ruby",
+        filter: { category_ids: [ category_cs.id ] }
+      )
+      search = QuizSearch.new(Quiz.all, params)
+
+      expect(search.query).to contain_exactly(ruby_cs_quiz)
+    end
+  end
 end
