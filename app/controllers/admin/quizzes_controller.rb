@@ -7,7 +7,6 @@ class Admin::QuizzesController < Admin::BaseController
     search = QuizSearch.new(default_scope, params)
 
     @tab  = "quiz"
-    @search_text = search.text_search
     @quiz = current_user # maybe remove
     @path = admin_quizzes_path
     @pagy, quizzes = pagy(:countish, search.query)
