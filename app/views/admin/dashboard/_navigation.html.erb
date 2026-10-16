@@ -6,14 +6,14 @@
         class: tab_classes(@tab, "user") %>
     </li>
     <li>
-      <%= link_to "Quizzes (#{@quiz_count})",
-        admin_quizzes_path(tab: :quiz),
-        class: tab_classes(@tab, "quiz") %>
-    </li>
-    <li>
       <%= link_to "Decks (#{@deck_count})",
         admin_decks_path(tab: :deck),
         class: tab_classes(@tab, "deck") %>
+    </li>
+    <li>
+      <%= link_to "Quizzes (#{@quiz_count})",
+        admin_quizzes_path(tab: :quiz),
+        class: tab_classes(@tab, "quiz") %>
     </li>
   </ul>
 </nav>
