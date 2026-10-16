@@ -6,6 +6,7 @@ class Admin::DecksController < Admin::BaseController
     default_scope = policy_scope([ :admin, Deck.all ])
     search = DeckSearch.new(default_scope, params)
 
+    @tab = "deck"
     @user = current_user # maybe remove
     @path = admin_decks_path
     @pagy, decks = pagy(:countish, search.query)
