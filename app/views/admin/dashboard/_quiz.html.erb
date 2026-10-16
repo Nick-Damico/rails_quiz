@@ -32,10 +32,10 @@
             <%= object.published? ? render_icon("checkmark", klass: "text-emerald-500 size-6") : "-" %>
           </td>
           <td scope="row" class="px-3 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            <%= link_to object.title, quiz_path(object), class: "underline" %>
+            <%= link_to object.title, quiz_path(object), class: "underline", data: { turbo_frame: "_top" } %>
           </td>
           <td class="px-3 py-2">
-            <%= link_to object.author_name, public_profile_user_path(object.author), class: "underline" %>
+            <%= link_to object.author_name, public_profile_user_path(object.author), class: "underline", data: { turbo_frame: "_top" } %>
           </td>
           <td class="px-3 py-2">
             <%= object.created_on %>
