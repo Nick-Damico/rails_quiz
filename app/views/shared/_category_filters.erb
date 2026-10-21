@@ -1,6 +1,7 @@
-<details class="pb-4 mb-4 border-b border-gray-800" open>
+  
+<details class="pb-4 mb-4 border-b border-gray-800" <%= "open" if open_status %>>
   <summary class="mb-4 text-xl">Category Filters</summary>
-  <%= form_with url: url, method: :get, class: "flex flex-col" do |form| %>
+  <%= form_with url: path, method: :get, class: "flex flex-col", data: { turbo_frame: "_top" } do |form| %>
     <div class="grid grid-cols-3 gap-1 md:grid-cols-6 lg:grid-cols-9">
       <% @filter_options.fetch(:categories, []).each do |category| %>
         <div class="border border-gray-800 hover:border-blue-800 ease-out duration-300">

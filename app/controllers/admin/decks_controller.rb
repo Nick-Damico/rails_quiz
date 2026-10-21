@@ -9,6 +9,7 @@ class Admin::DecksController < Admin::BaseController
     @tab = "deck"
     @user = current_user # maybe remove
     @path = admin_decks_path
+    @filter_options = search.filter_options
     @pagy, decks = pagy(:countish, search.query)
     @decks = decks.map { |deck| Admin::DeckPresenter.new(deck) }
   end

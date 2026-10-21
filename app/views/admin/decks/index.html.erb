@@ -1,4 +1,5 @@
 <%= turbo_frame_tag :table_content do %>
+  <%= render "shared/category_filters", path: @path, open_status: false %>
   <%= render "admin/dashboard/search", path: @path %>
   <%= render "admin/dashboard/navigation" %>
   <div>

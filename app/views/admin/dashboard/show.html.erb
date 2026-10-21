@@ -3,10 +3,8 @@
   Manage users, quizzes, and decks.
 </p>
 <section aria-labelledby="resource-heading">
-  <h2 class="text-lg font-semibold mb-4">
-    Resources
-  </h2>
   <%= turbo_frame_tag :table_content do %>
+    <%= render "shared/category_filters", path: @path unless @tab.downcase == "user" %>
     <%= render "search", path: @path %>
     <%= render "navigation" %>
     <div>

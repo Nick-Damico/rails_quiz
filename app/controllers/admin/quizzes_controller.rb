@@ -9,8 +9,10 @@ class Admin::QuizzesController < Admin::BaseController
     @tab  = "quiz"
     @quiz = current_user # maybe remove
     @path = admin_quizzes_path
+    @filter_options = search.filter_options
     @pagy, quizzes = pagy(:countish, search.query)
     @quizzes = quizzes.map { |quiz| Admin::QuizPresenter.new(quiz) }
+    @filter_options = search.filter_options
   end
 
   def edit; end
