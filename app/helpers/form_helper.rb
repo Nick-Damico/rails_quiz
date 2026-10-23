@@ -8,6 +8,19 @@ module FormHelper
     end)
   end
 
+
+  def hidden_category_id_fields
+    category_ids = Array(params.dig(:filter, :category_ids))
+    return if category_ids.empty?
+
+    safe_join(
+      category_ids.map do |category_id|
+        hidden_field_tag("filter[category_ids][]", category_id)
+      end
+    )
+  end
+
+
   private
 
     def field_with_error_msg(error, options)
