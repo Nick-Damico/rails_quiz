@@ -7,6 +7,7 @@ class DecksController < ApplicationController
     search = DeckSearch.new(default_scope, params)
 
     @filter_options = search.filter_options
+    @path = decks_path
     @pagy, @decks = pagy(:countish, search.query.order(:title, :created_at))
   end
 

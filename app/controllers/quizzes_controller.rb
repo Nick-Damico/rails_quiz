@@ -8,6 +8,7 @@ class QuizzesController < ApplicationController
     search = QuizSearch.new(default_scope, params)
 
     @filter_options = search.filter_options
+    @path = quizzes_path
     @pagy, @quizzes = pagy(
       :countish, search.query.order(:title, :created_at)
     )
