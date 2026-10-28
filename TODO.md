@@ -11,5 +11,6 @@
 
 - Route Restrictions:
   - [x] Protect resources that belong to authors and users.
-  - [ ] Admin Dashboard
+  - [x] Admin Dashboard
   - [x] User Dashboard
+  - [ ] Text search with filtering on intial search. This will require some JavaScript to set the hidden field of category_ids on the search component as the user selects.
