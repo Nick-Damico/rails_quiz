@@ -7,12 +7,11 @@ class Admin::QuizzesController < Admin::BaseController
     search = QuizSearch.new(default_scope, params)
 
     @tab  = "quiz"
-    @quiz = current_user # maybe remove
+    @user = current_user # maybe remove
     @path = admin_quizzes_path
     @filter_options = search.filter_options
     @pagy, quizzes = pagy(:countish, search.query)
     @quizzes = quizzes.map { |quiz| Admin::QuizPresenter.new(quiz) }
-    @filter_options = search.filter_options
   end
 
   def edit; end
