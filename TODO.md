@@ -14,3 +14,12 @@
   - [x] Admin Dashboard
   - [x] User Dashboard
   - [ ] Text search with filtering on intial search. This will require some JavaScript to set the hidden field of category_ids on the search component as the user selects.
+
+- Admin:
+  - Deactivate a `User` workflow.
+  - Deleting `Users` quiz and deck.
+    - Admin clicks `deactivate`.
+    - Removes `deck` or `quiz` from public (unpublish).
+    - Removes the ability for the User to re-publish
+    - Later: Add notes from `Admin` on why/reason for disabling.
+    - Later: Give users a path back to republishing (define rules/guidelines for public quizzes/decks)
