@@ -29,4 +29,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
+
+
+  def deactivate!
+    return if hidden?
+
+    update(hidden: true)
+  end
 end
