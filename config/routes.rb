@@ -31,7 +31,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dashboard, only: %i[show]
-    resources :users, only: %i[destroy edit index update]
+    resources :users, only: %i[edit enable index update] do
+      patch "deactivate", to: "users#deactivate", on: :member
+    end
     resources :decks, only: %i[edit index update]
     resources :quizzes, only: %i[edit index update]
   end

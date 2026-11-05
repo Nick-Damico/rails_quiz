@@ -29,8 +29,7 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
-  # Deactivates the users account by setting the hidden attribute to true. This is a soft delete, so the user can be reactivated later if needed.
-  def destroy
+  def deactivate
     if @user.deactivate!
       flash[:notice] = t("admin.users.destroy.success")
       redirect_to admin_dashboard_url(tab: "user")
@@ -39,6 +38,9 @@ class Admin::UsersController < Admin::BaseController
       flash[:alert] = t("admin.users.destroy.error")
       redirect_to admin_dashboard_url(tab: "user")
     end
+  end
+
+  def enable
   end
 
   private

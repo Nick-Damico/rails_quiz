@@ -89,12 +89,12 @@ RSpec.describe Admin::UsersController, type: :request do
     end
   end
 
-  describe "DELETE /admin/users/:id" do
+  describe "PATCH /admin/users/:id/deactivate" do
     before { sign_in admin }
 
     context "successful deactivate" do
       it "deactivates & hides the users' account" do
-        delete admin_user_path(user)
+        patch deactivate_admin_user_path(user)
 
         expect(user.reload).to be_hidden
       end
@@ -105,7 +105,7 @@ RSpec.describe Admin::UsersController, type: :request do
         allow(User).to receive(:find).with(user.id.to_s).and_return(user)
         allow(user).to receive(:deactivate!).and_return(false)
 
-        delete admin_user_path(user)
+        patch deactivate_admin_user_path(user)
 
         expect(user.reload).not_to be_hidden
       end
