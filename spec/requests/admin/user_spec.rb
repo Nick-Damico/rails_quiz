@@ -96,18 +96,40 @@ RSpec.describe Admin::UsersController, type: :request do
       it "deactivates & hides the users' account" do
         patch deactivate_admin_user_path(user)
 
-        expect(user.reload).to be_hidden
+        expect(user.reload).to be_inactive
       end
     end
 
     context "failure to deactivate" do
-      it "does not hide the users' account" do
+      it "does not deactivate the users' account" do
         allow(User).to receive(:find).with(user.id.to_s).and_return(user)
         allow(user).to receive(:deactivate!).and_return(false)
 
         patch deactivate_admin_user_path(user)
 
-        expect(user.reload).not_to be_hidden
+        expect(user.reload).not_to be_inactive
+      end
+    end
+  end
+  describe "PATCH /admin/users/:id/activate" do
+    before { sign_in admin }
+
+    context "successful deactivate" do
+      it "deactivates & hides the users' account" do
+        patch deactivate_admin_user_path(user)
+
+        expect(user.reload).to be_inactive
+      end
+    end
+
+    context "failure to deactivate" do
+      it "does not deactivate the users' account" do
+        allow(User).to receive(:find).with(user.id.to_s).and_return(user)
+        allow(user).to receive(:deactivate!).and_return(false)
+
+        patch deactivate_admin_user_path(user)
+
+        expect(user.reload).not_to be_inactive
       end
     end
   end

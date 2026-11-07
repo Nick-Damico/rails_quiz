@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: %i[show]
     resources :users, only: %i[edit enable index update] do
       patch "deactivate", to: "users#deactivate", on: :member
+      patch "activate", to: "users#activate", on: :member
     end
     resources :decks, only: %i[edit index update]
     resources :quizzes, only: %i[edit index update]

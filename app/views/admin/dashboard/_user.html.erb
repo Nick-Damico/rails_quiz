@@ -56,14 +56,26 @@
                   <% end %>
                 </li>
                 <li class="flex px-2 py-1 hover:bg-blue-500">
-                  <%= button_to admin_user_path(object),
+                  <% if object.active? %>
+                    <%= button_to deactivate_admin_user_path(object),
                         class: "flex grow",
-                        method: :delete,
-                        aria: { label: "Remove" } do %>
-                    <span class="flex w-6 text-left">
-                      <%= render_icon "x_circle", klass: "text-left size-5" %>
-                    </span>
-                    <span class="ml-1 text-sm grow">Deactivate</span>
+                        method: :patch,
+                        aria: { label: "deactivate User Account" } do %>
+                      <span class="flex w-6 text-left">
+                        <%= render_icon "x_circle", klass: "text-left size-5 text-red-500" %>
+                      </span>
+                      <span class="ml-1 text-sm grow">Deactivate</span>
+                    <% end %>
+                  <% else %>
+                    <%= button_to activate_admin_user_path(object),
+                        class: "flex grow",
+                        method: :patch,
+                        aria: { label: "Activate User Account" } do %>
+                      <span class="flex w-6 text-left">
+                        <%= render_icon "circle_check", klass: "text-left size-5 text-emerald-500" %>
+                      </span>
+                      <span class="ml-1 text-sm grow">Activate</span>
+                    <% end %>
                   <% end %>
                 </li>
               </ul>
