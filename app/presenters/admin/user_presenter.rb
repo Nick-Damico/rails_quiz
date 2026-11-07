@@ -1,7 +1,7 @@
 class Admin::UserPresenter
   attr_reader :user
 
-  delegate :id, :username, :hidden?, :email, :to_model, to: :user
+  delegate :id, :username, :active?, :inactive?, :hidden?, :email, :to_model, to: :user
 
   def initialize(user)
     @user = user

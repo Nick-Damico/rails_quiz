@@ -32,4 +32,10 @@ RSpec.describe Admin::UserPresenter do
       expect(subject.email).to eq("sam_pups@example.com")
     end
   end
+
+  describe "#active?" do
+    it "returns true if ther user is active (not hidden)" do
+      expect(subject).to be_active
+    end
+  end
 end

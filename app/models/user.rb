@@ -31,6 +31,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
 
 
+  def active?
+    !hidden?
+  end
+
+  def inactive?
+    !active?
+  end
+
   def deactivate!
     return if hidden?
 
