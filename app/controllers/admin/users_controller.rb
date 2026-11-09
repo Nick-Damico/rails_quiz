@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::BaseController
   def index
     super
 
-    default_scope = policy_scope([ :admin, User.all ])
+    default_scope = policy_scope([ :admin, User.all.order(:username) ])
     search = UserSearch.new(default_scope, params)
 
     @user = current_user # maybe remove
