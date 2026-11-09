@@ -31,16 +31,23 @@ class Admin::UsersController < Admin::BaseController
 
   def deactivate
     if @user.deactivate!
-      flash[:notice] = t("admin.users.destroy.success")
+      flash[:notice] = t("flash.admin.users.deactivate.success")
       redirect_to admin_dashboard_url(tab: "user")
-
     else
-      flash[:alert] = t("admin.users.destroy.error")
+      flash[:alert] = t("flash.admin.users.deactivate.error")
       redirect_to admin_dashboard_url(tab: "user")
     end
   end
 
-  def enable
+  def activate
+    if @user.activate!
+      flash[:notice] = t("flash.admin.users.activate.success")
+      redirect_to admin_dashboard_url(tab: "user")
+
+    else
+      flash[:alert] = t("flash.admin.users.activate.error")
+      redirect_to admin_dashboard_url(tab: "user")
+    end
   end
 
   private

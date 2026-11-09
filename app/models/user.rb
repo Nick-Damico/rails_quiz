@@ -44,4 +44,10 @@ class User < ApplicationRecord
 
     update(hidden: true)
   end
+
+  def activate!
+    return if active?
+
+    update(hidden: false)
+  end
 end

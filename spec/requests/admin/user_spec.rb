@@ -97,6 +97,7 @@ RSpec.describe Admin::UsersController, type: :request do
         patch deactivate_admin_user_path(user)
 
         expect(user.reload).to be_inactive
+        expect(flash[:notice]).to eq("User account was successfully deactivated.")
       end
     end
 
@@ -108,28 +109,35 @@ RSpec.describe Admin::UsersController, type: :request do
         patch deactivate_admin_user_path(user)
 
         expect(user.reload).not_to be_inactive
+        expect(flash[:alert]).to eq("There was an error deactivating this users account. Refresh page and try again.")
       end
     end
   end
   describe "PATCH /admin/users/:id/activate" do
     before { sign_in admin }
 
-    context "successful deactivate" do
-      it "deactivates & hides the users' account" do
-        patch deactivate_admin_user_path(user)
+    context "successful" do
+      it "activates an inactive user account" do
+        user.deactivate!
 
-        expect(user.reload).to be_inactive
+        patch activate_admin_user_path(user)
+
+        expect(user.reload).to be_active
+        expect(flash[:notice]).to eq("User account was successfully activated.")
       end
     end
 
     context "failure to deactivate" do
       it "does not deactivate the users' account" do
         allow(User).to receive(:find).with(user.id.to_s).and_return(user)
-        allow(user).to receive(:deactivate!).and_return(false)
+        allow(user).to receive(:activate!).and_return(false)
 
-        patch deactivate_admin_user_path(user)
+        user.deactivate!
 
-        expect(user.reload).not_to be_inactive
+        patch activate_admin_user_path(user)
+
+        expect(user.reload).to be_inactive
+        expect(flash[:alert]).to eq("There was an error activating this users account. Refresh page and try again.")
       end
     end
   end

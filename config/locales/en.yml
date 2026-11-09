@@ -117,9 +117,12 @@ en:
 
     admin:
       users:
-        destroy:
-          success: "User was successfully deactivated."
-          error: "There was an error deactivating this user. Refresh page and try again."
+        deactivate:
+          success: "User account was successfully deactivated."
+          error: "There was an error deactivating this users account. Refresh page and try again."
+        activate:
+          success: "User account was successfully activated."
+          error: "There was an error activating this users account. Refresh page and try again."
 
     answer_sheets:
       create:
