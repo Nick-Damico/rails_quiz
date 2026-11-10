@@ -60,6 +60,7 @@
                     <%= button_to deactivate_admin_user_path(object),
                         class: "flex grow",
                         method: :patch,
+                        data: { turbo_frame: "_top" },
                         aria: { label: "deactivate User Account" } do %>
                       <span class="flex w-6 text-left">
                         <%= render_icon "x_circle", klass: "text-left size-5 text-red-500" %>
@@ -70,6 +71,7 @@
                     <%= button_to activate_admin_user_path(object),
                         class: "flex grow",
                         method: :patch,
+                        data: { turbo_frame: "_top" },
                         aria: { label: "Activate User Account" } do %>
                       <span class="flex w-6 text-left">
                         <%= render_icon "circle_check", klass: "text-left size-5 text-emerald-500" %>
