@@ -1,4 +1,7 @@
-<%= form_with path: path, method: :get, class: "flex flex-1 gap-2 md:w-auto" do |f| %>
+<%= form_with path: path,
+    method: :get,
+    data: { controller: "search-form" },
+    class: "flex flex-1 gap-2 md:w-auto" do |f| %>
   <%= hidden_category_id_fields %>
   <div class="relative flex-1">
     <label for="search" class="sr-only">Search</label>

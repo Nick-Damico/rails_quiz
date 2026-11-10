@@ -5,7 +5,7 @@
 <section aria-labelledby="resource-heading">
   <%= turbo_frame_tag :table_content do %>
     <%= render "shared/category_filters", path: @path, open_status: false unless @tab.downcase == "user" %>
-    <%= render "search", path: @path %>
+    <%= render "shared/search", path: @path %>
     <%= render "navigation" %>
     <div>
       <%= render @tab.downcase, objects: @objects %>
