@@ -31,7 +31,7 @@
       <% end %>
     </div>
   </div>
-  <section data-controller="search-filter" class="flex flex-col px-2 py-1 bg-gray-800 rounded md:col-span-2 md:row-span-2">
+  <section data-controller="search-form" class="flex flex-col px-2 py-1 bg-gray-800 rounded md:col-span-2 md:row-span-2">
     <div class="flex flex-col items-center justify-between py-2 mb-2 border-b border-gray-500 md:inline-flex md:flex-row">
       <form class="flex-1 mr-3 md:w-auto">
         <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search Questions</label>
@@ -43,8 +43,8 @@
           </div>
           <%= search_field_tag :search, nil,
               data: {
-                  "search-filter-target": "input",
-                  action: "input->search-filter#onInput"
+                  "search-form-target": "input",
+                  action: "input->search-form#onInput"
               },
               autocomplete: "on",
               class: "block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
@@ -56,8 +56,8 @@
         <span class="ml-2">Add Question</span>
       <% end %>
     </div>
-    <div data-search-filter-target="itemContainer" class="max-h-[650px] h-full">
-      <p data-search-filter-target="emptyMessage" class="hidden w-full mb-2 text-xl italic text-center text-gray-500">No questions found - try a different search.</p>
+    <div data-search-form-target="itemContainer" class="max-h-[650px] h-full">
+      <p data-search-form-target="emptyMessage" class="hidden w-full mb-2 text-xl italic text-center text-gray-500">No questions found - try a different search.</p>
       <% if @quiz.questions.exists? %>
         <ul id="questionsList" class="flex flex-col gap-1 pr-6">
           <%= render partial: "question", collection: @quiz.questions, locals: { quiz: @quiz } %>

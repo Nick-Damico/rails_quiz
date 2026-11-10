@@ -7,6 +7,7 @@ export default class extends Controller {
   static targets = ["item", "itemContainer", "emptyMessage"];
 
   connect() {
+    console.log("Search Form Connected");
     this.debouncedFilter = debounce((text) => {
       this.filter(text);
     });
